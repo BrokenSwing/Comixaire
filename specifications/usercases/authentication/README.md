@@ -27,7 +27,7 @@ This use case starts when an user of the media library system wants to authentic
 * The user enters its client ID
 * The system validates the client ID and logs the actor as a client into the system
 
-#### 1.2.1.3. Authenticate as an adminstrator
+#### 1.2.1.3. Authenticate as an administrator
 
 * The system requests that the user enter its username and its password
 * The user enters its username and its password
