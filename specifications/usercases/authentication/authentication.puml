@@ -1,0 +1,25 @@
+@startuml Authentication use cases
+
+left to right direction
+
+actor User as U
+
+rectangle "Authentication" {
+  usecase "Connect as employee" as CaE
+  note right: Using username and password
+  
+  usecase "Connect as client" as CaC
+  note right: Using client ID
+  
+  usecase “Connect as adminstrator” as CaA
+  note right: Using username and password
+  
+  usecase "Disconnect" as D
+}
+
+U -- CaE
+U -- CaC
+U -- CaA
+U -- D
+
+@enduml
