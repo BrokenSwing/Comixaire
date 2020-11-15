@@ -9,7 +9,7 @@ Comixaire is a media library management softawre.
 * Florent Hugouvieux : Test and build pipeline manager
 * Keven Dvorianoff : Database manager
 * Florine Pralong : Group manager
-* Axel Duval : Graphip design manager
+* Axel Duval : Graphic design manager
 
 
 ## Specifications
