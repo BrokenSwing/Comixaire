@@ -1,3 +1,12 @@
+---
+name: Authentication Use Case Specification
+version: 15/11/2020
+---
+
+# Use Case Diagram
+
+![use case diagram](./auth.png)
+
 # 1. Authenticate to media library system
 
 ## 1.1. Brief Description

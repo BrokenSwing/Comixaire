@@ -3,6 +3,9 @@
 left to right direction
 
 actor User as U
+actor Employee as E
+actor Client as C
+actor Administrator as A
 
 rectangle "Authentication" {
   usecase "Connect as employee" as CaE
@@ -20,6 +23,8 @@ rectangle "Authentication" {
 U -- CaE
 U -- CaC
 U -- CaA
-U -- D
+A -- D
+E -- D
+C -- D
 
 @enduml
