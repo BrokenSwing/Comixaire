@@ -13,7 +13,7 @@ version: 15/11/2020
 
 This use case allows any user to handle its authentication to the system. This includes logging in (as an employee or a client) and logging out.
 
-## 1.2 Flow of events
+## 1.2. Flow of events
 
 ### 1.2.1. Basic Flow
 
