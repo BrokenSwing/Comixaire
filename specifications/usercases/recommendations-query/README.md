@@ -1,5 +1,5 @@
 ---
-name: Documents Recommendation Query Use Case
+name: Documents recommendation query Use Case Specification
 version: 16/11/2020
 ---
 
