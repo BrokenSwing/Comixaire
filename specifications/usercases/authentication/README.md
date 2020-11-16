@@ -1,6 +1,6 @@
 ---
 name: Authentication Use Case Specification
-version: 15/11/2020
+version: 16/11/2020
 ---
 
 # Use Case Diagram
@@ -50,7 +50,11 @@ The user clicks on a “Logout” button, then the system logs the user out.
 
 #### 1.2.2.1. Invalid Username/Password
 
-If in the “[Authenticate as an employee](#1211-authenticate-as-an-employee)” (respectively “[Authenticate as an administrator](#1213-authenticate-as-an-administrator)”) subflow, the actor enters an invalid username and/or password, the system displays an error message. The actor can either return to the beginning of the “[Authenticate as an employee](#1211-authenticate-as-an-employee)” (respectively “[Authenticate as an administrator](#1213-authenticate-as-an-administrator)”) subflow or return to the beginning of the “Basic Flow” or cancel the login, at which point the use case ends.
+If in the “[Authenticate as an employee](#1211-authenticate-as-an-employee)” (respectively “[Authenticate as an administrator](#1213-authenticate-as-an-administrator)”) subflow, the actor enters an invalid username and/or password, the system displays an error message. The actor can either return to the beginning of the “[Authenticate as an employee](#1211-authenticate-as-an-employee)” (respectively “[Authenticate as an administrator](#1213-authenticate-as-an-administrator)”) subflow or return to the beginning of the “[Basic Flow](#121-basic-flow)” or cancel the login, at which point the use case ends.
+
+#### 1.2.2.2. Invalid client ID
+
+If in the “[Authenticate as a client](#1212-authenticate-as-a-client)” subflow, the actor enters an invalid client ID, the system displays an error message. The actor can either return to the beginning of the “[Authenticate as a client](#1212-authenticate-as-a-client)” subflow or return to the beginning of the “[Basic Flow](#121-basic-flow)” or cancel the login, at which point the use case ends.
 
 ## 1.3. Special Requirements
 
