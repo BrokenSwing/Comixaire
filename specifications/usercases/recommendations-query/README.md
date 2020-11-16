@@ -11,7 +11,7 @@ version: 16/11/2020
 
 ## 1.1. Brief Description
 
-This use case allows a client to consult documents recommended for him/her. This use case allows an employee to consult documents recommended for a client.
+This use case allows a client to consult documents recommended for him/her. This use case allows an employee or an administrator to consult documents recommended for a client.
 
 ## 1.2. Flow of events
 
