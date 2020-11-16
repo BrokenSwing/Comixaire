@@ -58,7 +58,7 @@ None.
 
 ## 1.4. Pre-Conditions
 
-For subflows “[Authenticate as an employee](#1211-authenticate-as-an-employee)”, “[Authenticate as a client](#1212-authenticate-as-a-client)” and “[Authenticate as an administrator](#1213-authenticate-as-an-administrator)r” : the user must not be logged into the system.
+For subflows “[Authenticate as an employee](#1211-authenticate-as-an-employee)”, “[Authenticate as a client](#1212-authenticate-as-a-client)” and “[Authenticate as an administrator](#1213-authenticate-as-an-administrator)” : the user must not be logged into the system.
 
 For subflow "[Disconnect](#1214-disconnect)" : the user must be logged into the system.
 
