@@ -30,7 +30,7 @@ The client asks the system for recommendations and the system displays documents
 
 * The employee or the administrator ask the system for recommendations for a given client (providing client ID)
 * The system validates the provided client ID
-* The system displays the documents recommended for the client with the given client ID to the actor
+* The system displays to the actor, the documents recommended for the client with the given client ID
 
 ### 1.2.2. Alternative Flows
 
