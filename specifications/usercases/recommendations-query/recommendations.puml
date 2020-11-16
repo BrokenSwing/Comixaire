@@ -1,0 +1,19 @@
+@startuml Recommendations query
+
+left to right direction
+
+actor Client as cl
+actor Employee as em
+actor Administrator as ad
+
+rectangle "List recommended documents" {
+  usecase "List recommended documents for itself" as Li
+  usecase "List recommended documents for a given client" as Lc
+ 
+}
+
+cl -- Li
+em -- Lc
+ad -|> em
+
+@enduml
