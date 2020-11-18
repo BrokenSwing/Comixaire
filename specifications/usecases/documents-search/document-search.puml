@@ -1,0 +1,20 @@
+@startuml Search documents
+
+left to right direction
+
+actor Employee as E
+
+rectangle "Find Documents" {
+  usecase "Search documents" as S
+  usecase "Find location" as F
+}
+
+E -- S
+F .> S : "extends"
+
+note right of F
+  If the document exists
+end note
+
+
+@enduml
