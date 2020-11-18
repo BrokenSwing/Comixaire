@@ -1,0 +1,13 @@
+@startuml Consult logs
+
+left to right direction
+
+actor Administrator as A
+
+rectangle "Consult Logs" {
+  usecase "Consult logs" as C
+}
+
+A -- C
+
+@enduml
