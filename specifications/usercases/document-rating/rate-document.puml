@@ -1,0 +1,19 @@
+@startuml Rate document
+
+left to right direction
+
+actor Client as cl
+
+rectangle "Rate document" {
+  usecase "List unrated documents that he borrowed" as L
+  usecase "Rate an unrated document that he borrowed" as R
+  usecase "Consult note he gave to a document" as C
+  usecase "Modify the note he gave to a document" as M
+}
+
+cl -- L
+cl -- R
+cl -- C
+cl -- M
+
+@enduml
