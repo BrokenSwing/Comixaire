@@ -29,6 +29,8 @@ This use case starts when an administrator wants to see previous operations made
 
 ### 1.2.2 Alternative Flows
 
+None.
+
 ## 1.3 Special Requirements
 
 None.
