@@ -44,6 +44,6 @@ This use case starts when a client wants to book a document at the front desk.
 
 The employee must be logged onto the system before this use case begins.
 
-# 1.4 Post-Conditions
+## 1.4 Post-Conditions
 
 If the use case was successful, the booking is saved. The document is now booked. Otherwise, the document state is unchanged.
