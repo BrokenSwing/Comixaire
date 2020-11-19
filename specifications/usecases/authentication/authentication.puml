@@ -14,7 +14,7 @@ rectangle "Authentication" {
   usecase "Connect as client" as CaC
   note right: Using client ID
   
-  usecase “Connect as adminstrator” as CaA
+  usecase "Connect as administrator" as CaA
   note right: Using username and password
   
   usecase "Disconnect" as D
