@@ -18,75 +18,53 @@ This use case allows employees to create loans for clients.
 
 ### 1.2.1 Basic Flow
 
-This use case starts when a client come to borrow a document at the front desk.
+This use case starts when a client come to borrow an item at the front desk.
 
-* The employee selects the Loan action on actions center.
-* The employee scan client’s card or enter client ID.
-* The system retrieves and displays the client information.
-* The system requests a(several) document ID(s)
-* The employee validates the transaction.
-* The system saves the loan information and provides a feedback of the transaction completed.
-* The system prevents client of his current loan.
+* The employee scan client’s card or enter client ID
+* The system retrieves and displays the client information
+* The employee scan item(s)
+* The employee click on a button to perform the transaction
+* The system saves the loan information and displays a success notification
 
 ### 1.2.2 Alternative Flows
 
 #### 1.2.2.1 Client Not Found
 
-* The employee selects the Loan action on action center
-* The employee scan client’s card or enter client ID.
-* System cannot retrieve client’s information.
-* System throw the ClientNotFound exception
+* System cannot retrieve client’s information, then display an error notification
 * System abort loan action.
 
 #### 1.2.2.2 Non-Valid Subscription or Client Not Eligible
 
-* The employee selects the Loan action on action center
-* The employee scan client’s card or enter client ID.
-* The system retrieves and displays the client information.
-* Employee cannot select the loan action because of the currently do not have a valid subscription or is not eligible (several fines and dues).
+* Employee cannot select the loan action because of the client do not have a valid subscription or is not eligible (several fines and dues)
 
-#### 1.2.2.3 Document Not Found
+#### 1.2.2.3 Item Not Found
 
-* The employee selects the Loan action on action center
-* The employee scan client’s card or enter client ID.
-* The system retrieves and displays the client information.
-* The employee selects the loan action on client’s actions center.
-* The system requests a(several) document ID(s)
-* System cannot retrieve one/several document information.
-* System throw the DocumentNotFound exception for the transaction which includes this document.
-* The employee selects a time duration and validates the transaction.
-* The system saves the loan information and provides a feedback of the transaction completed.
+* The employee scan an item
+* System cannot retrieve item information, then dispay an error notification telling the item is not found
+* System continue his execution (employee could scan other items)
 
-#### 1.2.2.4 Document Already Booked
+#### 1.2.2.4 Item Already Booked
 
-* The employee selects the Loan action on action center
-* The employee scan client’s card or enter client ID.
-* The system retrieves and displays the client information.
-* The employee selects the loan action on client’s actions center.
-* The system requests a(several) document ID(s)
-* If system figures out that a document is already booked by another client, then throw the DocumentAlreadyBooked exception for that document.
-* The employee selects a time duration and validates the transaction for non-already booked documents.
-* The system saves the loan information and provides a feedback of the transaction completed.
+* The employee scan an item
+* System figures out the item is already booked by another client, then display an error notification telling the item is booked
+* System do not append this item to the loan
+* System continue his execution (employee could scan other items)
 
-#### 1.2.2.5 Document on Loan
+#### 1.2.2.5 Item on Loan
 
-* The employee selects the Loan action on action center
-* The employee scan client’s card or enter client ID.
-* The system retrieves and displays the client information.
-* The employee selects the loan action on client’s actions center.
-* The system requests a(several) document ID(s)
-* If system figures out that a document is already on loan, then throw the DocumentOnLoan exception for that document.
-* The employee selects a time duration and validates the transaction for non-already on loan documents.
-* The system saves the loan information and provides a feedback of the transaction completed.
+* The employee scan an item
+* System figures out that the item is borrowed, then display an exception notification telling the employee to return this item first
+* System do not append this item to the loan
+* System continue his execution (employee could scan other items)
 
 ## 1.3 Pre-Conditions
 
-The employee must be logged onto the system before this use case begins.
+The employee must be logged onto the system before this use case begins
 
 ## 1.4 Post-Conditions
 
-If the use case was successful, the loan is saved. The documents are on loan so cannot be loan anymore
-until the client return the documents. Otherwise, the system, the client and the documents states are
+If the use case was successful, the loan is saved. The item(s) are on loan so cannot be loan anymore
+until the client return the documents. Otherwise, the system, the client and the item(s) state(s) are
 unchanged.
 
 ## 1.5 Extension Points
