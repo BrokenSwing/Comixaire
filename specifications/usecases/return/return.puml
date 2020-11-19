@@ -5,7 +5,7 @@ left to right direction
 actor Employee as E
 
 rectangle "Manage returns" {
-  usecase "Return document" as R
+  usecase "Return library item" as R
   usecase "Create fine" as F
 }
 

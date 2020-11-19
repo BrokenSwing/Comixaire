@@ -5,7 +5,7 @@ left to right direction
 actor Client as C
 
 rectangle "Booking system" {
-  usecase "Book a document" as B
+  usecase "Book a library item" as B
 }
 
 C -- B

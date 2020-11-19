@@ -1,13 +1,8 @@
----
-name: Return management Use Case Specification
-version: 19/11/2020
----
+# 1. Manage Returns
 
-# Use Case Diagram
+## Use Case Diagram
 
 ![Use Case Diagram](./return.png)
-
-# 1. Manage Returns
 
 ## 1.1 Brief Description
 

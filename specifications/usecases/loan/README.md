@@ -1,14 +1,8 @@
----
-name: Loan Use Case Specification
-version: 19/11/2020
----
+# 1. Manage Loans
 
-# Use Case Diagram
+## Use Case Diagram
 
 ![Use Case Diagram](./loan.png)
-
-
-# 1. Manage Loans
 
 ## 1.1 Brief Description
 

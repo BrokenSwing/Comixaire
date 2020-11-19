@@ -1,13 +1,8 @@
----
-name: Booking Use Case Specification
-version: 19/11/2020
----
+# 1. Bookings
 
-# Use Case Diagram
+## Use Case Diagram
 
 ![Use Case Diagram](./booking.png)
-
-# 1. Bookings
 
 ## 1.1 Brief Description
 
