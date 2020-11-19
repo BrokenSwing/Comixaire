@@ -20,8 +20,8 @@ This use case starts when a client wants to book an item at the front desk.
 * System add the client to the booking queue of selected item
 * The system saves the booking and display a success notification telling the booking was saved
 
-![Booking 1](./Book1.jpg)
-![Booking 2](./Book2.jpg)
+![Page display input for client id](./Book1.jpg)
+![Page display client information and items to book](./Book2.jpg)
 
 ### 1.2.2 Alternative Flows
 
