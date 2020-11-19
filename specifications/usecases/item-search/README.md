@@ -16,14 +16,21 @@ This use case starts when an administrator, an employee, or a client wants to fi
 
 * The system requests that an administrator, an employee, or a client specifies one or more information about an item.
 * Once an administrator, an employee, or a client provides at least one information (Name, Item type, Category, Editor(s) / Author(s) / Director(s) / Artist(s), and/or CDD), the system retrieves and displays a list of items.
+
+![Search page to find item location.](./search-item-mockup.svg)
+
 * An administrator, an employee, or a client can then select an item to get more information about the desired item.
 * The system provides an administrator, an employee, or a client with all the information available on an item including its location in the library.
+
+![Information about the selected item.](./search-item-result-mockup.svg)
 
 ### 1.2.2 Alternative Flows
 
 #### 1.2.2.1 No Result
 
-If no item matches the search, the system displays a "no result" message. An administrator, an employee, or a client can then enter different information or cancel the operation, at which point the use case ends.
+If no item matches the search, the system displays a "no results" message. An administrator, an employee, or a client can then enter different information or cancel the operation, at which point the use case ends.
+
+![Search page with a "no results" message](./search-item-no-results-mockups.svg)
 
 #### 1.2.2.2 Search Cancelled
 
