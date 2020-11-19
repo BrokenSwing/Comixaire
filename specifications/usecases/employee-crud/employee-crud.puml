@@ -1,0 +1,19 @@
+@startuml Manage employee
+
+left to right direction
+
+actor Administrator as E
+
+rectangle "Manage Employee" {
+  usecase "Create employee" as C
+  usecase "Read employee" as R
+  usecase "Update employee" as U
+  usecase "Delete employee" as D
+}
+
+E -- C
+E -- R
+E -- U
+E -- D
+
+@enduml
