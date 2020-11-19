@@ -1,0 +1,19 @@
+@startuml Item CRUD
+
+left to right direction
+
+actor Employee as E
+
+rectangle "Item CRUD" {
+  usecase "Create item" as C
+  usecase "Read item" as R
+  usecase "Update item" as U
+  usecase "Delete item" as D
+}
+
+E -- C
+E -- R
+E -- U
+E -- D
+
+@enduml

@@ -1,11 +1,11 @@
-@startuml Search documents
+@startuml Search items
 
 left to right direction
 
 actor Employee as E
 
-rectangle "Find Documents" {
-  usecase "Search documents" as S
+rectangle "Find items" {
+  usecase "Search items" as S
   usecase "Find location" as F
 }
 
@@ -13,7 +13,7 @@ E -- S
 F .> S : "extends"
 
 note right of F
-  If the document exists
+  If the item exists
 end note
 
 
