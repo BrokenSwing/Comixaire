@@ -99,7 +99,7 @@ None.
 
 # Mockup
 
-![Mockup1](./user.png)
-![Mockup2](./user_newuser.png)
-![Mockup3](./user_update.png)
+![User_menu](./user.png)
+![New_user](./user_newuser.png)
+![Update_user](./user_update.png)
 
