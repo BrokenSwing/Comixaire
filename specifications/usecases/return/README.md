@@ -21,8 +21,8 @@ This use case starts when a returned item is at the front desk.
 * The employee click on button to perform the transaction
 * The system saves the return information and displays a success notification telling the return was correctly performed
 
-![Returns 1](./Returns1.jpg)
-![Returns 2](./Returns2.jpg)
+![Page displaying input for item id](./Returns1.jpg)
+![Page displaying item, borrower information and return inputs](./Returns2.jpg)
 
 ### 1.2.2 Alternative Flows
 
