@@ -1,0 +1,19 @@
+@startuml Rate library item
+
+left to right direction
+
+actor Client as cl
+
+rectangle "Rate library item" {
+  usecase "List unrated library items that he/she borrowed" as L
+  usecase "Rate an unrated libray item that he/she borrowed" as R
+  usecase "Consult note he/she gave to a library item" as C
+  usecase "Modify the note he/she gave to a library item" as M
+}
+
+cl -- L
+cl -- R
+cl -- C
+cl -- M
+
+@enduml
