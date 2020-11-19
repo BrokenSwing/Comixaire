@@ -27,6 +27,8 @@ If an administrator or an employee selected “Delete a Item“, the **Delete a 
 
 #### 1.2.1.1 Create a Item
 
+![Employee action center.](./employee-action-center-mockup.svg)
+
 The system requests that an administrator or an employee enters the item information. This includes:
 * Name
 * Item type (book / game / CD / DVD)
@@ -37,37 +39,70 @@ The system requests that an administrator or an employee enters the item informa
 * Condition
 * Location
 
+![Create item information page.](./create-item-mockup.svg)
+
 Once an administrator or an employee provides the requested information, the system generates and assigns a unique item id number to the item. 
 
 The item is added to the system.
 
 The system displays a succes notification saying that the item has been successfully created.
 
+![Successfull notification for item creation.](./item-create-success.svg)
+
 #### 1.2.1.2 Read a Item
 
 * The system requests that an administrator or an employee enters the item id. 
+
+![Search page to find item information.](./search-item-mockup.svg)
+
 * An administrator or an employee enters the item id. The system retrieves and displays the item information.
+
+![Information about the item.](./search-item-result-mockup.svg)
 
 #### 1.2.1.3 Update a Item
 
 * The system requests that an administrator or an employee enters the item id.
+
+![Search page to find item information.](./search-item-mockup.svg)
+
 * An administrator or an employee enters the item id. The system retrieves and displays the item information.
+
+![Information about the item.](./search-item-result-mockup.svg)
+
 * An administrator or an employee makes the desired changes to the item information. This includes any of the information specified in the **Create a Item** sub-flow.
+
+![Update page for the selected item.](./update-item-mockup.svg)
+
 * Once an administrator or an employee updates the necessary information, the system updates the item record with the updated information and displays a succes notification saying that the item has been successfully updated.
+
+![Successfull notification for item update.](./item-update-success.svg)
 
 #### 1.2.1.4 Delete a Item
 
 * The system requests that an administrator or an employee enters the item id. 
+
+![Search page to find item information.](./search-item-mockup.svg)
+
 * An administrator or an employee enters the item id. The system retrieves and displays the item information.
+
+![Information about the item.](./search-item-result-mockup.svg)
+
 * The system prompts an administrator or an employee to confirm the deletion of the item.
+
+![Warning notification for item deletion.](./item-delete-warning.svg)
+
 * An administrator or an employee verifies the deletion.
 * The system removes the item from the system and diplays a succes notification saying that the item has been successfully deleted.
+
+![Successfull notification for item deletion.](./item-delete-success.svg)
 
 ### 1.2.2 Alternative Flows
 
 #### 1.2.2.1 Item Not Found
 
-If in the **Read a Item**, **Update a Item** or **Delete a Item** sub-flows, an item with the specified id number does not exist, the system displays an error notification saying that the item was not found. An administrator or an employee can then enter a different id number or cancel the operation, at which point the use case ends.
+If in the **Read a Item**, **Update a Item** or **Delete a Item** sub-flows, an item with the specified id number does not exist, the system displays a "no results" message. An administrator or an employee can then enter a different id number or cancel the operation, at which point the use case ends.
+
+![Search page with a "no results" message](./search-item-no-results-mockups.svg)
 
 #### 1.2.2.2 Delete Cancelled
 
