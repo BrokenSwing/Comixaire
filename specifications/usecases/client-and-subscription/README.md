@@ -95,6 +95,9 @@ If the use case was successful, the subscription information is created, updated
 
 None.
 
+# Mockup
 
+![User_menu](./user.png)
+![User_subscription](./user_subscription.png)
 
 
