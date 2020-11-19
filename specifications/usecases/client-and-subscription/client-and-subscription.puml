@@ -1,0 +1,19 @@
+@startuml Manage client and subcription
+
+left to right direction
+
+actor Employee as E
+
+rectangle "Manage Client And Subcribtion" {
+  usecase "Create subcribtion" as C
+  usecase "Read subcribtion" as R
+  usecase "Update subcribtion" as U
+  usecase "Delete subcribtion" as D
+}
+
+E -- C
+E -- R
+E -- U
+E -- D
+
+@enduml
