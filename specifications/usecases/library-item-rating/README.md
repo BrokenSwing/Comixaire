@@ -21,12 +21,13 @@ To do so, he/she just has to ask the system to display library items he/she borr
 * If the client wants to consult the note he/she gave to a library item, then the “Consult library item note” subflow is executed.
 * If the client wants to modify the note he/she gave to a library item, then the “Modify library item note” subflow is executed.
 
+![Page with two borrowed item displayed : one rated 3 stars on 5 and one waiting to be rated](./client-rating-page-mockup.svg)
+
 #### 1.2.1.1 Filter library items
 
 The client provides the system filter rules by clicking on some inputs :
 
 * Rated/Unrated
-* Note between X and Y
 * Search bar taking a string
 
 Then the system displays all library items matching the filter.
@@ -36,6 +37,8 @@ Then the system displays all library items matching the filter.
 * The client searches the library item in the displayed list then clicks on the “Rate” button.
 * The system asks the user to provide an integer between 1 and 5 (both inclusive) by selecting stars.
 * The system sets the given value as the note given by this client for this library item.
+
+![Popup displayed to client when clicking "Rate" button](./client-rating-popup-mockup.svg)
 
 #### 1.2.1.3 Consult library item note
 
@@ -62,7 +65,7 @@ The client is logged in the system.
 
 If the client rated a library item or modified a note he/she gave to a library item, the system state changed and a library item note given by an user is updated.
 
-In the other cases, the systme state is unchanged.
+In the other cases, the system state is unchanged.
 
 ## 1.6 Extension Points
 
