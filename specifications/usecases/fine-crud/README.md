@@ -95,4 +95,9 @@ If the use case was successful, the fines information is created, updated, read,
 
 None.
 
+# Mockup
+
+![Mockup1](./user.png)
+![Mockup2](./user_fines.png)
+
 
