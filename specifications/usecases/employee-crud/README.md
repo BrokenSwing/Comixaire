@@ -97,5 +97,9 @@ If the use case was successful, the employee information is created, updated, re
 
 None.
 
+# Mockup
 
+![Mockup1](./user.png)
+![Mockup2](./user_newuser.png)
+![Mockup3](./user_update.png)
 
