@@ -64,7 +64,7 @@ The employee must be logged onto the system before this use case begins
 ## 1.4 Post-Conditions
 
 If the use case was successful, the loan is saved. The item(s) are on loan so cannot be loan anymore
-until the client return the documents. Otherwise, the system, the client and the item(s) state(s) are
+until the client return the item(s). Otherwise, the system, the client and the item(s) state(s) are
 unchanged.
 
 ## 1.5 Extension Points
