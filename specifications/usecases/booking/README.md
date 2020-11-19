@@ -23,14 +23,14 @@ This use case starts when a client wants to book an item at the front desk.
 * The employee scan client’s card and a client preview is shown
 * The employee search for a specific item and selects it
 * System add the client to the booking queue of selected item
-* The system saves the booking and display a success notification
+* The system saves the booking and display a success notification telling the booking was saved
 
 ### 1.2.2 Alternative Flows
 
 #### 1.2.2.1 Client Not Found
 
-* System cannot retrieve client, then display an error notification
-* System abort booking action.
+* System cannot retrieve client, then display an error notification telling client not found
+* System abort booking action
 
 #### 1.2.2.2 Client Not Eligible
 
@@ -38,8 +38,8 @@ This use case starts when a client wants to book an item at the front desk.
 
 ## 1.3 Pre-Conditions
 
-The employee must be logged onto the system before this use case begins.
+The employee must be logged onto the system before this use case begins
 
 ## 1.4 Post-Conditions
 
-If the use case was successful, the booking is saved. The item is now booked. Otherwise, the item state is unchanged.
+If the use case was successful, the booking is saved. The item is now booked. Otherwise, the item state is unchanged
