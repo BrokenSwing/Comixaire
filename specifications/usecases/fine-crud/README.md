@@ -4,47 +4,95 @@
 
 ![Use Case Diagram](./fine-crud.png)
 
-## 1.1 Brief Description
+## Brief Description
 
-This use case allows an employee to manage client’s fines. 
+This use case allows an employee to manage client’s fines
+. 
+## Flow of events
 
-## 1.2 Flow of events
+### Basic Flow
 
-### 1.2.1 Basic Flow
+This use case starts when an employee wishes to create, read, update and/or delete client fines from the system.
 
-This use case starts when an employee wants to create, update, view or delete a client fine.
-The admin does one action and this action is validated in the database.
+The system requests that an administrator  or an employee specify the function he/she would like to perform (either Create a fines, Read a fines, Update a fines, or Delete a fines)
 
-* Admin go to the manage fine menu
-* Then click on (create, update, view or delete) fine 
-* If create : have a form to enter the information about the fine 
-* If update : the system ask the Id of fine and client and the admin can change information about a fine 
-* If view : the system ask the id of the fine and client and admin can view the informations about the fine he can go to the page update by this page 
-* If delete the system ask the id of the fine and ask a confirmation to delete
+Once an administrator or an employee provides the requested information, one of the sub flows is executed.
 
-### 1.2.2 Alternative Flows
+If an administrator or an employee selected “Create a fines“, the Create a fines ub-flow is executed.
+If an administrator or an employee selected “Read a fines“, the Read a fines sub-flow is executed.
+If an administrator or an employee selected “Update a fines“, the Update a fines sub-flow is executed.
+If an administrator or an employee selected “Delete a fines“, the Delete a fines sub-flow is executed
 
-#### 1.2.2.1 Invalid client ID for update
 
-The admin wants to update a non existing fine, the system displays an error message and proposes to create this fine.
+#### Create a fines
 
-#### 1.2.2.2 Invalid client ID for view or delete
+The system requests that an administrator or an employee enters the fines information. This includes:
+Type of fines
+Price
 
-The admin wants to view or delete a non existing fine, the system displays an error message.
+Once an administrator or an employee provides the requested information, the system generates and assigns a unique fines id number to the fines. The fines are added to the system.
 
-#### 1.2.2.3 Special requirements
+The system provides an administrator or an employee with the new fines id.
+
+			
+#### Read a fines
+
+The system requests that an administrator or an employee enters the fines id. 
+
+An administrator or an employee enters the fines id.  The system retrieves and displays the fines information.
+
+#### Update a fines 
+
+The system requests that an administrator or an employee enters the fines id.
+
+An administrator or an employee enters the fines id.  The system retrieves and displays the fines information.
+
+An administrator or an employee makes the desired changes to the fines information. This includes any of the information specified in the Create a fines sub-flow.
+
+Once an administrator or an employee updates the necessary information, the system updates the fines record with the updated information.
+
+#### Deleted a fines
+
+The system requests that an administrator or an employee enters the fines id. 	
+
+An administrator or an employee enters the document id.  The system retrieves and displays the fines information.
+
+The system prompts an administrator or an employee to confirm the deletion of the fines.
+
+An administrator or an employee verifies the deletion.
+
+The system removes the fines from the system.
+
+
+
+
+
+### Alternative Flows
+
+#### fines not found
+
+If in the Read a fines, Update a fines or Delete a fines sub-flows, a fines with the specified id number does not exist, the system displays an error message. An administrator or an employee can then enter a different id number or cancel the operation, at which point the use case ends.
+
+
+#### Deleted cancelled
+
+If in the Delete a fines sub-flow, an administrator or an employee decides not to delete the fines, the delete is cancelled, and the Basic Flow is re-started at the beginning.
+
+
+## Special requirements
 
 None.
 
-## 1.3 Pre-Conditions
+## Pre-Conditions
 
 Employee must be logged in the system.
 
-## 1.4 Post-Condition
+## Post-Condition
+
+If the use case was successful, the fines information is created, updated, read, or deleted from the system.  Otherwise, the system state is unchanged.
+
+## Extension Points
 
 None.
 
-## 1.5 Extension Points
-
-None.
 
