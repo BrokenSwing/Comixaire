@@ -1,0 +1,14 @@
+@startuml Manage Loans
+
+left to right direction
+
+actor Employee as E
+
+rectangle "Manage loans" {
+  usecase "Lend document" as L
+}
+
+E -- L
+note right of L : "If client eligible"
+
+@enduml
