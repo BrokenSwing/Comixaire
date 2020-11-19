@@ -1,0 +1,19 @@
+@startuml Fine CRUD
+
+left to right direction
+
+actor Employee as E
+
+rectangle "Manage fine" {
+  usecase "Create fine to a client" as C
+  usecase "Read fine to a client" as R
+  usecase "Update fine to a client" as U
+  usecase "Delete fine to a client" as D
+}
+
+E -- C
+E -- R
+E -- U
+E -- D
+
+@enduml
