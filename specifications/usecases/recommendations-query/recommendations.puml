@@ -1,4 +1,4 @@
-@startuml Recommendations query
+@startuml Display recommended library items
 
 left to right direction
 
@@ -6,9 +6,9 @@ actor Client as cl
 actor Employee as em
 actor Administrator as ad
 
-rectangle "List recommended documents" {
-  usecase "List recommended documents for itself" as Li
-  usecase "List recommended documents for a given client" as Lc
+rectangle "List recommended library items" {
+  usecase "List recommended library items" as Li
+  usecase "List recommended library items for a given client" as Lc
  
 }
 
