@@ -81,6 +81,7 @@ None.
 ## Mockup
 
 ![User profile page](./user.png)
+
 ![User fines menu](./user_fines.png)
 
 

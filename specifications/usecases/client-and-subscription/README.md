@@ -88,5 +88,6 @@ None.
 ## Mock-ups
 
 ![User profile page](./user.png)
+
 ![User subscriptions menu](./user_subscription.png)
 

@@ -21,6 +21,7 @@ This use case starts when an user of the media library system wants to authentic
 * If the user wants to authenticate as a client, the user clicks on "Client" tab of login page and fill the input box with its client ID then clicks on the "Authenticate me" button. The user is authenticated and redirected to it's action center.
 
 ![Login page with client tab selected](./client-login-mockup.svg)
+
 ![Client action center page](./client-action-center-mockup.svg)
 
 * If the user wants to disconnect (whatever he’s authenticated as), the user clicks on the “Logout” button, then the system logs the user out.

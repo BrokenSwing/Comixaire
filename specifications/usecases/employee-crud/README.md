@@ -88,6 +88,8 @@ None.
 ## Mockup
 
 ![User profile page](./user.png)
+
 ![User creation page](./user_newuser.png)
+
 ![User update page](./user_update.png)
 

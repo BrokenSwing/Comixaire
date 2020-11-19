@@ -22,6 +22,7 @@ This use case starts when a returned item is at the front desk.
 * The system saves the return information and displays a success notification telling the return was correctly performed
 
 ![Page displaying input for item id](./Returns1.jpg)
+
 ![Page displaying item, borrower information and return inputs](./Returns2.jpg)
 
 ### 1.2.2 Alternative Flows

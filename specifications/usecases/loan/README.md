@@ -20,7 +20,8 @@ This use case starts when a client come to borrow an item at the front desk.
 * The employee click on a button to perform the transaction
 * The system saves the loan information and displays a success notification
 
-![Page displaying iput for client id](./Loan1.jpg)
+![Page displaying input for client id](./Loan1.jpg)
+
 ![Page displaying client information and choosen items](./Loan2.jpg)
 
 ### 1.2.2 Alternative Flows

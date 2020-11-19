@@ -21,6 +21,7 @@ This use case starts when a client wants to book an item at the front desk.
 * The system saves the booking and display a success notification telling the booking was saved
 
 ![Page display input for client id](./Book1.jpg)
+
 ![Page display client information and items to book](./Book2.jpg)
 
 ### 1.2.2 Alternative Flows
