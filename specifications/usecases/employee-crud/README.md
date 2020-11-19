@@ -1,13 +1,8 @@
----
-name: Employee management Use Case Specification
-version: 19/11/2020
----
+# 1. Employee management
 
-# Use Case Diagram
+## Use Case Diagram
 
 ![Use Case Diagram](./employee-crud.png)
-
-# 1. Employee management
 
 ## 1.1 Brief Description
 

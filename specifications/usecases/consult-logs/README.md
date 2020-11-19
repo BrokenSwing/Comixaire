@@ -1,13 +1,8 @@
----
-name: Consult logs Use Case Specification
-version: 18/11/2020
----
-
-# Use Case Diagram
-
-![use case diagram](./logs.png)
-
 # 1. Consult Logs
+
+## Use Case Diagram
+
+![Use Case Diagram](./logs.png)
 
 ## 1.1 Brief Description
 

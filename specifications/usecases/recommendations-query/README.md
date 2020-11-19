@@ -1,13 +1,8 @@
----
-name: Display list of recommended library items Use Case Specification
-version: 16/11/2020
----
-
-# Use Case Diagram
-
-![use case diagram](./recommendation.png)
-
 # 1. Display a list of recommended library items
+
+## Use Case Diagram
+
+![Use Case Diagram](./recommendation.png)
 
 ## 1.1. Brief Description
 

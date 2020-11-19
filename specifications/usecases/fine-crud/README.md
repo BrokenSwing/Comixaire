@@ -1,13 +1,8 @@
----
-name: Fine management Use Case Specification
-version: 19/11/2020
----
+# 1. Fine Management
 
-# Use Case Diagram
+## Use Case Diagram
 
 ![Use Case Diagram](./fine-crud.png)
-
-# 1. Fine Management
 
 ## 1.1 Brief Description
 

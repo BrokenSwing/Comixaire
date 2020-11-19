@@ -1,8 +1,8 @@
-# Use Case Diagram
-
-![use case diagram](./rate-item.png)
-
 # 1. Rate borrowed library item
+
+## Use Case Diagram
+
+![Use Case Diagram](./rate-item.png)
 
 ## 1.1 Brief Description
 

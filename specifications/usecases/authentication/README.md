@@ -1,8 +1,8 @@
-# Use Case Diagram
-
-![use case diagram](./auth.png)
-
 # 1. Authenticate to media library system
+
+## Use Case Diagram
+
+![Use Case Diagram](./auth.png)
 
 ## 1.1 Brief Description
 

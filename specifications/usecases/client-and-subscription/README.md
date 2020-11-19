@@ -1,13 +1,8 @@
----
-name: Client and subscription management Use Case Specification
-version: 19/11/2020
----
+# 1. Manage client and client's subscription
 
-# Use Case Diagram
+## Use Case Diagram
 
 ![Use Case Diagram](./client-sub.png)
-
-# 1. Manage client and client's subscription
 
 ## 1.1 Brief Description
 

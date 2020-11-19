@@ -1,13 +1,8 @@
----
-name: CRUD item Use Case Specifications
-version: 18/11/2020
----
-
-# Use Case Diagram
-
-![use case diagram](./item-crud.png)
-
 # 1. Maintain Item Information
+
+## Use Case Diagram
+
+![Use Case Diagram](./item-crud.png)
 
 ## 1.1 Brief Description
 

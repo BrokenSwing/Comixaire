@@ -1,13 +1,8 @@
----
-name: Item search Use Case Specification
-version: 18/11/2020
----
-
-# Use Case Diagram
-
-![use case diagram](./search.png)
-
 # 1. Find Items
+
+## Use Case Diagram
+
+![Use Case Diagram](./search.png)
 
 ## 1.1 Brief Description
 
