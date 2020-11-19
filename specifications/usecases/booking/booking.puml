@@ -1,0 +1,13 @@
+@startuml Booking
+
+left to right direction
+
+actor Client as C
+
+rectangle "Booking system" {
+  usecase "Book a document" as B
+}
+
+C -- B
+
+@enduml
