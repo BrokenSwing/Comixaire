@@ -56,3 +56,4 @@ If the use case was successful, the authentication state of the user changed (lo
 ## 1.6 Extension Points
 
 None.
+

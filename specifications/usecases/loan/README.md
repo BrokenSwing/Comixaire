@@ -64,3 +64,4 @@ unchanged.
 ## 1.5 Extension Points
 
 In order to get the client’s ID the employee could scan client’s card.
+

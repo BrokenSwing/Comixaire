@@ -12,4 +12,4 @@ find ./specifications/usecases/ -type f \( -iname "*md" \) -exec sed "s/[0-9].\(
 cd ./tmp
 pandoc ./reports-fragments/use-cases.md -f markdown+yaml_metadata_block --template eisvogel --table-of-contents --toc-depth 6 --number-sections --top-level-division=chapter --highlight-style breezedark -o ../output/report.pdf
 cd ..
-rm -rf ./tmp
+# rm -rf ./tmp
