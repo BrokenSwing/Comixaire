@@ -21,6 +21,8 @@ This use case starts when an administrator wants to see previous operations made
     * Date
     * Operation type
     * Operations details
+	
+![Logs page with some logs](logs-mockup.svg)
 
 ### 1.2.2 Alternative Flows
 
