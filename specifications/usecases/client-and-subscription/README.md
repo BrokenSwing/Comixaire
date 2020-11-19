@@ -12,38 +12,89 @@ This use case allows an employee to manage client’s subscriptions.
 
 ### 1.2.1 Basic Flow
 
-This use case starts when an employee wants to create, update, view or delete a client subscription..
-Employee go to the manage subscription menu
-then click on (create, update, view or delete) subscription
+This use case starts when an employee wishes to create, read, update and/or delete client subscription from the system.
 
-* If create : have a form to enter the information about the client
-* If update : the system ask the Id of client and the employee can change information about a client
-* If view : the system ask the id of the client and employee can view the informations about the client he can go to the page update by this page 
-* If delete the system ask the id of the client and ask a confirmation to delete
+The system requests that an administrator  or an employee specify the function he/she would like to perform (either Create a Subscription, Read a Subscription, Update a Subscription, or Delete a Subscription)
 
-### 1.2.2 Alternative Flows
+Once an administrator or an employee provides the requested information, one of the sub flows is executed.
 
-#### 1.2.2.1 Invalid client ID for update
+* If an administrator or an employee selected “Create a Subscription“, the Create a Subscriptions ub-flow is executed.
+* If an administrator or an employee selected “Read a Subscription“, the Read a Subscription sub-flow is executed.
+* If an administrator or an employee selected “Update a Subscription“, the Update a Subscription sub-flow is executed.
+* If an administrator or an employee selected “Delete a Subscription“, the Delete a Subscription sub-flow is executed
 
-The admin wants to update a non existing subscription, the system displays an error message and proposes to create this fine.
+#### 2.1.1 Create a Subscription
 
-#### 1.2.2.2 Invalid client ID for view or delete
+The system requests that an administrator or an employee enters the subscription information. This includes:
+Fristame
+LastName
+Sexe
+Birth date
+Address
+…
 
-The admin wants to view or delete a non existing subscription, the system displays an error message.
+Once an administrator or an employee provides the requested information, the system generates and assigns a unique subscription id number to the subscription. The subscription is added to the system.
 
-### 1.2.3 Special requirements
+The system provides an administrator or an employee with the new subscription id.
+
+			
+#### 2.1.2 Read a subscription
+
+The system requests that an administrator or an employee enters the subscription id. 
+
+An administrator or an employee enters the subscription id.  The system retrieves and displays the subscription information.
+
+#### 2.1.3 Update a subscription 
+
+The system requests that an administrator or an employee enters the subscription id.
+
+An administrator or an employee enters the subscription id.  The system retrieves and displays the subscription information.
+
+An administrator or an employee makes the desired changes to the subscription information. This includes any of the information specified in the Create a subscription sub-flow.
+
+Once an administrator or an employee updates the necessary information, the system updates the subscription record with the updated information.
+
+#### 2.1.4 Deleted a subscription
+
+The system requests that an administrator or an employee enters the subscription id. 	
+
+An administrator or an employee enters the document id.  The system retrieves and displays the subscription information.
+
+The system prompts an administrator or an employee to confirm the deletion of the subscription.
+
+An administrator or an employee verifies the deletion.
+
+The system removes the subscription from the system.
+
+
+### Alternative Flows
+
+#### Subscription not found
+
+If in the Read a Subscription, Update a Subscription or Delete a Subscription sub-flows, a subscription with the specified id number does not exist, the system displays an error message. An administrator or an employee can then enter a different id number or cancel the operation, at which point the use case ends.
+
+
+#### Deleted cancelled
+
+If in the Delete a Subscription sub-flow, an administrator or an employee decides not to delete the subscription, the delete is cancelled, and the Basic Flow is re-started at the beginning.
+
+
+### Special requirements
 
 None.
 
-## 1.3 Pre-Conditions
+### Pre-Conditions
 
 Employee must be logged in the system.
 
-## 1.4 Post-Condition
+### Post-Condition
+
+If the use case was successful, the subscription information is created, updated, read, or deleted from the system.  Otherwise, the system state is unchanged.
+
+### Extension Points
 
 None.
 
-## 1.5 Extension Points
 
-None.
+
 
