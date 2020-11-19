@@ -97,7 +97,7 @@ None.
 
 # Mockup
 
-![Mockup1](./user.png)
-![Mockup2](./user_fines.png)
+![User_menu](./user.png)
+![User_fines](./user_fines.png)
 
 
