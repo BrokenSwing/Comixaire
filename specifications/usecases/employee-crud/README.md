@@ -4,48 +4,98 @@
 
 ![Use Case Diagram](./employee-crud.png)
 
-## 1.1 Brief Description
+## Brief Description
 
-This use case allows an administrator to manage employees. 
+This use case allows an employee to manage employee
+. 
+## Flow of events
 
-## 1.2 Flow of events
+### Basic Flow
 
-### 1.2.1 Basic Flow
+This use case starts when an employee wishes to create, read, update and/or delete employee from the system.
 
-This use case starts when an administrator wants to create, update, view or delete an employee.
-The admin does one action and this action is validated in the database.
+The system requests that an administrator specify the function he/she would like to perform (either Create an employee, Read an employee, Update an employee, or Delete an employee)
 
-* Admin go to the manage employee menu
-* Then click on (create, update, view or delete) employee 
-* If create : have a form to enter the information about the employee 
-* If update : the system ask the Id of employee and the admin can change information about a employee 
-* If view : the system ask the id of the employee  and admin can view the informations about the employee he can go to the page update by this page 
-* If delete the system ask the id of the employee and ask a confirmation to delete
+Once an administrator provides the requested information, one of the sub flows is executed.
+
+If an administrator selected “Create an employee“, the Create an employee ub-flow is executed.
+If an administrator selected “Read an employee“, the Read an employee sub-flow is executed.
+If an administrator selected “Update an employee“, the Update an employee sub-flow is executed.
+If an administrator selected “Delete an employee“, the Delete an employee sub-flow is executed
 
 
-### 1.2.2 Alternative Flows
+#### Create an employee
 
-#### 1.2.2.1 Invalid client ID for update
+The system requests that an administrator enters the employee information. This includes:
+FirstName
+Lastname
+Phone
+Address
+Birth date
+Date of hire 
+...
 
-The admin wants to update a non existing employee, the system displays an error message and proposes to create this employee.
+Once an administrator provides the requested information, the system generates and assigns a unique employee id number to the employee. The employee are added to the system.
 
-#### 1.2.2.2 Invalid client ID for view or delete
+The system provides an administrator with the new employee id.
 
-The admin wants to view or delete a non existing employee, the system displays an error message.
+			
+#### Read an employee
 
-## 1.3 Special requirements
+The system requests that an administrator enters the employee id. 
+
+An administrator enters the employee id.  The system retrieves and displays the employee information.
+
+#### Update an employee 
+
+The system requests that an administrator enters the employee id.
+
+An administrator enters the employee id.  The system retrieves and displays the employee information.
+
+An administrator makes the desired changes to the employee information. This includes any of the information specified in the Create an employee sub-flow.
+
+Once an administrator updates the necessary information, the system updates the employee record with the updated information.
+
+#### Deleted an employee
+
+The system requests that an administrator enters the employee id. 	
+
+An administrator enters the document id.  The system retrieves and displays the employee information.
+
+The system prompts an administrator to confirm the deletion of the employee.
+
+An administrator verifies the deletion.
+
+The system removes the employee from the system.
+
+
+### Alternative Flows
+
+#### employee not found
+
+If in the Read an employee, Update an employee or Delete an employee sub-flows, an employee with the specified id number does not exist, the system displays an error message. An administrator can then enter a different id number or cancel the operation, at which point the use case ends.
+
+
+#### Deleted cancelled
+
+If in the Delete an employee sub-flow, an administrator decides not to delete the employee, the delete is cancelled, and the Basic Flow is re-started at the beginning.
+
+
+## Special requirements
 
 None.
 
-## 1.4 Pre-Conditions
+## Pre-Conditions
 
-Admin must be logged in the system.
+Administrator must be logged in the system.
 
-## 1.5 Post-Condition
+## Post-Condition
+
+If the use case was successful, the employee information is created, updated, read, or deleted from the system.  Otherwise, the system state is unchanged.
+
+## Extension Points
 
 None.
 
-## 1.6 Extension Points
 
-None.
 
