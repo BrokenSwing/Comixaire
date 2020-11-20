@@ -87,9 +87,9 @@ None.
 
 ## Mockup
 
-![User profile page](./user.png)
+![Create a new employee](./Employee1.jpg)
 
-![User creation page](./user_newuser.png)
+![See employee's stats](./Employee2.jpg)
 
-![User update page](./user_update.png)
+![Ipdate an employee information](./Employee3.jpg)
 
