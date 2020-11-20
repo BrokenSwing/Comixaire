@@ -27,37 +27,31 @@ Once an administrator provides the requested information, one of the sub flows i
 #### Create an employee
 
 The system requests that an administrator enters the employee information. This includes:
-* FirstName
-* Lastname
-* Phone
-* Address
-* Birth date
-* Date of hire 
-* ...
+* Name
+* Password
 
-Once an administrator provides the requested information, the system generates and assigns a unique employee id number to the employee. The employee are added to the system.
-
-The system provides an administrator with the new employee id.
+Once an administrator provides the requested information, the employee is added and the system display a success notification.
 			
 #### Read an employee
 
-* The system requests that an administrator enters the employee id. 
-* An administrator enters the employee id.  The system retrieves and displays the employee information.
+* The system requests the employee id. 
+* The system retrieves and displays the employee information.
 
 #### Update an employee 
 
-* The system requests that an administrator enters the employee id.
-* An administrator enters the employee id.  The system retrieves and displays the employee information.
+* The system requests the employee id.
+* The system retrieves and displays the employee information.
 * An administrator makes the desired changes to the employee information. This includes any of the information specified in the Create an employee sub-flow.
-* Once an administrator updates the necessary information, the system updates the employee record with the updated information.
+* Once an administrator updates the necessary information, the system updates the employee record with the updated information and display a success notification.
 
 #### Deleted an employee
 
-* The system requests that an administrator enters the employee id. 	
-* An administrator enters the document id.  The system retrieves and displays the employee information.
+* The system requests the employee id.
+* The system retrieves and displays the employee information.
+* Administrator click on delete button.
 * The system prompts an administrator to confirm the deletion of the employee.
 * An administrator verifies the deletion.
-* The system removes the employee from the system.
+* The system removes the employee from the system and display a success notification
 
 ### Alternative Flows
 
