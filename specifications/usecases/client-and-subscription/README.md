@@ -1,4 +1,4 @@
-# Manage client and client's subscription
+# Manage client's subscription
 
 ## Use Case Diagram
 
