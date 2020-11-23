@@ -2,7 +2,7 @@
 
 ## Use Case Diagram
 
-![Use Case Diagram](./client-sub.png)
+![Use Case Diagram](./client_uml.png)
 
 ## Brief Description
 
