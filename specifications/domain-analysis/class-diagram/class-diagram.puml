@@ -1,0 +1,196 @@
+@startuml Comixaire domain analysis classs diagram
+
+class StaffMember {
+  -idStaff: String
+  -username: String
+  -password: String
+  -role: String
+  +getId(): String
+  +getRole(): String
+  +getUsername(): String
+  +getPassword(): String
+  +setPassword(String password): void
+  +setUsername(String username): void
+}
+
+class Client {
+  -idClient: String
+  -firsname: String
+  -lastname: String
+  -gender: String
+  -birthdate: Date
+  -address: String
+  +getId(): String
+  +getFirstName(): String
+  +getLastName(): String
+  +getGender(): String
+  +getBirthDate(): Date
+  +getAge(): Number
+  +getAddress(): String
+  +setFirstName(String firstname): void
+  +setLastName(String lastname): void
+  +setGender(String gender): void
+  +setAddress(String address): void
+}
+
+abstract class LibraryItem {
+  -idItem: String
+  -title: String
+  -condition: String
+  -location: String
+  -createdOn: Date
+  -releasedOn: Date
+  -bookings: Client[]
+  -rate: Number
+  -available: Boolean
+  -categories: String[]
+  +getId(): String
+  +getLocation(): String
+  +getCreatedOn(): Date
+  +getReleaseOn(): String
+  +getCategories(): String[]
+  +getState(): String
+  +getTitle(): String
+  +getCondition(): String
+  +getBookings(): Client[]
+  +getRate(): Number
+  +setTitle(): String
+  +setCategories(String[] categories): void
+  +setLocation(String location): void
+  +addBooking(Client c): void
+  +popBooking(): Client
+  +setCondition(String condition): void
+  +setAvailable(Boolean b): void
+}
+
+class Book {
+  -author: String
+  -ISBN: String
+  -publisher: String
+  -pagesCount: Number
+  +getAuthor(): String
+  +getISBN(): String
+  +getPublisher(): String
+  +getPagesCount(): Number
+  +setAuthor(String author): void
+  +setISBN(String isbn): void
+  +setPublisher(String publisher): void
+  +setPagesCount(Number count): void  
+}
+
+class Game {
+  -publisher: String
+  -minPlayers: Number
+  -maxPlayers: Number
+  -minAge: Number
+  -contentInventory: String
+  +getPublisher(): String
+  +getMinPlayers(): Number
+  +getMaxPlayers(): Number
+  +getMinAge(): Number
+  +setPublisher(String publisher): void
+}
+
+class CD {
+  -duration: Number
+  -artist: String
+  +getDuration(): Number
+  +getArtist(): String
+  +setDuration(Number duration): void
+  +setArtist(String artist): void
+}
+
+class DVD {
+  -duration: Number
+  -producer: String
+  -casting: String[]
+  +getDuration(): Number
+  +getProducer(): String
+  +getCasting(): String[]
+  +setDuration(Number duration): void
+  +setProducer(String producer): void
+  +setCasting(String[] casting): void
+}
+
+class Subscription {
+  -from: Date
+  -to: Date
+  +getFromDate(): Date
+  +getToDate(): Date
+  +setFromDate(Date from): void
+  +setToDate(Date to): void
+}
+
+class Loan {
+  -idLoan: String
+  -from: Date
+  -to: Date
+  +getId(): String
+  +getFromDate(): Date
+  +getToDate(): Date
+  +setFromDate(Date from): void
+  +setToDate(Date to): void
+}
+
+class Return {
+  -idReturn: String
+  -to: Date
+  +getId(): String
+  +getToDate(): Date
+  +setToDate(Date to): void
+}
+
+class Fine {
+  -paid: Boolean
+  +isPaid(): Boolean
+  +setPaid(): void
+}
+
+enum FineType {
+  -label: String
+  -price: Number
+  +getLabel(): String
+  +getPrice(): Number
+  +setLabel(String label): void
+  +setPrice(Number price): void
+}
+
+class Rating {
+  -note: Number
+  +getNote(): Number
+  +setNote(Number note): void
+}
+
+class Log {
+  -date: Date
+  -operationDetails: String
+  -operationType: String
+  +getDate(): Date
+  +getOperationDetails(): String
+  +getOperationType(): String
+  +setDate(): void
+  +setOperationDetails(String details): void
+  +setOperationType(String type): void
+}
+
+StaffMember *-- Log: "concerns <"
+Client *--* LibraryItem
+Rating .. (Client, LibraryItem)
+
+LibraryItem <|-- Game
+LibraryItem <|-- Book
+LibraryItem <|-- CD
+LibraryItem <|-- DVD
+
+Fine --* FineType: "is type of >"
+
+Client *-- Subscription: "has >"
+Client *-- Loan: "is done by <"
+Client *-- Return: "is done by <"
+
+Loan --* LibraryItem: "of >"
+
+Return -- Fine: "can create >"
+Return "0,1"-- Loan: "of >"
+
+@enduml

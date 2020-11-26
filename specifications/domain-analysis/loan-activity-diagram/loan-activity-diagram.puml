@@ -1,0 +1,20 @@
+@startuml Loan Activity Diagram
+
+start
+:Client want to borrow an item;
+  if (Client is eligible) then (yes)
+    if (Item in loan ?) then (no)
+      if (Item has bookings) then (yes)
+        if (Client in first bookings' position) then (yes)
+          :Client can loan the item;
+          note left: Creation of a Loan object
+        endif
+      else (no)
+        :Client can loan this item;
+        note right: Creation of a Loan object
+      endif
+  endif 
+endif
+stop
+
+@enduml

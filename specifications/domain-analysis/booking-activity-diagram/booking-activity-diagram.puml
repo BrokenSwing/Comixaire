@@ -1,0 +1,15 @@
+@startuml Client's booking activity diagram
+
+start
+:Client want to book an item;
+if (Client is eligible) then (yes)
+    if (Client is already in bookings ?) then (yes)
+    else (no)
+      :Client is added to item's bookings;
+      note: Call to LibraryItem#addBooking(Client)
+    endif
+  else (no)  
+endif
+stop
+
+@enduml

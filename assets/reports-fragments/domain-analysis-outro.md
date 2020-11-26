@@ -1,5 +1,3 @@
---------------
-
 # Project organization
 
 In this section we'll describe how we organized the work for this report.

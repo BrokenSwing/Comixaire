@@ -1,0 +1,20 @@
+@startuml Return Activity Diagram
+start
+:Client return an item;
+
+    if (Client return item in time ?) then (yes)
+
+    else (no)
+      :Create fine for out delay;
+      note: Creates Fine object with OutDelay as FineType
+    endif
+
+    if (Item's condition changed ?) then (yes)
+      :Create fine for condition;
+      note: Creates Fine object with Condition as FineType
+    else (no)
+    endif
+      
+    :Return the Item;
+stop
+@enduml
