@@ -1,5 +1,4 @@
-package com.github.brokenswing.comixaire.dao;
-
+package com.github.brokenswing.comixaire.dao.postgreSQL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
