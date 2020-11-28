@@ -1,0 +1,56 @@
+/* 
+    Created on : 11 Nov, 2017, 4:42:53 AM
+    Author     : afsal villan
+*/
+
+* {
+    -fx-primary : #5282FC;
+    -fx-primarytext : #242d35;
+    -fx-blue: #1976D2;
+    -fx-red: #FF0000;
+    -fx-color-1:#1976D2;
+}
+
+.bg-white{
+    -fx-background-color: white;
+}
+
+/*TablPane styling*/
+.tab{
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-primary;
+}
+
+.tab-header-background{
+    -fx-background-color: transparent;
+}
+
+.tab:selected{
+    -fx-background-color: -fx-primary;
+}
+
+
+.tab-label{
+    -fx-font-size: 10pt;
+    -fx-text-fill: -fx-primary; 
+}
+
+.tab:selected .tab-label{
+    -fx-text-fill: white; 
+}
+
+.btn {
+    -fx-background-color: white;
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-background-radius: 5,5,4;
+    -fx-padding: 3 30 3 30;
+    -fx-text-fill: -fx-primary;
+    -fx-border-color: -fx-primary;
+    -fx-font-size: 14px;
+}
+
+.text-field {
+    -fx-background-color: -fx-primary, white;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}
