@@ -17,7 +17,7 @@ public class LoginView extends Parent
     private Parent load() throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Comixaire.class.getClassLoader().getResource("views/login.fxml"));
+        loader.setLocation(Comixaire.class.getClassLoader().getResource("views/authentication.fxml"));
         return loader.load();
     }
 

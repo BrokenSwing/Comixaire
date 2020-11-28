@@ -7,16 +7,20 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="bg-white" stylesheets="@test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" styleClass="bg-white" stylesheets="@/stylesheets/authentication.css"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.github.brokenswing.comixaire.controller.LoginController">
    <children>
-      <TabPane layoutX="131.0" layoutY="106.0" prefHeight="250.0" prefWidth="350.0" style="-fx-tab-min-width: 150;" stylesheets="@test.css" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="131.0" layoutY="106.0" prefHeight="250.0" prefWidth="350.0" style="-fx-tab-min-width: 150;" stylesheets="@/stylesheets/authentication.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Users">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="101.0" layoutY="75.0" promptText="User ID" />
-                        <Button alignment="CENTER" layoutX="95.0" layoutY="177.0" mnemonicParsing="false" styleClass="btn" text="Authenticate me" />
+                        <TextField layoutX="101.0" layoutY="75.0" promptText="User ID" fx:id="clientIdField" />
+                        <Button alignment="CENTER" layoutX="95.0" layoutY="177.0" mnemonicParsing="false"
+                                styleClass="btn" text="Authenticate me" fx:id="loginButtonClient" onAction="#loginClient" />
                      </children>
                   </AnchorPane>
             </content>
@@ -25,9 +29,10 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="238.0" prefWidth="375.0">
                      <children>
-                        <TextField layoutX="96.0" layoutY="46.0" promptText="Username" />
-                        <PasswordField layoutX="96.0" layoutY="97.0" promptText="Password" />
-                        <Button alignment="CENTER" layoutX="91.0" layoutY="177.0" mnemonicParsing="false" styleClass="btn" text="Authenticate me">
+                        <TextField layoutX="96.0" layoutY="46.0" promptText="Username" fx:id="usernameField" />
+                        <PasswordField layoutX="96.0" layoutY="97.0" promptText="Password" fx:id="passwordField" />
+                        <Button alignment="CENTER" layoutX="91.0" layoutY="177.0" mnemonicParsing="false"
+                                styleClass="btn" text="Authenticate me" onAction="#loginStaff" fx:id="loginButtonStaff">
                            <font>
                               <Font name="Roboto Bold Condensed" size="12.0" />
                            </font>
@@ -40,7 +45,7 @@
       </TabPane>
       <ImageView fitHeight="96.0" fitWidth="357.0" layoutX="122.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Downloads/comixaire_logo.png" />
+            <Image url="@/assets/comixaire_logo.png" />
          </image>
       </ImageView>
    </children>

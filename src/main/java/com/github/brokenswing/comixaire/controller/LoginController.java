@@ -1,9 +1,7 @@
 package com.github.brokenswing.comixaire.controller;
 
 import com.github.brokenswing.comixaire.view.ActionCenterView;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,24 +13,32 @@ import java.io.IOException;
 public class LoginController
 {
 
+    /*
+        Staff elements
+     */
     @FXML
-    private Button loginButton;
-
+    private Button loginButtonStaff;
     @FXML
     private TextField usernameField;
-
     @FXML
     private PasswordField passwordField;
 
+    /*
+        Client elements
+     */
     @FXML
-    public void login(ActionEvent event) throws IOException
+    private Button loginButtonClient;
+    @FXML
+    private TextField clientIdField;
+
+    public void loginStaff() throws IOException
     {
-        loginButton.setDisable(true);
+        loginButtonStaff.setDisable(true);
         String username = usernameField.getText();
         String password = passwordField.getText();
         if (username.equals("admin") && password.equals("admin"))
         {
-            Scene scene = loginButton.getScene();
+            Scene scene = loginButtonStaff.getScene();
             scene.setRoot(new ActionCenterView());
         }
         else
@@ -42,7 +48,27 @@ public class LoginController
             alert.setHeaderText("Bad credentials");
             alert.setContentText("The username and/or the password you provided are invalid.");
             alert.showAndWait();
-            loginButton.setDisable(false);
+            loginButtonStaff.setDisable(false);
+        }
+    }
+
+    public void loginClient() throws IOException
+    {
+        loginButtonClient.setDisable(true);
+        String clientId = clientIdField.getText();
+        if (clientId.equals("123456789"))
+        {
+            Scene scene = loginButtonClient.getScene();
+            scene.setRoot(new ActionCenterView());
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Authentication error");
+            alert.setHeaderText("Bad credentials");
+            alert.setContentText("Unknown client ID.");
+            alert.showAndWait();
+            loginButtonClient.setDisable(false);
         }
     }
 
