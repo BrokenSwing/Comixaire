@@ -1,9 +1,16 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
-group 'org.example'
+group 'com.github.brokenswing'
 version '1.0-SNAPSHOT'
+mainClassName = 'com.github.brokenswing.comixaire.Comixaire'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 repositories {
     mavenCentral()
