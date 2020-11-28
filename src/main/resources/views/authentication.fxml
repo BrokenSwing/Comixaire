@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="bg-white" stylesheets="@test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane layoutX="131.0" layoutY="106.0" prefHeight="250.0" prefWidth="350.0" style="-fx-tab-min-width: 150;" stylesheets="@test.css" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Users">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="101.0" layoutY="75.0" promptText="User ID" />
+                        <Button alignment="CENTER" layoutX="95.0" layoutY="177.0" mnemonicParsing="false" styleClass="btn" text="Authenticate me" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Staff">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="238.0" prefWidth="375.0">
+                     <children>
+                        <TextField layoutX="96.0" layoutY="46.0" promptText="Username" />
+                        <PasswordField layoutX="96.0" layoutY="97.0" promptText="Password" />
+                        <Button alignment="CENTER" layoutX="91.0" layoutY="177.0" mnemonicParsing="false" styleClass="btn" text="Authenticate me">
+                           <font>
+                              <Font name="Roboto Bold Condensed" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <ImageView fitHeight="96.0" fitWidth="357.0" layoutX="122.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Downloads/comixaire_logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
