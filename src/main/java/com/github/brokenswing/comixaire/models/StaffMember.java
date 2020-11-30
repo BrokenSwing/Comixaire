@@ -2,12 +2,24 @@ package com.github.brokenswing.comixaire.models;
 
 public class StaffMember {
 
-    private String idStaff;
+    private int idStaff;
     private String username;
     private String password;
     private String role;
 
-    public String getIdStaff()
+    public StaffMember(String username, String password, String role)
+    {
+        this(-1,username, password, role);
+    }
+
+    public StaffMember(int idStaff, String username, String password, String role) {
+        this.idStaff = idStaff;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    public int getIdStaff()
     {
         return idStaff;
     }
