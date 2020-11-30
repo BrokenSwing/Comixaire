@@ -13,6 +13,6 @@ public interface StaffMemberDAO {
 
     void update(StaffMember staffMember) throws InternalException;
 
-    void delete(StaffMember staffMember);
+    void delete(StaffMember staffMember) throws InternalException;
 
 }

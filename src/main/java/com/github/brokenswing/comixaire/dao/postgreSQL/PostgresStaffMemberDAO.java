@@ -91,24 +91,18 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
     }
 
     @Override
-    public void delete(StaffMember staffMember) {
-
-    }
-
-    public static void main(String[] args) throws InternalException, UsernameAlreadyExistsException, NoStaffMemberFoundException {
-        StaffMember staffMember = new StaffMember("Test", "Test123", "Employee");
-        PostgresStaffMemberDAO postgresStaffMemberDAO = new PostgresStaffMemberDAO();
-        staffMember = postgresStaffMemberDAO.create(staffMember);
-        System.out.println(staffMember.getIdStaff());
-
-        staffMember = postgresStaffMemberDAO.findById(5);
-        System.out.println(staffMember.getUsername());
-
-        staffMember.setUsername("JCVD");
-        staffMember.setPassword("lePlusFort");
-
-        postgresStaffMemberDAO.update(staffMember);
-
-
+    public void delete(StaffMember staffMember) throws InternalException {
+        try {
+            PreparedStatement prepare = this
+                    .connection
+                    .prepareStatement(
+                            "DELETE FROM staffMembers "
+                                    + "WHERE staffMember_id = (?)"
+                    );
+            prepare.setInt(1, staffMember.getIdStaff());
+            prepare.executeUpdate();
+        } catch (SQLException e) {
+            throw new InternalException("Unable to delete staff member", e);
+        }
     }
 }
