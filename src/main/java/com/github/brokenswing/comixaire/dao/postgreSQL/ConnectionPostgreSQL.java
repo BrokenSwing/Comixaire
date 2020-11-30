@@ -41,8 +41,4 @@ public class ConnectionPostgreSQL {
         }
         return connection;
     }
-
-    public static void main(String[] args) {
-        Connection connection = ConnectionPostgreSQL.getConnection();
-    }
 }

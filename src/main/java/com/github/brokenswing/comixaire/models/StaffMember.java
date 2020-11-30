@@ -1,4 +1,4 @@
-package com.github.brokenswing.comixaire;
+package com.github.brokenswing.comixaire.models;
 
 public class StaffMember {
 

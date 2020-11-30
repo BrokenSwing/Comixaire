@@ -1,9 +1,6 @@
 package com.github.brokenswing.comixaire.dao;
 
-import com.github.brokenswing.comixaire.StaffMember;
-import com.github.brokenswing.comixaire.dao.postgreSQL.ConnectionPostgreSQL;
-
-import java.sql.Connection;
+import com.github.brokenswing.comixaire.models.StaffMember;
 
 public interface StaffMemberDAO {
 
