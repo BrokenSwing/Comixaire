@@ -11,7 +11,7 @@ public interface StaffMemberDAO {
 
     StaffMember findById(int idStaff) throws InternalException, NoStaffMemberFoundException;
 
-    void update(StaffMember staffMember);
+    void update(StaffMember staffMember) throws InternalException;
 
     void delete(StaffMember staffMember);
 

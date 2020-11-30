@@ -72,8 +72,22 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
     }
 
     @Override
-    public void update(StaffMember staffMember) {
-
+    public void update(StaffMember staffMember) throws InternalException {
+        try {
+            PreparedStatement prepare = this
+                    .connection
+                    .prepareStatement(
+                            "UPDATE staffMembers SET "
+                                    + "(staffMember_username, staffMember_password) = (?, ?) "
+                                    + "WHERE staffMember_id = (?)"
+                    );
+            prepare.setString(1, staffMember.getUsername());
+            prepare.setString(2, staffMember.getPassword());
+            prepare.setInt(3, staffMember.getIdStaff());
+            prepare.executeUpdate();
+        } catch (SQLException e) {
+            throw new InternalException("Unable to update staff member", e);
+        }
     }
 
     @Override
@@ -87,11 +101,13 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
         staffMember = postgresStaffMemberDAO.create(staffMember);
         System.out.println(staffMember.getIdStaff());
 
-        StaffMember staffMember1 = postgresStaffMemberDAO.findById(5);
-        System.out.println(staffMember1.getUsername());
+        staffMember = postgresStaffMemberDAO.findById(5);
+        System.out.println(staffMember.getUsername());
 
-        StaffMember staffMember2 = postgresStaffMemberDAO.findById(6);
-        System.out.println(staffMember2.getUsername());
+        staffMember.setUsername("JCVD");
+        staffMember.setPassword("lePlusFort");
+
+        postgresStaffMemberDAO.update(staffMember);
 
 
     }
