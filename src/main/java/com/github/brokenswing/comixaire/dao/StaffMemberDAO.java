@@ -5,7 +5,8 @@ import com.github.brokenswing.comixaire.exception.NoStaffMemberFoundException;
 import com.github.brokenswing.comixaire.exception.UsernameAlreadyExistsException;
 import com.github.brokenswing.comixaire.models.StaffMember;
 
-public interface StaffMemberDAO {
+public interface StaffMemberDAO
+{
 
     StaffMember create(StaffMember staffMember) throws InternalException, UsernameAlreadyExistsException;
 

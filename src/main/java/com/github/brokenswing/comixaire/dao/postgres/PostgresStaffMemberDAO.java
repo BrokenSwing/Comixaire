@@ -1,10 +1,10 @@
 package com.github.brokenswing.comixaire.dao.postgres;
 
+import com.github.brokenswing.comixaire.dao.StaffMemberDAO;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoStaffMemberFoundException;
 import com.github.brokenswing.comixaire.exception.UsernameAlreadyExistsException;
 import com.github.brokenswing.comixaire.models.StaffMember;
-import com.github.brokenswing.comixaire.dao.StaffMemberDAO;
 import org.postgresql.util.PSQLException;
 
 import java.sql.Connection;
@@ -12,7 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PostgresStaffMemberDAO implements StaffMemberDAO {
+public class PostgresStaffMemberDAO implements StaffMemberDAO
+{
 
     private final Connection connection;
 
@@ -22,8 +23,10 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
     }
 
     @Override
-    public StaffMember create(StaffMember staffMember) throws InternalException, UsernameAlreadyExistsException {
-        try {
+    public StaffMember create(StaffMember staffMember) throws InternalException, UsernameAlreadyExistsException
+    {
+        try
+        {
             PreparedStatement prepare = this
                     .connection
                     .prepareStatement(
@@ -37,10 +40,14 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
             result.next();
             int idstaff = result.getInt("staffMember_id");
             return new StaffMember(idstaff, staffMember.getUsername(), staffMember.getPassword(), staffMember.getRole());
-        } catch (SQLException e) {
-            if (e instanceof PSQLException) {
+        }
+        catch (SQLException e)
+        {
+            if (e instanceof PSQLException)
+            {
                 PSQLException ex = (PSQLException) e;
-                if (ex.getServerErrorMessage() != null && "unique_username".equals(ex.getServerErrorMessage().getConstraint())) {
+                if (ex.getServerErrorMessage() != null && "unique_username".equals(ex.getServerErrorMessage().getConstraint()))
+                {
                     throw new UsernameAlreadyExistsException(staffMember.getUsername());
                 }
             }
@@ -49,8 +56,10 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
     }
 
     @Override
-    public StaffMember findById(int idStaff) throws InternalException, NoStaffMemberFoundException {
-        try {
+    public StaffMember findById(int idStaff) throws InternalException, NoStaffMemberFoundException
+    {
+        try
+        {
             PreparedStatement prepare = this
                     .connection
                     .prepareStatement(
@@ -60,7 +69,8 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
                     );
             prepare.setInt(1, idStaff);
             ResultSet result = prepare.executeQuery();
-            if (result.first()) {
+            if (result.first())
+            {
                 return new StaffMember(
                         result.getInt("staffMember_id"),
                         result.getString("staffMember_username"),
@@ -68,10 +78,13 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
                         result.getString("staffMember_role")
                 );
             }
-            else {
+            else
+            {
                 throw new NoStaffMemberFoundException(idStaff);
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             throw new InternalException("Unable to find staff member", e);
         }
     }
@@ -79,7 +92,8 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
     @Override
     public StaffMember findByUsername(String username) throws InternalException, NoStaffMemberFoundException
     {
-        try {
+        try
+        {
             PreparedStatement prepare = this
                     .connection
                     .prepareStatement(
@@ -89,7 +103,8 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
                     );
             prepare.setString(1, username);
             ResultSet result = prepare.executeQuery();
-            if (result.first()) {
+            if (result.first())
+            {
                 return new StaffMember(
                         result.getInt("staffMember_id"),
                         result.getString("staffMember_username"),
@@ -97,17 +112,22 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
                         result.getString("staffMember_role")
                 );
             }
-            else {
+            else
+            {
                 throw new NoStaffMemberFoundException(username);
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             throw new InternalException("Unable to find staff member", e);
         }
     }
 
     @Override
-    public void update(StaffMember staffMember) throws InternalException {
-        try {
+    public void update(StaffMember staffMember) throws InternalException
+    {
+        try
+        {
             PreparedStatement prepare = this
                     .connection
                     .prepareStatement(
@@ -119,14 +139,18 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
             prepare.setString(2, staffMember.getPassword());
             prepare.setInt(3, staffMember.getIdStaff());
             prepare.executeUpdate();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             throw new InternalException("Unable to update staff member", e);
         }
     }
 
     @Override
-    public void delete(StaffMember staffMember) throws InternalException {
-        try {
+    public void delete(StaffMember staffMember) throws InternalException
+    {
+        try
+        {
             PreparedStatement prepare = this
                     .connection
                     .prepareStatement(
@@ -135,7 +159,9 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
                     );
             prepare.setInt(1, staffMember.getIdStaff());
             prepare.executeUpdate();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             throw new InternalException("Unable to delete staff member", e);
         }
     }

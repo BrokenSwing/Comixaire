@@ -1,7 +1,6 @@
 package com.github.brokenswing.comixaire.auth;
 
 import com.github.brokenswing.comixaire.dao.DAOFactory;
-import com.github.brokenswing.comixaire.dao.StaffMemberDAO;
 import com.github.brokenswing.comixaire.exception.BadCredentialsException;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoStaffMemberFoundException;

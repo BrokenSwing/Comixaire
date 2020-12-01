@@ -25,7 +25,6 @@ public class ControllerFactoryDI implements Callback<Class<?>, Object>
      * from configuration class.
      *
      * @param valueClass The class of the value to retrieve
-     *
      * @return an instance of the value class
      */
     private Object getOrFetchValueFromConfig(Class<?> valueClass)
@@ -62,7 +61,7 @@ public class ControllerFactoryDI implements Callback<Class<?>, Object>
         if (providerMethod == null)
         {
             throw new IllegalStateException("Value " + valueClass.getCanonicalName() +
-                            " can't be injected because no injection method exists in configuration class.");
+                    " can't be injected because no injection method exists in configuration class.");
         }
 
         if (providerMethod.getParameterCount() != 0)
@@ -96,7 +95,7 @@ public class ControllerFactoryDI implements Callback<Class<?>, Object>
      * is returned.
      *
      * @param controllerClass The single argument upon which the returned value should be
-     *              determined.
+     *                        determined.
      * @return An object of type R that may be determined based on the provided
      * parameter value.
      */

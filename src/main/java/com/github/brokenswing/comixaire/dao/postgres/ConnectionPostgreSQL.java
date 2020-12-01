@@ -16,7 +16,7 @@ public class ConnectionPostgreSQL
     public ConnectionPostgreSQL()
     {
         Properties p = new Properties();
-        try(InputStream in = ConnectionPostgreSQL.class.getClassLoader().getResourceAsStream("database.properties"))
+        try (InputStream in = ConnectionPostgreSQL.class.getClassLoader().getResourceAsStream("database.properties"))
         {
             if (in == null)
             {

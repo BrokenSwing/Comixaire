@@ -1,6 +1,7 @@
 package com.github.brokenswing.comixaire.exception;
 
-public class UsernameAlreadyExistsException extends Exception {
+public class UsernameAlreadyExistsException extends Exception
+{
 
     private String username;
 

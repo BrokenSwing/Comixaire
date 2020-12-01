@@ -12,6 +12,12 @@ public class ViewLoader
 {
 
     private static ViewLoader instance = null;
+    private final Callback<Class<?>, Object> controllerFactory;
+
+    private ViewLoader()
+    {
+        this.controllerFactory = new ControllerFactoryDI(createConfiguration());
+    }
 
     public static ViewLoader getInstance()
     {
@@ -21,13 +27,6 @@ public class ViewLoader
         }
 
         return instance;
-    }
-
-    private final Callback<Class<?>, Object> controllerFactory;
-
-    private ViewLoader()
-    {
-        this.controllerFactory = new ControllerFactoryDI(createConfiguration());
     }
 
     private Object createConfiguration()

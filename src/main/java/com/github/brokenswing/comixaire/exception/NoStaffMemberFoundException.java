@@ -1,6 +1,7 @@
 package com.github.brokenswing.comixaire.exception;
 
-public class NoStaffMemberFoundException extends Exception {
+public class NoStaffMemberFoundException extends Exception
+{
 
     public NoStaffMemberFoundException(int idStaff)
     {
