@@ -1,6 +1,7 @@
 package com.github.brokenswing.comixaire.dao.postgreSQL;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,13 +17,13 @@ public class ConnectionPostgreSQL
     public ConnectionPostgreSQL()
     {
         Properties p = new Properties();
-        try
+        try(InputStream in = ConnectionPostgreSQL.class.getClassLoader().getResourceAsStream("database.properties"))
         {
-            p.load(new InputStreamReader(
-                    Objects.requireNonNull(
-                            ConnectionPostgreSQL.class.getClassLoader()
-                                    .getResourceAsStream("database.properties"))
-            ));
+            if (in == null)
+            {
+                throw new NullPointerException("You must specify a database.properties file");
+            }
+            p.load(new InputStreamReader(in));
         }
         catch (IOException e)
         {

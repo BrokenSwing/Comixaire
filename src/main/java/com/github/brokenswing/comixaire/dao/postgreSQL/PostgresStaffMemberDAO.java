@@ -77,6 +77,35 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO {
     }
 
     @Override
+    public StaffMember findByUsername(String username) throws InternalException, NoStaffMemberFoundException
+    {
+        try {
+            PreparedStatement prepare = this
+                    .connection
+                    .prepareStatement(
+                            "SELECT * FROM staffMembers WHERE staffMember_username = (?)",
+                            ResultSet.TYPE_SCROLL_INSENSITIVE,
+                            ResultSet.CONCUR_READ_ONLY
+                    );
+            prepare.setString(1, username);
+            ResultSet result = prepare.executeQuery();
+            if (result.first()) {
+                return new StaffMember(
+                        result.getInt("staffMember_id"),
+                        result.getString("staffMember_username"),
+                        result.getString("staffMember_password"),
+                        result.getString("staffMember_role")
+                );
+            }
+            else {
+                throw new NoStaffMemberFoundException(username);
+            }
+        } catch (SQLException e) {
+            throw new InternalException("Unable to find staff member", e);
+        }
+    }
+
+    @Override
     public void update(StaffMember staffMember) throws InternalException {
         try {
             PreparedStatement prepare = this
