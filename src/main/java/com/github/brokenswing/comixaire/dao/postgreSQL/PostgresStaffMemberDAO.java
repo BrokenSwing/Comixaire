@@ -14,7 +14,12 @@ import java.sql.SQLException;
 
 public class PostgresStaffMemberDAO implements StaffMemberDAO {
 
-    private Connection connection = ConnectionPostgreSQL.getConnection();
+    private final Connection connection;
+
+    PostgresStaffMemberDAO(Connection connection)
+    {
+        this.connection = connection;
+    }
 
     @Override
     public StaffMember create(StaffMember staffMember) throws InternalException, UsernameAlreadyExistsException {
