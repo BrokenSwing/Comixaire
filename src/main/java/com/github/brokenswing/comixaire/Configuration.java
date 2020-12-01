@@ -3,7 +3,7 @@ package com.github.brokenswing.comixaire;
 import com.github.brokenswing.comixaire.auth.AuthFacade;
 import com.github.brokenswing.comixaire.auth.PlainTextPasswordAlgorithm;
 import com.github.brokenswing.comixaire.dao.DAOFactory;
-import com.github.brokenswing.comixaire.dao.postgreSQL.PostgresDAOFactory;
+import com.github.brokenswing.comixaire.dao.postgres.PostgresDAOFactory;
 import com.github.brokenswing.comixaire.di.ValueProvider;
 
 public class Configuration
@@ -19,7 +19,7 @@ public class Configuration
     @ValueProvider
     public AuthFacade getAuthFacade()
     {
-        return new AuthFacade(factory.getStaffMemberDAO(), new PlainTextPasswordAlgorithm());
+        return new AuthFacade(factory, new PlainTextPasswordAlgorithm());
     }
 
 }

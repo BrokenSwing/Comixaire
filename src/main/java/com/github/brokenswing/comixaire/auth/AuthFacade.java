@@ -1,5 +1,6 @@
 package com.github.brokenswing.comixaire.auth;
 
+import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.dao.StaffMemberDAO;
 import com.github.brokenswing.comixaire.exception.BadCredentialsException;
 import com.github.brokenswing.comixaire.exception.InternalException;
@@ -9,12 +10,12 @@ import com.github.brokenswing.comixaire.models.StaffMember;
 public class AuthFacade
 {
 
-    private final StaffMemberDAO staffMemberDAO;
+    private final DAOFactory daoFactory;
     private final PasswordAlgorithm passwordAlgorithm;
 
-    public AuthFacade(StaffMemberDAO staffMemberDAO, PasswordAlgorithm passAlgo)
+    public AuthFacade(DAOFactory daoFactory, PasswordAlgorithm passAlgo)
     {
-        this.staffMemberDAO = staffMemberDAO;
+        this.daoFactory = daoFactory;
         this.passwordAlgorithm = passAlgo;
     }
 
@@ -23,7 +24,7 @@ public class AuthFacade
         StaffMember member;
         try
         {
-            member = staffMemberDAO.findByUsername(username);
+            member = this.daoFactory.getStaffMemberDAO().findByUsername(username);
         }
         catch (NoStaffMemberFoundException e)
         {
@@ -32,7 +33,7 @@ public class AuthFacade
 
         if (this.passwordAlgorithm.verifyPassword(password, member.getPassword()))
         {
-            // Store user somewhere
+            // TODO: Store in session
         }
         else
         {

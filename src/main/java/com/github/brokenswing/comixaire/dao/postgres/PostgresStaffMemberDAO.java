@@ -1,4 +1,4 @@
-package com.github.brokenswing.comixaire.dao.postgreSQL;
+package com.github.brokenswing.comixaire.dao.postgres;
 
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoStaffMemberFoundException;

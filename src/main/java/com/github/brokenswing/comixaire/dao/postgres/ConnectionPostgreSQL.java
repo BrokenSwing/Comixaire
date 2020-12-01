@@ -1,4 +1,4 @@
-package com.github.brokenswing.comixaire.dao.postgreSQL;
+package com.github.brokenswing.comixaire.dao.postgres;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Objects;
 import java.util.Properties;
 
 public class ConnectionPostgreSQL
