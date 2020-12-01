@@ -46,6 +46,7 @@ public class LoginController
             auth.tryLoginStaff(username, password);
             Scene scene = loginButtonStaff.getScene();
             scene.setRoot(new ActionCenterView());
+            scene.getWindow().sizeToScene();
         }
         catch (InternalException e)
         {
@@ -78,6 +79,7 @@ public class LoginController
             auth.tryLoginClient(clientId);
             Scene scene = loginButtonClient.getScene();
             scene.setRoot(new ActionCenterView());
+            scene.getWindow().sizeToScene();
         }
         catch (BadCredentialsException e)
         {
