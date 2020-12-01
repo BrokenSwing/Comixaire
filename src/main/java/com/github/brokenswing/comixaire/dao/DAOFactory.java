@@ -5,4 +5,6 @@ public abstract class DAOFactory
 
     public abstract StaffMemberDAO getStaffMemberDAO();
 
+    public abstract ClientDAO getClientDAO();
+
 }
