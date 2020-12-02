@@ -35,6 +35,22 @@ public class LoginController
     @InjectValue
     private AuthFacade auth;
 
+    public LoginController()
+    {
+
+    }
+
+    public LoginController(Button loginButtonStaff, TextField usernameField, PasswordField passwordField,
+                           Button loginButtonClient, TextField clientIdField, AuthFacade auth)
+    {
+        this.loginButtonStaff = loginButtonStaff;
+        this.usernameField = usernameField;
+        this.passwordField = passwordField;
+        this.loginButtonClient = loginButtonClient;
+        this.clientIdField = clientIdField;
+        this.auth = auth;
+    }
+
     public void loginStaff() throws IOException
     {
         loginButtonStaff.setDisable(true);
@@ -44,29 +60,43 @@ public class LoginController
         try
         {
             auth.loginStaff(username, password);
-            Scene scene = loginButtonStaff.getScene();
-            scene.setRoot(new ActionCenterView());
-            scene.getWindow().sizeToScene();
+            displayActionCenter(loginButtonStaff);
         }
         catch (InternalException e)
         {
             e.printStackTrace();
 
-            Alert alert = new InternalErrorAlert(e);
-            alert.showAndWait();
+            displayInternalErrorAlert(e);
         }
         catch (BadCredentialsException e)
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Authentication error");
-            alert.setHeaderText("Bad credentials");
-            alert.setContentText("The username and/or the password you provided are invalid.");
-            alert.showAndWait();
+            displayBadCredentialsAlert("The username and/or the password you provided are invalid.");
         }
         finally
         {
             loginButtonStaff.setDisable(false);
         }
+    }
+
+    protected void displayActionCenter(Button loginButtonStaff) throws IOException
+    {
+        Scene scene = loginButtonStaff.getScene();
+        scene.setRoot(new ActionCenterView());
+        scene.getWindow().sizeToScene();
+    }
+
+    protected void displayBadCredentialsAlert(String contentMessage)
+    {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Authentication error");
+        alert.setHeaderText("Bad credentials");
+        alert.setContentText(contentMessage);
+        alert.showAndWait();
+    }
+
+    protected void displayInternalErrorAlert(Exception e)
+    {
+        new InternalErrorAlert(e).showAndWait();
     }
 
     public void loginClient() throws IOException
@@ -77,23 +107,17 @@ public class LoginController
         try
         {
             auth.loginClient(clientId);
-            Scene scene = loginButtonClient.getScene();
-            scene.setRoot(new ActionCenterView());
-            scene.getWindow().sizeToScene();
+            displayActionCenter(loginButtonClient);
         }
         catch (BadCredentialsException e)
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Authentication error");
-            alert.setHeaderText("Bad credentials");
-            alert.setContentText("Unknown client ID.");
-            alert.showAndWait();
+            displayBadCredentialsAlert("Unknown client ID.");
         }
         catch (InternalException e)
         {
             e.printStackTrace();
-            Alert alert = new InternalErrorAlert(e);
-            alert.showAndWait();
+
+            displayInternalErrorAlert(e);
         }
         finally
         {

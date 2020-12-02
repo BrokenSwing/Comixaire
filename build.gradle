@@ -16,7 +16,20 @@ repositories {
     mavenCentral()
 }
 
+test() {
+    useJUnitPlatform()
+}
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
+
+    testImplementation platform(group: 'org.junit', name: 'junit-bom', version: '5.7.0')
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.6.28'
+    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.6.28'
+    testImplementation group: 'org.testfx', name: 'testfx-junit5', version: '4.0.16-alpha'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.18.1'
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.7.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.7.0")
 }
