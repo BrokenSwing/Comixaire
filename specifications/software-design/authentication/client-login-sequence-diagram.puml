@@ -1,0 +1,22 @@
+@startuml
+
+autonumber
+
+--> LoginController: loginClient()
+LoginController -> AuthFacade: loginClient(String)
+AuthFacade -> DAOFactory : getClientDAO()
+DAOFactory -> ClientDAO ++ : <<creates>>
+ClientDAO -> DAOFactory
+DAOFactory -> AuthFacade : clientDAO
+AuthFacade -> ClientDAO : findByClientId(String)
+ClientDAO -> AuthFacade : client
+deactivate ClientDAO
+alt client was found
+  AuthFacade -> Session : setLoggedInClient(Client)
+else client does not exist
+  AuthFacade -> LoginController: bad credentials error
+else any other error
+  AuthFacade -> LoginController: internal error
+end
+
+@enduml

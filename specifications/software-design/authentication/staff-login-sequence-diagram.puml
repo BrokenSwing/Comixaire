@@ -1,0 +1,28 @@
+@startuml
+
+autonumber
+
+--> LoginController: loginStaff()
+LoginController -> AuthFacade: loginStaff(String, String)
+AuthFacade -> DAOFactory : getStaffMemberDAO()
+DAOFactory -> StaffMemberDAO ++ : <<creates>>
+StaffMemberDAO -> DAOFactory
+DAOFactory -> AuthFacade : staffMemberDAO
+AuthFacade -> StaffMemberDAO : findByUsername(String)
+StaffMemberDAO -> AuthFacade : staffMember
+deactivate StaffMemberDAO
+alt staff member was found
+  AuthFacade -> PasswordAlgorithm : verifyPassword(String, String)
+  PasswordAlgorithm -> AuthFacade : passwordValid
+  alt passwordValid
+    AuthFacade -> Session : setLoggedInStaff(StaffMember)
+  else not passwordValid
+    AuthFacade -> LoginController : bad credentials error
+  end
+else username does not exist
+  AuthFacade -> LoginController: bad credentials error
+else any other error
+  AuthFacade -> LoginController: internal error
+end
+
+@enduml

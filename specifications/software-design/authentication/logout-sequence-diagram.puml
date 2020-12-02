@@ -1,0 +1,8 @@
+@startuml
+
+autonumber
+
+--> AuthFacade: logout()
+AuthFacade -> Session : logout()
+
+@enduml

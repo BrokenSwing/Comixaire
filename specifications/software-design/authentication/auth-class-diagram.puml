@@ -1,0 +1,96 @@
+@startuml
+
+package controller {
+
+  class LoginController {
+    -loginButtonStaff: Button
+    -usernameField: TextField
+    -passwordField: PasswordField
+    -loginButtonClient: Button
+    -clientIdField: TextField
+    +loginStaff(): void
+    +loginClient(): void
+  }
+
+}
+
+package auth {
+
+  class AuthFacade {
+    +loginStaff(String username, String password)
+    +loginClient(String clientId)
+    +logout()
+  }
+
+  interface PasswordAlgorithm {
+    +hashPassword(String password)
+    +verifyPassword(String plainPassword, String hashedPassword)
+  }
+
+  class PlainTextPasswordAlgorithm implements PasswordAlgorithm {}
+
+  class Session {
+    - loggedInStaff: StaffMember
+    - loggedInClient: Client
+    +getLoggedInStaff(): StaffMember
+    +getLoggedInClient(): Client
+    +setLoggedInStaff(StaffMember: staff): void
+    +setLoggedInClient(Client client): void
+    +logout(): void
+  }
+  note bottom of Session
+    A client and a staff member can't be connected at the
+    same time
+  end note
+
+}
+
+AuthFacade -> PasswordAlgorithm
+AuthFacade -down-> Session
+
+package dao {
+
+  abstract class DAOFactory {
+    +getStaffMemberDAO(): StaffMemberDAO
+    +getClientDAO(): ClientDAO
+  }
+
+  interface StaffMemberDAO {
+    +findByUsername(String username): StaffMember
+  }
+
+  interface ClientDAO {
+    +findByClientId(String clientId): Client
+  }
+
+  package postgres {
+
+    class PostgresStaffMemberDAO implements StaffMemberDAO {
+      -connection: Connection
+      +PostgresStaffMemberDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+    class PostgresClientDAO implements ClientDAO {
+      -connection: Connection
+      +PostgresClientDAO(Connection: connection)
+    }
+
+  }
+
+}
+
+PostgresDAOFactory .left> PostgresStaffMemberDAO : "creates"
+PostgresDAOFactory .> PostgresClientDAO : "creates"
+DAOFactory .left> StaffMemberDAO : "provides"
+DAOFactory .> ClientDAO : "provides"
+
+' Inter-packages relations
+
+AuthFacade -down-> DAOFactory
+LoginController --> AuthFacade
+
+@enduml
