@@ -22,7 +22,7 @@ public class AuthFacade
         this.session = session;
     }
 
-    public void tryLoginStaff(String username, String password) throws BadCredentialsException, InternalException
+    public void loginStaff(String username, String password) throws BadCredentialsException, InternalException
     {
         StaffMember member;
         try
@@ -44,7 +44,7 @@ public class AuthFacade
         }
     }
 
-    public void tryLoginClient(String clientId) throws BadCredentialsException, InternalException
+    public void loginClient(String clientId) throws BadCredentialsException, InternalException
     {
         Client client;
         try

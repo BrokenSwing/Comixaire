@@ -43,7 +43,7 @@ public class LoginController
 
         try
         {
-            auth.tryLoginStaff(username, password);
+            auth.loginStaff(username, password);
             Scene scene = loginButtonStaff.getScene();
             scene.setRoot(new ActionCenterView());
             scene.getWindow().sizeToScene();
@@ -76,7 +76,7 @@ public class LoginController
 
         try
         {
-            auth.tryLoginClient(clientId);
+            auth.loginClient(clientId);
             Scene scene = loginButtonClient.getScene();
             scene.setRoot(new ActionCenterView());
             scene.getWindow().sizeToScene();
