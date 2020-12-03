@@ -23,7 +23,7 @@ public class PostgresClientDAO implements ClientDAO
     }
 
     @Override
-    public Client create(Client client) throws InternalException, ClientNameAlreadyExistsException
+    public Client create(Client client) throws InternalException
     {
 
     }
@@ -35,7 +35,7 @@ public class PostgresClientDAO implements ClientDAO
     }
 
     @Override
-    public Client findByName(String username) throws InternalException, NoClientFoundException
+    public Client[] findByName(String username) throws InternalException, NoClientFoundException
     {
 
     }

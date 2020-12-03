@@ -7,11 +7,11 @@ import com.github.brokenswing.comixaire.models.Client;
 public interface ClientDAO
 {
 
-    Client create(Client client) throws InternalException, ClientNameAlreadyExistsException;
+    Client create(Client client) throws InternalException;
 
     Client findById(int idClient) throws InternalException, NoClientFoundException;
 
-    Client findByName(String firstname, String lastname) throws InternalException, NoClientFoundException;
+    Client[] findByName(String firstname, String lastname) throws InternalException, NoClientFoundException;
 
     Client[] findByFirstname(String firstname) throws InternalException, NoClientFoundException;
 
