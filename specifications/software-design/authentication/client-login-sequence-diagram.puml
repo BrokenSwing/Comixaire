@@ -8,7 +8,7 @@ AuthFacade -> DAOFactory : getClientDAO()
 DAOFactory -> ClientDAO ++ : <<creates>>
 ClientDAO -> DAOFactory
 DAOFactory -> AuthFacade : clientDAO
-AuthFacade -> ClientDAO : findByClientId(String)
+AuthFacade -> ClientDAO : findByCardId(String)
 ClientDAO -> AuthFacade : client
 deactivate ClientDAO
 alt client was found

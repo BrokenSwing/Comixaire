@@ -60,7 +60,7 @@ package dao {
   }
 
   interface ClientDAO {
-    +findByClientId(String clientId): Client
+    +findByCardId(String clientId): Client
   }
 
   package postgres {
