@@ -49,7 +49,7 @@ public class AuthFacade
         Client client;
         try
         {
-            client = this.daoFactory.getClientDAO().getByClientId(clientId);
+            client = this.daoFactory.getClientDAO().findByCardID(clientId);
         }
         catch (NoClientFoundException e)
         {

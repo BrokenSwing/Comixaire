@@ -37,6 +37,11 @@ public class PostgresClientDAO implements ClientDAO
     }
 
     @Override
+    public Client findByCardID(String cardID) throws InternalException, NoClientFoundException {
+        return null;
+    }
+
+    @Override
     public Client[] findByName(String firstname, String lastname) throws InternalException, NoClientFoundException {
         return new Client[0];
     }

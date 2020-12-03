@@ -11,6 +11,8 @@ public interface ClientDAO
 
     Client findById(int idClient) throws InternalException, NoClientFoundException;
 
+    Client findByCardID(String cardID) throws InternalException, NoClientFoundException;
+
     Client[] findByName(String firstname, String lastname) throws InternalException, NoClientFoundException;
 
     Client[] findByFirstname(String firstname) throws InternalException, NoClientFoundException;
