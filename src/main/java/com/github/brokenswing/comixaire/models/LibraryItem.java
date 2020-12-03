@@ -1,5 +1,7 @@
 package com.github.brokenswing.comixaire.models;
 
+import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
+
 import java.util.*;
 
 public abstract class LibraryItem {
@@ -63,8 +65,16 @@ public abstract class LibraryItem {
         return createdOn;
     }
 
+    public String getPrettyCreatedOn() {
+        return PrettyTimeTransformer.prettyDate(this.getCreatedOn());
+    }
+
     public Date getReleasedOn() {
         return releasedOn;
+    }
+
+    public String getPrettyReleasedOn() {
+        return PrettyTimeTransformer.prettyDate(this.getReleasedOn());
     }
 
     public Integer[] getBookings() {

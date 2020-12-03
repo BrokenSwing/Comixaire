@@ -1,5 +1,7 @@
 package com.github.brokenswing.comixaire.models;
 
+import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
+
 import java.util.Date;
 
 public class DVD extends LibraryItem{
@@ -27,21 +29,7 @@ public class DVD extends LibraryItem{
     }
 
     public String getPrettyDuration() {
-        StringBuilder sb = new StringBuilder();
-
-        int hours = this.getDuration() / 3600;
-        int minutes = (this.getDuration() - hours * 3600) / 60;
-        int seconds = this.getDuration() - hours * 3600 - minutes * 60;
-
-        if(hours > 0) {
-            sb.append(hours + "h ");
-        }
-        if(minutes > 0 || hours > 0) {
-            sb.append(minutes + "min ");
-        }
-        sb.append(seconds + "s");
-
-        return sb.toString();
+        return PrettyTimeTransformer.prettyDuration(this.getDuration());
     }
 
     public void setDuration(int duration) {
