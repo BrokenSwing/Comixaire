@@ -1,5 +1,7 @@
 package com.github.brokenswing.comixaire.models;
 
+import java.util.Date;
+
 public class Client
 {
     private int idClient;
