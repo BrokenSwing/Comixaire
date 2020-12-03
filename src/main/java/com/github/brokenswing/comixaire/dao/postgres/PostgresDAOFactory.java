@@ -23,7 +23,7 @@ public class PostgresDAOFactory extends DAOFactory
     @Override
     public ClientDAO getClientDAO()
     {
-        throw new RuntimeException("Unimplemented");
+        return new PostgresClientDAO(this.postgresConnection.getConnection());
     }
 
 }
