@@ -14,14 +14,14 @@ public class Session
         return loggedInClient;
     }
 
-    public StaffMember getLoggedInStaff()
-    {
-        return loggedInStaff;
-    }
-
     public void setLoggedInClient(Client loggedInClient)
     {
         this.loggedInClient = loggedInClient;
+    }
+
+    public StaffMember getLoggedInStaff()
+    {
+        return loggedInStaff;
     }
 
     public void setLoggedInStaff(StaffMember loggedInStaff)

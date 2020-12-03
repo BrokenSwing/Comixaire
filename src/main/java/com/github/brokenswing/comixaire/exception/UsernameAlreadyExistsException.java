@@ -3,7 +3,7 @@ package com.github.brokenswing.comixaire.exception;
 public class UsernameAlreadyExistsException extends Exception
 {
 
-    private String username;
+    private final String username;
 
     public UsernameAlreadyExistsException(String username)
     {

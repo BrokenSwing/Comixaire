@@ -4,18 +4,20 @@ import java.util.Date;
 
 public class Client
 {
-    private int idClient;
+    private final int idClient;
     private String firstname;
     private String lastname;
     private String gender;
     private String address;
-    private Date birthdate;
+    private final Date birthdate;
 
-    public Client(String firstname, String lastname, String gender, String address, Date birthdate) {
+    public Client(String firstname, String lastname, String gender, String address, Date birthdate)
+    {
         this(-1, firstname, lastname, gender, address, birthdate);
     }
 
-    public Client(int idClient, String firstname, String lastname, String gender, String address, Date birthdate) {
+    public Client(int idClient, String firstname, String lastname, String gender, String address, Date birthdate)
+    {
         this.idClient = idClient;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -24,43 +26,53 @@ public class Client
         this.birthdate = birthdate;
     }
 
-    public int getIdClient() {
+    public int getIdClient()
+    {
         return idClient;
     }
 
-    public String getFirstname() {
+    public String getFirstname()
+    {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
+    public void setFirstname(String firstname)
+    {
         this.firstname = firstname;
     }
 
-    public String getLastname() {
+    public String getLastname()
+    {
         return lastname;
     }
 
-    public void setLastname(String lastname) {
+    public void setLastname(String lastname)
+    {
         this.lastname = lastname;
     }
 
-    public String getGender() {
+    public String getGender()
+    {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(String gender)
+    {
         this.gender = gender;
     }
 
-    public String getAddress() {
+    public String getAddress()
+    {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(String address)
+    {
         this.address = address;
     }
 
-    public Date getBirthdate() {
+    public Date getBirthdate()
+    {
         return birthdate;
     }
 

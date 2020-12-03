@@ -3,10 +3,10 @@ package com.github.brokenswing.comixaire.models;
 public class StaffMember
 {
 
-    private int idStaff;
+    private final int idStaff;
     private String username;
     private String password;
-    private String role;
+    private final String role;
 
     public StaffMember(String username, String password, String role)
     {
