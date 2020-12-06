@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
 
 group 'com.github.brokenswing'
@@ -14,6 +15,14 @@ java {
 
 repositories {
     mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes(
+                "Main-Class": mainClassName
+        )
+    }
 }
 
 test() {
