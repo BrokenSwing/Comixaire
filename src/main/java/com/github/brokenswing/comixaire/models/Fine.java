@@ -1,8 +1,9 @@
 package com.github.brokenswing.comixaire.models;
 
-public class Fine {
+public class Fine
+{
     private final int idFine;
-    private FineType fine;
+    private final FineType fine;
     private boolean paid;
 
     public Fine(int idFine, FineType fine, boolean paid)
@@ -10,6 +11,11 @@ public class Fine {
         this.idFine = idFine;
         this.fine = fine;
         this.paid = paid;
+    }
+
+    public int getId()
+    {
+        return idFine;
     }
 
     public boolean isPaid()

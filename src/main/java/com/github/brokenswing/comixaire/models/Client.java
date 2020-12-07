@@ -5,11 +5,11 @@ import java.util.Date;
 public class Client
 {
     private final int idClient;
+    private final Date birthdate;
     private String firstname;
     private String lastname;
     private String gender;
     private String address;
-    private final Date birthdate;
 
     public Client(String firstname, String lastname, String gender, String address, Date birthdate)
     {

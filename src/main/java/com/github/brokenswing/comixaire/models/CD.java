@@ -4,39 +4,47 @@ import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 
 import java.util.Date;
 
-public class CD extends LibraryItem{
+public class CD extends LibraryItem
+{
     private int duration;
     private String artist;
 
-    public CD(String title, ConditionType condition, String location, Date createdOn, Date releasedOn, Integer[] bookings, String[] categories, boolean available, int duration, String artist) {
+    public CD(String title, ConditionType condition, String location, Date createdOn, Date releasedOn, Integer[] bookings, String[] categories, boolean available, int duration, String artist)
+    {
         super(title, condition, location, createdOn, releasedOn, bookings, categories, available);
         this.duration = duration;
         this.artist = artist;
     }
 
-    public CD(int idLibraryItem, String title, ConditionType condition, String location, Date createdOn, Date releasedOn, Integer[] bookings, String[] categories, boolean available, int duration, String artist) {
+    public CD(int idLibraryItem, String title, ConditionType condition, String location, Date createdOn, Date releasedOn, Integer[] bookings, String[] categories, boolean available, int duration, String artist)
+    {
         super(idLibraryItem, title, condition, location, createdOn, releasedOn, bookings, categories, available);
         this.duration = duration;
         this.artist = artist;
     }
 
-    public int getDuration() {
+    public int getDuration()
+    {
         return duration;
     }
 
-    public String getPrettyDuration() {
-        return PrettyTimeTransformer.prettyDuration(this.getDuration());
-    }
-
-    public void setDuration(int duration) {
+    public void setDuration(int duration)
+    {
         this.duration = duration;
     }
 
-    public String getArtist() {
+    public String getPrettyDuration()
+    {
+        return PrettyTimeTransformer.prettyDuration(this.getDuration());
+    }
+
+    public String getArtist()
+    {
         return artist;
     }
 
-    public void setArtist(String artist) {
+    public void setArtist(String artist)
+    {
         this.artist = artist;
     }
 }

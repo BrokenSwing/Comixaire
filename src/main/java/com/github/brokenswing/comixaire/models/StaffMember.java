@@ -4,9 +4,9 @@ public class StaffMember
 {
 
     private final int idStaff;
+    private final String role;
     private String username;
     private String password;
-    private final String role;
 
     public StaffMember(String username, String password, String role)
     {
