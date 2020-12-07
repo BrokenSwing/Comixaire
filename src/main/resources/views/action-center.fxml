@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="800.0" maxWidth="1280.0" minHeight="800.0" minWidth="1280.0"
             prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;"
-            xmlns="http://javafx.com/javafx/8">
+            xmlns="http://javafx.com/javafx/8" fx:controller="com.github.brokenswing.comixaire.controller.ActionCenterController">
     <children>
         <AnchorPane layoutX="-1.0" prefHeight="800.0" prefWidth="120.0" style="-fx-background-color: #5282FC;">
             <children>
@@ -51,7 +51,7 @@
                         <Image url="@/assets/comixaire_logo.png"/>
                     </image>
                 </ImageView>
-                <ImageView layoutX="1087.0" layoutY="32.0">
+                <ImageView fx:id="logoutButton"  layoutX="1087.0" layoutY="32.0">
                     <image>
                         <Image url="@/assets/logout.png"/>
                     </image>
