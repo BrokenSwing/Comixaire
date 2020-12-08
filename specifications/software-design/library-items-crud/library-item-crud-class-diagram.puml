@@ -1,0 +1,92 @@
+@startuml
+
+package controller {
+
+  abstract class LibraryItemFormController {
+    #nameField: TextField
+    #location: TextField
+    ...
+    +create(): void
+    +update(): void
+    +{abstract}getItem(): LibraryItem
+  }
+
+  class BookFormController extends LibraryItemFormController {
+    -authorField: TextField
+    -isbnField: TextField
+    ...
+  }
+
+  class CDFormController extends LibraryItemFormController {
+    -durationField: IntegerField
+    ...
+  }
+
+  class DVDFormController extends LibraryItemFormController {
+    -producer: TextField
+    ...
+  }
+
+  class GameFormController extends LibraryItemFormController {
+    -publisher: TextField
+    -minPlayers: IntegerField
+    ...
+  }
+
+  class LibraryItemsListController {
+    -selected: LibraryItem
+    -list: ListView
+    +delete()
+  }
+
+}
+
+package items {
+
+  class LibraryItemFacade {
+    +create(LibraryItem item): void
+    +findAll(): LibraryItem[]
+    +update(LibraryItem item): void
+    +delete(Libraryitem item): void
+  }
+
+}
+
+package dao {
+
+  abstract class DAOFactory {
+    +getLibraryItemDAO(): LibraryItemDAO
+  }
+
+  interface LibraryItemDAO {
+    +create<T extends LibraryItem>(T item): T
+    +findAll(): LibraryItem[]
+    +update<LibraryItem>(LibraryItem item): void
+    +delete(int id)
+  }
+
+  package postgres {
+
+    class PostgresLibraryItemDAO implements LibraryItemDAO {
+      -connection: Connection
+      +PostgresLibraryItemDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+  }
+
+}
+
+PostgresDAOFactory .> PostgresLibraryItemDAO : "creates"
+DAOFactory .> LibraryItemDAO : "provides"
+
+' Inter-packages relations
+
+LibraryItemFacade -down-> DAOFactory
+LibraryItemFormController --> LibraryItemFacade
+LibraryItemsListController --> LibraryItemFacade
+
+@enduml
