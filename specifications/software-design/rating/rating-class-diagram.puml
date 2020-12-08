@@ -1,0 +1,62 @@
+@startuml
+
+package controller {
+
+  class RatingController {
+    -searchButton: Button
+    -name: TextField
+    -unratedItems: CheckBox
+    -ratedItems: CheckBox
+    -popupButton: Button
+    -popupRateButton: Button
+    -popupSlider: Slider
+    -popupClose: Button
+    +search(): void
+    +rate(): void
+    +popup(): void
+    +closePopup(): void
+  }
+
+}
+
+package rating {
+  class RatingFacade {
+    +search(String name, Boolean unratedItems, Boolean ratedItems): Items[]
+    +rate(Item itemId, float rate)
+  }
+}
+
+package dao {
+  abstract class DAOFactory {
+    +getRatingDAO(): RatingDAO
+  }
+
+  interface RatingDAO {
+    +search(String, Boolean, Boolean): Items[]
+    +create(Rating rating): void
+  }
+
+  package postgres {
+
+    class PostgresRatingDAO implements RatingDAO {
+      -connection: Connection
+      +PostgresRatingDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+  }
+
+}
+
+PostgresDAOFactory .left> PostgresRatingDAO : "creates"
+DAOFactory .left> RatingDAO : "provides"
+
+' Inter-packages relations
+
+RatingFacade -down-> DAOFactory
+RatingController --> RatingFacade
+
+@enduml
