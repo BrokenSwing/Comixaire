@@ -1,0 +1,55 @@
+@startuml
+
+package controller {
+
+  class SubscriptionController {
+    -createSubscriptionButton: Button
+    -startDate: DateField
+    -clientId: String
+    +createSubscription(): void
+    +getClientSubscriptions(): void
+  }
+
+}
+
+package subscription {
+  class SubscriptionFacade {
+    +create(String clientId, Date startDate)
+    +getClientSubscriptions(String clientId)
+  }
+}
+
+package dao {
+  abstract class DAOFactory {
+    +getSubscriptionDAO(): SubscriptionDAO
+  }
+
+  interface SubscriptionDAO {
+    +findAllByClientId(String clientId): Subscription[]
+    +create(Subscription subscription): void
+  }
+
+  package postgres {
+
+    class PostgresSubscriptionDAO implements SubscriptionDAO {
+      -connection: Connection
+      +PostgresSubscriptionDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+  }
+
+}
+
+PostgresDAOFactory .left> PostgresSubscriptionDAO : "creates"
+DAOFactory .left> SubscriptionDAO : "provides"
+
+' Inter-packages relations
+
+SubscriptionFacade -down-> DAOFactory
+SubscriptionController --> SubscriptionFacade
+
+@enduml
