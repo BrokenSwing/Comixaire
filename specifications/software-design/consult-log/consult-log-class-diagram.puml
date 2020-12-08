@@ -1,0 +1,48 @@
+@startuml
+package controller {
+
+  class ConsultLogsController {
+    -searchLogsButton: Button
+    +getLogs() : void
+    +displayLogs() : void
+  }
+}
+
+package consult-log {
+
+  class ConsultLogsFacade {
+    +getAll()
+  }
+
+}
+
+package dao {
+
+  abstract class DAOFactory {
+    +getConsultLogDAO(): ConsultLogsDAO
+  }
+
+  interface ConsultLogsDAO {
+    +getAll() : logs[]
+  }
+
+  package postgres {
+
+    class PostgresConsultLogsDAO implements ConsultLogsDAO {
+      -connection: Connection
+      +PostgresConsultLogsDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+  }
+
+}
+
+PostgresDAOFactory .left> PostgresConsultLogsDAO : "creates"
+DAOFactory .left> ConsultLogsDAO : "provides"
+ConsultLogsFacade -down-> DAOFactory
+ConsultLogsController -down-> ConsultLogsFacade
+
+@enduml
