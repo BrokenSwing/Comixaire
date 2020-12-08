@@ -1,0 +1,70 @@
+@startuml
+
+package controller {
+
+  class ReturnController {
+    -itemIdField: TextField
+    -returnButtonItem: Button
+    +returnItem(): void
+  }
+
+}
+
+package auth {
+
+  class ReturnFacade {
+    +makeReturn(int loanId): void
+  }
+
+  class LoanFacade {
+    +getLatestLoanForItemId(int itemId): Loan
+  }
+}
+
+package dao {
+
+  abstract class DAOFactory {
+    +getReturnDAO(): ReturnDAO
+  }
+
+  interface ReturnDAO {
+    +create(int loanId): void
+  }
+
+  interface LoanDAO {
+    +getLatestLoanByItemId(int itemId): Loan
+  }
+
+  package postgres {
+
+    class PostgresReturnDAO implements ReturnDAO {
+      -connection: Connection
+      +PostgresReturnDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+    class PostgresLoanDAO implements LoanDAO {
+      -connection: Connection
+      +PostgresLoanDAO(Connection: connection)
+    }
+
+  }
+
+}
+
+PostgresDAOFactory .left> PostgresReturnDAO : "creates"
+DAOFactory .left> ReturnDAO : "provides"
+PostgresDAOFactory .right> PostgresLoanDAO : "creates"
+DAOFactory .right> LoanDAO : "provides"
+
+' Inter-packages relations
+
+ReturnFacade -down-> DAOFactory
+LoanFacade -down-> DAOFactory
+ReturnController --> ReturnFacade
+ReturnController --> LoanFacade
+
+@enduml

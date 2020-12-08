@@ -1,0 +1,55 @@
+@startuml
+
+package controller {
+
+  class BookingController {
+    -cardIdField: TextField
+    -itemIdField: TextField
+    -bookButtonItem: Button
+    +bookItem(): void
+  }
+
+}
+
+package auth {
+
+  class BookingFacade {
+    +bookItem(int itemId, String cardId): void
+  }
+
+}
+
+package dao {
+
+  abstract class DAOFactory {
+    +getLibraryItemDAO(): LibraryItemDAO
+  }
+
+  interface LibraryItemDAO {
+    +addBooking(int clientId): void
+  }
+
+  package postgres {
+
+    class PostgresLibraryItemDAO implements LibraryItemDAO {
+      -connection: Connection
+      +PostgresLibraryItemDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+  }
+
+}
+
+PostgresDAOFactory .left> PostgresLibraryItemDAO : "creates"
+DAOFactory .left> LibraryItemDAO : "provides"
+
+' Inter-packages relations
+
+BookingFacade -down-> DAOFactory
+BookingController --> BookingFacade
+
+@enduml

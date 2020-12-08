@@ -153,10 +153,9 @@ CREATE TABLE loans(
 );
 
 CREATE TABLE returns(
-    return_id INT GENERATED ALWAYS AS IDENTITY,
     return_date DATE NOT NULL,
     loan_id INT NOT NULL,
-    PRIMARY KEY(return_id),
+    PRIMARY KEY(loan_id),
     CONSTRAINT fk_loan
         FOREIGN KEY(loan_id)
         REFERENCES loans(loan_id)
