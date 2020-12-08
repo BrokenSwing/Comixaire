@@ -10,7 +10,7 @@ package controller {
 
 }
 
-package auth {
+package return {
 
   class ReturnFacade {
     +makeReturn(int loanId): void

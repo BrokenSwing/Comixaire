@@ -1,0 +1,84 @@
+@startuml
+
+package controller {
+
+  class CreateStaffMemberController {
+    -nameField: TextField
+    -passwordField: TextField
+    -roleCheckBox: CheckBox
+    -createButton: Button
+    +create(): StaffMember
+  }
+
+  class FindStaffMemberController {
+    -idField: TextField
+    -nameField: TextField
+    -findButton: Button
+    +find(): StaffMember
+  }
+
+  class StaffMemberController {
+    -nameField: TextField
+    -passwordField: TextField
+    -roleCheckBox: CheckBox
+    -updateButton: Button
+    -deleteButton: Button
+    -validateUpdateButton: Button
+    +update(): void
+    +delete(): void
+  }
+
+}
+
+package StaffMember {
+
+  class StaffMemberFacade {
+    +create(StaffMember staffMember): StaffMember
+    +findById(int idStaff): StaffMember
+    +findByUsername(String username): StaffMember
+    +upsate(StaffMember staffMember): void
+    +delete(StaffMember staffMember): void
+  }
+
+}
+
+package dao {
+
+  abstract class DAOFactory {
+    +getStaffMemberDAO(): StaffMemberDAO
+  }
+
+  interface StaffMemberDAO {
+    +create(StaffMember staffMember): StaffMember
+    +findById(int idStaff): StaffMember
+    +findByUsername(String username): StaffMember
+    +upsate(StaffMember staffMember): void
+    +delete(StaffMember staffMember): void
+  }
+
+  package postgres {
+
+    class PostgresStaffMemberDAO implements StaffMemberDAO {
+      -connection: Connection
+      +PostgresStaffMemberDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+  }
+
+}
+
+PostgresDAOFactory .left> PostgresStaffMemberDAO : "creates"
+DAOFactory .left> StaffMemberDAO : "provides"
+
+' Inter-packages relations
+
+StaffMemberFacade -down-> DAOFactory
+CreateStaffMemberController --> StaffMemberFacade
+FindStaffMemberController --> StaffMemberFacade
+StaffMemberController --> StaffMemberFacade
+
+@enduml

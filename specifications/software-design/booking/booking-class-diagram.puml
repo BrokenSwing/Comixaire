@@ -11,7 +11,7 @@ package controller {
 
 }
 
-package auth {
+package booking {
 
   class BookingFacade {
     +bookItem(int itemId, String cardId): void
