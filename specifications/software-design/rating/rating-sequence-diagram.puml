@@ -1,0 +1,16 @@
+@startuml
+
+autonumber
+--> RatingController: search()
+RatingController -> RatingFacade: search(String, Boolean, Boolean)
+RatingFacade -> DAOFactory : getRatingDAO()
+DAOFactory -> RatingDAO ++ : <<creates>>
+DAOFactory -> RatingFacade : RatingDAO
+RatingFacade -> RatingDAO : search(String, Boolean, Boolean)
+RatingDAO -> RatingController : Items[]
+--> RatingController: rate()
+RatingController -> RatingFacade: rate(Item, Float)
+RatingFacade -> RatingDAO : create(Rating)
+deactivate RatingDAO
+
+@enduml
