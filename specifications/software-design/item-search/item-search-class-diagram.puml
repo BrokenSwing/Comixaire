@@ -1,0 +1,56 @@
+@startuml
+package controller {
+
+  class ItemSearchController {
+    -typeField: TextField
+    -cardIdOrNameField: TextField
+    -categoryField: TextField
+    -cddField: TextField
+    -authorsField: TextField
+    -searchButton: Button
+    +search() : void
+    +displaySearch() : void
+  }
+}
+
+package item-search {
+
+  class ItemSearchFacade {
+    +search(String type, String category, String cdd, String cardId, String authors)
+  }
+  note top of ItemSearchFacade
+   Attributes can be Null
+  end note
+
+}
+
+package dao {
+
+  abstract class DAOFactory {
+    +getLoanDAO(): ItemSearchDAO
+  }
+
+  interface ItemSearchDAO {
+    +search(String type, String category, String cdd, String cardId, String authors) : search[]
+  }
+
+  package postgres {
+
+    class PostgresItemSearchDAO implements ItemSearchDAO {
+      -connection: Connection
+      +PostgresItemSearchDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+  }
+
+}
+
+PostgresDAOFactory .left> PostgresItemSearchDAO : "creates"
+DAOFactory .left> ItemSearchDAO : "provides"
+ItemSearchFacade -down-> DAOFactory
+ItemSearchController -down-> ItemSearchFacade
+
+@enduml
