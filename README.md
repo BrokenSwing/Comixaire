@@ -1,3 +1,5 @@
+![Build](https://github.com/BrokenSwing/Comixaire/workflows/Build/badge.svg)
+
 # Comixaire
 
 ![logo](./assets/logo.png)
