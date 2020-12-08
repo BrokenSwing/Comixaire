@@ -7,6 +7,10 @@ import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.dao.postgres.PostgresDAOFactory;
 import com.github.brokenswing.comixaire.di.ValueProvider;
 
+/**
+ * This class defines the configuration for the whole project. It provides singleton values to be injected
+ * in controllers using the class {@link com.github.brokenswing.comixaire.di.ControllerFactoryDI}.
+ */
 public class Configuration
 {
 

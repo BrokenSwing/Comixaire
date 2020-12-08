@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Comixaire application. This is the class for the entry point of the whole JavaFX application.
+ */
 public class Comixaire extends Application
 {
 

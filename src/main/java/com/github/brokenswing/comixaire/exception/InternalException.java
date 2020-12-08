@@ -1,14 +1,14 @@
 package com.github.brokenswing.comixaire.exception;
 
 /**
- * The exception {@code InternalException} and its subclasses is thrown when an error occurs and that the user
+ * The exception {@code InternalException} and its subclasses are thrown when an error occurs and that the user
  * has no way to fix this error using the UI.
  */
 public class InternalException extends Exception
 {
 
     /**
-     * Constructs a new exception with the specified detail message.  The
+     * Constructs a new exception with the specified detail message. The
      * cause is not initialized, and may subsequently be initialized by
      * a call to {@link #initCause}.
      *
@@ -28,11 +28,7 @@ public class InternalException extends Exception
      *
      * @param message the detail message (which is saved for later retrieval
      *                by the {@link #getMessage()} method).
-     * @param cause   the cause (which is saved for later retrieval by the
-     *                {@link #getCause()} method).  (A <tt>null</tt> value is
-     *                permitted, and indicates that the cause is nonexistent or
-     *                unknown.)
-     * @since 1.4
+     * @param cause   the source exception that led this exception to be thrown
      */
     public InternalException(String message, Throwable cause)
     {
