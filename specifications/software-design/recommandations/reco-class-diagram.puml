@@ -1,0 +1,57 @@
+@startuml
+
+package controller {
+
+  class RecommandationController {
+    -type: Select
+    -category: TextField
+    -cdd: TextField
+    -name: TextField
+    -other: TextField
+    -search: Button
+    -recommandations: Item[]
+    +filter(): void
+    +computeRecommandations(): void
+  }
+
+}
+
+package recommandation {
+  class RecommandationFacade {
+    +computeRecommandations()
+  }
+}
+
+package dao {
+  abstract class DAOFactory {
+    +getRatingDAO(): RatingDAO
+  }
+
+  interface RatingDAO {
+    +getAllRatings(): Rating[]
+  }
+
+  package postgres {
+
+    class PostgresRatingDAO implements RatingDAO {
+      -connection: Connection
+      +PostgresRatingDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+  }
+
+}
+
+PostgresDAOFactory .left> PostgresRatingDAO : "creates"
+DAOFactory .left> RatingDAO : "provides"
+
+' Inter-packages relations
+
+RecommandationFacade -down-> DAOFactory
+RecommandationController --> RecommandationFacade
+
+@enduml
