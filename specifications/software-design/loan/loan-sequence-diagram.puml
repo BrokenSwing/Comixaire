@@ -1,0 +1,84 @@
+@startuml
+autonumber
+
+--> LoanController: create()
+LoanController -> LoanFacade: createLoan(Date,Date,String,int)
+LoanFacade -> DAOFactory : getLoanDAO()
+DAOFactory -> LoanDAO ++ : <<creates>>
+LoanDAO -> DAOFactory
+DAOFactory -> LoanFacade : LoanDAO
+LoanFacade -> LoanDAO : create(Date,Date,String,int)
+LoanDAO -> LoanFacade : loan
+deactivate LoanDAO
+alt loan was create
+  LoanFacade -> LoanController : displayLoan()
+else client does not exist
+  LoanFacade -> LoanController: client not found error
+else item does not exist
+  LoanFacade -> LoanController: item not found error
+else item on loan
+  LoanFacade -> LoanController: item already on loan error
+else non-valid Subscription or Client not eligible
+  LoanFacade -> LoanController: client not eligible error
+else any other error
+  LoanFacade -> LoanController: internal error
+end
+
+autonumber
+--> LoanController: findAllLoansForClient()
+LoanController -> LoanFacade: findAll(String)
+LoanFacade -> DAOFactory : getLoanDAO()
+DAOFactory -> LoanDAO ++ : <<creates>>
+LoanDAO -> DAOFactory
+DAOFactory -> LoanFacade : LoanDAO
+LoanFacade -> LoanDAO : findByCardId(String)
+LoanDAO -> LoanFacade : loans[]
+deactivate LoanDAO
+alt loans was find
+  LoanFacade -> LoanController : displayLoan()
+else client does not exist
+  LoanFacade -> LoanController: client not found error
+else any other error
+  LoanFacade -> LoanController: internal error
+end
+
+
+autonumber
+--> LoanController: findLoansByDateForAnalysis()
+LoanController -> LoanFacade: findByDateFrom(Date)
+LoanFacade -> DAOFactory : getLoanDAO()
+DAOFactory -> LoanDAO ++ : <<creates>>
+LoanDAO -> DAOFactory
+DAOFactory -> LoanFacade : LoanDAO
+LoanFacade -> LoanDAO : findByDateFrom(Date)
+LoanDAO -> LoanFacade : loans[]
+deactivate LoanDAO
+alt loans was find
+  LoanFacade -> LoanController : displayLoan()
+else Date format does not exist
+  LoanFacade -> LoanController: date format error
+else any other error
+  LoanFacade -> LoanController: internal error
+end
+
+autonumber
+--> LoanController: findLoansByDateForClient()
+LoanController -> LoanFacade: findByDateToByUser(Date)
+LoanFacade -> DAOFactory : getLoanDAO()
+DAOFactory -> LoanDAO ++ : <<creates>>
+LoanDAO -> DAOFactory
+DAOFactory -> LoanFacade : LoanDAO
+LoanFacade -> LoanDAO : findByDateToByUser(Date)
+LoanDAO -> LoanFacade : loans[]
+deactivate LoanDAO
+alt loans was find
+  LoanFacade -> LoanController : displayLoan()
+else client does not exist
+  LoanFacade -> LoanController: client not found error
+else Date format does not exist
+  LoanFacade -> LoanController: date format error
+else any other error
+  LoanFacade -> LoanController: internal error
+end
+
+@enduml

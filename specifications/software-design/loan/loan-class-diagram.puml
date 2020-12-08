@@ -1,0 +1,64 @@
+@startuml
+package controller {
+
+  class LoanController {
+    -itemIdField: TextField
+    -cardIdField: TextField
+    -dateFromPicker: DatePicker
+    -dateToPicker: DatePicker
+    -LoanItemButton: Button
+    -analysisButton: Button
+    -findLoansButton: Button
+    +create() : void
+    +findAllLoansForClient() : void
+    +findLoansByDateForAnalysis() : void
+    +findLoansByDateForClient() : void
+    +displayLoan() : void
+  }
+}
+
+package loan {
+
+  class LoanFacade {
+    +createLoan(Date from, Date to, String cardId, int itemId)
+    +findAll(String cardId)
+    +findByDateFrom(Date from)
+    +findByDateTo(Date to)
+    +findByDateToByUser(Date to, String cardId)
+  }
+}
+
+package dao {
+
+  abstract class DAOFactory {
+    +getLoanDAO(): LoanDAO
+  }
+
+  interface LoanDAO {
+    +findByCardId(String cardId): Loans[]
+    +findByDateFrom(Date from) : Loans[]
+    +findByDateTo(Date to) : Loans[]
+    +findByDateToByUser(Date to, String cardId) : Loans[]
+    +create(Date from, Date to, String cardId, int itemId) : Loan
+  }
+
+  package postgres {
+
+    class PostgresLoanDAO implements LoanDAO {
+      -connection: Connection
+      +PostgresLoanDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+  }
+
+}
+
+PostgresDAOFactory .left> PostgresLoanDAO : "creates"
+DAOFactory .left> LoanDAO : "provides"
+LoanFacade -down-> DAOFactory
+LoanController -down-> LoanFacade
+
+@enduml
