@@ -27,6 +27,7 @@ jar {
 
 test() {
     useJUnitPlatform()
+    environment '_JAVA_OPTIONS', '-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw'
 }
 
 dependencies {
@@ -38,7 +39,8 @@ dependencies {
     testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.6.28'
     testImplementation group: 'org.testfx', name: 'testfx-junit5', version: '4.0.16-alpha'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.18.1'
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.7.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
-    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.7.0")
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.7.0"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.0"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.7.0"
+    testCompile "org.testfx:openjfx-monocle:8u76-b04"
 }
