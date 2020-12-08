@@ -4,23 +4,26 @@ import java.util.Date;
 
 public class Client
 {
+
     private final int idClient;
     private final Date birthdate;
+    private final String cardId;
     private String firstname;
     private String lastname;
     private String gender;
     private String address;
 
-    public Client(String firstname, String lastname, String gender, String address, Date birthdate)
+    public Client(String firstname, String lastname, String cardId, String gender, String address, Date birthdate)
     {
-        this(-1, firstname, lastname, gender, address, birthdate);
+        this(-1, firstname, lastname, cardId, gender, address, birthdate);
     }
 
-    public Client(int idClient, String firstname, String lastname, String gender, String address, Date birthdate)
+    public Client(int idClient, String firstname, String cardId, String lastname, String gender, String address, Date birthdate)
     {
         this.idClient = idClient;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.cardId = cardId;
         this.gender = gender;
         this.address = address;
         this.birthdate = birthdate;
