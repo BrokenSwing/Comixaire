@@ -4,8 +4,8 @@ package controller {
 
   class SubscriptionController {
     -createSubscriptionButton: Button
-    -startDate: DateField
-    -clientId: String
+    -startDate: DatePicker
+    -cardId: String
     +createSubscription(): void
     +getClientSubscriptions(): void
   }
@@ -15,7 +15,7 @@ package controller {
 package subscription {
   class SubscriptionFacade {
     +create(String clientId, Date startDate): Subscription
-    +getClientSubscriptions(String clientId): Subscription[]
+    +getClientSubscriptions(String cardId): Subscription[]
   }
 }
 
@@ -25,7 +25,7 @@ package dao {
   }
 
   interface SubscriptionDAO {
-    +findAllByClientId(String clientId): Subscription[]
+    +findAllByCardId(String cardId): Subscription[]
     +create(Subscription subscription): void
   }
 
