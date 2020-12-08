@@ -14,8 +14,8 @@ package controller {
 
 package subscription {
   class SubscriptionFacade {
-    +create(String clientId, Date startDate)
-    +getClientSubscriptions(String clientId)
+    +create(String clientId, Date startDate): Subscription
+    +getClientSubscriptions(String clientId): Subscription[]
   }
 }
 
