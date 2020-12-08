@@ -1,0 +1,15 @@
+@startuml
+
+autonumber
+SubscriptionController -> SubscriptionFacade: getClientSubscriptions(String)
+SubscriptionFacade -> DAOFactory : getSubscriptionDAO()
+DAOFactory -> SubscriptionDAO ++ : <<creates>>
+DAOFactory -> SubscriptionFacade : SubscriptionDAO
+SubscriptionFacade -> SubscriptionDAO : findAllByCardId(String)
+SubscriptionDAO -> SubscriptionController : Subscription[ ]
+--> SubscriptionController: createSubscription()
+SubscriptionController -> SubscriptionFacade: createSubscription(String, Date)
+SubscriptionFacade -> SubscriptionDAO : create(Subscription)
+deactivate SubscriptionDAO
+
+@enduml
