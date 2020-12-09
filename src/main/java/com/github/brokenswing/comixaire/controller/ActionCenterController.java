@@ -6,14 +6,15 @@ import com.github.brokenswing.comixaire.view.LoginView;
 import com.github.brokenswing.comixaire.view.Router;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ActionCenterController implements Initializable {
+public class ActionCenterController implements Initializable
+{
 
     @FXML
     private ImageView logoutButton;
@@ -24,7 +25,8 @@ public class ActionCenterController implements Initializable {
     @InjectValue
     private Router router;
 
-    public void logout() throws IOException {
+    public void logout() throws IOException
+    {
         auth.logout();
         displayLoginView();
     }
@@ -36,11 +38,16 @@ public class ActionCenterController implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        this.logoutButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (event -> {
-            try {
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        this.logoutButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (event ->
+        {
+            try
+            {
                 this.logout();
-            } catch (IOException e) {
+            }
+            catch (IOException e)
+            {
                 throw new RuntimeException(e);
             }
         }));

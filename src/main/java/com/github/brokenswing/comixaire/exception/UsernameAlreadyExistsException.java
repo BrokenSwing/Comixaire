@@ -7,7 +7,7 @@ import com.github.brokenswing.comixaire.models.StaffMember;
  * but that the provided staff member has a username that is already
  * used by an existing staff member.
  *
- * @see com.github.brokenswing.comixaire.dao.StaffMemberDAO#create(StaffMember) 
+ * @see com.github.brokenswing.comixaire.dao.StaffMemberDAO#create(StaffMember)
  */
 public class UsernameAlreadyExistsException extends Exception
 {

@@ -19,15 +19,10 @@ import javafx.stage.Stage;
 public class Comixaire extends Application
 {
 
-    private Router router;
     private final DAOFactory factory;
     private final Session session;
     private final ViewLoader viewLoader;
-
-    public static void main(String[] args)
-    {
-        launch(args);
-    }
+    private Router router;
 
     public Comixaire()
     {
@@ -35,6 +30,11 @@ public class Comixaire extends Application
         this.session = new Session();
         this.factory = new PostgresDAOFactory();
         this.viewLoader = new ViewLoader(DependencyInjector.getInstance());
+    }
+
+    public static void main(String[] args)
+    {
+        launch(args);
     }
 
     @Override

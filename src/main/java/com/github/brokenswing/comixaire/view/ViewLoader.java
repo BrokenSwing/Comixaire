@@ -21,7 +21,8 @@ public class ViewLoader
     public <V, T extends ParametrizedController<U>, U> V loadView(ParametrizedView<T, U> view, U data)
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setControllerFactory(clazz -> {
+        loader.setControllerFactory(clazz ->
+        {
             Object controller = controllerFactory.call(clazz);
             if (view.getControllerClass().isAssignableFrom(controller.getClass()))
             {

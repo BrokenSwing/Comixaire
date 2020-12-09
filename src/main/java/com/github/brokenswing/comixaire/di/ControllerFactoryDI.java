@@ -3,15 +3,12 @@ package com.github.brokenswing.comixaire.di;
 import javafx.util.Callback;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
 
 public class ControllerFactoryDI implements Callback<Class<?>, Object>
 {
 
-    private DependencyInjector di;
+    private final DependencyInjector di;
 
     public ControllerFactoryDI(DependencyInjector di)
     {

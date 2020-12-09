@@ -7,8 +7,8 @@ import javafx.stage.Stage;
 public class Router
 {
 
-    private ViewLoader viewLoader;
     private final Stage stage;
+    private final ViewLoader viewLoader;
 
     public Router(ViewLoader viewLoader, Stage primaryStage)
     {

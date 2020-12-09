@@ -3,7 +3,10 @@ package com.github.brokenswing.comixaire.di;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DependencyInjector
 {
@@ -13,6 +16,11 @@ public class DependencyInjector
     private final List<Object> sources;
     private final HashMap<Class<?>, Object> injectionCache = new HashMap<>();
 
+    private DependencyInjector()
+    {
+        this.sources = new LinkedList<>();
+    }
+
     public static DependencyInjector getInstance()
     {
         if (instance == null)
@@ -20,11 +28,6 @@ public class DependencyInjector
             instance = new DependencyInjector();
         }
         return instance;
-    }
-
-    private DependencyInjector()
-    {
-        this.sources = new LinkedList<>();
     }
 
     public void addSource(Object o)
