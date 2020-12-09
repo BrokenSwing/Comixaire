@@ -1,11 +1,9 @@
 package com.github.brokenswing.comixaire.view;
 
-import java.io.IOException;
-
 public class LoginView extends View
 {
 
-    public LoginView() throws IOException
+    public LoginView()
     {
         super("authentication.fxml");
     }

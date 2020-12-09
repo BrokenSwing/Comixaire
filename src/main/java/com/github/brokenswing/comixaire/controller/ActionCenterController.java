@@ -3,6 +3,7 @@ package com.github.brokenswing.comixaire.controller;
 import com.github.brokenswing.comixaire.auth.AuthFacade;
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.view.LoginView;
+import com.github.brokenswing.comixaire.view.Router;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -20,17 +21,18 @@ public class ActionCenterController implements Initializable {
     @InjectValue
     private AuthFacade auth;
 
+    @InjectValue
+    private Router router;
+
     public void logout() throws IOException {
         auth.logout();
         displayLoginView();
     }
 
 
-    protected void displayLoginView() throws IOException
+    protected void displayLoginView()
     {
-        Scene scene = logoutButton.getScene();
-        scene.setRoot(new LoginView());
-        scene.getWindow().sizeToScene();
+        router.navigateTo(new LoginView());
     }
 
     @Override

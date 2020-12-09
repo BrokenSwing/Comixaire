@@ -1,11 +1,9 @@
 package com.github.brokenswing.comixaire.view;
 
-import java.io.IOException;
-
 public class ActionCenterView extends View
 {
 
-    public ActionCenterView() throws IOException
+    public ActionCenterView()
     {
         super("action-center.fxml");
     }

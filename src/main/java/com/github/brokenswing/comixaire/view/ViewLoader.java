@@ -1,9 +1,9 @@
 package com.github.brokenswing.comixaire.view;
 
-import com.github.brokenswing.comixaire.Configuration;
+import com.github.brokenswing.comixaire.controller.ParametrizedController;
 import com.github.brokenswing.comixaire.di.ControllerFactoryDI;
+import com.github.brokenswing.comixaire.di.DependencyInjector;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -11,34 +11,51 @@ import java.io.IOException;
 public class ViewLoader
 {
 
-    private static ViewLoader instance = null;
     private final Callback<Class<?>, Object> controllerFactory;
 
-    private ViewLoader()
+    public ViewLoader(DependencyInjector di)
     {
-        this.controllerFactory = new ControllerFactoryDI(createConfiguration());
+        this.controllerFactory = new ControllerFactoryDI(di);
     }
 
-    public static ViewLoader getInstance()
+    public <V, T extends ParametrizedController<U>, U> V loadView(ParametrizedView<T, U> view, U data)
     {
-        if (instance == null)
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(clazz -> {
+            Object controller = controllerFactory.call(clazz);
+            if (view.getControllerClass().isAssignableFrom(controller.getClass()))
+            {
+                ParametrizedController<U> c = (ParametrizedController<U>) controller;
+                c.handleViewParam(data);
+            }
+            return controller;
+        });
+        loader.setLocation(ViewLoader.class.getClassLoader().getResource("views/" + view.getViewName()));
+        V node;
+        try
         {
-            instance = new ViewLoader();
+            node = loader.load();
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException("Unable to load view " + view.getViewName(), e);
         }
 
-        return instance;
+        return node;
     }
 
-    private Object createConfiguration()
-    {
-        return new Configuration();
-    }
-
-    public Parent loadView(String viewName) throws IOException
+    public <T> T loadView(View view)
     {
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(this.controllerFactory);
-        return loader.load(ViewLoader.class.getClassLoader().getResourceAsStream("views/" + viewName));
+        try
+        {
+            return loader.load(ViewLoader.class.getClassLoader().getResourceAsStream("views/" + view.getViewName()));
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException("Unable to load view " + view.getViewName(), e);
+        }
     }
 
 }

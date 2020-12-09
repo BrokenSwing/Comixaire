@@ -6,14 +6,12 @@ import com.github.brokenswing.comixaire.exception.BadCredentialsException;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.view.ActionCenterView;
 import com.github.brokenswing.comixaire.view.InternalErrorAlert;
+import com.github.brokenswing.comixaire.view.Router;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
 
 public class LoginController
 {
@@ -34,6 +32,8 @@ public class LoginController
 
     @InjectValue
     private AuthFacade auth;
+    @InjectValue
+    private Router router;
 
     public LoginController()
     {
@@ -51,7 +51,7 @@ public class LoginController
         this.auth = auth;
     }
 
-    public void loginStaff() throws IOException
+    public void loginStaff()
     {
         loginButtonStaff.setDisable(true);
         String username = usernameField.getText();
@@ -78,11 +78,9 @@ public class LoginController
         }
     }
 
-    protected void displayActionCenter(Button loginButtonStaff) throws IOException
+    protected void displayActionCenter(Button loginButtonStaff)
     {
-        Scene scene = loginButtonStaff.getScene();
-        scene.setRoot(new ActionCenterView());
-        scene.getWindow().sizeToScene();
+        router.navigateTo(new ActionCenterView());
     }
 
     protected void displayBadCredentialsAlert(String contentMessage)
@@ -99,7 +97,7 @@ public class LoginController
         new InternalErrorAlert(e).showAndWait();
     }
 
-    public void loginClient() throws IOException
+    public void loginClient()
     {
         loginButtonClient.setDisable(true);
         String clientId = clientIdField.getText();

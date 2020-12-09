@@ -1,21 +1,18 @@
 package com.github.brokenswing.comixaire.view;
 
-import javafx.scene.Parent;
-
-import java.io.IOException;
-
-public class View extends Parent
+public class View
 {
 
-    public View(String viewName) throws IOException
+    private final String viewName;
+
+    public View(String viewName)
     {
-        Parent view = loadFromFXML(viewName);
-        this.getChildren().add(view);
+        this.viewName = viewName;
     }
 
-    public Parent loadFromFXML(String viewName) throws IOException
+    public String getViewName()
     {
-        return ViewLoader.getInstance().loadView(viewName);
+        return this.viewName;
     }
 
 }
