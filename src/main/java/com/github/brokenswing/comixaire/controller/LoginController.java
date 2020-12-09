@@ -64,7 +64,7 @@ public class LoginController
      * Value of the username field will be trimmed before being used.
      * If the authentication fails, a call to either {@link LoginController#displayBadCredentialsAlert(String)}
      * or {@link #displayInternalErrorAlert(Exception)} will be displayed to
-     * the user (based on the received exception).<br />
+     * the user (based on the received exception).<br>
      *
      * This method is called by a click event triggered by the
      * {@link #loginButtonStaff} button.
@@ -135,7 +135,7 @@ public class LoginController
      * Value of the client ID field will be trimmed before being used.
      * If the authentication fails, a call to either {@link LoginController#displayBadCredentialsAlert(String)}
      * or {@link #displayInternalErrorAlert(Exception)} will be displayed to
-     * the user (based on the received exception).<br />
+     * the user (based on the received exception).<br>
      *
      * This method is called by a click event triggered by the
      * {@link #loginButtonStaff} button.

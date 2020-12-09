@@ -11,13 +11,13 @@ import java.util.List;
 /**
  * Singleton that manages the dependency injection in the system.
  * This class is mainly to inject dependencies in JavaFX controller
- * through the controllers factory.<br />
+ * through the controllers factory.<br>
  * <p>
  * Calling {@link #inject(Object)} will inject values in the fields
  * of the given object that are annotated with {@link InjectValue}
  * getting those values in the sources objects added through
  * {@link #addSource(Object)}. This sources objects provides
- * values through methods annotated with {@link ValueProvider}.<br />
+ * values through methods annotated with {@link ValueProvider}.<br>
  * <p>
  * Any injected by this dependency injection system is a singleton,
  * even if methods of the sources return a new instance at each call,
@@ -41,7 +41,7 @@ public class DependencyInjector
     }
 
     /**
-     * Returns the instance of the singleton. <br />
+     * Returns the instance of the singleton. <br>
      * The access to this instance is not thread-safe.
      */
     public static DependencyInjector getInstance()
@@ -54,11 +54,11 @@ public class DependencyInjector
     }
 
     /**
-     * Add a source to get dependencies values from.<br />
+     * Add a source to get dependencies values from.<br>
      * In order to provide values, the source must have methods
      * that are annotated with {@link ValueProvider} annotation.
      * If multiple methods in the same source object provides the same
-     * class, then the first method is used.<br />
+     * class, then the first method is used.<br>
      * When trying to resolve a dependency and that a cache-miss happens,
      * the sources are inspected in the same order as they were added to
      * the dependency injection system through this method.
@@ -71,7 +71,7 @@ public class DependencyInjector
     }
 
     /**
-     * Injects dependencies in the given object.<br />
+     * Injects dependencies in the given object.<br>
      * This fields annotated with {@link InjectValue} then
      * tries to find a value that fits the type. If no value
      * can be found be to injected, a {@link IllegalStateException}

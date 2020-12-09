@@ -28,7 +28,7 @@ public class Router
      * Loads the given views using {@link ViewLoader#loadView(ParametrizedView, Object)}
      * forwarding the given data to the method call.
      * Then this method sets the loaded view as the root scene of the
-     * stage that is handled by this router.<br />
+     * stage that is handled by this router.<br>
      * This method also centers the stage on the screen.
      *
      * @param view the view to navigate to
@@ -45,7 +45,7 @@ public class Router
     /**
      * Loads the given view using {@link ViewLoader#loadView(View)} then
      * sets the loaded views as the root scene of the stage that is
-     * handled by this router.<br />
+     * handled by this router.<br>
      * This method also centers the stage on the screen.
      *
      * @param view the view to navigate to

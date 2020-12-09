@@ -43,7 +43,7 @@ public class Session
 
     /**
      * Logs out any connected user, independently of it being
-     * a staff member or a client.<br />
+     * a staff member or a client.<br>
      * If no user is logged in the system, this method does nothing.
      */
     public void logout()
