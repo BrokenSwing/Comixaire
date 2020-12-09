@@ -12,8 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.Init;
 
-import java.io.IOException;
-
 import static com.github.brokenswing.comixaire.TestUtil.rethrow;
 import static org.mockito.Mockito.*;
 
@@ -79,7 +77,7 @@ public class LoginControllerTest
         }
 
         @Override
-        protected void displayActionCenter(Button loginButtonStaff)
+        protected void displayActionCenter()
         {
 
         }

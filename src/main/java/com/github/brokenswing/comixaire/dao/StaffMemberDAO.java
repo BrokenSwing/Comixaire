@@ -12,6 +12,12 @@ public interface StaffMemberDAO
 
     StaffMember findById(int idStaff) throws InternalException, NoStaffMemberFoundException;
 
+    /**
+     * @param username The username of the staff member to find
+     * @return the staff member with the given username
+     * @throws InternalException           if an unexpected error occurs
+     * @throws NoStaffMemberFoundException if no member with the given username was found
+     */
     StaffMember findByUsername(String username) throws InternalException, NoStaffMemberFoundException;
 
     void update(StaffMember staffMember) throws InternalException;
