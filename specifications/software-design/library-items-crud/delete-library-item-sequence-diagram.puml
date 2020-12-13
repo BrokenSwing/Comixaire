@@ -1,0 +1,14 @@
+@startuml
+
+autonumber
+
+-> LibraryItemsListController : delete()
+LibraryItemsListController -> LibraryItemFacade : delete(LibraryItem)
+LibraryItemFacade -> DAOFactory : getLibraryItemDAO()
+DAOFactory -> LibraryItemDAO++ : <<create>>
+LibraryItemDAO -> DAOFactory
+DAOFactory -> LibraryItemFacade : libraryItemDAO
+LibraryItemFacade -> LibraryItemDAO : delete(int)
+deactivate LibraryItemDAO
+
+@enduml

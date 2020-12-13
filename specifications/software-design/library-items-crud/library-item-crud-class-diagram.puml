@@ -8,7 +8,7 @@ package controller {
     ...
     +create(): void
     +update(): void
-    +{abstract}getItem(): LibraryItem
+    +{abstract}getItemFromFields(): LibraryItem
   }
 
   class BookFormController extends LibraryItemFormController {

@@ -1,0 +1,15 @@
+@startuml
+
+autonumber
+
+-> LibraryItemFormController : update()
+LibraryItemFormController -> LibraryItemFormController : getItemFromFields()
+LibraryItemFormController -> LibraryItemFacade : update(LibraryItem)
+LibraryItemFacade -> DAOFactory : getLibraryItemDAO()
+DAOFactory -> LibraryItemDAO++ : <<create>>
+LibraryItemDAO -> DAOFactory
+DAOFactory -> LibraryItemFacade : libraryItemDAO
+LibraryItemFacade -> LibraryItemDAO : update(LibrayItem)
+deactivate LibraryItemDAO
+
+@enduml
