@@ -13,3 +13,4 @@ The following sequence diagram describes how a client consult his(her) recommand
 `RecommandationController` called by the JAVAFX `RecommandationView`.
 
 ![Recommandations sequence diagram](./reco-sequence-diagram.svg)
+ 
