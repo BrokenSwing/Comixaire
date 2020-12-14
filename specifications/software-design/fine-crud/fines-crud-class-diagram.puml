@@ -1,0 +1,69 @@
+@startuml
+
+package controller {
+
+  class FinesFormController {
+
+    -returnIdField: IntegerField
+    -loanIdField: IntegerField
+    -fineTypeField: ComboBox
+
+    +getFineFromFields(): Fine
+    +create(): void
+    +update(): void
+
+  }
+
+  class FineController {
+    +delete(): void
+  }
+
+}
+
+package fines {
+
+  class FinesFacade {
+    +create(Fine fine): Fine
+    +update(Fine fine): void
+    +delete(int fineID): void
+  }
+
+}
+
+package dao {
+
+  abstract class DAOFactory {
+    +getFineDAO(): FineDAO
+  }
+
+  interface FineDAO {
+    +create(Fine fine): Fine
+    +update(Fine fine): void
+    +delete(int fineId): void
+  }
+
+  package postgres {
+
+    class PostgresFineDAO implements FineDAO {
+      -connection: Connection
+      +PostgresLibraryItemDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+  }
+
+}
+
+PostgresDAOFactory .> PostgresFineDAO : "creates"
+DAOFactory .> FineDAO : "provides"
+
+' Inter-packages relations
+
+FineController -down-> FinesFacade
+FinesFormController -down-> FinesFacade
+FinesFacade -down-> DAOFactory
+
+@enduml

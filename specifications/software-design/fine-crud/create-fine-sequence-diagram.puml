@@ -1,0 +1,17 @@
+@startuml
+
+autonumber
+
+-> FinesFormController : create()
+FinesFormController -> FinesFormController : getFineFromFields()
+FinesFormController -> FinesFacade : create(Fine)
+FinesFacade -> DAOFactory : getFineDAO()
+DAOFactory -> FineDAO++
+FineDAO -> DAOFactory
+DAOFactory -> FinesFacade : fineDao
+FinesFacade -> FineDAO : create(Fine)
+FineDAO -> FinesFacade : fine
+deactivate FineDAO
+FinesFacade -> FinesFormController : fine
+
+@enduml
