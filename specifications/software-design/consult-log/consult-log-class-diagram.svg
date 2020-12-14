@@ -27,7 +27,7 @@ package controller {
 package logs {
 
   class LogsFacade {
-    +getAll() : logs[]
+    +getAll() : Log[]
   }
   
 }
@@ -39,7 +39,7 @@ package dao {
   }
 
   interface LogsDAO {
-    +getAll() : logs[]
+    +getAll() : Log[]
   }
 
   package postgres {

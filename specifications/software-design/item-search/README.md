@@ -1,13 +1,16 @@
 # Item-search
 
 ## Class diagram
+We're using a **factory** and **DAO** pattern to abstract how we manage the persistence of our data.
+Moreover, we're using the **facade** pattern to provide a simple API to the item search controller.
 
-![Authentication use case class diagram](./item-search-class-diagram.svg)
+![Item search class diagram](./item-search-class-diagram.svg)
 
 
 ## Sequences diagram
 
-The following sequence diagram describes manage item-search.
+The following sequence diagram describes how a client search items from the `search()` methods of the
+`ItemSearchController`.
 
-![Logout sequence diagram](./item-search-sequence-diagram.svg)
+![Item search sequence diagram](./item-search-sequence-diagram.svg)
 

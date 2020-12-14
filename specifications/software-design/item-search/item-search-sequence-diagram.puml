@@ -3,15 +3,15 @@ autonumber
 
 - -> ItemSearchController: search()
 ItemSearchController -> ItemSearchFacade: search(String,String,String,String,String)
-ItemSearchFacade -> DAOFactory : getItemSearchDAO()
-DAOFactory -> IteamSearchDAO ++ : <<creates>>
-IteamSearchDAO -> DAOFactory
-DAOFactory -> ItemSearchFacade : IteamSearchDAO
-ItemSearchFacade -> IteamSearchDAO : search(String,String,String,String,String
-IteamSearchDAO -> ItemSearchFacade : search[]
-deactivate IteamSearchDAO
+ItemSearchFacade -> DAOFactory : getLibraryItemDAO()
+DAOFactory -> LibraryIteamDAO ++ : <<creates>>
+LibraryIteamDAO -> DAOFactory
+DAOFactory -> ItemSearchFacade : LibraryIteamDAO
+ItemSearchFacade -> LibraryIteamDAO : findByFilter(String,String,String,String,String)
+LibraryIteamDAO -> ItemSearchFacade : LibraryItem[]
+deactivate LibraryIteamDAO
 alt search was succeed
-  ItemSearchFacade -> ItemSearchController : item[] was returned
+  ItemSearchFacade -> ItemSearchController : LibraryItem[] was returned
 else no result
   ItemSearchFacade -> ItemSearchController: No result
 else search cancelled

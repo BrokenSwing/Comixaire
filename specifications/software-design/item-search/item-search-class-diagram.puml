@@ -15,7 +15,7 @@ package controller {
 package item-search {
 
   class ItemSearchFacade {
-    +search(String type, String category, String cdd, String cardId, String authors) : item[]
+    +search(String type, String category, String cdd, String cardId, String authors) : LibraryItem[]
   }
   note top of ItemSearchFacade
    Attributes can be Null
@@ -30,7 +30,7 @@ package dao {
   }
 
   interface LibraryItemDAO {
-    +findByFilter() : item[]
+    +findByFilter(String type, String category, String cdd, String cardId, String authors) : LibraryItem[]
   }
 
   package postgres {
