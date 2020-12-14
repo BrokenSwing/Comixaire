@@ -30,4 +30,3 @@ The following diagram describes how a fine is deleted from the point the `delete
 
 ![Fine deletion sequence diagram](./delete-fine-sequence-diagram.svg)
 
-    

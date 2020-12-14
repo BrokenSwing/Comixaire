@@ -34,3 +34,4 @@ The following diagram describes how a library item is deleted from the point the
 `StaffMemberController` is called by the JavaFX view associated to it.
 
 ![Staff member deletion sequence diagram](./delete-employee-sequence-diagram.svg)
+

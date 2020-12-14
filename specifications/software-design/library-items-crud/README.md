@@ -33,4 +33,3 @@ The following diagram describes how a library item is deleted from the point the
 
 ![Library item deletion sequence diagram](./delete-library-item-sequence-diagram.svg)
 
-    

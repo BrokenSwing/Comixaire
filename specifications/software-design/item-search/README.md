@@ -1,4 +1,4 @@
-# Item-search
+# Item search
 
 ## Class diagram
 We're using a **factory** and **DAO** pattern to abstract how we manage the persistence of our data.
