@@ -1,0 +1,14 @@
+@startuml
+
+autonumber
+
+-> StaffMemberController : delete()
+StaffMemberController -> StaffMemberFacade : delete(StaffMember staffMember)
+StaffMemberFacade -> DAOFactory : getStaffMemberDAO()
+DAOFactory -> StaffMemberDAO ++ : <<create>>
+StaffMemberDAO -> DAOFactory
+DAOFactory -> StaffMemberFacade : StaffMemberDAO
+StaffMemberFacade -> StaffMemberDAO : delete(StaffMember staffMember)
+deactivate StaffMemberDAO
+
+@enduml
