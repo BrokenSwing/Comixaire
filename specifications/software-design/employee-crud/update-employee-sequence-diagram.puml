@@ -1,0 +1,14 @@
+@startuml
+
+autonumber
+
+-> StaffMemberController : update()
+StaffMemberController -> StaffMemberFacade : update(StaffMember staffMember)
+StaffMemberFacade -> DAOFactory : getStaffMemberDAO()
+DAOFactory -> StaffMemberDAO ++ : <<create>>
+StaffMemberDAO -> DAOFactory
+DAOFactory -> StaffMemberFacade : StaffMemberDAO
+StaffMemberFacade -> StaffMemberDAO : update(StaffMember staffMember)
+deactivate StaffMemberDAO
+
+@enduml
