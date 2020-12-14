@@ -3,7 +3,7 @@ autonumber
 
 - -> LogsController: getAllLogs()
 LogsController -> LogsFacade: getAllLogs()
-LogsFacade -> DAOFactory : getItemSearchDAO()
+LogsFacade -> DAOFactory : getLogsDAO()
 DAOFactory -> LogsDAO ++ : <<creates>>
 LogsDAO -> DAOFactory
 DAOFactory -> LogsFacade : LogsDAO
