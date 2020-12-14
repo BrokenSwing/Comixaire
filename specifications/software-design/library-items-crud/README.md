@@ -22,7 +22,7 @@ The following diagram describes how a library item is created from the point the
 ## Library item update sequence diagram
 
 The following diagram describes how a library item is updated from the point the `update()` method of the
-`LibraryItemFromController` is called by the JavaFX view associated to it.
+`LibraryItemFormController` is called by the JavaFX view associated to it.
 
 ![Library item update sequence diagram](./update-library-item-sequence-diagram.svg)
 
