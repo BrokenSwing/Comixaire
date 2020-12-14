@@ -16,14 +16,14 @@ The following diagram describes how a fine is created from the point the `create
 
 ![Fine creation sequence diagram](./create-fine-sequence-diagram.svg)
 
-## Library item update sequence diagram
+## Fine update sequence diagram
 
 The following diagram describes how a fine is updated from the point the `update()` method of the
 `FinesFormController` is called by the JavaFX view associated to it.
 
 ![Fine update sequence diagram](./update-fine-sequence-diagram.svg)
 
-## Library item deletion sequence diagram
+## Fine deletion sequence diagram
 
 The following diagram describes how a fine is deleted from the point the `delete()` method of the
 `FineController` is called by the JavaFX view associated to it.
