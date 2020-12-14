@@ -36,7 +36,7 @@ package StaffMember {
     +create(StaffMember staffMember): StaffMember
     +findById(int idStaff): StaffMember
     +findByUsername(String username): StaffMember
-    +upsate(StaffMember staffMember): void
+    +update(StaffMember staffMember): void
     +delete(StaffMember staffMember): void
   }
 
@@ -52,7 +52,7 @@ package dao {
     +create(StaffMember staffMember): StaffMember
     +findById(int idStaff): StaffMember
     +findByUsername(String username): StaffMember
-    +upsate(StaffMember staffMember): void
+    +update(StaffMember staffMember): void
     +delete(StaffMember staffMember): void
   }
 
