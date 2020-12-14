@@ -1,0 +1,37 @@
+@startuml
+
+autonumber
+
+participant ReturnController
+participant LoanFacade
+participant ReturnFacade
+
+-> ReturnController : returnItem()
+ReturnController -> LoanFacade : getLatestLoanForItemId(int itemId)
+LoanFacade -> DAOFactory : getLoanDAO()
+DAOFactory -> LoanDAO ++ : <<create>>
+LoanDAO -> DAOFactory
+DAOFactory -> LoanFacade : LoanDAO
+LoanFacade -> LoanDAO : getLatestLoanByItemId(int itemId)
+
+alt succeed
+  LoanDAO -> LoanFacade : Loan
+  LoanFacade -> ReturnController : Loan
+else loan does not exist
+  LoanDAO -> LoanFacade: client not eligible error
+  LoanFacade -> ReturnController: client not eligible error
+else any other error
+  LoanDAO -> LoanFacade: internal error
+  deactivate LoanDAO
+  LoanFacade -> ReturnController: internal error
+end
+
+ReturnController -> ReturnFacade : makeReturn(int loanId)
+ReturnFacade -> DAOFactory : getReturnDAO()
+DAOFactory -> ReturnDAO ++ : <<create>>
+ReturnDAO -> DAOFactory
+DAOFactory -> ReturnFacade : ReturnDAO
+ReturnFacade -> ReturnDAO : create(int loanId)
+deactivate ReturnDAO
+
+@enduml

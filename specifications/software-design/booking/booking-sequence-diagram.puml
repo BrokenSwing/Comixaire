@@ -5,7 +5,7 @@ autonumber
 -> BookingController : bookItem()
 BookingController -> BookingFacade : bookItem(int itemId, String cardId)
 BookingFacade -> DAOFactory : getLibraryItemDAO()
-DAOFactory -> LibraryItemDAO++ : <<create>>
+DAOFactory -> LibraryItemDAO ++ : <<create>>
 LibraryItemDAO -> DAOFactory
 DAOFactory -> BookingFacade : LibraryItemDAO
 BookingFacade -> LibraryItemDAO : addBooking(int clientId)
