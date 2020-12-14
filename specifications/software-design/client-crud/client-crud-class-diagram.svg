@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="713px" preserveAspectRatio="none" style="width:807px;height:713px;" version="1.1" viewBox="0 0 807 713" width="807px" zoomAndPan="magnify"><defs><filter height="300%" id="fsnsgum42wu73" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[10ea673caf457862023e152271927b45]
+cluster controller--><polygon fill="#FFFFFF" filter="url(#fsnsgum42wu73)" points="16,6,99,6,106,28.2969,572,28.2969,572,166,16,166,16,6" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="16" x2="106" y1="28.2969" y2="28.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="77" x="20" y="20.9951">controller</text><!--MD5=[aa2f05b2676d7d34ffa7e771fb7634f3]
+cluster client--><polygon fill="#FFFFFF" filter="url(#fsnsgum42wu73)" points="227,197,276,197,283,219.2969,419,219.2969,419,331,227,331,227,197" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="227" x2="283" y1="219.2969" y2="219.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="231" y="211.9951">client</text><!--MD5=[5622bc4ba3bf2be5d17935065b98c5f9]
+cluster dao--><polygon fill="#FFFFFF" filter="url(#fsnsgum42wu73)" points="208,362,243,362,250,384.2969,790,384.2969,790,706,208,706,208,362" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="208" x2="250" y1="384.2969" y2="384.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="29" x="212" y="376.9951">dao</text><!--MD5=[bab4019c732006648757f54388533847]
+cluster postgres--><polygon fill="#FFFFFF" filter="url(#fsnsgum42wu73)" points="216,589,293,589,300,611.2969,782,611.2969,782,698,216,698,216,589" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="216" x2="300" y1="611.2969" y2="611.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="71" x="220" y="603.9951">postgres</text><!--MD5=[cd3d119a85225ed311a7f0ba142907c4]
+class ClientFormController--><rect codeLine="3" fill="#FEFECE" filter="url(#fsnsgum42wu73)" height="124.8281" id="ClientFormController" style="stroke:#A80036;stroke-width:1.5;" width="186" x="24" y="33"/><ellipse cx="51.15" cy="49" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M54.1188,54.6406 Q53.5406,54.9375 52.9,55.0781 Q52.2594,55.2344 51.5563,55.2344 Q49.0563,55.2344 47.7281,53.5938 Q46.4156,51.9375 46.4156,48.8125 Q46.4156,45.6875 47.7281,44.0313 Q49.0563,42.375 51.5563,42.375 Q52.2594,42.375 52.9,42.5313 Q53.5563,42.6875 54.1188,42.9844 L54.1188,45.7031 Q53.4938,45.125 52.9,44.8594 Q52.3063,44.5781 51.6813,44.5781 Q50.3375,44.5781 49.65,45.6563 Q48.9625,46.7188 48.9625,48.8125 Q48.9625,50.9063 49.65,51.9844 Q50.3375,53.0469 51.6813,53.0469 Q52.3063,53.0469 52.9,52.7813 Q53.4938,52.5 54.1188,51.9219 L54.1188,54.6406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="127" x="67.85" y="53.1543">ClientFormController</text><line style="stroke:#A80036;stroke-width:1.5;" x1="25" x2="209" y1="65" y2="65"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="32" y="73"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="139" x="44" y="79.2104">firstnameField: TextField</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="32" y="85.8047"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="137" x="44" y="92.0151">lastnameField: TextField</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="12" x="44" y="104.8198">...</text><line style="stroke:#A80036;stroke-width:1.5;" x1="25" x2="209" y1="111.4141" y2="111.4141"/><ellipse cx="35" cy="122.4141" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="75" x="44" y="125.6245">create(): void</text><ellipse cx="35" cy="135.2188" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="78" x="44" y="138.4292">update(): void</text><ellipse cx="35" cy="148.0234" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="160" x="44" y="151.2339">getClientFromFields(): Client</text><!--MD5=[556c9eaf5f70ac5047cbdb604bfaf38a]
+class ClientsListController--><rect codeLine="12" fill="#FEFECE" filter="url(#fsnsgum42wu73)" height="60.8047" id="ClientsListController" style="stroke:#A80036;stroke-width:1.5;" width="156" x="245" y="65"/><ellipse cx="260" cy="81" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M262.9688,86.6406 Q262.3906,86.9375 261.75,87.0781 Q261.1094,87.2344 260.4063,87.2344 Q257.9063,87.2344 256.5781,85.5938 Q255.2656,83.9375 255.2656,80.8125 Q255.2656,77.6875 256.5781,76.0313 Q257.9063,74.375 260.4063,74.375 Q261.1094,74.375 261.75,74.5313 Q262.4063,74.6875 262.9688,74.9844 L262.9688,77.7031 Q262.3438,77.125 261.75,76.8594 Q261.1563,76.5781 260.5313,76.5781 Q259.1875,76.5781 258.5,77.6563 Q257.8125,78.7188 257.8125,80.8125 Q257.8125,82.9063 258.5,83.9844 Q259.1875,85.0469 260.5313,85.0469 Q261.1563,85.0469 261.75,84.7813 Q262.3438,84.5 262.9688,83.9219 L262.9688,86.6406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="124" x="274" y="85.1543">ClientsListController</text><line style="stroke:#A80036;stroke-width:1.5;" x1="246" x2="400" y1="97" y2="97"/><line style="stroke:#A80036;stroke-width:1.5;" x1="246" x2="400" y1="105" y2="105"/><ellipse cx="256" cy="116" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="112" x="265" y="119.2104">findAllClients(): void</text><!--MD5=[648611e10171f93773cfd106d6a9256b]
+class ClientController--><rect codeLine="16" fill="#FEFECE" filter="url(#fsnsgum42wu73)" height="73.6094" id="ClientController" style="stroke:#A80036;stroke-width:1.5;" width="128" x="436" y="58.5"/><ellipse cx="451" cy="74.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M453.9688,80.1406 Q453.3906,80.4375 452.75,80.5781 Q452.1094,80.7344 451.4063,80.7344 Q448.9063,80.7344 447.5781,79.0938 Q446.2656,77.4375 446.2656,74.3125 Q446.2656,71.1875 447.5781,69.5313 Q448.9063,67.875 451.4063,67.875 Q452.1094,67.875 452.75,68.0313 Q453.4063,68.1875 453.9688,68.4844 L453.9688,71.2031 Q453.3438,70.625 452.75,70.3594 Q452.1563,70.0781 451.5313,70.0781 Q450.1875,70.0781 449.5,71.1563 Q448.8125,72.2188 448.8125,74.3125 Q448.8125,76.4063 449.5,77.4844 Q450.1875,78.5469 451.5313,78.5469 Q452.1563,78.5469 452.75,78.2813 Q453.3438,78 453.9688,77.4219 L453.9688,80.1406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="96" x="465" y="78.6543">ClientController</text><line style="stroke:#A80036;stroke-width:1.5;" x1="437" x2="563" y1="90.5" y2="90.5"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="444" y="98.5"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="70" x="456" y="104.7104">client: Client</text><line style="stroke:#A80036;stroke-width:1.5;" x1="437" x2="563" y1="111.3047" y2="111.3047"/><ellipse cx="447" cy="122.3047" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="74" x="456" y="125.5151">delete(): void</text><!--MD5=[8554ec8311302edbedf2c420b57a1e7a]
+class ClientsFacade--><rect codeLine="26" fill="#FEFECE" filter="url(#fsnsgum42wu73)" height="99.2188" id="ClientsFacade" style="stroke:#A80036;stroke-width:1.5;" width="176" x="235" y="224"/><ellipse cx="275.2" cy="240" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M278.1688,245.6406 Q277.5906,245.9375 276.95,246.0781 Q276.3094,246.2344 275.6063,246.2344 Q273.1063,246.2344 271.7781,244.5938 Q270.4656,242.9375 270.4656,239.8125 Q270.4656,236.6875 271.7781,235.0313 Q273.1063,233.375 275.6063,233.375 Q276.3094,233.375 276.95,233.5313 Q277.6063,233.6875 278.1688,233.9844 L278.1688,236.7031 Q277.5438,236.125 276.95,235.8594 Q276.3563,235.5781 275.7313,235.5781 Q274.3875,235.5781 273.7,236.6563 Q273.0125,237.7188 273.0125,239.8125 Q273.0125,241.9063 273.7,242.9844 Q274.3875,244.0469 275.7313,244.0469 Q276.3563,244.0469 276.95,243.7813 Q277.5438,243.5 278.1688,242.9219 L278.1688,245.6406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="88" x="294.8" y="244.1543">ClientsFacade</text><line style="stroke:#A80036;stroke-width:1.5;" x1="236" x2="410" y1="256" y2="256"/><line style="stroke:#A80036;stroke-width:1.5;" x1="236" x2="410" y1="264" y2="264"/><ellipse cx="246" cy="275" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="150" x="255" y="278.2104">create(Client client): Client</text><ellipse cx="246" cy="287.8047" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="144" x="255" y="291.0151">update(Client client): void</text><ellipse cx="246" cy="300.6094" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="140" x="255" y="303.8198">delete(Client client): void</text><ellipse cx="246" cy="313.4141" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="90" x="255" y="316.6245">findAll(): Client[]</text><!--MD5=[4a0300a6597e068a69ac5dc42e345e2c]
+class DAOFactory--><rect codeLine="39" fill="#FEFECE" filter="url(#fsnsgum42wu73)" height="60.8047" id="DAOFactory" style="stroke:#A80036;stroke-width:1.5;" width="172" x="237" y="408"/><ellipse cx="282.75" cy="424" fill="#A9DCDF" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M282.8594,419.3438 L281.7031,424.4219 L284.0313,424.4219 L282.8594,419.3438 Z M281.375,417.1094 L284.3594,417.1094 L287.7188,429.5 L285.2656,429.5 L284.5,426.4375 L281.2188,426.4375 L280.4688,429.5 L278.0313,429.5 L281.375,417.1094 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="72" x="303.25" y="428.1543">DAOFactory</text><line style="stroke:#A80036;stroke-width:1.5;" x1="238" x2="408" y1="440" y2="440"/><line style="stroke:#A80036;stroke-width:1.5;" x1="238" x2="408" y1="448" y2="448"/><ellipse cx="248" cy="459" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="146" x="257" y="462.2104">getClientDAO(): ClientDAO</text><!--MD5=[72b7ee9540731bec4e6ab85f2dbab504]
+class ClientDAO--><rect codeLine="43" fill="#FEFECE" filter="url(#fsnsgum42wu73)" height="99.2188" id="ClientDAO" style="stroke:#A80036;stroke-width:1.5;" width="176" x="526" y="389"/><ellipse cx="579.25" cy="405" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M575.1719,400.7656 L575.1719,398.6094 L582.5625,398.6094 L582.5625,400.7656 L580.0938,400.7656 L580.0938,408.8438 L582.5625,408.8438 L582.5625,411 L575.1719,411 L575.1719,408.8438 L577.6406,408.8438 L577.6406,400.7656 L575.1719,400.7656 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="61" x="599.75" y="409.1543">ClientDAO</text><line style="stroke:#A80036;stroke-width:1.5;" x1="527" x2="701" y1="421" y2="421"/><line style="stroke:#A80036;stroke-width:1.5;" x1="527" x2="701" y1="429" y2="429"/><ellipse cx="537" cy="440" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="150" x="546" y="443.2104">create(Client client): Client</text><ellipse cx="537" cy="452.8047" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="144" x="546" y="456.0151">update(Client client): void</text><ellipse cx="537" cy="465.6094" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="132" x="546" y="468.8198">delete(int clientId): void</text><ellipse cx="537" cy="478.4141" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="90" x="546" y="481.6245">findAll(): Client[]</text><!--MD5=[92d6d0eb09ee113d0154e250e698125e]
+class PostgresClientDAO--><rect codeLine="52" fill="#FEFECE" filter="url(#fsnsgum42wu73)" height="73.6094" id="PostgresClientDAO" style="stroke:#A80036;stroke-width:1.5;" width="305" x="468.5" y="616"/><ellipse cx="558.25" cy="632" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M561.2188,637.6406 Q560.6406,637.9375 560,638.0781 Q559.3594,638.2344 558.6563,638.2344 Q556.1563,638.2344 554.8281,636.5938 Q553.5156,634.9375 553.5156,631.8125 Q553.5156,628.6875 554.8281,627.0313 Q556.1563,625.375 558.6563,625.375 Q559.3594,625.375 560,625.5313 Q560.6563,625.6875 561.2188,625.9844 L561.2188,628.7031 Q560.5938,628.125 560,627.8594 Q559.4063,627.5781 558.7813,627.5781 Q557.4375,627.5781 556.75,628.6563 Q556.0625,629.7188 556.0625,631.8125 Q556.0625,633.9063 556.75,634.9844 Q557.4375,636.0469 558.7813,636.0469 Q559.4063,636.0469 560,635.7813 Q560.5938,635.5 561.2188,634.9219 L561.2188,637.6406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="117" x="578.75" y="636.1543">PostgresClientDAO</text><line style="stroke:#A80036;stroke-width:1.5;" x1="469.5" x2="772.5" y1="648" y2="648"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="476.5" y="656"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="132" x="488.5" y="662.2104">connection: Connection</text><line style="stroke:#A80036;stroke-width:1.5;" x1="469.5" x2="772.5" y1="668.8047" y2="668.8047"/><ellipse cx="479.5" cy="679.8047" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="279" x="488.5" y="683.0151">PostgresLibraryItemDAO(Connection: connection)</text><!--MD5=[700a5a1f58ccb71a3c0d036256714175]
+class PostgresDAOFactory--><rect codeLine="57" fill="#FEFECE" filter="url(#fsnsgum42wu73)" height="60.8047" id="PostgresDAOFactory" style="stroke:#A80036;stroke-width:1.5;" width="160" x="224" y="622.5"/><ellipse cx="239" cy="638.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M241.9688,644.1406 Q241.3906,644.4375 240.75,644.5781 Q240.1094,644.7344 239.4063,644.7344 Q236.9063,644.7344 235.5781,643.0938 Q234.2656,641.4375 234.2656,638.3125 Q234.2656,635.1875 235.5781,633.5313 Q236.9063,631.875 239.4063,631.875 Q240.1094,631.875 240.75,632.0313 Q241.4063,632.1875 241.9688,632.4844 L241.9688,635.2031 Q241.3438,634.625 240.75,634.3594 Q240.1563,634.0781 239.5313,634.0781 Q238.1875,634.0781 237.5,635.1563 Q236.8125,636.2188 236.8125,638.3125 Q236.8125,640.4063 237.5,641.4844 Q238.1875,642.5469 239.5313,642.5469 Q240.1563,642.5469 240.75,642.2813 Q241.3438,642 241.9688,641.4219 L241.9688,644.1406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="128" x="253" y="642.6543">PostgresDAOFactory</text><line style="stroke:#A80036;stroke-width:1.5;" x1="225" x2="383" y1="654.5" y2="654.5"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="232" y="662.5"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="132" x="244" y="668.7104">connection: Connection</text><line style="stroke:#A80036;stroke-width:1.5;" x1="225" x2="383" y1="675.3047" y2="675.3047"/><!--MD5=[1b60c4af3729b774c9057ad39560ad99]
+reverse link ClientDAO to PostgresClientDAO--><path d="M616.283,508.4562 C617.4514,544.2617 618.8266,586.4016 619.7897,615.9124 " fill="none" id="ClientDAO-backto-PostgresClientDAO" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="609.2797,508.4675,615.6235,488.2498,623.2722,508.0108,609.2797,508.4675" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[d37a47b44041b5251d0f0ec75d3c62d9]
+reverse link DAOFactory to PostgresDAOFactory--><path d="M318.5069,489.2247 C314.844,530.5766 309.7908,587.6252 306.7172,622.3244 " fill="none" id="DAOFactory-backto-PostgresDAOFactory" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="311.5403,488.537,320.2778,469.2326,325.4857,489.7723,311.5403,488.537" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[0b458e71980b4953b7ebabd947b67321]
+link PostgresDAOFactory to PostgresClientDAO--><path codeLine="65" d="M384.4023,653 C408.5774,653 435.984,653 463.3566,653 " fill="none" id="PostgresDAOFactory-to-PostgresClientDAO" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="468.4664,653,459.4664,649,463.4664,653,459.4664,657,468.4664,653" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="48" x="402.25" y="646.0669">creates</text><!--MD5=[7d2807088028e8c9fd00fee6d1e90cf2]
+link DAOFactory to ClientDAO--><path codeLine="66" d="M409.1285,438.5 C444.1913,438.5 484.8063,438.5 520.5819,438.5 " fill="none" id="DAOFactory-to-ClientDAO" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="525.8239,438.5,516.8239,434.5,520.8239,438.5,516.8239,442.5,525.8239,438.5" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="54" x="440.5" y="431.5669">provides</text><!--MD5=[ff17fdc1c55dc12e7937b3f5374f86a6]
+link ClientFormController to ClientsFacade--><path codeLine="70" d="M189.3382,158.0058 C212.9004,178.3654 238.818,200.7602 261.5082,220.3663 " fill="none" id="ClientFormController-to-ClientsFacade" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="265.4126,223.74,261.218,214.829,261.6294,220.4709,255.9875,220.8822,265.4126,223.74" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[54e824b322895f209228a405006f2f1a]
+link ClientsListController to ClientsFacade--><path codeLine="71" d="M323,126.0993 C323,151.4696 323,188.1756 323,218.6107 " fill="none" id="ClientsListController-to-ClientsFacade" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="323,223.8265,327,214.8265,323,218.8265,319,214.8265,323,223.8265" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[48b1778e3b3d749dcf622ebf8fa3cc07]
+link ClientController to ClientsFacade--><path codeLine="72" d="M462.895,132.8146 C437.768,158.0836 404.1822,191.8591 376.2169,219.9824 " fill="none" id="ClientController-to-ClientsFacade" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="372.4855,223.735,381.6679,220.1735,376.011,220.1895,375.995,214.5326,372.4855,223.735" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[7931a1d387378546226298ad6e5dcc01]
+link ClientsFacade to DAOFactory--><path codeLine="74" d="M323,323.0054 C323,348.5982 323,379.2628 323,402.5613 " fill="none" id="ClientsFacade-to-DAOFactory" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="323,407.7157,327,398.7157,323,402.7157,319,398.7157,323,407.7157" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[8633030e2fa12fcec8a1e8310b3e5b66]
+@startuml
+package controller {
+  
+  class ClientFormController {
+    -firstnameField: TextField
+    -lastnameField: TextField
+    ...
+    +create(): void
+    +update(): void
+    +getClientFromFields(): Client 
+  }
+  
+  class ClientsListController {
+    +findAllClients(): void
+  }
+  
+  class ClientController {
+    -client: Client
+    
+    +delete(): void
+  }
+
+}
+
+package client {
+
+  class ClientsFacade {
+    
+    +create(Client client): Client
+    +update(Client client): void
+    +delete(Client client): void
+    +findAll(): Client[]
+    
+  }
+
+}
+
+package dao {
+
+  abstract class DAOFactory {
+    +getClientDAO(): ClientDAO
+  }
+
+  interface ClientDAO {
+    +create(Client client): Client
+    +update(Client client): void
+    +delete(int clientId): void
+    +findAll(): Client[]
+  }
+
+  package postgres {
+
+    class PostgresClientDAO implements ClientDAO {
+      -connection: Connection
+      +PostgresLibraryItemDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+  }
+
+}
+
+PostgresDAOFactory .> PostgresClientDAO : "creates"
+DAOFactory .> ClientDAO : "provides"
+
+' Inter-packages relations
+
+ClientFormController -down-> ClientsFacade
+ClientsListController -down-> ClientsFacade
+ClientController -down-> ClientsFacade
+
+ClientsFacade -down-> DAOFactory
+@enduml
+
+@startuml
+package controller {
+  
+  class ClientFormController {
+    -firstnameField: TextField
+    -lastnameField: TextField
+    ...
+    +create(): void
+    +update(): void
+    +getClientFromFields(): Client 
+  }
+  
+  class ClientsListController {
+    +findAllClients(): void
+  }
+  
+  class ClientController {
+    -client: Client
+    
+    +delete(): void
+  }
+
+}
+
+package client {
+
+  class ClientsFacade {
+    
+    +create(Client client): Client
+    +update(Client client): void
+    +delete(Client client): void
+    +findAll(): Client[]
+    
+  }
+
+}
+
+package dao {
+
+  abstract class DAOFactory {
+    +getClientDAO(): ClientDAO
+  }
+
+  interface ClientDAO {
+    +create(Client client): Client
+    +update(Client client): void
+    +delete(int clientId): void
+    +findAll(): Client[]
+  }
+
+  package postgres {
+
+    class PostgresClientDAO implements ClientDAO {
+      -connection: Connection
+      +PostgresLibraryItemDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+  }
+
+}
+
+PostgresDAOFactory .> PostgresClientDAO : "creates"
+DAOFactory .> ClientDAO : "provides"
+
+
+ClientFormController -down-> ClientsFacade
+ClientsListController -down-> ClientsFacade
+ClientController -down-> ClientsFacade
+
+ClientsFacade -down-> DAOFactory
+@enduml
+
+PlantUML version 1.2020.22(Sun Dec 06 09:36:27 UTC 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

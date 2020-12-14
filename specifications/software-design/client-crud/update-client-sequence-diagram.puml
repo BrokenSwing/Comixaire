@@ -1,0 +1,14 @@
+@startuml
+
+autonumber
+
+-> ClientFormController : update()
+ClientFormController -> ClientFormController : getClientFromFields()
+ClientFormController -> ClientsFacade : update(Client)
+ClientsFacade -> DAOFactory : getClientDAO()
+DAOFactory -> ClientDAO++
+ClientDAO -> DAOFactory : clientDao
+DAOFactory -> ClientsFacade : clientDao
+ClientsFacade -> ClientDAO : update(Client)
+
+@enduml

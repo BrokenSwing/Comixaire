@@ -1,0 +1,16 @@
+@startuml
+
+autonumber
+
+-> ClientsListController : findAllClients()
+ClientsListController -> ClientsFacade : findAll()
+ClientsFacade -> DAOFactory : getClientDAO()
+DAOFactory -> ClientDAO++
+ClientDAO -> DAOFactory : clientDao
+DAOFactory -> ClientsFacade : clientDao
+ClientsFacade -> ClientDAO : findAll()
+ClientDAO -> ClientsFacade : clients
+deactivate ClientDAO
+ClientsFacade -> ClientsListController : clients
+
+@enduml

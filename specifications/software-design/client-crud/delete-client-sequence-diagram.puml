@@ -1,0 +1,13 @@
+@startuml
+
+autonumber
+
+-> ClientController : delete()
+ClientController -> ClientsFacade : delete(Client)
+ClientsFacade -> DAOFactory : getClientDAO()
+DAOFactory -> ClientDAO++
+ClientDAO -> DAOFactory : clientDao
+DAOFactory -> ClientsFacade : clientDao
+ClientsFacade -> ClientDAO : delete(clientId)
+
+@enduml

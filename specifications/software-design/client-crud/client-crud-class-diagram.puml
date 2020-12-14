@@ -1,0 +1,78 @@
+@startuml
+
+package controller {
+
+  class ClientFormController {
+    -firstnameField: TextField
+    -lastnameField: TextField
+    ...
+    +create(): void
+    +update(): void
+    +getClientFromFields(): Client
+  }
+
+  class ClientsListController {
+    +findAllClients(): void
+  }
+
+  class ClientController {
+    -client: Client
+
+    +delete(): void
+  }
+
+}
+
+package client {
+
+  class ClientsFacade {
+
+    +create(Client client): Client
+    +update(Client client): void
+    +delete(Client client): void
+    +findAll(): Client[]
+
+  }
+
+}
+
+package dao {
+
+  abstract class DAOFactory {
+    +getClientDAO(): ClientDAO
+  }
+
+  interface ClientDAO {
+    +create(Client client): Client
+    +update(Client client): void
+    +delete(int clientId): void
+    +findAll(): Client[]
+  }
+
+  package postgres {
+
+    class PostgresClientDAO implements ClientDAO {
+      -connection: Connection
+      +PostgresLibraryItemDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+  }
+
+}
+
+PostgresDAOFactory .> PostgresClientDAO : "creates"
+DAOFactory .> ClientDAO : "provides"
+
+' Inter-packages relations
+
+ClientFormController -down-> ClientsFacade
+ClientsListController -down-> ClientsFacade
+ClientController -down-> ClientsFacade
+
+ClientsFacade -down-> DAOFactory
+
+@enduml
