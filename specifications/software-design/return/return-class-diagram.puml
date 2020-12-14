@@ -25,6 +25,7 @@ package dao {
 
   abstract class DAOFactory {
     +getReturnDAO(): ReturnDAO
+    +getLoanDAO(): LoanDAO
   }
 
   interface ReturnDAO {
