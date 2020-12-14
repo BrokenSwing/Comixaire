@@ -1,0 +1,21 @@
+@startuml
+
+autonumber
+
+-> FindStaffMemberController : find()
+FindStaffMemberController -> StaffMemberFacade : findById(int idStaff) / findByUsername(String username)
+StaffMemberFacade -> DAOFactory : getStaffMemberDAO()
+DAOFactory -> StaffMemberDAO ++ : <<create>>
+StaffMemberDAO -> DAOFactory
+DAOFactory -> StaffMemberFacade : StaffMemberDAO
+StaffMemberFacade -> StaffMemberDAO : findById(int idStaff) / findByUsername(String username)
+alt succeed
+  StaffMemberDAO -> StaffMemberFacade : StaffMember
+  StaffMemberFacade -> FindStaffMemberController : StaffMember
+else employee not found
+  StaffMemberDAO -> StaffMemberFacade : StaffMember not found
+  deactivate StaffMemberDAO
+  StaffMemberFacade -> FindStaffMemberController : StaffMember not found
+end
+
+@enduml
