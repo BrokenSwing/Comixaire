@@ -1,7 +1,7 @@
 @startuml
 autonumber
 
-- -> ItemSearchController: search()
+-> ItemSearchController: search()
 ItemSearchController -> ItemSearchFacade: search(String,String,String,String,String)
 ItemSearchFacade -> DAOFactory : getLibraryItemDAO()
 DAOFactory -> LibraryIteamDAO ++ : <<creates>>
@@ -17,7 +17,7 @@ else no result
 else search cancelled
   ItemSearchFacade -> ItemSearchController: search cancelled error
 else new search
-  - -> ItemSearchController: newSearch()
+  -> ItemSearchController: newSearch()
 else any other error
   ItemSearchFacade -> ItemSearchController: internal error
 end

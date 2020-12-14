@@ -1,0 +1,25 @@
+@startuml
+
+autonumber
+
+-> BookingController : bookItem()
+BookingController -> BookingFacade : bookItem(int itemId, String cardId)
+BookingFacade -> DAOFactory : getLibraryItemDAO()
+DAOFactory -> LibraryItemDAO++ : <<create>>
+LibraryItemDAO -> DAOFactory
+DAOFactory -> BookingFacade : LibraryItemDAO
+BookingFacade -> LibraryItemDAO : addBooking(int clientId)
+
+alt client does not exist
+  LibraryItemDAO -> BookingFacade: client not found error
+  BookingFacade -> BookingController: client not found error
+else non-valid Subscription or Client not eligible
+  LibraryItemDAO -> BookingFacade: client not eligible error
+  BookingFacade -> BookingController: client not eligible error
+else any other error
+  LibraryItemDAO -> BookingFacade: internal error
+  BookingFacade -> BookingController: internal error
+end
+
+deactivate LibraryItemDAO
+@enduml
