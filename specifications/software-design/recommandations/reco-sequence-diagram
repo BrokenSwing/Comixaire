@@ -2,11 +2,13 @@
 
 autonumber
 RecommandationController -> RecommandationFacade: computeRecommandations()
+RecommandationFacade -> Session : getClient()
 RecommandationFacade -> DAOFactory : getRatingDAO()
 DAOFactory -> RatingDAO ++ : <<creates>>
 DAOFactory -> RecommandationFacade : RatingDAO
 RecommandationFacade -> RatingDAO : getAllRatings()
 RatingDAO -> RecommandationFacade : Rating[]
+RecommandationFacade -> RecommandationSystem : compute(Client, Rating[])
 deactivate RatingDAO
 RecommandationFacade -> RecommandationController: return recommandations
 --> RecommandationController: filter()
