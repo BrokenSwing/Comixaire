@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="675px" preserveAspectRatio="none" style="width:976px;height:675px;" version="1.1" viewBox="0 0 976 675" width="976px" zoomAndPan="magnify"><defs><filter height="300%" id="fp79vqo7sd0gd" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[10ea673caf457862023e152271927b45]
+cluster controller--><polygon fill="#FFFFFF" filter="url(#fp79vqo7sd0gd)" points="355,6,438,6,445,28.2969,591,28.2969,591,204,355,204,355,6" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="355" x2="445" y1="28.2969" y2="28.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="77" x="359" y="20.9951">controller</text><!--MD5=[acb0c8402f85a957a6e5910fb75f4576]
+cluster Auth--><polygon fill="#FFFFFF" filter="url(#fp79vqo7sd0gd)" points="594,235,637,235,644,257.2969,746,257.2969,746,331,594,331,594,235" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="594" x2="644" y1="257.2969" y2="257.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="37" x="598" y="249.9951">Auth</text><!--MD5=[1bba25019853a49d0bcd05d526747720]
+cluster recommandation--><polygon fill="#FFFFFF" filter="url(#fp79vqo7sd0gd)" points="150,235,288,235,295,257.2969,575,257.2969,575,331,150,331,150,235" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="150" x2="295" y1="257.2969" y2="257.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="132" x="154" y="249.9951">recommandation</text><!--MD5=[5622bc4ba3bf2be5d17935065b98c5f9]
+cluster dao--><polygon fill="#FFFFFF" filter="url(#fp79vqo7sd0gd)" points="16,362,51,362,58,384.2969,959,384.2969,959,668,16,668,16,362" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="16" x2="58" y1="384.2969" y2="384.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="29" x="20" y="376.9951">dao</text><!--MD5=[bab4019c732006648757f54388533847]
+cluster postgres--><polygon fill="#FFFFFF" filter="url(#fp79vqo7sd0gd)" points="24,551,101,551,108,573.2969,951,573.2969,951,660,24,660,24,551" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="24" x2="108" y1="573.2969" y2="573.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="71" x="28" y="565.9951">postgres</text><!--MD5=[0fdb6b9a11c11e091da4524ffc23f7d0]
+class RecommandationController--><rect codeLine="2" fill="#FEFECE" filter="url(#fp79vqo7sd0gd)" height="163.2422" id="RecommandationController" style="stroke:#A80036;stroke-width:1.5;" width="219" x="363.5" y="33"/><ellipse cx="386.15" cy="49" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M389.1188,54.6406 Q388.5406,54.9375 387.9,55.0781 Q387.2594,55.2344 386.5563,55.2344 Q384.0563,55.2344 382.7281,53.5938 Q381.4156,51.9375 381.4156,48.8125 Q381.4156,45.6875 382.7281,44.0313 Q384.0563,42.375 386.5563,42.375 Q387.2594,42.375 387.9,42.5313 Q388.5563,42.6875 389.1188,42.9844 L389.1188,45.7031 Q388.4938,45.125 387.9,44.8594 Q387.3063,44.5781 386.6813,44.5781 Q385.3375,44.5781 384.65,45.6563 Q383.9625,46.7188 383.9625,48.8125 Q383.9625,50.9063 384.65,51.9844 Q385.3375,53.0469 386.6813,53.0469 Q387.3063,53.0469 387.9,52.7813 Q388.4938,52.5 389.1188,51.9219 L389.1188,54.6406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="170" x="401.85" y="53.1543">RecommandationController</text><line style="stroke:#A80036;stroke-width:1.5;" x1="364.5" x2="581.5" y1="65" y2="65"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="371.5" y="73"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="67" x="383.5" y="79.2104">type: Select</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="371.5" y="85.8047"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="107" x="383.5" y="92.0151">category: TextField</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="371.5" y="98.6094"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="78" x="383.5" y="104.8198">cdd: TextField</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="371.5" y="111.4141"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="90" x="383.5" y="117.6245">name: TextField</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="371.5" y="124.2188"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="88" x="383.5" y="130.4292">other: TextField</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="371.5" y="137.0234"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="84" x="383.5" y="143.2339">search: Button</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="371.5" y="149.8281"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="144" x="383.5" y="156.0386">recommandations: Item[]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="364.5" x2="581.5" y1="162.6328" y2="162.6328"/><ellipse cx="374.5" cy="173.6328" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="65" x="383.5" y="176.8433">filter(): void</text><ellipse cx="374.5" cy="186.4375" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="193" x="383.5" y="189.6479">computeRecommandations(): void</text><!--MD5=[2ca1536628238a7dc78c5d90808014f9]
+class Session--><rect codeLine="16" fill="#FEFECE" filter="url(#fp79vqo7sd0gd)" height="60.8047" id="Session" style="stroke:#A80036;stroke-width:1.5;" width="135" x="602.5" y="262"/><ellipse cx="641.8" cy="278" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M644.7688,283.6406 Q644.1906,283.9375 643.55,284.0781 Q642.9094,284.2344 642.2063,284.2344 Q639.7063,284.2344 638.3781,282.5938 Q637.0656,280.9375 637.0656,277.8125 Q637.0656,274.6875 638.3781,273.0313 Q639.7063,271.375 642.2063,271.375 Q642.9094,271.375 643.55,271.5313 Q644.2063,271.6875 644.7688,271.9844 L644.7688,274.7031 Q644.1438,274.125 643.55,273.8594 Q642.9563,273.5781 642.3313,273.5781 Q640.9875,273.5781 640.3,274.6563 Q639.6125,275.7188 639.6125,277.8125 Q639.6125,279.9063 640.3,280.9844 Q640.9875,282.0469 642.3313,282.0469 Q642.9563,282.0469 643.55,281.7813 Q644.1438,281.5 644.7688,280.9219 L644.7688,283.6406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="49" x="661.2" y="282.1543">Session</text><line style="stroke:#A80036;stroke-width:1.5;" x1="603.5" x2="736.5" y1="294" y2="294"/><line style="stroke:#A80036;stroke-width:1.5;" x1="603.5" x2="736.5" y1="302" y2="302"/><ellipse cx="613.5" cy="313" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="109" x="622.5" y="316.2104">getLoggedInClient()</text><!--MD5=[e2bf062926a1d788c76b6ce44f474f1c]
+class RecommandationFacade--><rect codeLine="22" fill="#FEFECE" filter="url(#fp79vqo7sd0gd)" height="60.8047" id="RecommandationFacade" style="stroke:#A80036;stroke-width:1.5;" width="188" x="379" y="262"/><ellipse cx="394.45" cy="278" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M397.4188,283.6406 Q396.8406,283.9375 396.2,284.0781 Q395.5594,284.2344 394.8563,284.2344 Q392.3563,284.2344 391.0281,282.5938 Q389.7156,280.9375 389.7156,277.8125 Q389.7156,274.6875 391.0281,273.0313 Q392.3563,271.375 394.8563,271.375 Q395.5594,271.375 396.2,271.5313 Q396.8563,271.6875 397.4188,271.9844 L397.4188,274.7031 Q396.7938,274.125 396.2,273.8594 Q395.6063,273.5781 394.9813,273.5781 Q393.6375,273.5781 392.95,274.6563 Q392.2625,275.7188 392.2625,277.8125 Q392.2625,279.9063 392.95,280.9844 Q393.6375,282.0469 394.9813,282.0469 Q395.6063,282.0469 396.2,281.7813 Q396.7938,281.5 397.4188,280.9219 L397.4188,283.6406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="155" x="408.55" y="282.1543">RecommandationFacade</text><line style="stroke:#A80036;stroke-width:1.5;" x1="380" x2="566" y1="294" y2="294"/><line style="stroke:#A80036;stroke-width:1.5;" x1="380" x2="566" y1="302" y2="302"/><ellipse cx="390" cy="313" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="162" x="399" y="316.2104">computeRecommandations()</text><!--MD5=[36bda70acc7cf18cee3819a826d74913]
+class RecommandationSystem--><rect codeLine="25" fill="#FEFECE" filter="url(#fp79vqo7sd0gd)" height="60.8047" id="RecommandationSystem" style="stroke:#A80036;stroke-width:1.5;" width="186" x="158" y="262"/><ellipse cx="173" cy="278" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M175.9688,283.6406 Q175.3906,283.9375 174.75,284.0781 Q174.1094,284.2344 173.4063,284.2344 Q170.9063,284.2344 169.5781,282.5938 Q168.2656,280.9375 168.2656,277.8125 Q168.2656,274.6875 169.5781,273.0313 Q170.9063,271.375 173.4063,271.375 Q174.1094,271.375 174.75,271.5313 Q175.4063,271.6875 175.9688,271.9844 L175.9688,274.7031 Q175.3438,274.125 174.75,273.8594 Q174.1563,273.5781 173.5313,273.5781 Q172.1875,273.5781 171.5,274.6563 Q170.8125,275.7188 170.8125,277.8125 Q170.8125,279.9063 171.5,280.9844 Q172.1875,282.0469 173.5313,282.0469 Q174.1563,282.0469 174.75,281.7813 Q175.3438,281.5 175.9688,280.9219 L175.9688,283.6406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="154" x="187" y="282.1543">RecommandationSystem</text><line style="stroke:#A80036;stroke-width:1.5;" x1="159" x2="343" y1="294" y2="294"/><line style="stroke:#A80036;stroke-width:1.5;" x1="159" x2="343" y1="302" y2="302"/><ellipse cx="169" cy="313" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="140" x="178" y="316.2104">compute(Client, Rating[])</text><!--MD5=[4a0300a6597e068a69ac5dc42e345e2c]
+class DAOFactory--><rect codeLine="31" fill="#FEFECE" filter="url(#fp79vqo7sd0gd)" height="60.8047" id="DAOFactory" style="stroke:#A80036;stroke-width:1.5;" width="178" x="384" y="389"/><ellipse cx="432.75" cy="405" fill="#A9DCDF" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M432.8594,400.3438 L431.7031,405.4219 L434.0313,405.4219 L432.8594,400.3438 Z M431.375,398.1094 L434.3594,398.1094 L437.7188,410.5 L435.2656,410.5 L434.5,407.4375 L431.2188,407.4375 L430.4688,410.5 L428.0313,410.5 L431.375,398.1094 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="72" x="453.25" y="409.1543">DAOFactory</text><line style="stroke:#A80036;stroke-width:1.5;" x1="385" x2="561" y1="421" y2="421"/><line style="stroke:#A80036;stroke-width:1.5;" x1="385" x2="561" y1="429" y2="429"/><ellipse cx="395" cy="440" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="152" x="404" y="443.2104">getRatingDAO(): RatingDAO</text><!--MD5=[8d54e6243788548ab578e2d48ea5c118]
+class RatingDAO--><rect codeLine="35" fill="#FEFECE" filter="url(#fp79vqo7sd0gd)" height="60.8047" id="RatingDAO" style="stroke:#A80036;stroke-width:1.5;" width="158" x="124" y="389"/><ellipse cx="166" cy="405" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M161.9219,400.7656 L161.9219,398.6094 L169.3125,398.6094 L169.3125,400.7656 L166.8438,400.7656 L166.8438,408.8438 L169.3125,408.8438 L169.3125,411 L161.9219,411 L161.9219,408.8438 L164.3906,408.8438 L164.3906,400.7656 L161.9219,400.7656 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="66" x="186" y="409.1543">RatingDAO</text><line style="stroke:#A80036;stroke-width:1.5;" x1="125" x2="281" y1="421" y2="421"/><line style="stroke:#A80036;stroke-width:1.5;" x1="125" x2="281" y1="429" y2="429"/><ellipse cx="135" cy="440" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="132" x="144" y="443.2104">getAllRatings(): Rating[]</text><!--MD5=[f8ac9437d47d045124c5924dba28e3a3]
+class LibraryItemDAO--><rect codeLine="39" fill="#FEFECE" filter="url(#fp79vqo7sd0gd)" height="60.8047" id="LibraryItemDAO" style="stroke:#A80036;stroke-width:1.5;" width="244" x="660" y="389"/><ellipse cx="730.75" cy="405" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M726.6719,400.7656 L726.6719,398.6094 L734.0625,398.6094 L734.0625,400.7656 L731.5938,400.7656 L731.5938,408.8438 L734.0625,408.8438 L734.0625,411 L726.6719,411 L726.6719,408.8438 L729.1406,408.8438 L729.1406,400.7656 L726.6719,400.7656 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="94" x="751.25" y="409.1543">LibraryItemDAO</text><line style="stroke:#A80036;stroke-width:1.5;" x1="661" x2="903" y1="421" y2="421"/><line style="stroke:#A80036;stroke-width:1.5;" x1="661" x2="903" y1="429" y2="429"/><ellipse cx="671" cy="440" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="218" x="680" y="443.2104">getLibraryItemBtId(String): LibraryItem</text><!--MD5=[043d28c3f7aa63d4d97844ce9ca8572d]
+class PostgresRatingDAO--><rect codeLine="45" fill="#FEFECE" filter="url(#fp79vqo7sd0gd)" height="73.6094" id="PostgresRatingDAO" style="stroke:#A80036;stroke-width:1.5;" width="276" x="32" y="578"/><ellipse cx="104.75" cy="594" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M107.7188,599.6406 Q107.1406,599.9375 106.5,600.0781 Q105.8594,600.2344 105.1563,600.2344 Q102.6563,600.2344 101.3281,598.5938 Q100.0156,596.9375 100.0156,593.8125 Q100.0156,590.6875 101.3281,589.0313 Q102.6563,587.375 105.1563,587.375 Q105.8594,587.375 106.5,587.5313 Q107.1563,587.6875 107.7188,587.9844 L107.7188,590.7031 Q107.0938,590.125 106.5,589.8594 Q105.9063,589.5781 105.2813,589.5781 Q103.9375,589.5781 103.25,590.6563 Q102.5625,591.7188 102.5625,593.8125 Q102.5625,595.9063 103.25,596.9844 Q103.9375,598.0469 105.2813,598.0469 Q105.9063,598.0469 106.5,597.7813 Q107.0938,597.5 107.7188,596.9219 L107.7188,599.6406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="122" x="125.25" y="598.1543">PostgresRatingDAO</text><line style="stroke:#A80036;stroke-width:1.5;" x1="33" x2="307" y1="610" y2="610"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="40" y="618"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="132" x="52" y="624.2104">connection: Connection</text><line style="stroke:#A80036;stroke-width:1.5;" x1="33" x2="307" y1="630.8047" y2="630.8047"/><ellipse cx="43" cy="641.8047" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="250" x="52" y="645.0151">PostgresRatingDAO(Connection: connection)</text><!--MD5=[347f450d9af984a2ca6c27561eedc0a1]
+class PostgresLibraryItemDAO--><rect codeLine="50" fill="#FEFECE" filter="url(#fp79vqo7sd0gd)" height="73.6094" id="PostgresLibraryItemDAO" style="stroke:#A80036;stroke-width:1.5;" width="305" x="637.5" y="578"/><ellipse cx="710.75" cy="594" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M713.7188,599.6406 Q713.1406,599.9375 712.5,600.0781 Q711.8594,600.2344 711.1563,600.2344 Q708.6563,600.2344 707.3281,598.5938 Q706.0156,596.9375 706.0156,593.8125 Q706.0156,590.6875 707.3281,589.0313 Q708.6563,587.375 711.1563,587.375 Q711.8594,587.375 712.5,587.5313 Q713.1563,587.6875 713.7188,587.9844 L713.7188,590.7031 Q713.0938,590.125 712.5,589.8594 Q711.9063,589.5781 711.2813,589.5781 Q709.9375,589.5781 709.25,590.6563 Q708.5625,591.7188 708.5625,593.8125 Q708.5625,595.9063 709.25,596.9844 Q709.9375,598.0469 711.2813,598.0469 Q711.9063,598.0469 712.5,597.7813 Q713.0938,597.5 713.7188,596.9219 L713.7188,599.6406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="150" x="731.25" y="598.1543">PostgresLibraryItemDAO</text><line style="stroke:#A80036;stroke-width:1.5;" x1="638.5" x2="941.5" y1="610" y2="610"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="645.5" y="618"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="132" x="657.5" y="624.2104">connection: Connection</text><line style="stroke:#A80036;stroke-width:1.5;" x1="638.5" x2="941.5" y1="630.8047" y2="630.8047"/><ellipse cx="648.5" cy="641.8047" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="279" x="657.5" y="645.0151">PostgresLibraryItemDAO(Connection: connection)</text><!--MD5=[700a5a1f58ccb71a3c0d036256714175]
+class PostgresDAOFactory--><rect codeLine="55" fill="#FEFECE" filter="url(#fp79vqo7sd0gd)" height="60.8047" id="PostgresDAOFactory" style="stroke:#A80036;stroke-width:1.5;" width="160" x="393" y="584.5"/><ellipse cx="408" cy="600.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M410.9688,606.1406 Q410.3906,606.4375 409.75,606.5781 Q409.1094,606.7344 408.4063,606.7344 Q405.9063,606.7344 404.5781,605.0938 Q403.2656,603.4375 403.2656,600.3125 Q403.2656,597.1875 404.5781,595.5313 Q405.9063,593.875 408.4063,593.875 Q409.1094,593.875 409.75,594.0313 Q410.4063,594.1875 410.9688,594.4844 L410.9688,597.2031 Q410.3438,596.625 409.75,596.3594 Q409.1563,596.0781 408.5313,596.0781 Q407.1875,596.0781 406.5,597.1563 Q405.8125,598.2188 405.8125,600.3125 Q405.8125,602.4063 406.5,603.4844 Q407.1875,604.5469 408.5313,604.5469 Q409.1563,604.5469 409.75,604.2813 Q410.3438,604 410.9688,603.4219 L410.9688,606.1406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="128" x="422" y="604.6543">PostgresDAOFactory</text><line style="stroke:#A80036;stroke-width:1.5;" x1="394" x2="552" y1="616.5" y2="616.5"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="401" y="624.5"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="132" x="413" y="630.7104">connection: Connection</text><line style="stroke:#A80036;stroke-width:1.5;" x1="394" x2="552" y1="637.3047" y2="637.3047"/><!--MD5=[5f2af719d22776f201248d3b1f3564bc]
+reverse link RatingDAO to PostgresRatingDAO--><path d="M194.463,470.0755 C188.7646,503.8337 181.3996,547.4661 176.2458,577.9981 " fill="none" id="RatingDAO-backto-PostgresRatingDAO" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="187.6124,468.6028,197.8438,450.0469,201.4172,470.933,187.6124,468.6028" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[31540489fc416062c4a9a0afa2f83c69]
+reverse link LibraryItemDAO to PostgresLibraryItemDAO--><path d="M784.0696,470.0755 C785.451,503.8337 787.2365,547.4661 788.4859,577.9981 " fill="none" id="LibraryItemDAO-backto-PostgresLibraryItemDAO" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="777.0737,470.3164,783.25,450.0469,791.062,469.7439,777.0737,470.3164" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[d37a47b44041b5251d0f0ec75d3c62d9]
+reverse link DAOFactory to PostgresDAOFactory--><path d="M473,470.0792 C473,506.2537 473,553.7651 473,584.3457 " fill="none" id="DAOFactory-backto-PostgresDAOFactory" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="466.0001,470.0469,473,450.0469,480.0001,470.0468,466.0001,470.0469" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[22c8f883959eca8de0f7282d881064b3]
+link RecommandationFacade to Session--><path codeLine="62" d="M567.2676,292.5 C577.1778,292.5 587.088,292.5 596.9982,292.5 " fill="none" id="RecommandationFacade-to-Session" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="602.1805,292.5,593.1805,288.5,597.1805,292.5,593.1805,296.5,602.1805,292.5" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[d10ce2eb59d7cd3f08a4a269a4510000]
+reverse link PostgresRatingDAO to PostgresDAOFactory--><path codeLine="63" d="M313.3088,615 C340.6972,615 368.4437,615 392.9537,615 " fill="none" id="PostgresRatingDAO-backto-PostgresDAOFactory" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="308.1998,615,317.1998,619,313.1998,615,317.1998,611,308.1998,615" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="48" x="326.5" y="608.0669">creates</text><!--MD5=[d04ac385cc665f9007d50bd562feec8f]
+link PostgresDAOFactory to PostgresLibraryItemDAO--><path codeLine="64" d="M553.4023,615 C577.5774,615 604.984,615 632.3566,615 " fill="none" id="PostgresDAOFactory-to-PostgresLibraryItemDAO" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="637.4664,615,628.4664,611,632.4664,615,628.4664,619,637.4664,615" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="48" x="571.25" y="608.0669">creates</text><!--MD5=[f3558f07741abf2898018c3d8a5eb886]
+reverse link RatingDAO to DAOFactory--><path codeLine="65" d="M287.4617,419.5 C318.112,419.5 352.8241,419.5 383.8648,419.5 " fill="none" id="RatingDAO-backto-DAOFactory" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="282.1846,419.5,291.1846,423.5,287.1846,419.5,291.1846,415.5,282.1846,419.5" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="54" x="306" y="412.5669">provides</text><!--MD5=[1f939e4ba7af35c17008a19763ad3a60]
+link DAOFactory to LibraryItemDAO--><path codeLine="66" d="M562.3756,419.5 C591.1038,419.5 623.5089,419.5 654.4293,419.5 " fill="none" id="DAOFactory-to-LibraryItemDAO" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="659.7797,419.5,650.7797,415.5,654.7797,419.5,650.7797,423.5,659.7797,419.5" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="54" x="584" y="412.5669">provides</text><!--MD5=[fb010eb3007248f48ef550e0402ddae1]
+link RecommandationFacade to DAOFactory--><path codeLine="70" d="M473,323.2432 C473,341.3606 473,364.377 473,383.36 " fill="none" id="RecommandationFacade-to-DAOFactory" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="473,388.5998,477,379.5998,473,383.5998,469,379.5998,473,388.5998" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[b0ddb51b0eb2357ce5a24cd54f74f191]
+reverse link RecommandationSystem to RecommandationFacade--><path codeLine="71" d="M349.3749,292.5 C359.2273,292.5 369.0797,292.5 378.9322,292.5 " fill="none" id="RecommandationSystem-backto-RecommandationFacade" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="344.2227,292.5,353.2227,296.5,349.2227,292.5,353.2227,288.5,344.2227,292.5" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[feba5a278203ab902275ed054dac1ee2]
+link RecommandationController to RecommandationFacade--><path codeLine="72" d="M473,196.2065 C473,217.4097 473,239.1687 473,256.6263 " fill="none" id="RecommandationController-to-RecommandationFacade" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="473,261.9007,477,252.9007,473,256.9007,469,252.9007,473,261.9007" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[9cd016c7ca2ed69eda32aadab54dc9f4]
+@startuml
+package controller {
+  class RecommandationController {
+    -type: Select
+    -category: TextField
+    -cdd: TextField
+    -name: TextField
+    -other: TextField
+    -search: Button
+    -recommandations: Item[]
+    +filter(): void
+    +computeRecommandations(): void
+  }
+}
+
+package Auth {
+  class Session {
+    +getLoggedInClient()
+  }
+}
+
+package recommandation {
+  class RecommandationFacade {
+    +computeRecommandations()
+  }
+  class RecommandationSystem {
+    +compute(Client, Rating[])
+  }
+}
+
+package dao {
+  abstract class DAOFactory {
+    +getRatingDAO(): RatingDAO
+  }
+
+  interface RatingDAO {
+    +getAllRatings(): Rating[]
+  }
+  
+  interface LibraryItemDAO {
+    +getLibraryItemBtId(String): LibraryItem
+  }
+
+  package postgres {
+
+    class PostgresRatingDAO implements RatingDAO {
+      -connection: Connection
+      +PostgresRatingDAO(Connection: connection)
+    }
+    
+    class PostgresLibraryItemDAO implements LibraryItemDAO {
+      -connection: Connection
+      +PostgresLibraryItemDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+  }
+
+}
+RecommandationFacade -> Session
+PostgresDAOFactory .left> PostgresRatingDAO : "creates"
+PostgresDAOFactory .right> PostgresLibraryItemDAO : "creates"
+DAOFactory .left> RatingDAO : "provides"
+DAOFactory .right> LibraryItemDAO : "provides"
+
+' Inter-packages relations
+
+RecommandationFacade -down-> DAOFactory
+RecommandationFacade -left> RecommandationSystem
+RecommandationController - -> RecommandationFacade
+@enduml
+
+@startuml
+package controller {
+  class RecommandationController {
+    -type: Select
+    -category: TextField
+    -cdd: TextField
+    -name: TextField
+    -other: TextField
+    -search: Button
+    -recommandations: Item[]
+    +filter(): void
+    +computeRecommandations(): void
+  }
+}
+
+package Auth {
+  class Session {
+    +getLoggedInClient()
+  }
+}
+
+package recommandation {
+  class RecommandationFacade {
+    +computeRecommandations()
+  }
+  class RecommandationSystem {
+    +compute(Client, Rating[])
+  }
+}
+
+package dao {
+  abstract class DAOFactory {
+    +getRatingDAO(): RatingDAO
+  }
+
+  interface RatingDAO {
+    +getAllRatings(): Rating[]
+  }
+  
+  interface LibraryItemDAO {
+    +getLibraryItemBtId(String): LibraryItem
+  }
+
+  package postgres {
+
+    class PostgresRatingDAO implements RatingDAO {
+      -connection: Connection
+      +PostgresRatingDAO(Connection: connection)
+    }
+    
+    class PostgresLibraryItemDAO implements LibraryItemDAO {
+      -connection: Connection
+      +PostgresLibraryItemDAO(Connection: connection)
+    }
+
+    class PostgresDAOFactory extends DAOFactory {
+      -connection: Connection
+    }
+
+  }
+
+}
+RecommandationFacade -> Session
+PostgresDAOFactory .left> PostgresRatingDAO : "creates"
+PostgresDAOFactory .right> PostgresLibraryItemDAO : "creates"
+DAOFactory .left> RatingDAO : "provides"
+DAOFactory .right> LibraryItemDAO : "provides"
+
+
+RecommandationFacade -down-> DAOFactory
+RecommandationFacade -left> RecommandationSystem
+RecommandationController - -> RecommandationFacade
+@enduml
+
+PlantUML version 1.2020.22(Sun Dec 06 09:36:27 UTC 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
