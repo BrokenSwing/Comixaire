@@ -9,14 +9,13 @@ package controller {
     -authorsField: TextField
     -searchButton: Button
     +search() : void
-    +displaySearch() : void
   }
 }
 
 package item-search {
 
   class ItemSearchFacade {
-    +search(String type, String category, String cdd, String cardId, String authors)
+    +search(String type, String category, String cdd, String cardId, String authors) : item[]
   }
   note top of ItemSearchFacade
    Attributes can be Null
@@ -27,18 +26,18 @@ package item-search {
 package dao {
 
   abstract class DAOFactory {
-    +getLoanDAO(): ItemSearchDAO
+    +getLibraryItemDAO(): LibraryItemDAO
   }
 
-  interface ItemSearchDAO {
-    +search(String type, String category, String cdd, String cardId, String authors) : search[]
+  interface LibraryItemDAO {
+    +findByFilter() : item[]
   }
 
   package postgres {
 
-    class PostgresItemSearchDAO implements ItemSearchDAO {
+    class PostgresLibraryItemDAO implements LibraryItemDAO {
       -connection: Connection
-      +PostgresItemSearchDAO(Connection: connection)
+      +PostgresLibraryItemDAO(Connection: connection)
     }
 
     class PostgresDAOFactory extends DAOFactory {
@@ -48,9 +47,8 @@ package dao {
 
 }
 
-PostgresDAOFactory .left> PostgresItemSearchDAO : "creates"
-DAOFactory .left> ItemSearchDAO : "provides"
+PostgresDAOFactory .left> PostgresLibraryItemDAO : "creates"
+DAOFactory .left> LibraryItemDAO : "provides"
 ItemSearchFacade -down-> DAOFactory
 ItemSearchController -down-> ItemSearchFacade
-
 @enduml

@@ -1,19 +1,18 @@
 @startuml
 autonumber
 
---> ConsultLogsController: getAllLogs()
-ConsultLogsController -> ConsultLogsFacade: getAllLogs()
-ConsultLogsFacade -> DAOFactory : getItemSearchDAO()
-DAOFactory -> ConsultLogsDAO ++ : <<creates>>
-ConsultLogsDAO -> DAOFactory
-DAOFactory -> ConsultLogsFacade : ConsultLogsDAO
-ConsultLogsFacade -> ConsultLogsDAO : getAllLogs()
-ConsultLogsDAO -> ConsultLogsFacade : logs[]
-deactivate ConsultLogsDAO
+- -> LogsController: getAllLogs()
+LogsController -> LogsFacade: getAllLogs()
+LogsFacade -> DAOFactory : getItemSearchDAO()
+DAOFactory -> LogsDAO ++ : <<creates>>
+LogsDAO -> DAOFactory
+DAOFactory -> LogsFacade : LogsDAO
+LogsFacade -> LogsDAO : getAllLogs()
+LogsDAO -> LogsFacade : logs[]
+deactivate LogsDAO
 alt getAllLogs was succeed
-  ConsultLogsFacade -> ConsultLogsController : displayLogs()
+  LogsFacade -> LogsController : log was returned
 else any other error
-  ConsultLogsFacade -> ConsultLogsController: internal error
+  LogsFacade -> LogsController: internal error
 end
-
 @enduml

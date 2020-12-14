@@ -1,7 +1,7 @@
 @startuml
 autonumber
 
---> ItemSearchController: search()
+- -> ItemSearchController: search()
 ItemSearchController -> ItemSearchFacade: search(String,String,String,String,String)
 ItemSearchFacade -> DAOFactory : getItemSearchDAO()
 DAOFactory -> IteamSearchDAO ++ : <<creates>>
@@ -11,15 +11,14 @@ ItemSearchFacade -> IteamSearchDAO : search(String,String,String,String,String
 IteamSearchDAO -> ItemSearchFacade : search[]
 deactivate IteamSearchDAO
 alt search was succeed
-  ItemSearchFacade -> ItemSearchController : displaySearch()
+  ItemSearchFacade -> ItemSearchController : item[] was returned
 else no result
-  ItemSearchFacade -> ItemSearchController: displaySearch() : No result
+  ItemSearchFacade -> ItemSearchController: No result
 else search cancelled
   ItemSearchFacade -> ItemSearchController: search cancelled error
 else new search
-  --> ItemSearchController: newSearch()
+  - -> ItemSearchController: newSearch()
 else any other error
   ItemSearchFacade -> ItemSearchController: internal error
 end
-
 @enduml
