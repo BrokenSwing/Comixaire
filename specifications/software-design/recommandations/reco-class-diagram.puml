@@ -1,7 +1,6 @@
 @startuml
 
 package controller {
-
   class RecommandationController {
     -type: Select
     -category: TextField
@@ -13,12 +12,20 @@ package controller {
     +filter(): void
     +computeRecommandations(): void
   }
+}
 
+package Auth {
+  class Session {
+    +getLoggedInClient()
+  }
 }
 
 package recommandation {
   class RecommandationFacade {
     +computeRecommandations()
+  }
+  class RecommandationSystem {
+    +compute(Client, Rating[])
   }
 }
 
@@ -30,12 +37,21 @@ package dao {
   interface RatingDAO {
     +getAllRatings(): Rating[]
   }
+  
+  interface LibraryItemDAO {
+    +getLibraryItemBtId(String): LibraryItem
+  }
 
   package postgres {
 
     class PostgresRatingDAO implements RatingDAO {
       -connection: Connection
       +PostgresRatingDAO(Connection: connection)
+    }
+    
+    class PostgresLibraryItemDAO implements LibraryItemDAO {
+      -connection: Connection
+      +PostgresLibraryItemDAO(Connection: connection)
     }
 
     class PostgresDAOFactory extends DAOFactory {
@@ -45,13 +61,16 @@ package dao {
   }
 
 }
-
+RecommandationFacade -> Session
 PostgresDAOFactory .left> PostgresRatingDAO : "creates"
+PostgresDAOFactory .right> PostgresLibraryItemDAO : "creates"
 DAOFactory .left> RatingDAO : "provides"
+DAOFactory .right> LibraryItemDAO : "provides"
 
 ' Inter-packages relations
 
 RecommandationFacade -down-> DAOFactory
+RecommandationFacade -left> RecommandationSystem
 RecommandationController --> RecommandationFacade
 
 @enduml
