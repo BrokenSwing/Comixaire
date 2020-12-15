@@ -19,7 +19,6 @@ public class PostgresLogDAO implements LogDAO
 {
 
     private Connection connection;
-    private List<Log> logs = new ArrayList<>();
 
     public PostgresLogDAO(Connection connection)
     {
@@ -41,8 +40,7 @@ public class PostgresLogDAO implements LogDAO
             prepare.setString(2, log.getOperationDetails());
             prepare.setString(3, log.getOperationType());
             prepare.setInt(4, log.getStaffMember().getIdStaff());
-            ResultSet result = prepare.executeQuery();
-            logs.add(log);
+            prepare.executeQuery();
             return log;
         }
         catch (SQLException e)
@@ -58,9 +56,31 @@ public class PostgresLogDAO implements LogDAO
         {
             PreparedStatement prepare = this
                     .connection
-                    .prepareStatement("SELECT * FROM Log");
+                    .prepareStatement("SELECT " +
+                            "log_operationDetails," +
+                            "log_operationType," +
+                            "log_date," +
+                            "staffMember_id," +
+                            "staffMember_username," +
+                            "staffMember_password," +
+                            "staffMember_role " +
+                            "FROM logs " +
+                            "NATURAL JOIN staffMembers");
             ResultSet result = prepare.executeQuery();
-            //TODO parse logs
+            ArrayList<Log> logs = new ArrayList<Log>();
+            while(result.next()){
+                logs.add(new Log(
+                        result.getString("log_operationDetails"),
+                        result.getString("log_operationType"),
+                        result.getTimestamp("log_date"),
+                        new StaffMember(
+                                result.getInt("staffMember_id"),
+                                result.getString("staffMember_username"),
+                                result.getString("staffMember_password"),
+                                result.getString("staffMember_role")
+                        )
+                ));
+            }
             return logs.toArray(new Log[0]);
         }
         catch (SQLException e)
