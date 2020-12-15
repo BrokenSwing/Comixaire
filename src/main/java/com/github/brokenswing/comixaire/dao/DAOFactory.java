@@ -7,4 +7,6 @@ public abstract class DAOFactory
 
     public abstract ClientDAO getClientDAO();
 
+    public abstract LogDAO getLogDAO();
+
 }

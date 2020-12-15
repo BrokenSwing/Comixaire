@@ -1,22 +1,26 @@
 package com.github.brokenswing.comixaire.models;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Log
 {
     private Date date;
-    private String operationDetails;
-    private String operationList;
+    private final String operationDetails;
+    private final String operationType;
+    private final StaffMember staffMember;
 
-    public Log(String operationDetails, String operationList)
+    public Log(String operationDetails, String operationType, Date date, StaffMember member)
     {
-        this.date = Calendar.getInstance().getTime();
+        this.date = date;
         this.operationDetails = operationDetails;
-        this.operationList = operationList;
+        this.operationType = operationType;
+        this.staffMember = member;
     }
 
-    public Log(){}
+    public StaffMember getStaffMember()
+    {
+        return staffMember;
+    }
 
     public Date getDate()
     {
@@ -33,18 +37,8 @@ public class Log
         return operationDetails;
     }
 
-    public void setOperationDetails(String operationDetails)
+    public String getOperationType()
     {
-        this.operationDetails = operationDetails;
-    }
-
-    public String getOperationList()
-    {
-        return operationList;
-    }
-
-    public void setOperationList(String operationList)
-    {
-        this.operationList = operationList;
+        return operationType;
     }
 }
