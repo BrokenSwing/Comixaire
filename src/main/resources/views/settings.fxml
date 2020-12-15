@@ -12,55 +12,7 @@
             prefWidth="1280.0" style="-fx-background-color: #F7F9FF;" xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.brokenswing.comixaire.controller.AccountDetailsController">
     <children>
-        <AnchorPane layoutX="-1.0" prefHeight="800.0" prefWidth="120.0" style="-fx-background-color: #5282FC;">
-            <children>
-                <AnchorPane layoutX="20.0" layoutY="685.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #416AD0; -fx-background-radius: 10;" />
-                <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="48.0">
-                    <image>
-                        <Image url="@/assets/menu.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="177.0">
-                    <image>
-                        <Image url="@/assets/user.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="566.0">
-                    <image>
-                        <Image url="@/assets/list.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="699.0">
-                    <image>
-                        <Image url="@/assets/settings.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="439.0">
-                    <image>
-                        <Image url="@/assets/pie-chart.png" />
-                    </image>
-                </ImageView>
-                <ImageView layoutX="28.0" layoutY="299.0">
-                    <image>
-                        <Image url="@/assets/geometrical-shapes-set.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </AnchorPane>
-        <AnchorPane layoutX="119.0" prefHeight="96.0" prefWidth="1161.0" style="-fx-background-color: white;">
-            <children>
-                <ImageView fitHeight="79.0" fitWidth="306.0" layoutX="27.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@/assets/comixaire_logo.png" />
-                    </image>
-                </ImageView>
-                <ImageView layoutX="1087.0" layoutY="32.0">
-                    <image>
-                        <Image url="@/assets/logout.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </AnchorPane>
+        <fx:include source="menu.fxml" />
         <Text layoutX="149.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
             <font>
                 <Font name="Quicksand SemiBold" size="36.0" />

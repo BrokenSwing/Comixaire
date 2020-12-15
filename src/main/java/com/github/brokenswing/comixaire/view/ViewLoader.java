@@ -80,7 +80,8 @@ public class ViewLoader
         loader.setControllerFactory(this.controllerFactory);
         try
         {
-            return loader.load(ViewLoader.class.getClassLoader().getResourceAsStream("views/" + view.getViewName()));
+            loader.setLocation(ViewLoader.class.getClassLoader().getResource("views/" + view.getViewName()));
+            return loader.load();
         }
         catch (IOException e)
         {

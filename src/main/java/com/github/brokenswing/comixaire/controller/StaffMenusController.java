@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ActionCenterController implements Initializable
+public class StaffMenusController implements Initializable
 {
 
     @FXML
