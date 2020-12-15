@@ -26,7 +26,7 @@
                         <Image url="@/assets/list.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="699.0">
+                <ImageView fx:id="settingsButton" fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="699.0">
                     <image>
                         <Image url="@/assets/settings.png"/>
                     </image>

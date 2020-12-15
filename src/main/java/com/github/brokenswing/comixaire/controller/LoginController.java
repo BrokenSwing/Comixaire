@@ -1,6 +1,6 @@
 package com.github.brokenswing.comixaire.controller;
 
-import com.github.brokenswing.comixaire.auth.AuthFacade;
+import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.exception.BadCredentialsException;
 import com.github.brokenswing.comixaire.exception.InternalException;

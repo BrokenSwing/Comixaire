@@ -1,10 +1,11 @@
-package com.github.brokenswing.comixaire.auth;
+package com.github.brokenswing.comixaire.facades.auth;
 
 import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.exception.BadCredentialsException;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.exception.NoStaffMemberFoundException;
+import com.github.brokenswing.comixaire.facades.staff.StaffMemberFacade;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.StaffMember;
 
@@ -104,6 +105,16 @@ public class AuthFacade
     public void logout()
     {
         this.session.logout();
+    }
+
+    public StaffMember getLoggedInStaff()
+    {
+        return this.session.getLoggedInStaff();
+    }
+
+    public void setLoggedInStaff(StaffMember member)
+    {
+        this.session.setLoggedInStaff(member);
     }
 
 }

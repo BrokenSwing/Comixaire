@@ -124,7 +124,7 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO
     }
 
     @Override
-    public void update(StaffMember staffMember) throws InternalException
+    public void update(StaffMember staffMember) throws InternalException, UsernameAlreadyExistsException
     {
         try
         {
@@ -142,6 +142,14 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO
         }
         catch (SQLException e)
         {
+            if (e instanceof PSQLException)
+            {
+                PSQLException ex = (PSQLException) e;
+                if (ex.getServerErrorMessage() != null && "unique_username".equals(ex.getServerErrorMessage().getConstraint()))
+                {
+                    throw new UsernameAlreadyExistsException(staffMember.getUsername());
+                }
+            }
             throw new InternalException("Unable to update staff member", e);
         }
     }

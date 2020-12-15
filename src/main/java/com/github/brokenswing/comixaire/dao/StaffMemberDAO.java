@@ -20,7 +20,7 @@ public interface StaffMemberDAO
      */
     StaffMember findByUsername(String username) throws InternalException, NoStaffMemberFoundException;
 
-    void update(StaffMember staffMember) throws InternalException;
+    void update(StaffMember staffMember) throws InternalException, UsernameAlreadyExistsException;
 
     void delete(StaffMember staffMember) throws InternalException;
 

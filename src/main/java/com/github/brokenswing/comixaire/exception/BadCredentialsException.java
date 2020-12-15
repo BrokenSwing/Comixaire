@@ -4,7 +4,7 @@ package com.github.brokenswing.comixaire.exception;
  * This exception is thrown when a staff member or a client tries to authenticate but provides
  * bad credentials.
  *
- * @see com.github.brokenswing.comixaire.auth.AuthFacade
+ * @see com.github.brokenswing.comixaire.facades.auth.AuthFacade
  */
 public class BadCredentialsException extends Exception
 {

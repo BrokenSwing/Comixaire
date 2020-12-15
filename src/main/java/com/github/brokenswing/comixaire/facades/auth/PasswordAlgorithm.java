@@ -1,4 +1,4 @@
-package com.github.brokenswing.comixaire.auth;
+package com.github.brokenswing.comixaire.facades.auth;
 
 /**
  * This interface represents an hashing algorithm used to hash

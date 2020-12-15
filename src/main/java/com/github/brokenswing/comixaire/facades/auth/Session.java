@@ -1,4 +1,4 @@
-package com.github.brokenswing.comixaire.auth;
+package com.github.brokenswing.comixaire.facades.auth;
 
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.StaffMember;

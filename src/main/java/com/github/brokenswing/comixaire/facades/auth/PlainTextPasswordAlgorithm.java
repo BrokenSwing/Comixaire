@@ -1,4 +1,4 @@
-package com.github.brokenswing.comixaire.auth;
+package com.github.brokenswing.comixaire.facades.auth;
 
 /**
  * An hash algorithm that hashes nothing. The hash password method

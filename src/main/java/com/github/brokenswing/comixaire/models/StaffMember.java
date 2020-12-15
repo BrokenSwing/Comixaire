@@ -21,6 +21,11 @@ public class StaffMember
         this.role = role;
     }
 
+    public StaffMember(StaffMember staff)
+    {
+        this(staff.idStaff, staff.username, staff.password, staff.role);
+    }
+
     public int getIdStaff()
     {
         return idStaff;

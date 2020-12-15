@@ -1,12 +1,13 @@
 package com.github.brokenswing.comixaire;
 
-import com.github.brokenswing.comixaire.auth.AuthFacade;
-import com.github.brokenswing.comixaire.auth.PlainTextPasswordAlgorithm;
-import com.github.brokenswing.comixaire.auth.Session;
+import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
+import com.github.brokenswing.comixaire.facades.auth.PlainTextPasswordAlgorithm;
+import com.github.brokenswing.comixaire.facades.auth.Session;
 import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.dao.postgres.PostgresDAOFactory;
 import com.github.brokenswing.comixaire.di.DependencyInjector;
 import com.github.brokenswing.comixaire.di.ValueProvider;
+import com.github.brokenswing.comixaire.facades.staff.StaffMemberFacade;
 import com.github.brokenswing.comixaire.view.LoginView;
 import com.github.brokenswing.comixaire.view.Router;
 import com.github.brokenswing.comixaire.view.ViewLoader;
@@ -58,6 +59,12 @@ public class Comixaire extends Application
     public AuthFacade getAuthFacade()
     {
         return new AuthFacade(factory, new PlainTextPasswordAlgorithm(), this.session);
+    }
+
+    @ValueProvider
+    public StaffMemberFacade getStaffMemberFacade()
+    {
+        return new StaffMemberFacade(factory);
     }
 
 }
