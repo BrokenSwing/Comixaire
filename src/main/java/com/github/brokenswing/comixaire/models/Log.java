@@ -1,5 +1,6 @@
 package com.github.brokenswing.comixaire.models;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Log
@@ -40,5 +41,10 @@ public class Log
     public String getOperationType()
     {
         return operationType;
+    }
+
+    public Timestamp getTimestamp()
+    {
+        return new Timestamp(getDate().getTime());
     }
 }
