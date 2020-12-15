@@ -55,18 +55,17 @@ public class AccountDetailsController implements Initializable
         changePasswordButton.setDisable(baseState[1]);
     }
 
-    public void updateUsername()
+    public void updatePassword()
     {
         boolean[] buttonsState = disableButtons();
 
-        String newUsername = usernameField.getText().trim();
+        String newPassword = passwordField.getText();
         StaffMember connectedStaff = new StaffMember(authFacade.getLoggedInStaff());
-        connectedStaff.setUsername(newUsername);
+        connectedStaff.setPassword(authFacade.hashPassword(newPassword));
         try
         {
             staffMemberFacade.update(connectedStaff);
-            authFacade.setLoggedInStaff(connectedStaff);
-            displaySuccessAlert();
+            displayPasswordUpdateSuccessAlert();
         }
         catch (InternalException e)
         {
@@ -81,11 +80,45 @@ public class AccountDetailsController implements Initializable
         enableButtons(buttonsState);
     }
 
-    protected void displaySuccessAlert()
+    public void updateUsername()
+    {
+        boolean[] buttonsState = disableButtons();
+
+        String newUsername = usernameField.getText().trim();
+        StaffMember connectedStaff = new StaffMember(authFacade.getLoggedInStaff());
+        connectedStaff.setUsername(newUsername);
+        try
+        {
+            staffMemberFacade.update(connectedStaff);
+            authFacade.setLoggedInStaff(connectedStaff);
+            displayUsernameUpdateSuccessAlert();
+        }
+        catch (InternalException e)
+        {
+            e.printStackTrace();
+            displayInternalErrorAlert(e);
+        }
+        catch (UsernameAlreadyExistsException e)
+        {
+            displayUsernameExistsAlert();
+        }
+
+        enableButtons(buttonsState);
+    }
+
+    protected void displayUsernameUpdateSuccessAlert()
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
-        alert.setContentText("You're username was successfully updated.");
+        alert.setContentText("Your username was successfully updated.");
+        alert.showAndWait();
+    }
+
+    protected void displayPasswordUpdateSuccessAlert()
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setContentText("Your password was successfully updated.");
         alert.showAndWait();
     }
 
@@ -103,11 +136,21 @@ public class AccountDetailsController implements Initializable
         alert.showAndWait();
     }
 
+    private void checkPasswordsMatchAndChangeButtonState()
+    {
+        boolean passwordsEqual = this.passwordField.getText().equals(this.passwordConfirmField.getText());
+        boolean passwordValid = !this.passwordField.getText().isEmpty();
+        this.changePasswordButton.setDisable(!passwordsEqual || !passwordValid);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         this.usernameField.setText(this.authFacade.getLoggedInStaff().getUsername());
         this.usernameField.addEventHandler(InputEvent.ANY,
                 e -> this.changeUsernameButton.setDisable(this.usernameField.getText().trim().isEmpty()));
+        this.changePasswordButton.setDisable(true);
+        this.passwordField.addEventHandler(InputEvent.ANY, e -> this.checkPasswordsMatchAndChangeButtonState());
+        this.passwordConfirmField.addEventHandler(InputEvent.ANY, e -> this.checkPasswordsMatchAndChangeButtonState());
     }
 }

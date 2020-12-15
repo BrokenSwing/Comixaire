@@ -117,4 +117,9 @@ public class AuthFacade
         this.session.setLoggedInStaff(member);
     }
 
+    public String hashPassword(String plainTextPassword)
+    {
+        return this.passwordAlgorithm.hashPassword(plainTextPassword);
+    }
+
 }

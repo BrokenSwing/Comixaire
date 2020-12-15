@@ -99,14 +99,14 @@
         </AnchorPane>
       <AnchorPane layoutX="734.0" layoutY="254.0" prefHeight="412.0" prefWidth="343.0" style="-fx-background-color: white;" stylesheets="@/stylesheets/authentication.css">
          <children>
-            <TextField fx:id="passwordField" layoutX="82.0" layoutY="155.0" promptText="New password" />
-            <Button fx:id="changePasswordButton" layoutX="77.0" layoutY="304.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="183.0" styleClass="btn" text="change password" />
+            <PasswordField fx:id="passwordField" layoutX="82.0" layoutY="155.0" promptText="New password" />
+            <Button fx:id="changePasswordButton" onAction="#updatePassword" layoutX="77.0" layoutY="304.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="183.0" styleClass="btn" text="change password" />
             <Text layoutX="111.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security">
                <font>
                   <Font name="Quicksand SemiBold" size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="passwordConfirmField" layoutX="82.0" layoutY="206.0" promptText="Confirm password" />
+            <PasswordField fx:id="passwordConfirmField" layoutX="82.0" layoutY="206.0" promptText="Confirm password" />
          </children>
       </AnchorPane>
     </children>
