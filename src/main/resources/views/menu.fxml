@@ -18,7 +18,7 @@
                         <Image url="@/assets/user.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="566.0">
+                <ImageView fx:id="logsButton" fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="566.0">
                     <image>
                         <Image url="@/assets/list.png" />
                     </image>

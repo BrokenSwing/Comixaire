@@ -7,6 +7,7 @@ import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.dao.postgres.PostgresDAOFactory;
 import com.github.brokenswing.comixaire.di.DependencyInjector;
 import com.github.brokenswing.comixaire.di.ValueProvider;
+import com.github.brokenswing.comixaire.facades.logs.LogsFacade;
 import com.github.brokenswing.comixaire.facades.staff.StaffMemberFacade;
 import com.github.brokenswing.comixaire.view.LoginView;
 import com.github.brokenswing.comixaire.view.Router;
@@ -65,6 +66,12 @@ public class Comixaire extends Application
     public StaffMemberFacade getStaffMemberFacade()
     {
         return new StaffMemberFacade(factory);
+    }
+
+    @ValueProvider
+    public LogsFacade getLogsFacade()
+    {
+        return new LogsFacade(factory);
     }
 
 }

@@ -1,8 +1,9 @@
 package com.github.brokenswing.comixaire.controller;
 
-import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
 import com.github.brokenswing.comixaire.di.InjectValue;
+import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
 import com.github.brokenswing.comixaire.view.LoginView;
+import com.github.brokenswing.comixaire.view.LogsView;
 import com.github.brokenswing.comixaire.view.Router;
 import com.github.brokenswing.comixaire.view.SettingsView;
 import javafx.fxml.FXML;
@@ -22,6 +23,9 @@ public class StaffMenusController implements Initializable
     @FXML
     private ImageView settingsButton;
 
+    @FXML
+    private ImageView logsButton;
+
     @InjectValue
     private AuthFacade auth;
 
@@ -39,11 +43,22 @@ public class StaffMenusController implements Initializable
         router.navigateTo(new LoginView());
     }
 
+    protected void displaySettingsView()
+    {
+        router.navigateTo(new SettingsView());
+    }
+
+    protected void displayLogsView()
+    {
+        router.navigateTo(new LogsView());
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         this.logoutButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> this.logout());
-        this.settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> router.navigateTo(new SettingsView()));
+        this.settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> this.displaySettingsView());
+        this.logsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> this.displayLogsView());
     }
 
 }
