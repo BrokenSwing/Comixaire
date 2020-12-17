@@ -9,4 +9,8 @@ public abstract class DAOFactory
 
     public abstract LogDAO getLogDAO();
 
+    public abstract FineDAO getFineDAO();
+
+    public abstract LibraryItemDAO getLibraryItemDAO();
+
 }

@@ -1,9 +1,6 @@
 package com.github.brokenswing.comixaire.dao.postgres;
 
-import com.github.brokenswing.comixaire.dao.ClientDAO;
-import com.github.brokenswing.comixaire.dao.DAOFactory;
-import com.github.brokenswing.comixaire.dao.LogDAO;
-import com.github.brokenswing.comixaire.dao.StaffMemberDAO;
+import com.github.brokenswing.comixaire.dao.*;
 
 public class PostgresDAOFactory extends DAOFactory
 {
@@ -16,10 +13,7 @@ public class PostgresDAOFactory extends DAOFactory
     }
 
     @Override
-    public StaffMemberDAO getStaffMemberDAO()
-    {
-        return new PostgresStaffMemberDAO(this.postgresConnection.getConnection());
-    }
+    public StaffMemberDAO getStaffMemberDAO() { return new PostgresStaffMemberDAO(this.postgresConnection.getConnection()); }
 
     @Override
     public ClientDAO getClientDAO()
@@ -31,6 +25,18 @@ public class PostgresDAOFactory extends DAOFactory
     public LogDAO getLogDAO()
     {
         return new PostgresLogDAO(this.postgresConnection.getConnection());
+    }
+
+    @Override
+    public FineDAO getFineDAO() {
+        //TODO return Postgres FineDAO
+        return null;
+    }
+
+    @Override
+    public LibraryItemDAO getLibraryItemDAO() {
+        //TODO return Postgres LibraryItemDAO
+        return null;
     }
 
 }
