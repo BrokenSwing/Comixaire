@@ -24,6 +24,7 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public Client create(Client client) throws InternalException
     {
+        //TODO: implement
         return null;
     }
 
@@ -76,31 +77,34 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public Client[] findByName(String firstname, String lastname) throws InternalException, NoClientFoundException
     {
+        //TODO: implement
         return new Client[0];
     }
 
     @Override
     public Client[] findByFirstname(String firstname) throws InternalException, NoClientFoundException
     {
+        //TODO: implement
         return new Client[0];
     }
 
     @Override
     public Client[] findByLastname(String lastname) throws InternalException, NoClientFoundException
     {
+        //TODO: implement
         return new Client[0];
     }
 
     @Override
     public void update(Client client) throws InternalException
     {
-
+        //TODO: implement
     }
 
     @Override
     public void delete(Client client) throws InternalException
     {
-
+        //TODO: implement
     }
 
     private Client clientFromRow(ResultSet result) throws SQLException
