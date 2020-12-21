@@ -2,10 +2,7 @@ package com.github.brokenswing.comixaire.controller;
 
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
-import com.github.brokenswing.comixaire.view.LoginView;
-import com.github.brokenswing.comixaire.view.LogsView;
-import com.github.brokenswing.comixaire.view.Router;
-import com.github.brokenswing.comixaire.view.SettingsView;
+import com.github.brokenswing.comixaire.view.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
@@ -56,9 +53,9 @@ public class StaffMenusController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        this.logoutButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> this.logout());
-        this.settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> this.displaySettingsView());
-        this.logsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> this.displayLogsView());
+        this.logoutButton.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> this.logout());
+        this.settingsButton.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> this.displaySettingsView());
+        this.logsButton.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> this.displayLogsView());
     }
 
 }
