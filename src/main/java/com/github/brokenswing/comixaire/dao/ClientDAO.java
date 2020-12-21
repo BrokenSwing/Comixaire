@@ -1,5 +1,6 @@
 package com.github.brokenswing.comixaire.dao;
 
+import com.github.brokenswing.comixaire.exception.CardIdAlreadyExist;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.models.Client;
@@ -12,7 +13,7 @@ import com.github.brokenswing.comixaire.models.Client;
 public interface ClientDAO
 {
 
-    Client create(Client client) throws InternalException;
+    Client create(Client client) throws InternalException, CardIdAlreadyExist;
 
     Client findById(int idClient) throws InternalException, NoClientFoundException;
 

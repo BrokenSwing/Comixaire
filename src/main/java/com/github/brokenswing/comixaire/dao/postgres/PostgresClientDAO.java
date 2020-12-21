@@ -1,6 +1,7 @@
 package com.github.brokenswing.comixaire.dao.postgres;
 
 import com.github.brokenswing.comixaire.dao.ClientDAO;
+import com.github.brokenswing.comixaire.exception.CardIdAlreadyExist;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.models.Client;
@@ -22,7 +23,7 @@ public class PostgresClientDAO implements ClientDAO
 
 
     @Override
-    public Client create(Client client) throws InternalException
+    public Client create(Client client) throws InternalException, CardIdAlreadyExist
     {
         //TODO: implement
         return null;
