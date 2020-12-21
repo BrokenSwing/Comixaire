@@ -5,13 +5,13 @@
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="800.0" maxWidth="1280.0" minHeight="800.0" minWidth="1280.0"
             prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;"
-            xmlns="http://javafx.com/javafx/8">
+            xmlns="http://javafx.com/javafx/8" fx:controller="com.github.brokenswing.comixaire.controller.StaffActionCenterController">
     <children>
         <fx:include source="menu.fxml" />
         <AnchorPane layoutX="295.0" layoutY="186.0" prefHeight="200.0" prefWidth="200.0"
                     style="-fx-background-color: white;">
             <children>
-                <ImageView layoutX="68.0" layoutY="36.0">
+                <ImageView layoutX="68.0" layoutY="36.0" fx:id="returnsButton">
                     <image>
                         <Image url="@/assets/undo.png"/>
                     </image>
@@ -27,7 +27,7 @@
         <AnchorPane layoutX="583.0" layoutY="186.0" prefHeight="200.0" prefWidth="200.0"
                     style="-fx-background-color: white;">
             <children>
-                <ImageView layoutX="68.0" layoutY="36.0">
+                <ImageView layoutX="68.0" layoutY="36.0" fx:id="loansButton">
                     <image>
                         <Image url="@/assets/handshake.png"/>
                     </image>
@@ -42,7 +42,7 @@
         <AnchorPane layoutX="876.0" layoutY="186.0" prefHeight="200.0" prefWidth="200.0"
                     style="-fx-background-color: white;">
             <children>
-                <ImageView layoutX="68.0" layoutY="42.0">
+                <ImageView layoutX="68.0" layoutY="42.0" fx:id="newUserButton">
                     <image>
                         <Image url="@/assets/add-group.png"/>
                     </image>
@@ -58,7 +58,7 @@
         <AnchorPane layoutX="437.0" layoutY="456.0" prefHeight="200.0" prefWidth="200.0"
                     style="-fx-background-color: white;">
             <children>
-                <ImageView layoutX="68.0" layoutY="41.0">
+                <ImageView layoutX="68.0" layoutY="41.0" fx:id="bookingsButton">
                     <image>
                         <Image url="@/assets/bookmark-ribbon.png"/>
                     </image>
@@ -74,7 +74,7 @@
         <AnchorPane layoutX="730.0" layoutY="456.0" prefHeight="200.0" prefWidth="200.0"
                     style="-fx-background-color: white;">
             <children>
-                <ImageView layoutX="68.0" layoutY="44.0">
+                <ImageView layoutX="68.0" layoutY="44.0" fx:id="newItemButton">
                     <image>
                         <Image url="@/assets/geometrical-shapes-set-primary.png"/>
                     </image>
