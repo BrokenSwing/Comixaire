@@ -65,4 +65,11 @@ public class PostgresLoanDAO implements LoanDAO
         //TODO: implement
         return new Loan[0];
     }
+
+    @Override
+    public Loan getLatestLoanByItemId(int idItem) throws InternalException
+    {
+        //TODO: implement
+        return null;
+    }
 }
