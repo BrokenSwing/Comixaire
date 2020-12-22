@@ -23,6 +23,18 @@ public class StaffMenusController implements Initializable
     @FXML
     private ImageView logsButton;
 
+    @FXML
+    private ImageView clientsButton;
+
+    @FXML
+    private ImageView libraryItemsButton;
+
+    @FXML
+    private ImageView actionCenterButton;
+
+    @FXML
+    private ImageView statsButton;
+
     @InjectValue
     private AuthFacade auth;
 
@@ -50,12 +62,15 @@ public class StaffMenusController implements Initializable
         router.navigateTo(new LogsView());
     }
 
+    private void displayActionCenterView() { router.navigateTo(new ActionCenterView()); }
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         this.logoutButton.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> this.logout());
         this.settingsButton.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> this.displaySettingsView());
         this.logsButton.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> this.displayLogsView());
+        this.actionCenterButton.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> this.displayActionCenterView());
     }
 
 }
