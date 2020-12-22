@@ -4,12 +4,11 @@ import com.github.brokenswing.comixaire.dao.ClientDAO;
 import com.github.brokenswing.comixaire.exception.CardIdAlreadyExist;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
+import com.github.brokenswing.comixaire.exception.UsernameAlreadyExistsException;
 import com.github.brokenswing.comixaire.models.Client;
+import org.postgresql.util.PSQLException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class PostgresClientDAO implements ClientDAO
 {
@@ -25,8 +24,37 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public Client create(Client client) throws InternalException, CardIdAlreadyExist
     {
-        //TODO: implement
-        return null;
+        try
+        {
+            PreparedStatement prepare = this
+                    .connection
+                    .prepareStatement(
+                            "INSERT INTO clients(client_firstname, client_lastname, client_gender, client_birthdate, client_address, client_cardID)"
+                                    + " = (?, ?, ?, ?, ?, ?) RETURNING client_id"
+                    );
+            prepare.setString(1, client.getFirstname());
+            prepare.setString(2, client.getLastname());
+            prepare.setString(3, client.getGender());
+            prepare.setDate(4, (Date) client.getBirthdate());
+            prepare.setString(5, client.getAddress());
+            prepare.setString(6, client.getCardId());
+
+            ResultSet result = prepare.executeQuery();
+            result.next();
+            return clientFromRow(result);
+        }
+        catch (SQLException e)
+        {
+            if (e instanceof PSQLException)
+            {
+                PSQLException ex = (PSQLException) e;
+                if (ex.getServerErrorMessage() != null && "unique_cardID".equals(ex.getServerErrorMessage().getConstraint()))
+                {
+                    throw new CardIdAlreadyExist(client.getCardId());
+                }
+            }
+            throw new InternalException("Unable to create client", e);
+        }
     }
 
     @Override
