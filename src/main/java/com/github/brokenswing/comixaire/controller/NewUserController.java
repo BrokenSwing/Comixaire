@@ -5,11 +5,11 @@ import com.github.brokenswing.comixaire.exception.CardIdAlreadyExist;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.models.Client;
+import com.github.brokenswing.comixaire.view.ActionCenterView;
+import com.github.brokenswing.comixaire.view.InternalErrorAlert;
+import com.github.brokenswing.comixaire.view.Router;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -36,6 +36,8 @@ public class NewUserController
 
     @InjectValue
     private ClientsFacade clientsFacade;
+    @InjectValue
+    private Router router;
 
     public NewUserController() {}
 
@@ -72,17 +74,16 @@ public class NewUserController
             try
             {
                 clientsFacade.create(new Client(firstname, lastname, idCard, gender, address, birthdate));
-                //TODO: return to action center and print success alert
-                System.out.println("success");//temporary
+                displayClientCreatedAlert("Welcome to " + firstname + " " + lastname + " our new client !");
+                displayActionCenter();
             }
             catch (CardIdAlreadyExist e)
             {
-                //TODO: display error alert
+                displayCardIdAlreadyUsedAlert("The card id provided is already use by another client.");
             }
             catch (InternalException e)
             {
-                e.printStackTrace();
-                //TODO: display error alert
+                displayInternalErrorAlert(e);
             }
             finally
             {
@@ -91,4 +92,31 @@ public class NewUserController
         }
     }
 
+    protected void displayCardIdAlreadyUsedAlert(String contentMessage)
+    {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Client creation error");
+        alert.setHeaderText("Card id already in use");
+        alert.setContentText(contentMessage);
+        alert.showAndWait();
+    }
+
+    protected void displayClientCreatedAlert(String contentMessage)
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Client successfully created");
+        alert.setHeaderText("New client join us !");
+        alert.setContentText(contentMessage);
+        alert.showAndWait();
+    }
+
+    protected void displayInternalErrorAlert(Exception e)
+    {
+        new InternalErrorAlert(e).showAndWait();
+    }
+
+    protected void displayActionCenter()
+    {
+        router.navigateTo(new ActionCenterView());
+    }
 }

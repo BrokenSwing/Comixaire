@@ -4,10 +4,7 @@ import com.github.brokenswing.comixaire.dao.ClientDAO;
 import com.github.brokenswing.comixaire.exception.CardIdAlreadyExist;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
-import com.github.brokenswing.comixaire.exception.UsernameAlreadyExistsException;
 import com.github.brokenswing.comixaire.models.Client;
-import com.github.brokenswing.comixaire.models.Log;
-import com.github.brokenswing.comixaire.models.StaffMember;
 import org.postgresql.util.PSQLException;
 
 import java.sql.*;
@@ -33,12 +30,12 @@ public class PostgresClientDAO implements ClientDAO
                     .connection
                     .prepareStatement(
                             "INSERT INTO clients(client_firstname, client_lastname, client_gender, client_birthdate, client_address, client_cardID)"
-                                    + " = (?, ?, ?, ?, ?, ?) RETURNING client_id"
+                                    + " = (?, ?, ?, ?, ?, ?)"
                     );
             prepare.setString(1, client.getFirstname());
             prepare.setString(2, client.getLastname());
             prepare.setString(3, client.getGender());
-            prepare.setDate(4, (Date) client.getBirthdate());
+            prepare.setDate(4, new java.sql.Date(client.getBirthdate().getTime()));
             prepare.setString(5, client.getAddress());
             prepare.setString(6, client.getCardId());
 
@@ -197,7 +194,7 @@ public class PostgresClientDAO implements ClientDAO
             prepare.setString(1, client.getFirstname());
             prepare.setString(2, client.getLastname());
             prepare.setString(3, client.getGender());
-            prepare.setDate(4, (Date) client.getBirthdate());
+            prepare.setDate(4, new java.sql.Date(client.getBirthdate().getTime()));
             prepare.setString(5, client.getAddress());
             prepare.setString(6, client.getCardId());
             prepare.setInt(7, client.getSubscriptionId());
