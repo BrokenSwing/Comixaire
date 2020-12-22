@@ -24,11 +24,10 @@
                 <Button fx:id="allButton" layoutX="656.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn" text="all"/>
             </children>
         </AnchorPane>
-        <Text fill="#575757" layoutX="149.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0"
-              text="TEXT: XXX logs">
+        <!--Text fill="#575757" layoutX="149.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0">
             <font>
                 <Font name="Quicksand SemiBold" size="14.0"/>
             </font>
-        </Text>
+        </Text -->
     </children>
 </AnchorPane>

@@ -58,6 +58,12 @@ public class Comixaire extends Application
     }
 
     @ValueProvider
+    public ViewLoader getViewLoader()
+    {
+        return viewLoader;
+    }
+
+    @ValueProvider
     public AuthFacade getAuthFacade()
     {
         return new AuthFacade(factory, new PlainTextPasswordAlgorithm(), this.session);

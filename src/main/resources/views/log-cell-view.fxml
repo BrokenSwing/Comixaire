@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.github.brokenswing.comixaire.controller.LogCellController">
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES"/>
+        <ColumnConstraints hgrow="SOMETIMES"/>
+        <ColumnConstraints hgrow="SOMETIMES"/>
+        <ColumnConstraints hgrow="SOMETIMES"/>
+    </columnConstraints>
+
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER"/>
+    </rowConstraints>
+
+    <Text fill="#5282FC" fx:id="operationType"/>
+    <Text fill="grey" fx:id="operationDetail" GridPane.columnIndex="1"/>
+    <Text fill="grey" fx:id="memberName" GridPane.columnIndex="2"/>
+    <Text fill="grey" fx:id="date" GridPane.columnIndex="3"/>
+
+</GridPane>
