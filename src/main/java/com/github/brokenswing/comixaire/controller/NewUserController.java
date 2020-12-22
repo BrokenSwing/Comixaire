@@ -71,7 +71,7 @@ public class NewUserController
 
             try
             {
-                clientsFacade.create(new Client(0, firstname, idCard, lastname, gender, address, birthdate));
+                clientsFacade.create(new Client(firstname, lastname, idCard, gender, address, birthdate));
                 //TODO: return to action center and print success alert
                 System.out.println("success");//temporary
             }

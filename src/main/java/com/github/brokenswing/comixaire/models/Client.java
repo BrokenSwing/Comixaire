@@ -14,6 +14,11 @@ public class Client
     private String address;
     private int subscriptionId;
 
+    public Client(String firstname, String lastname, String cardId, String gender, String address, Date birthdate)
+    {
+        this(-1, firstname, lastname, cardId, gender, address, birthdate, -1);
+    }
+
     public Client(String firstname, String lastname, String cardId, String gender, String address, Date birthdate, int subscriptionId)
     {
         this(-1, firstname, lastname, cardId, gender, address, birthdate, subscriptionId);
