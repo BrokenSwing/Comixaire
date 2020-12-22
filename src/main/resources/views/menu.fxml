@@ -8,12 +8,12 @@
     <children>
         <AnchorPane layoutX="-1.0" prefHeight="800.0" prefWidth="120.0" style="-fx-background-color: #5282FC;">
             <children>
-                <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="48.0">
+                <ImageView fx:id="actionCenterButton" fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="48.0">
                     <image>
                         <Image url="@/assets/menu.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="177.0">
+                <ImageView fx:id="clientsButton" fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="177.0">
                     <image>
                         <Image url="@/assets/user.png" />
                     </image>
@@ -28,12 +28,12 @@
                         <Image url="@/assets/settings.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="439.0">
+                <ImageView fx:id="statsButton" fitHeight="54.0" fitWidth="54.0" layoutX="33.0" layoutY="439.0">
                     <image>
                         <Image url="@/assets/pie-chart.png" />
                     </image>
                 </ImageView>
-                <ImageView layoutX="28.0" layoutY="299.0">
+                <ImageView fx:id="libraryItemsButton" layoutX="28.0" layoutY="299.0">
                     <image>
                         <Image url="@/assets/geometrical-shapes-set.png" />
                     </image>

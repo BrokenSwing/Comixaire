@@ -6,7 +6,7 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.brokenswing.comixaire.controller.NewUserController">
+<AnchorPane stylesheets="@/stylesheets/authentication.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.brokenswing.comixaire.controller.NewUserController">
     <children>
         <fx:include source="menu.fxml" />
         <Text layoutX="149.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New user">
@@ -21,7 +21,7 @@
             <DatePicker fx:id="newUserBirthdateField" layoutX="468.0" layoutY="201.0" promptText="birthdate" />
             <TextField fx:id="newUserAddressField" layoutX="468.0" layoutY="286.0" promptText="address" />
             <TextField fx:id="newUserCardIdField" layoutX="101.0" layoutY="117.0" promptText="cardId" />
-            <Button fx:id="newUserButton" layoutX="315.0" layoutY="377.0" mnemonicParsing="false" onAction="#createClient" text="Create user" />
+            <Button fx:id="newUserButton" layoutX="315.0" layoutY="377.0" mnemonicParsing="false" onAction="#createClient" text="Create user" styleClass="btn"/>
             <ChoiceBox fx:id="newUserGenderField" layoutX="468.0" layoutY="117.0" prefWidth="150.0" >
              <items>
                  <FXCollections fx:factory="observableArrayList">
