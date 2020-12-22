@@ -79,5 +79,5 @@ public class Client
         return birthdate;
     }
 
-
+    public String getCardId() { return cardId; }
 }
