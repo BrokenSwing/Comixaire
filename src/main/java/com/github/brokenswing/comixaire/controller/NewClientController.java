@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class NewUserController
+public class NewClientController
 {
 
     @FXML
@@ -39,13 +39,13 @@ public class NewUserController
     @InjectValue
     private Router router;
 
-    public NewUserController() {}
+    public NewClientController() {}
 
 
     /**
      * This constructor should not be used outside of test classes.
      */
-    public NewUserController(TextField firstname, TextField lastname, TextField idCard, DatePicker birthdate, Button createUserButton, ChoiceBox<String> genderField, TextField addressField){
+    public NewClientController(TextField firstname, TextField lastname, TextField idCard, DatePicker birthdate, Button createUserButton, ChoiceBox<String> genderField, TextField addressField){
         this.newUserButton = createUserButton;
         this.newUserFirstnameField = firstname;
         this.newUserLastnameField = lastname;
