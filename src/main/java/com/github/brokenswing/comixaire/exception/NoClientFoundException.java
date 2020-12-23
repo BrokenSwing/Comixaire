@@ -24,9 +24,9 @@ public class NoClientFoundException extends Exception
      *
      * @param cardID the card ID used to try to retrieve the client
      */
-    public NoClientFoundException(String cardID)
+    public NoClientFoundException(String str)
     {
-        super("No client with the card ID " + cardID + " can be found.");
+        super(str);
     }
 
 }

@@ -30,7 +30,7 @@ public class PostgresClientDAO implements ClientDAO
                     .connection
                     .prepareStatement(
                             "INSERT INTO clients(client_firstname, client_lastname, client_gender, client_birthdate, client_address, client_cardID)"
-                                    + " = (?, ?, ?, ?, ?, ?)"
+                                    + " VALUES (?, ?, ?, ?, ?, ?) RETURNING client_id"
                     );
             prepare.setString(1, client.getFirstname());
             prepare.setString(2, client.getLastname());
@@ -41,7 +41,7 @@ public class PostgresClientDAO implements ClientDAO
 
             ResultSet result = prepare.executeQuery();
             result.next();
-            return clientFromRow(result);
+            return new Client(result.getInt("client_id"), client.getFirstname(), client.getCardId(), client.getLastname(), client.getGender(), client.getAddress(), client.getBirthdate(), client.getSubscriptionId());
         }
         catch (SQLException e)
         {
@@ -235,7 +235,7 @@ public class PostgresClientDAO implements ClientDAO
     {
         return new Client(
                 result.getInt("client_id"),
-                result.getString("client_firtname"),
+                result.getString("client_firstname"),
                 result.getString("client_lastname"),
                 result.getString("client_cardID"),
                 result.getString("client_gender"),
