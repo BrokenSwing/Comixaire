@@ -37,6 +37,7 @@ public class ViewLoader
      * @return the javafx node loaded from the FXML file
      * @see com.github.brokenswing.comixaire.di.InjectValue
      */
+    @SuppressWarnings("unchecked")
     public <V, T extends ParametrizedController<U>, U> V loadView(ParametrizedView<T, U> view, U data)
     {
         FXMLLoader loader = new FXMLLoader();
