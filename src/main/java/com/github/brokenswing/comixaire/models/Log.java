@@ -10,9 +10,9 @@ public class Log
     private final String operationType;
     private final StaffMember staffMember;
 
-    public Log(String operationDetails, String operationType, Timestamp timestamp, StaffMember member)
+    public Log(String operationDetails, String operationType, Date date, StaffMember member)
     {
-        this.date = new Date(timestamp.getTime());
+        this.date = date;
         this.operationDetails = operationDetails;
         this.operationType = operationType;
         this.staffMember = member;

@@ -2,10 +2,8 @@ package com.github.brokenswing.comixaire.dao.postgres;
 
 import com.github.brokenswing.comixaire.dao.LogDAO;
 import com.github.brokenswing.comixaire.exception.InternalException;
-import com.github.brokenswing.comixaire.exception.UsernameAlreadyExistsException;
 import com.github.brokenswing.comixaire.models.Log;
 import com.github.brokenswing.comixaire.models.StaffMember;
-import org.postgresql.util.PSQLException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class PostgresLogDAO implements LogDAO
 {
@@ -26,7 +23,7 @@ public class PostgresLogDAO implements LogDAO
     }
 
     @Override
-    public Log create(Log log) throws InternalException
+    public void create(Log log) throws InternalException
     {
         try
         {
@@ -34,14 +31,13 @@ public class PostgresLogDAO implements LogDAO
                     .connection
                     .prepareStatement(
                             "INSERT INTO logs(log_date, log_operationDetails, log_operationType,staffMember_id) "
-                                    + "VALUES(?, ?, ?, ?) RETURNING log_id"
+                                    + "VALUES(?, ?, ?, ?)"
                     );
             prepare.setTimestamp(1, log.getTimestamp(), Calendar.getInstance());
             prepare.setString(2, log.getOperationDetails());
             prepare.setString(3, log.getOperationType());
             prepare.setInt(4, log.getStaffMember().getIdStaff());
-            prepare.executeQuery();
-            return log;
+            prepare.executeUpdate();
         }
         catch (SQLException e)
         {
@@ -65,10 +61,12 @@ public class PostgresLogDAO implements LogDAO
                             "staffMember_password," +
                             "staffMember_role " +
                             "FROM logs " +
-                            "NATURAL JOIN staffMembers");
+                            "NATURAL JOIN staffMembers " +
+                            "ORDER BY log_date DESC");
             ResultSet result = prepare.executeQuery();
-            ArrayList<Log> logs = new ArrayList<Log>();
-            while(result.next()){
+            ArrayList<Log> logs = new ArrayList<>();
+            while (result.next())
+            {
                 logs.add(new Log(
                         result.getString("log_operationDetails"),
                         result.getString("log_operationType"),

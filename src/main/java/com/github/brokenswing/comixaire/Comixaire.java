@@ -78,7 +78,7 @@ public class Comixaire extends Application
     @ValueProvider
     public LogsFacade getLogsFacade()
     {
-        return new LogsFacade(factory);
+        return new LogsFacade(factory, session);
     }
 
     @ValueProvider
