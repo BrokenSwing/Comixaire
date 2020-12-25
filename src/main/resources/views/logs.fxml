@@ -6,28 +6,31 @@
 <?import javafx.scene.text.Text?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
             prefWidth="1280.0" style="-fx-background-color: #F7F9FF;" xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.brokenswing.comixaire.controller.LogsController">
-    <children>
-        <fx:include source="menu.fxml"/>
-        <Text layoutX="149.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logs">
-            <font>
-                <Font name="Quicksand SemiBold" size="36.0"/>
-            </font>
-        </Text>
-        <ListView fx:id="logsList" layoutX="149.0" layoutY="332.0" prefHeight="434.0" prefWidth="1098.0"/>
-        <AnchorPane layoutX="276.0" layoutY="191.0" prefHeight="96.0" prefWidth="817.0"
-                    style="-fx-background-color: white;" stylesheets="@../stylesheets/authentication.css">
-            <children>
-                <Button fx:id="todayButton" layoutX="76.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn" text="today"/>
-                <Button fx:id="weekButton" layoutX="269.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn" text="week"/>
-                <Button fx:id="monthButton" layoutX="457.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn" text="month"/>
-                <Button fx:id="allButton" layoutX="656.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn" text="all"/>
-            </children>
-        </AnchorPane>
-        <!--Text fill="#575757" layoutX="149.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0">
-            <font>
-                <Font name="Quicksand SemiBold" size="14.0"/>
-            </font>
-        </Text -->
-    </children>
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.github.brokenswing.comixaire.controller.LogsController">
+    <fx:include source="menu.fxml"/>
+    <Text layoutX="149.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logs">
+        <font>
+            <Font name="Quicksand SemiBold" size="36.0"/>
+        </font>
+    </Text>
+    <ListView fx:id="logsList" layoutX="149.0" layoutY="332.0" prefHeight="434.0" prefWidth="1098.0">
+        <placeholder>
+            <Text>No logs to display</Text>
+        </placeholder>
+    </ListView>
+    <AnchorPane layoutX="276.0" layoutY="191.0" prefHeight="96.0" prefWidth="817.0"
+                style="-fx-background-color: white;" stylesheets="@../stylesheets/authentication.css">
+        <fx:define>
+            <ToggleGroup fx:id="filterToggleGroup"/>
+        </fx:define>
+        <ToggleButton layoutX="76.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn"
+                      text="today" toggleGroup="$filterToggleGroup" selected="true" onAction="#filterToday"/>
+        <ToggleButton layoutX="269.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn"
+                      text="week" toggleGroup="$filterToggleGroup" onAction="#filterWeek"/>
+        <ToggleButton layoutX="457.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn"
+                      text="month" toggleGroup="$filterToggleGroup" onAction="#filterMonth"/>
+        <ToggleButton layoutX="656.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn"
+                      text="all" toggleGroup="$filterToggleGroup" onAction="#filterAll"/>
+    </AnchorPane>
 </AnchorPane>

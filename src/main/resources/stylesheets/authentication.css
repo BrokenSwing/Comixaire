@@ -49,6 +49,11 @@
     -fx-font-size: 14px;
 }
 
+.btn:selected {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: white;
+}
+
 .text-field {
     -fx-background-color: -fx-primary, white;
     -fx-background-insets: 0, 0 0 1 0;
