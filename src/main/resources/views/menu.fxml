@@ -78,7 +78,7 @@
                         <Image url="@/assets/comixaire_logo.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="logoutButton" layoutX="1087.0" layoutY="32.0">
+                <ImageView fx:id="logoutButton" layoutX="1087.0" layoutY="32.0" onMouseClicked="#logout">
                     <image>
                         <Image url="@/assets/logout.png" />
                     </image>
