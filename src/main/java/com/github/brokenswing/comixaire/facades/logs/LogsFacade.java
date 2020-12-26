@@ -2,20 +2,19 @@ package com.github.brokenswing.comixaire.facades.logs;
 
 import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.exception.InternalException;
+import com.github.brokenswing.comixaire.facades.Facade;
 import com.github.brokenswing.comixaire.facades.auth.Session;
 import com.github.brokenswing.comixaire.models.Log;
 
 import java.util.Date;
 
-public class LogsFacade
+public class LogsFacade extends Facade
 {
-
-    private final DAOFactory factory;
     private final Session session;
 
     public LogsFacade(DAOFactory factory, Session session)
     {
-        this.factory = factory;
+        super(factory);
         this.session = session;
     }
 

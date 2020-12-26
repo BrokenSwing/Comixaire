@@ -5,6 +5,7 @@ import com.github.brokenswing.comixaire.exception.BadCredentialsException;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.exception.NoStaffMemberFoundException;
+import com.github.brokenswing.comixaire.facades.Facade;
 import com.github.brokenswing.comixaire.facades.staff.StaffMemberFacade;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.StaffMember;
@@ -13,10 +14,9 @@ import com.github.brokenswing.comixaire.models.StaffMember;
  * This class provides a simple API to use the authentication system
  * of the application.
  */
-public class AuthFacade
+public class AuthFacade extends Facade
 {
 
-    private final DAOFactory daoFactory;
     private final PasswordAlgorithm passwordAlgorithm;
     private final Session session;
 
@@ -27,7 +27,7 @@ public class AuthFacade
      */
     public AuthFacade(DAOFactory daoFactory, PasswordAlgorithm passAlgo, Session session)
     {
-        this.daoFactory = daoFactory;
+        super(daoFactory);
         this.passwordAlgorithm = passAlgo;
         this.session = session;
     }
@@ -53,7 +53,7 @@ public class AuthFacade
         StaffMember member;
         try
         {
-            member = this.daoFactory.getStaffMemberDAO().findByUsername(username);
+            member = this.factory.getStaffMemberDAO().findByUsername(username);
         }
         catch (NoStaffMemberFoundException e)
         {
@@ -87,7 +87,7 @@ public class AuthFacade
         Client client;
         try
         {
-            client = this.daoFactory.getClientDAO().findByCardID(cardId);
+            client = this.factory.getClientDAO().findByCardID(cardId);
         }
         catch (NoClientFoundException e)
         {

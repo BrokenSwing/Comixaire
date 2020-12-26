@@ -4,15 +4,15 @@ import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.exception.CardIdAlreadyExist;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
+import com.github.brokenswing.comixaire.facades.Facade;
 import com.github.brokenswing.comixaire.models.Client;
 
-public class ClientsFacade
+public class ClientsFacade extends Facade
 {
-    private final DAOFactory factory;
 
     public ClientsFacade(DAOFactory factory)
     {
-        this.factory = factory;
+        super(factory);
     }
 
     public Client create(Client client) throws InternalException, CardIdAlreadyExist
