@@ -1,43 +1,43 @@
 package com.github.brokenswing.comixaire.di;
 
+import com.github.brokenswing.comixaire.di.impl.CacheDependencySource;
+
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.PriorityQueue;
 
 /**
+ * <p>
  * Singleton that manages the dependency injection in the system.
  * This class is mainly to inject dependencies in JavaFX controller
- * through the controllers factory.<br>
+ * through the controllers factory.
+ * </p>
+ *
  * <p>
  * Calling {@link #inject(Object)} will inject values in the fields
  * of the given object that are annotated with {@link InjectValue}
- * getting those values in the sources objects added through
- * {@link #addSource(Object)}. This sources objects provides
- * values through methods annotated with {@link ValueProvider}.<br>
- * <p>
- * Any injected by this dependency injection system is a singleton,
- * even if methods of the sources return a new instance at each call,
- * because values provided by these sources are cached and reused
- * instead of recalling sources methods.
+ * resolving those values from the sources added through
+ * {@link #addDependencyResolver(DependencySource)}.
+ * </p>
  *
  * @see InjectValue
- * @see ValueProvider
+ * @see DependencySource
  */
 public class DependencyInjector
 {
 
     private static DependencyInjector instance = null;
 
-    private final List<Object> sources;
-    private final HashMap<Class<?>, Object> injectionCache = new HashMap<>();
+    private final Collection<DependencySource> sources =
+            new PriorityQueue<>(Comparator.comparing(DependencySource::getPriority).reversed());
+
+    private final CacheDependencySource cache = new CacheDependencySource();
 
     private DependencyInjector()
     {
-        this.sources = new LinkedList<>();
+        this.sources.add(cache);
     }
 
     /**
@@ -54,18 +54,14 @@ public class DependencyInjector
     }
 
     /**
-     * Add a source to get dependencies values from.<br>
-     * In order to provide values, the source must have methods
-     * that are annotated with {@link ValueProvider} annotation.
-     * If multiple methods in the same source object provides the same
-     * class, then the first method is used.<br>
+     * Add a source to resolve dependencies from.<br>
      * When trying to resolve a dependency and that a cache-miss happens,
      * the sources are inspected in the same order as they were added to
      * the dependency injection system through this method.
      *
      * @param source an instance of a class providing dependencies values
      */
-    public void addSource(Object source)
+    public void addDependencyResolver(DependencySource source)
     {
         this.sources.add(source);
     }
@@ -84,89 +80,6 @@ public class DependencyInjector
         injectFieldsValues(injectionTarget);
     }
 
-    private Object getValueFromCache(Class<?> valueClass)
-    {
-        return injectionCache.get(valueClass);
-    }
-
-    private Object getValueFromSources(Class<?> valueClass)
-    {
-        Object value = null;
-        Iterator<Object> it = this.sources.listIterator();
-        while (it.hasNext() && value == null)
-        {
-            Object source = it.next();
-            Method providerMethod = getProviderMethodFromSource(valueClass, source);
-
-            if (providerMethod != null)
-            {
-                value = getValueFromSourceMethod(valueClass, source, providerMethod);
-                injectionCache.put(valueClass, value);
-            }
-        }
-
-        if (value == null)
-        {
-            throw new IllegalStateException("Value " + valueClass.getCanonicalName() +
-                    " can't be injected because no injection method exists in source classes.");
-        }
-
-        return value;
-    }
-
-    private Object getValueFromSourceMethod(Class<?> valueClass, Object source, Method providerMethod)
-    {
-        if (providerMethod.getParameterCount() != 0)
-        {
-            throw new IllegalStateException(String.format(
-                    "%s annotated method must have 0 arguments. Can't inject %s.",
-                    ValueProvider.class.getSimpleName(),
-                    valueClass.getCanonicalName()
-            ));
-        }
-
-        try
-        {
-            return providerMethod.invoke(source);
-        }
-        catch (IllegalAccessException | InvocationTargetException e)
-        {
-            throw new IllegalStateException(String.format(
-                    "Can't inject %s class. Unable to call %s annotated method %s of class %s.",
-                    valueClass.getCanonicalName(),
-                    ValueProvider.class.getSimpleName(),
-                    providerMethod.getName(),
-                    source.getClass().getCanonicalName()
-            ), e);
-        }
-    }
-
-    private Method getProviderMethodFromSource(Class<?> valueClass, Object source)
-    {
-        Method providerMethod = null;
-        Method[] classPublicMethods = source.getClass().getMethods();
-        for (int i = 0; i < classPublicMethods.length && providerMethod == null; i++)
-        {
-            Method m = classPublicMethods[i];
-            if (m.isAnnotationPresent(ValueProvider.class) && m.getReturnType().equals(valueClass))
-            {
-                providerMethod = m;
-            }
-        }
-
-        return providerMethod;
-    }
-
-    private Object getValueFromCacheOrSources(Class<?> valueClass)
-    {
-        Object value = getValueFromCache(valueClass);
-        if (value == null)
-        {
-            value = getValueFromSources(valueClass);
-        }
-        return value;
-    }
-
     private void injectFieldsValues(Object injectionTarget)
     {
         for (Field field : injectionTarget.getClass().getDeclaredFields())
@@ -178,7 +91,33 @@ public class DependencyInjector
         }
     }
 
-    private void injectFieldValue(Field field, Object controllerInstance)
+    private Object getValueFromSources(Class<?> dependency)
+    {
+        Iterator<DependencySource> it = this.sources.iterator();
+        Object dependencyInstance = null;
+        DependencySource source = null;
+        while (dependencyInstance == null && it.hasNext())
+        {
+            source = it.next();
+            dependencyInstance = source.resolve(dependency);
+        }
+
+        if (dependencyInstance == null)
+        {
+            throw new IllegalStateException(String.format("Dependency %s can't be resolved.", dependency.getSimpleName()));
+        }
+
+        cache.addToCache(dependency, dependencyInstance);
+
+        if (source.injectRecursively())
+        {
+            inject(dependencyInstance);
+        }
+
+        return dependencyInstance;
+    }
+
+    private void injectFieldValue(Field field, Object instance)
     {
         Class<?> valueClass = field.getType();
 
@@ -188,10 +127,10 @@ public class DependencyInjector
             field.setAccessible(true);
         }
 
-        Object value = getValueFromCacheOrSources(valueClass);
+        Object value = getValueFromSources(valueClass);
         try
         {
-            field.set(controllerInstance, value);
+            field.set(instance, value);
         }
         catch (IllegalAccessException e)
         {
@@ -199,7 +138,7 @@ public class DependencyInjector
                     "Unable to inject value %s in field %s of controller %s",
                     valueClass.getCanonicalName(),
                     field.getName(),
-                    controllerInstance.getClass().getCanonicalName()
+                    instance.getClass().getCanonicalName()
             ), e);
         }
 

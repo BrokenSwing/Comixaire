@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * Indicates that the annotated method provides
  * a value for the dependency injection system when set
- * a source using {@link DependencyInjector#addSource(Object)}.<br>
+ * a source using {@link com.github.brokenswing.comixaire.di.impl.AnnotatedDependencySource}.<br>
  *
  * This value provided by this method will be a candidate for
  * injection in a field annotated by {@link InjectValue} and that

@@ -12,12 +12,9 @@ import java.lang.annotation.Target;
  *
  * Which value will be injected in the field depends on the sources
  * that had been attached to the {@link DependencyInjector} using
- * {@link DependencyInjector#addSource(Object)}. The field
- * type must exactly match the return type of a method annotated
- * with {@link ValueProvider} of one of the sources.<br>
+ * {@link DependencyInjector#addDependencyResolver(DependencySource)}.
  *
  * @see DependencyInjector#inject(Object)
- * @see ValueProvider
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

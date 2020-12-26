@@ -1,5 +1,7 @@
 package com.github.brokenswing.comixaire;
 
+import com.github.brokenswing.comixaire.di.impl.AnnotatedDependencySource;
+import com.github.brokenswing.comixaire.di.impl.ReflectionDependencySource;
 import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
 import com.github.brokenswing.comixaire.facades.auth.PlainTextPasswordAlgorithm;
 import com.github.brokenswing.comixaire.facades.auth.Session;
@@ -29,7 +31,9 @@ public class Comixaire extends Application
 
     public Comixaire()
     {
-        DependencyInjector.getInstance().addSource(this);
+        DependencyInjector.getInstance().addDependencyResolver(new AnnotatedDependencySource(this));
+        DependencyInjector.getInstance().addDependencyResolver(new ReflectionDependencySource());
+
         this.session = new Session();
         this.factory = new PostgresDAOFactory();
         this.viewLoader = new ViewLoader(DependencyInjector.getInstance());
