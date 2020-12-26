@@ -6,8 +6,8 @@ import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.view.ActionCenterView;
-import com.github.brokenswing.comixaire.view.InternalErrorAlert;
-import com.github.brokenswing.comixaire.view.Router;
+import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
+import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 

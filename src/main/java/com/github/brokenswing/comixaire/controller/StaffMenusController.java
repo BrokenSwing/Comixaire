@@ -3,6 +3,7 @@ package com.github.brokenswing.comixaire.controller;
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
 import com.github.brokenswing.comixaire.view.*;
+import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
 
 public class StaffMenusController

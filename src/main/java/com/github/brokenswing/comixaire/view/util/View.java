@@ -1,4 +1,4 @@
-package com.github.brokenswing.comixaire.view;
+package com.github.brokenswing.comixaire.view.util;
 
 /**
  * Represents a FXML file view.

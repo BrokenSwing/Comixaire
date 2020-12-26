@@ -13,8 +13,8 @@ import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.facades.logs.LogsFacade;
 import com.github.brokenswing.comixaire.facades.staff.StaffMemberFacade;
 import com.github.brokenswing.comixaire.view.LoginView;
-import com.github.brokenswing.comixaire.view.Router;
-import com.github.brokenswing.comixaire.view.ViewLoader;
+import com.github.brokenswing.comixaire.view.util.Router;
+import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

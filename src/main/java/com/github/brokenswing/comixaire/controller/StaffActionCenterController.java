@@ -2,7 +2,7 @@ package com.github.brokenswing.comixaire.controller;
 
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.view.NewClientView;
-import com.github.brokenswing.comixaire.view.Router;
+import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
 
 public class StaffActionCenterController

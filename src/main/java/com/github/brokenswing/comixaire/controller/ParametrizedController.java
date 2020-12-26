@@ -1,6 +1,7 @@
 package com.github.brokenswing.comixaire.controller;
 
-import com.github.brokenswing.comixaire.view.ParametrizedView;
+import com.github.brokenswing.comixaire.view.util.ParametrizedView;
+import com.github.brokenswing.comixaire.view.util.ViewLoader;
 
 /**
  * This interface must be implemented by controllers that need
@@ -10,15 +11,15 @@ import com.github.brokenswing.comixaire.view.ParametrizedView;
  *
  * A view displaying a single item wants to receive the id of
  * the item to display. In this case this view must implement
- * {@link com.github.brokenswing.comixaire.view.ParametrizedView}
+ * {@link ParametrizedView}
  * and specify a controller implementing this interface.
  * When the view will be loaded through
- * {@link com.github.brokenswing.comixaire.view.ViewLoader#loadView(ParametrizedView, Object)}
+ * {@link ViewLoader#loadView(ParametrizedView, Object)}
  * the data that you passed to the loader will be passed to the controller that is
  * associated with the view.<br>
  *
  * @see ParametrizedView
- * @see com.github.brokenswing.comixaire.view.ViewLoader
+ * @see ViewLoader
  *
  * @param <T> the type of the data to receive
  */

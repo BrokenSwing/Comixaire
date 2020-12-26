@@ -6,7 +6,7 @@ import com.github.brokenswing.comixaire.facades.logs.LogsFacade;
 import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.Log;
 import com.github.brokenswing.comixaire.view.LogCellView;
-import com.github.brokenswing.comixaire.view.ViewLoader;
+import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;

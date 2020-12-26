@@ -6,7 +6,7 @@ import com.github.brokenswing.comixaire.exception.UsernameAlreadyExistsException
 import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
 import com.github.brokenswing.comixaire.facades.staff.StaffMemberFacade;
 import com.github.brokenswing.comixaire.models.StaffMember;
-import com.github.brokenswing.comixaire.view.InternalErrorAlert;
+import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;

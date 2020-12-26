@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.brokenswing.comixaire.controller.LogsController">
-    <children>
-        <fx:include source="menu.fxml" />
-        <Text layoutX="149.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New item">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
+            prefWidth="1280.0" style="-fx-background-color: #F7F9FF;" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.github.brokenswing.comixaire.controller.LogsController">
+
+    <fx:include source="menu.fxml"/>
+
+    <Text layoutX="149.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New item">
+        <font>
+            <Font name="Quicksand SemiBold" size="36.0"/>
+        </font>
+    </Text>
+
+    <AnchorPane layoutX="333.0" layoutY="243.0" prefHeight="473.0" prefWidth="705.0"
+                style="-fx-background-color: white;">
+
+        <Button layoutX="306.0" layoutY="400.0" mnemonicParsing="false" text="Create item"/>
+        <Text fill="#e11b1b" layoutX="183.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Remplir en fonction du type choisi">
             <font>
-                <Font name="Quicksand SemiBold" size="36.0" />
+                <Font name="Quicksand SemiBold" size="20.0"/>
             </font>
         </Text>
-      <AnchorPane layoutX="333.0" layoutY="243.0" prefHeight="473.0" prefWidth="705.0" style="-fx-background-color: white;">
-         <children>
-            <Button layoutX="306.0" layoutY="400.0" mnemonicParsing="false" text="Create item" />
-            <Text fill="#e11b1b" layoutX="183.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remplir en fonction du type choisi">
-               <font>
-                  <Font name="Quicksand SemiBold" size="20.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-      <ChoiceBox layoutX="373.0" layoutY="134.0" prefWidth="150.0" />
-    </children>
+
+    </AnchorPane>
+
+    <ChoiceBox layoutX="373.0" layoutY="134.0" prefWidth="150.0"/>
+
 </AnchorPane>
