@@ -1,6 +1,6 @@
 package com.github.brokenswing.comixaire.view.util;
 
-import com.github.brokenswing.comixaire.controller.ParametrizedController;
+import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 
 /**
  * Represents a {@link View} that has a controller that needs a data

@@ -1,4 +1,4 @@
-package com.github.brokenswing.comixaire.controller;
+package com.github.brokenswing.comixaire.controller.util;
 
 import com.github.brokenswing.comixaire.view.util.ParametrizedView;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;

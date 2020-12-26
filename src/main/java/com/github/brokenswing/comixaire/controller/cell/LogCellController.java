@@ -1,5 +1,6 @@
-package com.github.brokenswing.comixaire.controller;
+package com.github.brokenswing.comixaire.controller.cell;
 
+import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.models.Log;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

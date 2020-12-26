@@ -1,6 +1,6 @@
 package com.github.brokenswing.comixaire.view.util;
 
-import com.github.brokenswing.comixaire.controller.ParametrizedController;
+import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.ControllerFactoryDI;
 import com.github.brokenswing.comixaire.di.DependencyInjector;
 import javafx.fxml.FXMLLoader;
