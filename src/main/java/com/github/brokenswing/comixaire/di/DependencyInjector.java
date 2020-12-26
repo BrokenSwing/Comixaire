@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.PriorityQueue;
+import java.util.stream.Stream;
 
 /**
  * <p>
@@ -82,13 +83,25 @@ public class DependencyInjector
 
     private void injectFieldsValues(Object injectionTarget)
     {
-        for (Field field : injectionTarget.getClass().getDeclaredFields())
+        getInjectableFields(injectionTarget).forEach(field -> injectFieldValue(field, injectionTarget));
+    }
+
+    private Stream<Field> getInjectableFields(Object injectionTarget)
+    {
+        Stream.Builder<Field> s = Stream.builder();
+        Class<?> currentClass = injectionTarget.getClass();
+        while (!currentClass.equals(Object.class))
         {
-            if (mustFieldBeInjected(field))
+            for (Field f : currentClass.getDeclaredFields())
             {
-                injectFieldValue(field, injectionTarget);
+                if (mustFieldBeInjected(f))
+                {
+                    s.add(f);
+                }
             }
+            currentClass = currentClass.getSuperclass();
         }
+        return s.build();
     }
 
     private Object getValueFromSources(Class<?> dependency)

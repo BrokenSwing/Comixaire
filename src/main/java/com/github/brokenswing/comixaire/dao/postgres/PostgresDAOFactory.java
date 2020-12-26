@@ -35,8 +35,7 @@ public class PostgresDAOFactory extends DAOFactory
 
     @Override
     public LibraryItemDAO getLibraryItemDAO() {
-        //TODO return Postgres LibraryItemDAO
-        return null;
+        return new PostgresLibraryItemDAO(this.postgresConnection.getConnection());
     }
 
 }

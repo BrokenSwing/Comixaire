@@ -94,7 +94,7 @@ public abstract class LibraryItem
 
     public Integer[] getBookings()
     {
-        return (Integer[]) bookings.toArray();
+        return bookings.toArray(new Integer[0]);
     }
 
     public boolean addBooking(Client client)
@@ -109,7 +109,7 @@ public abstract class LibraryItem
 
     public String[] getCategories()
     {
-        return (String[]) categories.toArray();
+        return categories.toArray(new String[0]);
     }
 
     public boolean removeCategory(String category)

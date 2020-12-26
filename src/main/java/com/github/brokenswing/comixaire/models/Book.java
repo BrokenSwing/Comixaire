@@ -2,12 +2,21 @@ package com.github.brokenswing.comixaire.models;
 
 import java.util.Date;
 
+// TODO: Use a builder ? Please.
 public class Book extends LibraryItem
 {
     private String author;
     private String isbn;
     private String publisher;
     private int pagesCount;
+
+    public Book(int itemId, Book toCopy)
+    {
+        this(itemId, toCopy.getTitle(), toCopy.getCondition(), toCopy.getLocation(),
+                toCopy.getCreatedOn(), toCopy.getReleasedOn(), toCopy.getBookings(),
+                toCopy.getCategories(), toCopy.isAvailable(), toCopy.getAuthor(),
+                toCopy.getISBN(), toCopy.getPublisher(), toCopy.getPagesCount());
+    }
 
     public Book(String title, ConditionType condition, String location, Date createdOn, Date releasedOn, Integer[] bookings, String[] categories, boolean available, String author, String isbn, String publisher, int pagesCount)
     {
