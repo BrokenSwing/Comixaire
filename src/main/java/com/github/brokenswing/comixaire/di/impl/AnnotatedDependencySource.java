@@ -11,11 +11,13 @@ import java.lang.reflect.Method;
  *      Resolves dependencies by scanning object methods.
  *      For a method to be eligible to be picked up, it must
  *      be compliant with the following conditions:
+ * </p>
  *      <ul>
  *          <li>Be args-less</li>
  *          <li>Be annotated with the {@link ValueProvider} annotation</li>
  *          <li>Return the same type as the dependency to resolve</li>
  *      </ul>
+ * <p>
  *      The first method that matches these requirements is called to retrieve the dependency value.
  * </p>
  *
