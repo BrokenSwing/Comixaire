@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.InputEvent;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,6 +35,9 @@ public class AccountDetailsController implements Initializable
 
     @FXML
     private Button changeUsernameButton;
+
+    @FXML
+    private Text accountTypeText;
 
     @InjectValue
     private StaffMemberFacade staffMemberFacade;
@@ -147,6 +151,8 @@ public class AccountDetailsController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         this.usernameField.setText(this.authFacade.getLoggedInStaff().getUsername());
+        this.accountTypeText.setText(this.authFacade.getLoggedInStaff().getRole());
+
         this.usernameField.addEventHandler(InputEvent.ANY,
                 e -> this.changeUsernameButton.setDisable(this.usernameField.getText().trim().isEmpty()));
         this.changePasswordButton.setDisable(true);

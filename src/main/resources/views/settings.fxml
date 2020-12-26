@@ -37,7 +37,7 @@
                   <Font name="Quicksand SemiBold" size="13.0" />
                </font>
             </Text>
-            <Text fill="#5282fc" layoutX="171.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee">
+            <Text fx:id="accountTypeText" fill="#5282fc" layoutX="171.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee">
                <font>
                   <Font name="Quicksand SemiBold" size="13.0" />
                </font>
