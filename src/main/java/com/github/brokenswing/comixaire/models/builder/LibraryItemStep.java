@@ -25,4 +25,7 @@ public interface LibraryItemStep
     LibraryItemStep bookings(Integer[] bookings);
 
     BookStep book();
+
+    DVDStep dvd();
+
 }

@@ -23,4 +23,6 @@ public interface LibraryItemDAO
 
     String[] getCategories() throws InternalException;
 
+    String[] getCastings() throws InternalException;
+
 }

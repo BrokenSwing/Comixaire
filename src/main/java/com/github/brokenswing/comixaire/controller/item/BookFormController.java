@@ -32,7 +32,7 @@ public class BookFormController extends LibraryItemFormController<Book> implemen
     }
 
     @Override
-    protected LibraryItem getItemFormFields()
+    protected LibraryItem getItemFromFields()
     {
         LibraryItemStep builder = editedItem == null ? LibraryItemBuilder.create() : LibraryItemBuilder.from(editedItem);
         super.populateBuilder(builder);

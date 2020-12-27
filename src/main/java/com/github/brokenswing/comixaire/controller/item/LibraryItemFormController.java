@@ -49,7 +49,7 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
     protected CheckComboBox<String> categories;
     protected T editedItem;
     @InjectValue
-    private LibraryItemFacade libraryItemFacade;
+    protected LibraryItemFacade libraryItemFacade;
 
     public LibraryItemFormController(Class<T> genericClass)
     {
@@ -74,7 +74,7 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
 
     public void create()
     {
-        LibraryItem item = getItemFormFields();
+        LibraryItem item = getItemFromFields();
         try
         {
             this.libraryItemFacade.create(item);
@@ -92,7 +92,7 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
 
     public void update()
     {
-        LibraryItem item = getItemFormFields();
+        LibraryItem item = getItemFromFields();
         try
         {
             this.libraryItemFacade.update(item);
@@ -109,7 +109,7 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
      *
      * @return the item from the form's fields
      */
-    protected abstract LibraryItem getItemFormFields();
+    protected abstract LibraryItem getItemFromFields();
 
     /**
      * Registers form constraints.
@@ -159,7 +159,6 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
 
         this.condition.setItems(FXCollections.observableArrayList(ConditionType.values()));
         this.condition.setValue(ConditionType.NEW);
-        this.categories.setShowCheckedCount(true);
         try
         {
             this.categories.getItems().addAll(Arrays.asList(this.libraryItemFacade.getKnownCategories()));

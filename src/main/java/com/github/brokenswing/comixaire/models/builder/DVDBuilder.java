@@ -1,45 +1,62 @@
 package com.github.brokenswing.comixaire.models.builder;
 
-import com.github.brokenswing.comixaire.models.Book;
 import com.github.brokenswing.comixaire.models.ConditionType;
+import com.github.brokenswing.comixaire.models.DVD;
 
 import java.util.Date;
 import java.util.Objects;
 
-class BookBuilder implements BookStep, LibraryItemStep
+class DVDBuilder implements LibraryItemStep, DVDStep
 {
 
     private final LibraryItemBuilder builder;
 
-    private String author;
-    private String publisher;
-    private String isbn;
-    private Integer pagesCount;
+    private String producer;
+    private Integer duration;
+    private String[] casting;
 
-    BookBuilder(LibraryItemBuilder builder, Book book)
+    DVDBuilder(LibraryItemBuilder builder, DVD dvd)
     {
         this(builder);
-        this.author = book.getAuthor();
-        this.publisher = book.getPublisher();
-        this.isbn = book.getISBN();
-        this.pagesCount = book.getPagesCount();
+        this.producer = dvd.getProducer();
+        this.duration = dvd.getDuration();
+        this.casting = dvd.getCasting();
     }
 
-    BookBuilder(LibraryItemBuilder builder)
+    DVDBuilder(LibraryItemBuilder builder)
     {
         this.builder = builder;
     }
 
     @Override
-    public Book build()
+    public DVDStep producer(String producer)
+    {
+        this.producer = producer;
+        return this;
+    }
+
+    @Override
+    public DVDStep casting(String[] casting)
+    {
+        this.casting = casting;
+        return this;
+    }
+
+    @Override
+    public DVDStep duration(int seconds)
+    {
+        this.duration = seconds;
+        return this;
+    }
+
+    @Override
+    public DVD build()
     {
         builder.validate();
-        Objects.requireNonNull(author);
-        Objects.requireNonNull(publisher);
-        Objects.requireNonNull(isbn);
-        Objects.requireNonNull(pagesCount);
-
-        return new Book(
+        Objects.requireNonNull(producer);
+        Objects.requireNonNull(duration);
+        Objects.requireNonNull(casting);
+        return new DVD(
                 builder.itemId,
                 builder.title,
                 builder.condition,
@@ -49,51 +66,22 @@ class BookBuilder implements BookStep, LibraryItemStep
                 builder.bookings,
                 builder.categories,
                 builder.available,
-                author,
-                isbn,
-                publisher,
-                pagesCount
+                duration,
+                producer,
+                casting
         );
-    }
-
-    @Override
-    public BookStep author(String author)
-    {
-        this.author = author;
-        return this;
-    }
-
-    @Override
-    public BookStep publisher(String publisher)
-    {
-        this.publisher = publisher;
-        return this;
-    }
-
-    @Override
-    public BookStep isbn(String isbn)
-    {
-        this.isbn = isbn;
-        return this;
-    }
-
-    @Override
-    public BookStep pagesCount(int count)
-    {
-        this.pagesCount = count;
-        return this;
     }
 
     @Override
     public BookStep book()
     {
-        return this;
+        return builder.book();
     }
 
     @Override
     public DVDStep dvd()
     {
-        return builder.dvd();
+        return this;
     }
 
     /////////////////////////////////

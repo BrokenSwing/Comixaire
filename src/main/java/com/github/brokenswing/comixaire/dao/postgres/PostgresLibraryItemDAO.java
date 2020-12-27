@@ -7,11 +7,9 @@ import com.github.brokenswing.comixaire.models.*;
 import com.github.brokenswing.comixaire.models.builder.LibraryItemBuilder;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Stream;
 
 public class PostgresLibraryItemDAO implements LibraryItemDAO
 {
@@ -36,8 +34,7 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
         }
         else if (libraryItem instanceof DVD)
         {
-            //TODO: create DVD with the libraryItem id
-            return null;
+            return insertDVD((DVD) libraryItem);
         }
         else if (libraryItem instanceof Game)
         {
@@ -47,6 +44,46 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
         else
         {
             throw new InternalException("Unknown type of library item");
+        }
+    }
+
+    private DVD insertDVD(DVD dvd) throws InternalException
+    {
+        disableAutoCommit();
+
+        try
+        {
+            int itemId = insertLibraryItem(dvd);
+            PreparedStatement stmt = connection.prepareStatement("INSERT INTO dvd (item_id, dvd_duration, dvd_producer, dvd_casting) " +
+                    "VALUES (?, ?, ?, ?)");
+            stmt.setInt(1, itemId);
+            stmt.setInt(2, dvd.getDuration());
+            stmt.setString(3, dvd.getProducer());
+            stmt.setArray(4, connection.createArrayOf("varchar", dvd.getCasting()));
+
+            stmt.executeUpdate();
+            connection.commit();
+            return LibraryItemBuilder.from(dvd)
+                    .id(itemId)
+                    .dvd()
+                    .build();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            try
+            {
+                connection.rollback();
+            }
+            catch (SQLException sadException)
+            {
+                e.printStackTrace();
+            }
+            throw new InternalException("Unable to insert DVD.", e);
+        }
+        finally
+        {
+            enableAutoCommit();
         }
     }
 
@@ -205,4 +242,26 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
             throw new InternalException("Unable to retrieve categories", e);
         }
     }
+
+    @Override
+    public String[] getCastings() throws InternalException
+    {
+        try
+        {
+            PreparedStatement stmt = connection.prepareStatement("SELECT dvd_casting FROM dvd");
+            ResultSet result = stmt.executeQuery();
+            Set<String> castings = new HashSet<>();
+            while (result.next())
+            {
+                String[] lineCastings = (String[]) result.getArray("dvd_casting").getArray();
+                castings.addAll(Arrays.asList(lineCastings));
+            }
+            return castings.toArray(new String[0]);
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to retrieve categories", e);
+        }
+    }
+
 }
