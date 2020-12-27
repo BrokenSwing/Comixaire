@@ -3,11 +3,18 @@ package com.github.brokenswing.comixaire.utils;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.binding.BooleanExpression;
+import javafx.beans.binding.StringBinding;
 import javafx.beans.value.ObservableStringValue;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.function.BiFunction;
+import java.util.function.Predicate;
+
+import static com.github.brokenswing.comixaire.utils.BindingsHelper.trimmed;
 
 public class FormValidationBuilder
 {
@@ -22,12 +29,26 @@ public class FormValidationBuilder
 
     public FormValidationBuilder notEmpty(ObservableStringValue obs)
     {
-        return add(Bindings.isNotEmpty(obs));
+        return add(Bindings.isNotEmpty(trimmed(obs)));
     }
 
     public <T> FormValidationBuilder notNull(ObservableValue<T> obs)
     {
         return add(Bindings.createBooleanBinding(() -> obs.getValue() != null, obs));
+    }
+
+    public <T> FormValidationBuilder notIn(ObservableValue<T> obs, ObservableList<T> list)
+    {
+        return add(Bindings.createBooleanBinding(() -> !list.contains(obs.getValue()), obs, list));
+    }
+
+    public <T> FormValidationBuilder notIn(ObservableValue<T> obs, ObservableList<T> list, BiFunction<T, T, Boolean> matcher)
+    {
+        Predicate<T> predicate = (v) -> matcher.apply(obs.getValue(), v);
+        return add(Bindings.createBooleanBinding(
+                () -> list.stream().noneMatch(predicate),
+                obs, list
+        ));
     }
 
     public BooleanBinding build()

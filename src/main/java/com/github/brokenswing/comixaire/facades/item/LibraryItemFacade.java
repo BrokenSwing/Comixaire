@@ -23,4 +23,9 @@ public class LibraryItemFacade extends Facade
         this.factory.getLibraryItemDAO().update(item);
     }
 
+    public String[] getKnownCategories() throws InternalException
+    {
+        return this.factory.getLibraryItemDAO().getCategories();
+    }
+
 }

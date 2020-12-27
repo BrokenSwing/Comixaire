@@ -20,4 +20,7 @@ public interface LibraryItemDAO
     void addBooking(LibraryItem libraryItem, Client client);
 
     void delete(LibraryItem libraryItem) throws InternalException;
+
+    String[] getCategories() throws InternalException;
+
 }

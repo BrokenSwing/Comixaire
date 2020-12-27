@@ -23,4 +23,9 @@ public enum ConditionType
         return this.label;
     }
 
+    @Override
+    public String toString()
+    {
+        return this.label;
+    }
 }

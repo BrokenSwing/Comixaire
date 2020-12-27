@@ -4,8 +4,14 @@ import com.github.brokenswing.comixaire.dao.LibraryItemDAO;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoLibraryItemFoundException;
 import com.github.brokenswing.comixaire.models.*;
+import com.github.brokenswing.comixaire.models.builder.LibraryItemBuilder;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Stream;
 
 public class PostgresLibraryItemDAO implements LibraryItemDAO
 {
@@ -64,7 +70,10 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
 
             connection.commit();
 
-            return new Book(itemId, book);
+            return LibraryItemBuilder.from(book)
+                    .id(itemId)
+                    .book()
+                    .build();
         }
         catch (SQLException e)
         {
@@ -118,7 +127,7 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
         stmt.setDate(5, new Date(item.getReleasedOn().getTime()));
         stmt.setArray(6, connection.createArrayOf("integer", item.getBookings()));
         stmt.setBoolean(7, item.isAvailable());
-        stmt.setArray(8, connection.createArrayOf("varchar", item.getBookings()));
+        stmt.setArray(8, connection.createArrayOf("varchar", item.getCategories()));
 
         ResultSet result = stmt.executeQuery();
         result.next();
@@ -174,5 +183,26 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
     public void delete(LibraryItem libraryItem) throws InternalException
     {
         //TODO: implement
+    }
+
+    @Override
+    public String[] getCategories() throws InternalException
+    {
+        try
+        {
+            PreparedStatement stmt = connection.prepareStatement("SELECT item_categories FROM libraryitems");
+            ResultSet result = stmt.executeQuery();
+            Set<String> categories = new HashSet<>();
+            while (result.next())
+            {
+                String[] lineCategories = (String[]) result.getArray("item_categories").getArray();
+                categories.addAll(Arrays.asList(lineCategories));
+            }
+            return categories.toArray(new String[0]);
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to retrieve categories", e);
+        }
     }
 }
