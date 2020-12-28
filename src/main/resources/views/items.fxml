@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.collections.FXCollections?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.brokenswing.comixaire.controller.ItemsController">
     <children>
         <fx:include source="menu.fxml" />
         <Text layoutX="149.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items">
@@ -14,7 +14,7 @@
                 <Font name="Quicksand SemiBold" size="36.0" />
             </font>
         </Text>
-        <ListView layoutX="149.0" layoutY="310.0" prefHeight="456.0" prefWidth="1098.0" />
+        <ListView layoutX="149.0" layoutY="310.0" prefHeight="456.0" prefWidth="1098.0" fx:id="itemsList"/>
         <AnchorPane layoutX="276.0" layoutY="191.0" prefHeight="96.0" prefWidth="817.0" style="-fx-background-color: white;" stylesheets="@../stylesheets/authentication.css">
             <children>
                 <TextField layoutX="271.0" layoutY="37.0" promptText="Name / Id" />

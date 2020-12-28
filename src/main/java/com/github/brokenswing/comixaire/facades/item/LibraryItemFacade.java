@@ -40,4 +40,9 @@ public class LibraryItemFacade extends Facade
         return this.factory.getLibraryItemDAO().getCastings();
     }
 
+    public LibraryItem[] findAll() throws InternalException
+    {
+        return this.factory.getLibraryItemDAO().findAll();
+    }
+
 }
