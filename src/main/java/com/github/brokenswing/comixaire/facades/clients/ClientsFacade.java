@@ -44,4 +44,24 @@ public class ClientsFacade extends Facade
     {
         return this.factory.getClientDAO().findAll();
     }
+
+    public int countLoans(Client client) throws InternalException
+    {
+        return this.factory.getClientDAO().countLoans(client);
+    }
+
+    public int countFines(Client client) throws InternalException
+    {
+        return this.factory.getClientDAO().countFines(client);
+    }
+
+    public int countVotes(Client client) throws InternalException
+    {
+        return this.factory.getClientDAO().countVotes(client);
+    }
+
+    public int countCurrentLoans(Client client) throws InternalException
+    {
+        return this.factory.getClientDAO().countCurrentLoans(client);
+    }
 }

@@ -37,4 +37,12 @@ public interface ClientDAO
 
     void delete(Client client) throws InternalException;
 
+    int countLoans(Client client) throws InternalException;
+
+    int countFines(Client client) throws InternalException;
+
+    int countVotes(Client client) throws InternalException;
+
+    int countCurrentLoans(Client client) throws InternalException;
+
 }

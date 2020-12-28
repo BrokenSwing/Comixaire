@@ -247,13 +247,81 @@ public class PostgresClientDAO implements ClientDAO
     {
         try
         {
-            PreparedStatement prepare = this.connection.prepareStatement("DELETE FROM clients WHERE client_id = (?)");
+            PreparedStatement prepare = this.connection.prepareStatement("DELETE FROM clients WHERE client_id = ?");
             prepare.setInt(1, client.getIdClient());
             prepare.executeUpdate();
         }
         catch (SQLException e)
         {
             throw new InternalException("Unable to delete client named " + client.getFirstname() + " " + client.getLastname(), e);
+        }
+    }
+
+    @Override
+    public int countLoans(Client client) throws InternalException
+    {
+        try
+        {
+            PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM loans WHERE client_id = ?");
+            prepare.setInt(1, client.getIdClient());
+            ResultSet result = prepare.executeQuery();
+            result.next();
+            return result.getInt(1);
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to count loans for client: " + client.getFullname(), e);
+        }
+    }
+
+    @Override
+    public int countCurrentLoans(Client client) throws InternalException
+    {
+        try
+        {
+            PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM loans WHERE loan_to >= NOW() AND client_id = ?");
+            prepare.setInt(1, client.getIdClient());
+            ResultSet result = prepare.executeQuery();
+            result.next();
+            return result.getInt(1);
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to count loans for client: " + client.getFullname(), e);
+        }
+    }
+
+    @Override
+    public int countFines(Client client) throws InternalException
+    {
+        try
+        {
+            PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM fine JOIN loans ON fine.return_id = loans.loan_id WHERE loans.client_id = ?");
+            prepare.setInt(1, client.getIdClient());
+            ResultSet result = prepare.executeQuery();
+            result.next();
+            return result.getInt(1);
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to count fines for client: " + client.getFullname(), e);
+        }
+    }
+
+    @Override
+    public int countVotes(Client client) throws InternalException
+    {
+        try
+        {
+            PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM rating WHERE client_id = ?");
+            prepare.setInt(1, client.getIdClient());
+            ResultSet result = prepare.executeQuery();
+            result.next();
+            return result.getInt(1);
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to count votes for client: " + client.getFullname(), e);
         }
     }
 

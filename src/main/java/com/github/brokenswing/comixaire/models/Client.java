@@ -61,6 +61,8 @@ public class Client
         this.lastname = lastname;
     }
 
+    public String getFullname() { return firstname + " " + lastname; }
+
     public String getGender()
     {
         return gender;
