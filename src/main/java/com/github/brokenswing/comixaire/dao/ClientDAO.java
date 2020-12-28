@@ -31,6 +31,8 @@ public interface ClientDAO
 
     Client[] findByLastname(String lastname) throws InternalException, NoClientFoundException;
 
+    Client[] findAll() throws InternalException, NoClientFoundException;
+
     void update(Client client) throws InternalException, CardIdAlreadyExist;
 
     void delete(Client client) throws InternalException;

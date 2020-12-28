@@ -24,7 +24,7 @@ public class Client
         this(-1, firstname, lastname, cardId, gender, address, birthdate, subscriptionId);
     }
 
-    public Client(int idClient, String firstname, String cardId, String lastname, String gender, String address, Date birthdate, int subscriptionId)
+    public Client(int idClient, String firstname, String lastname, String cardId, String gender, String address, Date birthdate, int subscriptionId)
     {
         this.idClient = idClient;
         this.firstname = firstname;
@@ -91,4 +91,8 @@ public class Client
     public int getSubscriptionId() { return subscriptionId; }
 
     public void setSubscriptionId(int id) { subscriptionId = id; }
+
+    public String toString(){
+        return getFirstname() + " " + getLastname() + ", born the " + getBirthdate() + " is " + getGender() + " lives " + getAddress() + " and has cardId: " + getCardId();
+    }
 }

@@ -39,4 +39,9 @@ public class ClientsFacade extends Facade
     {
         return this.factory.getClientDAO().findByName(firstname, lastname);
     }
+
+    public Client[] findAll() throws InternalException, NoClientFoundException
+    {
+        return this.factory.getClientDAO().findAll();
+    }
 }

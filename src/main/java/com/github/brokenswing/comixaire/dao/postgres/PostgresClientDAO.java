@@ -5,6 +5,7 @@ import com.github.brokenswing.comixaire.exception.CardIdAlreadyExist;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.models.Client;
+import com.github.brokenswing.comixaire.models.LibraryItem;
 import org.postgresql.util.PSQLException;
 
 import java.sql.*;
@@ -85,7 +86,7 @@ public class PostgresClientDAO implements ClientDAO
     {
         try
         {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM clients WHERE client_cardID = (?)");
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM clients WHERE client_cardID = ?");
             stmt.setString(1, cardID);
             ResultSet result = stmt.executeQuery();
             if (result.next())
@@ -176,6 +177,31 @@ public class PostgresClientDAO implements ClientDAO
         catch (SQLException e)
         {
             throw new InternalException("Unable to find client named: " + lastname, e);
+        }
+    }
+
+    @Override
+    public Client[] findAll() throws InternalException, NoClientFoundException
+    {
+        try
+        {
+            ResultSet result = connection.prepareStatement("SELECT * FROM clients").executeQuery();
+
+            ArrayList<Client> clients = new ArrayList<>();
+
+            while(result.next()){
+                Client client = clientFromRow(result);
+                clients.add(client);
+                System.out.println(client);
+            }
+            if(clients.isEmpty()){
+                throw new NoClientFoundException("No clients found");
+            }
+            return clients.toArray(new Client[0]);
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to find any client", e);
         }
     }
 

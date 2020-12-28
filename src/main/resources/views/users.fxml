@@ -24,6 +24,12 @@
                 <Text layoutX="217.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or"/>
             </children>
         </AnchorPane>
-        <ListView layoutX="149.0" layoutY="310.0" prefHeight="456.0" prefWidth="1098.0" fx:id="clientsList"/>
+        <ListView layoutX="149.0" layoutY="310.0" prefHeight="456.0" prefWidth="1098.0" fx:id="clientsList">
+            <placeholder>
+                <Text>
+                    No Client found
+                </Text>
+            </placeholder>
+        </ListView>
     </children>
 </AnchorPane>

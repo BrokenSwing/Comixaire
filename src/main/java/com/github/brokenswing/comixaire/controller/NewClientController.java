@@ -5,18 +5,24 @@ import com.github.brokenswing.comixaire.exception.CardIdAlreadyExist;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.models.Client;
+import com.github.brokenswing.comixaire.utils.FormValidationBuilder;
 import com.github.brokenswing.comixaire.view.ActionCenterView;
 import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
 import com.github.brokenswing.comixaire.view.util.Router;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.ResourceBundle;
 
-public class NewClientController
+public class NewClientController implements Initializable
 {
 
     @FXML
@@ -66,7 +72,6 @@ public class NewClientController
         LocalDate localDate = newUserBirthdateField.getValue();
 
         if(localDate != null && !firstname.equals("") && !lastname.equals("") && !idCard.equals("") && !address.equals("") && (gender.equals("Homme") || gender.equals("Femme"))){
-            newUserButton.setDisable(true);
 
             Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
             Date birthdate = Date.from(instant);
@@ -84,10 +89,6 @@ public class NewClientController
             catch (InternalException e)
             {
                 displayInternalErrorAlert(e);
-            }
-            finally
-            {
-                newUserButton.setDisable(false);
             }
         }
     }
@@ -118,5 +119,22 @@ public class NewClientController
     protected void displayActionCenter()
     {
         router.navigateTo(new ActionCenterView());
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        BooleanBinding isValid = new FormValidationBuilder()
+                .notEmpty(newUserFirstnameField.textProperty())
+                .notEmpty(newUserLastnameField.textProperty())
+                .notEmpty(newUserCardIdField.textProperty())
+                .notEmpty(newUserAddressField.textProperty())
+                .add(Bindings.createBooleanBinding(
+                        ()-> newUserBirthdateField.getValue() != null && newUserBirthdateField.getValue().isBefore(LocalDate.now()),
+                        newUserBirthdateField.valueProperty()
+                ))
+                .notNull(newUserGenderField.valueProperty())
+                .build();
+        newUserButton.disableProperty().bind(isValid.not());
     }
 }
