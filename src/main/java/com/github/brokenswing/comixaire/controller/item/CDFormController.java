@@ -32,7 +32,7 @@ public class CDFormController extends LibraryItemFormController<CD>
 
         if (editedItem != null)
         {
-            this.artist.setText(editedItem.getArtist());
+            this.artist.setText(editedItem.getArtist().trim());
             this.duration.setValue(editedItem.getDuration());
         }
     }
@@ -42,7 +42,7 @@ public class CDFormController extends LibraryItemFormController<CD>
     {
         super.buildFormValidation(builder);
         builder.notEmpty(artist.textProperty())
-                .notNull(duration.valueProperty());
+                .notEmpty(duration.textProperty());
     }
 
     @Override

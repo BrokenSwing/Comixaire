@@ -89,7 +89,7 @@ CREATE TABLE games(
     game_minPlayers INT NOT NULL,
     game_maxPlayers INT NOT NULL,
     game_minAge INT NOT NULL,
-    game_contentInventory VARCHAR(255) NOT NULL,
+    game_contentInventory TEXT NOT NULL,
     PRIMARY KEY(item_id),
     CONSTRAINT fk_libraryItemGame
         FOREIGN KEY(item_id)

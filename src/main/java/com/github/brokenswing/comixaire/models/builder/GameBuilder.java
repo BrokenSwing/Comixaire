@@ -1,62 +1,82 @@
 package com.github.brokenswing.comixaire.models.builder;
 
 import com.github.brokenswing.comixaire.models.ConditionType;
-import com.github.brokenswing.comixaire.models.DVD;
+import com.github.brokenswing.comixaire.models.Game;
 
 import java.util.Date;
 import java.util.Objects;
 
-class DVDBuilder implements LibraryItemStep, DVDStep
+class GameBuilder implements GameStep, LibraryItemStep
 {
 
     private final LibraryItemBuilder builder;
 
-    private String producer;
-    private Integer duration;
-    private String[] casting;
+    private String publisher;
+    private String inventory;
+    private Integer minPlayers;
+    private Integer maxPlayers;
+    private Integer minAge;
 
-    DVDBuilder(LibraryItemBuilder builder, DVD dvd)
+    GameBuilder(LibraryItemBuilder builder, Game game)
     {
         this(builder);
-        this.producer = dvd.getProducer();
-        this.duration = dvd.getDuration();
-        this.casting = dvd.getCasting();
+        this.publisher = game.getPublisher();
+        this.inventory = game.getContentInventory();
+        this.minPlayers = game.getMinPlayers();
+        this.maxPlayers = game.getMaxPlayers();
+        this.minAge = game.getMinAge();
     }
 
-    DVDBuilder(LibraryItemBuilder builder)
+    GameBuilder(LibraryItemBuilder builder)
     {
         this.builder = builder;
     }
 
     @Override
-    public DVDStep producer(String producer)
+    public GameStep publisher(String publisher)
     {
-        this.producer = producer;
+        this.publisher = publisher;
         return this;
     }
 
     @Override
-    public DVDStep casting(String[] casting)
+    public GameStep minPlayers(int min)
     {
-        this.casting = casting;
+        this.minPlayers = min;
         return this;
     }
 
     @Override
-    public DVDStep duration(int seconds)
+    public GameStep maxPlayers(int max)
     {
-        this.duration = seconds;
+        this.maxPlayers = max;
         return this;
     }
 
     @Override
-    public DVD build()
+    public GameStep inventory(String inventory)
+    {
+        this.inventory = inventory;
+        return this;
+    }
+
+    @Override
+    public GameStep minAge(int min)
+    {
+        this.minAge = min;
+        return this;
+    }
+
+    @Override
+    public Game build()
     {
         builder.validate();
-        Objects.requireNonNull(producer);
-        Objects.requireNonNull(duration);
-        Objects.requireNonNull(casting);
-        return new DVD(
+        Objects.requireNonNull(publisher);
+        Objects.requireNonNull(minPlayers);
+        Objects.requireNonNull(maxPlayers);
+        Objects.requireNonNull(minAge);
+        Objects.requireNonNull(inventory);
+        return new Game(
                 builder.itemId,
                 builder.title,
                 builder.condition,
@@ -66,9 +86,11 @@ class DVDBuilder implements LibraryItemStep, DVDStep
                 builder.bookings,
                 builder.categories,
                 builder.available,
-                duration,
-                producer,
-                casting
+                publisher,
+                minPlayers,
+                maxPlayers,
+                minAge,
+                inventory
         );
     }
 
@@ -81,7 +103,7 @@ class DVDBuilder implements LibraryItemStep, DVDStep
     @Override
     public DVDStep dvd()
     {
-        return this;
+        return builder.dvd();
     }
 
     @Override
@@ -93,7 +115,7 @@ class DVDBuilder implements LibraryItemStep, DVDStep
     @Override
     public GameStep game()
     {
-        return builder.game();
+        return this;
     }
 
     /////////////////////////////////

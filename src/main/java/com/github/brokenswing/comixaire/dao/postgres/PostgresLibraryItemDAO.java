@@ -37,12 +37,54 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
         }
         else if (libraryItem instanceof Game)
         {
-            //TODO: create game with the libraryItem id
-            return null;
+            return insertGame((Game) libraryItem);
         }
         else
         {
             throw new InternalException("Unknown type of library item");
+        }
+    }
+
+    private Game insertGame(Game game) throws InternalException
+    {
+        disableAutoCommit();
+
+        try
+        {
+            int itemId = insertLibraryItem(game);
+            PreparedStatement stmt = connection.prepareStatement("INSERT INTO games " +
+                    "(item_id, game_publisher, game_minplayers, game_maxplayers, game_minage, game_contentinventory) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)");
+            stmt.setInt(1, itemId);
+            stmt.setString(2, game.getPublisher());
+            stmt.setInt(3, game.getMinPlayers());
+            stmt.setInt(4, game.getMaxPlayers());
+            stmt.setInt(5, game.getMinAge());
+            stmt.setString(6, game.getContentInventory());
+
+            stmt.executeUpdate();
+            connection.commit();
+            return LibraryItemBuilder.from(game)
+                    .id(itemId)
+                    .game()
+                    .build();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            try
+            {
+                connection.rollback();
+            }
+            catch (SQLException sadException)
+            {
+                e.printStackTrace();
+            }
+            throw new InternalException("Unable to insert DVD.", e);
+        }
+        finally
+        {
+            enableAutoCommit();
         }
     }
 

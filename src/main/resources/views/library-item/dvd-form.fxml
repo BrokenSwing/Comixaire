@@ -56,7 +56,7 @@
             <CheckComboBox fx:id="casting" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="180.0" title="Casting" showCheckedCount="true"/>
             <Button onAction="#addCasting" mnemonicParsing="false" text="+" GridPane.columnIndex="1"/>
         </GridPane>
-        <IntField fx:id="duration" maxWidth="220.0" promptText="Duration" GridPane.columnIndex="1" GridPane.rowIndex="3" minValue="1" value="5400" />
+        <IntField fx:id="duration" maxWidth="220.0" promptText="Duration" GridPane.columnIndex="1" GridPane.rowIndex="3" minValue="1" />
     </GridPane>
 
     <!-- Buttons -->

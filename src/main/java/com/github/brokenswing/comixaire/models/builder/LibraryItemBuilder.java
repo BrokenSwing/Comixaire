@@ -61,6 +61,12 @@ public class LibraryItemBuilder implements LibraryItemStep
         return new CDBuilder(builder, cd);
     }
 
+    public static LibraryItemStep from(Game game)
+    {
+        LibraryItemBuilder builder = new LibraryItemBuilder(game);
+        return new GameBuilder(builder, game);
+    }
+
     @Override
     public LibraryItemStep id(int itemId)
     {
@@ -158,5 +164,10 @@ public class LibraryItemBuilder implements LibraryItemStep
         return new CDBuilder(this);
     }
 
+    @Override
+    public GameStep game()
+    {
+        return new GameBuilder(this);
+    }
 
 }

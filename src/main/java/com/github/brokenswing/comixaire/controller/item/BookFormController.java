@@ -51,7 +51,7 @@ public class BookFormController extends LibraryItemFormController<Book> implemen
         builder.notEmpty(author.textProperty())
                 .notEmpty(isbn.textProperty())
                 .notEmpty(publisher.textProperty())
-                .notNull(pagesCount.valueProperty());
+                .notEmpty(pagesCount.textProperty());
     }
 
     @Override

@@ -1,6 +1,9 @@
 package com.github.brokenswing.comixaire.javafx;
 
+import javafx.beans.binding.IntegerBinding;
+import javafx.beans.binding.StringBinding;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ReadOnlyIntegerWrapper;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.WeakChangeListener;
 import javafx.scene.control.TextField;
@@ -14,50 +17,29 @@ import java.util.Objects;
 public class IntField extends TextField
 {
 
-    private final IntegerProperty value = new SimpleIntegerProperty(this, "value");
+    private final IntegerProperty value = new ReadOnlyIntegerWrapper(this, "value");
     private final IntegerProperty minValue = new SimpleIntegerProperty(this, "min", Integer.MIN_VALUE);
     private final IntegerProperty maxValue = new SimpleIntegerProperty(this, "max", Integer.MAX_VALUE);
 
     public IntField()
     {
-        textProperty().bindBidirectional(valueProperty(), new StringConverter<Number>()
+        value.bind(new IntegerBinding()
         {
-            @Override
-            public String toString(Number object)
             {
-                return object == null ? "" : object.intValue() + "";
+                bind(textProperty());
             }
 
             @Override
-            public Number fromString(String string)
+            protected int computeValue()
             {
                 try
                 {
-                    return Integer.parseInt(string);
+                    return Integer.parseInt(textProperty().getValue());
                 }
                 catch (NumberFormatException e)
                 {
-                    return null;
+                    return 0;
                 }
-            }
-        });
-
-        // make sure the value property is clamped to the required range
-        // and update the field's text to be in sync with the value.
-        value.addListener((observableValue, oldValue, newValue) ->
-        {
-            if (newValue == null)
-            {
-                return;
-            }
-
-            if (newValue.intValue() < minValue.intValue())
-            {
-                value.setValue(minValue.intValue());
-            }
-            else if (newValue.intValue() > maxValue.intValue())
-            {
-                value.setValue(maxValue.intValue());
             }
         });
 
@@ -105,9 +87,9 @@ public class IntField extends TextField
         return value.getValue();
     }
 
-    public void setValue(int newValue)
+    public void setValue(int value)
     {
-        value.setValue(newValue);
+        textProperty().setValue(Math.max(getMinValue(), Math.min(value, getMaxValue())) + "");
     }
 
     public IntegerProperty valueProperty()

@@ -30,4 +30,6 @@ public interface LibraryItemStep
 
     CDStep cd();
 
+    GameStep game();
+
 }

@@ -80,6 +80,12 @@ class CDBuilder implements CDStep, LibraryItemStep
         return this;
     }
 
+    @Override
+    public GameStep game()
+    {
+        return builder.game();
+    }
+
     /////////////////////////////////
     //        Delegation           //
     /////////////////////////////////

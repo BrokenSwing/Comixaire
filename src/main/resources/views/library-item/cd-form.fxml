@@ -42,7 +42,7 @@
 
         <!-- CD specific -->
         <TextField fx:id="artist" maxWidth="220.0" promptText="Artist" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <IntField fx:id="duration" maxWidth="220.0" promptText="Duration" GridPane.columnIndex="1" GridPane.rowIndex="2" minValue="1" value="5400" />
+        <IntField fx:id="duration" maxWidth="220.0" promptText="Duration" GridPane.columnIndex="1" GridPane.rowIndex="2" minValue="1" />
     </GridPane>
 
     <!-- Buttons -->

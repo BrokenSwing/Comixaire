@@ -4,6 +4,7 @@ import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.view.item.BookFormView;
 import com.github.brokenswing.comixaire.view.item.CDFormView;
 import com.github.brokenswing.comixaire.view.item.DVDFormView;
+import com.github.brokenswing.comixaire.view.item.GameFormView;
 import com.github.brokenswing.comixaire.view.util.View;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
@@ -34,7 +35,8 @@ public class CreateLibraryItemController implements Initializable
         this.itemType.setItems(FXCollections.observableArrayList(
                 new LibraryItemType(BookFormView::new, "Book"),
                 new LibraryItemType(DVDFormView::new, "DVD"),
-                new LibraryItemType(CDFormView::new, "CD")
+                new LibraryItemType(CDFormView::new, "CD"),
+                new LibraryItemType(GameFormView::new, "Game")
         ));
 
         this.itemType.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) ->

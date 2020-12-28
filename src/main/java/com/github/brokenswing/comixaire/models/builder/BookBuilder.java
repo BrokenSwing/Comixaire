@@ -102,6 +102,12 @@ class BookBuilder implements BookStep, LibraryItemStep
         return builder.cd();
     }
 
+    @Override
+    public GameStep game()
+    {
+        return builder.game();
+    }
+
     /////////////////////////////////
     //        Delegation           //
     /////////////////////////////////

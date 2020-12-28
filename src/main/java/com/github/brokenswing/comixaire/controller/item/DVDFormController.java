@@ -54,7 +54,7 @@ public class DVDFormController extends LibraryItemFormController<DVD>
     {
         super.buildFormValidation(builder);
         builder.notEmpty(producer.textProperty())
-                .notNull(duration.valueProperty());
+                .notEmpty(duration.textProperty());
     }
 
     @Override

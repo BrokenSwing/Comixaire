@@ -52,7 +52,7 @@
         <TextField fx:id="author" maxWidth="220.0" promptText="Author" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <TextField fx:id="isbn" maxWidth="220.0" promptText="ISBN" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <TextField fx:id="publisher" maxWidth="220.0" promptText="Publisher" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <IntField fx:id="pagesCount" maxWidth="220.0" promptText="Pages counts" GridPane.columnIndex="1" GridPane.rowIndex="4" minValue="1" value="1" />
+        <IntField fx:id="pagesCount" maxWidth="220.0" promptText="Pages counts" GridPane.columnIndex="1" GridPane.rowIndex="4" minValue="1" />
     </GridPane>
 
     <!-- Buttons -->
