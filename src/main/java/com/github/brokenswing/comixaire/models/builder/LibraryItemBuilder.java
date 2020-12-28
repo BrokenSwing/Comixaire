@@ -1,9 +1,6 @@
 package com.github.brokenswing.comixaire.models.builder;
 
-import com.github.brokenswing.comixaire.models.Book;
-import com.github.brokenswing.comixaire.models.ConditionType;
-import com.github.brokenswing.comixaire.models.DVD;
-import com.github.brokenswing.comixaire.models.LibraryItem;
+import com.github.brokenswing.comixaire.models.*;
 
 import java.util.Date;
 import java.util.Objects;
@@ -56,6 +53,12 @@ public class LibraryItemBuilder implements LibraryItemStep
     {
         LibraryItemBuilder builder = new LibraryItemBuilder(dvd);
         return new DVDBuilder(builder, dvd);
+    }
+
+    public static LibraryItemStep from(CD cd)
+    {
+        LibraryItemBuilder builder = new LibraryItemBuilder(cd);
+        return new CDBuilder(builder, cd);
     }
 
     @Override
@@ -147,6 +150,12 @@ public class LibraryItemBuilder implements LibraryItemStep
     public DVDStep dvd()
     {
         return new DVDBuilder(this);
+    }
+
+    @Override
+    public CDStep cd()
+    {
+        return new CDBuilder(this);
     }
 
 

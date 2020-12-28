@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import org.controlsfx.control.CheckComboBox?>
 <?import com.github.brokenswing.comixaire.javafx.IntField?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@/stylesheets/authentication.css" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.brokenswing.comixaire.controller.item.DVDFormController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@/stylesheets/authentication.css" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.brokenswing.comixaire.controller.item.CDFormController">
     <GridPane layoutX="33.0" layoutY="29.0" prefHeight="307.0" prefWidth="546.0">
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
@@ -40,23 +40,9 @@
             <Button onAction="#addCategory" mnemonicParsing="false" text="+" GridPane.columnIndex="1"/>
         </GridPane>
 
-        <!-- DVD specific -->
-        <TextField fx:id="producer" maxWidth="220.0" promptText="Producer" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.6" prefWidth="220.0"
-                  GridPane.columnIndex="1" GridPane.rowIndex="2">
-            <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"
-                                   prefWidth="220.0"/>
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="164.8000244140625" minWidth="10.0"
-                                   prefWidth="67.59999237060549"/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <CheckComboBox fx:id="casting" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="180.0" title="Casting" showCheckedCount="true"/>
-            <Button onAction="#addCasting" mnemonicParsing="false" text="+" GridPane.columnIndex="1"/>
-        </GridPane>
-        <IntField fx:id="duration" maxWidth="220.0" promptText="Duration" GridPane.columnIndex="1" GridPane.rowIndex="3" minValue="1" value="5400" />
+        <!-- CD specific -->
+        <TextField fx:id="artist" maxWidth="220.0" promptText="Artist" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <IntField fx:id="duration" maxWidth="220.0" promptText="Duration" GridPane.columnIndex="1" GridPane.rowIndex="2" minValue="1" value="5400" />
     </GridPane>
 
     <!-- Buttons -->

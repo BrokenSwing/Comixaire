@@ -14,7 +14,7 @@ import java.util.Objects;
 public class IntField extends TextField
 {
 
-    private final IntegerProperty value = new SimpleIntegerProperty(this, "value", 0);
+    private final IntegerProperty value = new SimpleIntegerProperty(this, "value");
     private final IntegerProperty minValue = new SimpleIntegerProperty(this, "min", Integer.MIN_VALUE);
     private final IntegerProperty maxValue = new SimpleIntegerProperty(this, "max", Integer.MAX_VALUE);
 

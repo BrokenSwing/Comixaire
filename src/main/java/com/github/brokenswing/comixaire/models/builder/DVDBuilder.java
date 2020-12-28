@@ -84,6 +84,12 @@ class DVDBuilder implements LibraryItemStep, DVDStep
         return this;
     }
 
+    @Override
+    public CDStep cd()
+    {
+        return builder.cd();
+    }
+
     /////////////////////////////////
     //        Delegation           //
     /////////////////////////////////

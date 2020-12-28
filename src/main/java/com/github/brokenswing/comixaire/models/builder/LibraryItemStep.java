@@ -28,4 +28,6 @@ public interface LibraryItemStep
 
     DVDStep dvd();
 
+    CDStep cd();
+
 }

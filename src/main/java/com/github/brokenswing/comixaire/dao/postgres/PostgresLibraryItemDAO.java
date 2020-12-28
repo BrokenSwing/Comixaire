@@ -29,8 +29,7 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
         }
         else if (libraryItem instanceof CD)
         {
-            //TODO: create CD with the libraryItem id
-            return null;
+            return insertCD((CD) libraryItem);
         }
         else if (libraryItem instanceof DVD)
         {
@@ -124,6 +123,47 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
                 e.printStackTrace();
             }
             throw new InternalException("Unable to insert book.", e);
+        }
+        finally
+        {
+            enableAutoCommit();
+        }
+    }
+
+    private CD insertCD(CD cd) throws InternalException
+    {
+        disableAutoCommit();
+
+        try
+        {
+            int itemId = insertLibraryItem(cd);
+
+            PreparedStatement stmt = connection.prepareStatement("INSERT INTO cd (item_id, cd_artist, cd_duration) " +
+                    "VALUES (?, ?, ?)");
+            stmt.setInt(1, itemId);
+            stmt.setString(2, cd.getArtist());
+            stmt.setInt(3, cd.getDuration());
+            stmt.executeUpdate();
+
+            connection.commit();
+
+            return LibraryItemBuilder.from(cd)
+                    .id(itemId)
+                    .cd()
+                    .build();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            try
+            {
+                connection.rollback();
+            }
+            catch (SQLException sadException)
+            {
+                e.printStackTrace();
+            }
+            throw new InternalException("Unable to insert CD.", e);
         }
         finally
         {
