@@ -20,6 +20,16 @@ public class ClientsFacade extends Facade
         return this.factory.getClientDAO().create(client);
     }
 
+    public void update(Client client) throws InternalException, CardIdAlreadyExist
+    {
+        this.factory.getClientDAO().update(client);
+    }
+
+    public void delete(Client client) throws InternalException
+    {
+        this.factory.getClientDAO().delete(client);
+    }
+
     public Client findByCardId(String cardId) throws InternalException, NoClientFoundException
     {
         return this.factory.getClientDAO().findByCardID(cardId);

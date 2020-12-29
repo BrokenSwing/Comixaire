@@ -6,8 +6,8 @@ public class Client
 {
 
     private final int idClient;
-    private final Date birthdate;
-    private final String cardId;
+    private Date birthdate;
+    private String cardId;
     private String firstname;
     private String lastname;
     private String gender;
@@ -61,7 +61,10 @@ public class Client
         this.lastname = lastname;
     }
 
-    public String getFullname() { return firstname + " " + lastname; }
+    public String getFullname()
+    {
+        return firstname + " " + lastname;
+    }
 
     public String getGender()
     {
@@ -88,13 +91,34 @@ public class Client
         return birthdate;
     }
 
-    public String getCardId() { return cardId; }
+    public void setBirthdate(Date birthdate)
+    {
+        this.birthdate = birthdate;
+    }
 
-    public int getSubscriptionId() { return subscriptionId; }
+    public String getCardId()
+    {
+        return cardId;
+    }
 
-    public void setSubscriptionId(int id) { subscriptionId = id; }
+    public void setCardId(String cardId)
+    {
+        this.cardId = cardId;
+    }
 
-    public String toString(){
+    public int getSubscriptionId()
+    {
+        return subscriptionId;
+    }
+
+    public void setSubscriptionId(int id)
+    {
+        subscriptionId = id;
+    }
+
+    public String toString() {
         return getFirstname() + " " + getLastname() + ", born the " + getBirthdate() + " is " + getGender() + " lives " + getAddress() + " and has cardId: " + getCardId();
     }
+
+
 }

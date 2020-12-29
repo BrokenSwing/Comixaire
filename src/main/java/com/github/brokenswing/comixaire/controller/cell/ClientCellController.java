@@ -3,6 +3,7 @@ package com.github.brokenswing.comixaire.controller.cell;
 import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.models.Client;
+import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 import com.github.brokenswing.comixaire.view.ActionCenterView;
 import com.github.brokenswing.comixaire.view.ClientDetailsView;
 import com.github.brokenswing.comixaire.view.util.Router;
@@ -46,7 +47,7 @@ public class ClientCellController implements ParametrizedController<Client>, Ini
     {
         this.firstname.setText(this.client.getFirstname());
         this.lastname.setText(this.client.getLastname());
-        this.birthdate.setText(this.client.getBirthdate().toString());
+        this.birthdate.setText(PrettyTimeTransformer.prettyDate(this.client.getBirthdate()));
         this.gender.setText(this.client.getGender());
         this.cardId.setText(this.client.getCardId());
         if (this.client.getSubscriptionId() > -1)

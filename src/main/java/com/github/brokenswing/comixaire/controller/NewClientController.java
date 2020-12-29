@@ -69,27 +69,21 @@ public class NewClientController implements Initializable
         String idCard = newUserCardIdField.getText();
         String address = newUserAddressField.getText();
         String gender = newUserGenderField.getValue();
-        LocalDate localDate = newUserBirthdateField.getValue();
+        Date birthdate = Date.from(Instant.from(newUserBirthdateField.getValue().atStartOfDay(ZoneId.systemDefault())));
 
-        if(localDate != null && !firstname.equals("") && !lastname.equals("") && !idCard.equals("") && !address.equals("") && (gender.equals("Homme") || gender.equals("Femme"))){
-
-            Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-            Date birthdate = Date.from(instant);
-
-            try
-            {
-                clientsFacade.create(new Client(firstname, lastname, idCard, gender, address, birthdate));
-                displayClientCreatedAlert("Welcome to " + firstname + " " + lastname + " our new client !");
-                displayActionCenter();
-            }
-            catch (CardIdAlreadyExist e)
-            {
-                displayCardIdAlreadyUsedAlert("The card id provided is already use by another client.");
-            }
-            catch (InternalException e)
-            {
-                displayInternalErrorAlert(e);
-            }
+        try
+        {
+            clientsFacade.create(new Client(firstname, lastname, idCard, gender, address, birthdate));
+            displayClientCreatedAlert("Welcome to " + firstname + " " + lastname + " our new client !");
+            displayActionCenter();
+        }
+        catch (CardIdAlreadyExist e)
+        {
+            displayCardIdAlreadyUsedAlert("The card id provided is already use by another client.");
+        }
+        catch (InternalException e)
+        {
+            displayInternalErrorAlert(e);
         }
     }
 

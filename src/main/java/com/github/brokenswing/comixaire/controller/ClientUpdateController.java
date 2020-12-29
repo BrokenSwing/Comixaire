@@ -2,48 +2,51 @@ package com.github.brokenswing.comixaire.controller;
 
 import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
+import com.github.brokenswing.comixaire.exception.CardIdAlreadyExist;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.models.Client;
+import com.github.brokenswing.comixaire.utils.FormValidationBuilder;
 import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 import com.github.brokenswing.comixaire.view.ClientDetailsView;
 import com.github.brokenswing.comixaire.view.ClientUpdateView;
 import com.github.brokenswing.comixaire.view.ClientsView;
 import com.github.brokenswing.comixaire.view.util.Router;
-import com.github.brokenswing.comixaire.view.util.ViewLoader;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
+import java.awt.event.ActionListener;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class ClientDetailsController implements ParametrizedController<Client>, Initializable
+public class ClientUpdateController implements ParametrizedController<Client>, Initializable
 {
     private Client client;
 
     @FXML
     private Text fullname;
     @FXML
-    private Text cardId;
+    private TextField firstnameInput;
     @FXML
-    private Text gender;
+    private TextField lastnameInput;
     @FXML
-    private Text birthdate;
+    private TextField addressInput;
     @FXML
-    private Text loans;
+    private TextField cardIdInput;
     @FXML
-    private Text votes;
+    private ChoiceBox<String> genderInput;
     @FXML
-    private Text currentLoans;
+    private DatePicker birthdateInput;
     @FXML
-    private Text fines;
-    @FXML
-    private Text address;
+    private Button updateProfileButton;
 
     @InjectValue
     private ClientsFacade clientsFacade;
@@ -60,24 +63,51 @@ public class ClientDetailsController implements ParametrizedController<Client>, 
     public void initialize(URL location, ResourceBundle resources)
     {
         this.fullname.setText(client.getFullname());
-        this.cardId.setText(client.getCardId());
-        this.gender.setText(client.getGender());
-        this.address.setText(client.getAddress());
-        this.birthdate.setText(PrettyTimeTransformer.prettyDate(client.getBirthdate()));
+        this.firstnameInput.setText(client.getFirstname());
+        this.lastnameInput.setText(client.getLastname());
+        this.addressInput.setText(client.getAddress());
+        this.cardIdInput.setText(client.getCardId());
+        this.genderInput.setValue(client.getGender());
+        this.birthdateInput.setValue(new java.sql.Date(client.getBirthdate().getTime()).toLocalDate());
+
+        BooleanBinding isValid = new FormValidationBuilder()
+                .notEmpty(firstnameInput.textProperty())
+                .notEmpty(lastnameInput.textProperty())
+                .notEmpty(addressInput.textProperty())
+                .notEmpty(cardIdInput.textProperty())
+                .add(Bindings.createBooleanBinding(
+                        ()-> birthdateInput.getValue() != null && birthdateInput.getValue().isBefore(LocalDate.now()),
+                        birthdateInput.valueProperty()
+                ))
+                .notNull(genderInput.valueProperty())
+                .build();
+        updateProfileButton.disableProperty().bind(isValid.not());
+    }
+
+    public void updateProfile(ActionEvent actionEvent)
+    {
+        this.client.setFirstname(firstnameInput.getText());
+        this.client.setLastname(lastnameInput.getText());
+        this.client.setGender(genderInput.getValue());
+        this.client.setAddress(addressInput.getText());
+        this.client.setCardId(cardIdInput.getText());
+        this.client.setBirthdate(java.sql.Date.valueOf(birthdateInput.getValue()));
         try
         {
-            this.loans.setText(Integer.toString(clientsFacade.countLoans(client)));
-            this.fines.setText(Integer.toString(clientsFacade.countFines(client)));
-            this.votes.setText(Integer.toString(clientsFacade.countVotes(client)));
-            this.currentLoans.setText(Integer.toString(clientsFacade.countCurrentLoans(client)));
+            System.out.println(client.getSubscriptionId());//Error with subscriptionId
+            clientsFacade.update(client);
+            //TODO: redirect to infos view
+            System.out.println("Ok!");
         }
         catch (InternalException e)
         {
             e.printStackTrace();
         }
+        catch (CardIdAlreadyExist cardIdAlreadyExist)
+        {
+            cardIdAlreadyExist.printStackTrace();
+        }
     }
-
-
 
     /**
      *  NEEDS FACTORISATION IN A FUTURE

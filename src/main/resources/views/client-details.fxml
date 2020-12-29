@@ -96,7 +96,7 @@
       </AnchorPane>
       <AnchorPane layoutX="355.0" layoutY="250.0" prefHeight="93.0" prefWidth="702.0" style="-fx-background-color: white;">
          <children>
-            <Button layoutX="29.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn" text="Infos" />
+            <Button layoutX="29.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn" text="Infos" onAction="#infos"/>
             <Button layoutX="158.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn" text="Update" onAction="#update"/>
             <Button layoutX="298.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn" text="Fines" onAction="#fines"/>
             <Button layoutX="416.0" layoutY="34.0" mnemonicParsing="false" styleClass="btn" text="Subscriptions" onAction="#subscriptions"/>

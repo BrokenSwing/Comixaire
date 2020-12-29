@@ -2,6 +2,7 @@ package com.github.brokenswing.comixaire.controller.cell;
 
 import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.models.Log;
+import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -34,7 +35,7 @@ public class LogCellController implements ParametrizedController<Log>, Initializ
     {
         this.operationType.setText(this.log.getOperationType());
         this.operationDetail.setText(this.log.getOperationDetails());
-        this.date.setText(this.log.getDate().toString());
+        this.date.setText(PrettyTimeTransformer.prettyDate(this.log.getDate()));
         this.memberName.setText(this.log.getStaffMember().getUsername());
     }
 
