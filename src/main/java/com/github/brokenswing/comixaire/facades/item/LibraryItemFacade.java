@@ -3,6 +3,7 @@ package com.github.brokenswing.comixaire.facades.item;
 import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.exception.InternalException;
+import com.github.brokenswing.comixaire.exception.NoLibraryItemFoundException;
 import com.github.brokenswing.comixaire.facades.Facade;
 import com.github.brokenswing.comixaire.facades.logs.LogsFacade;
 import com.github.brokenswing.comixaire.models.LibraryItem;
@@ -44,5 +45,11 @@ public class LibraryItemFacade extends Facade
     {
         return this.factory.getLibraryItemDAO().findAll();
     }
+
+    public LibraryItem findById(int libraryItem) throws InternalException, NoLibraryItemFoundException
+    {
+        return this.factory.getLibraryItemDAO().findById(libraryItem);
+    }
+
 
 }

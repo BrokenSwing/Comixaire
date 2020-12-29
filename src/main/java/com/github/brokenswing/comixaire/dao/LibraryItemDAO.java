@@ -13,8 +13,6 @@ public interface LibraryItemDAO
 
     LibraryItem findById(int libraryItem) throws InternalException, NoLibraryItemFoundException;
 
-    LibraryItem[] findByTitle(String title) throws InternalException, NoLibraryItemFoundException;
-
     void update(LibraryItem libraryItem) throws InternalException;
 
     void addBooking(LibraryItem libraryItem, Client client);

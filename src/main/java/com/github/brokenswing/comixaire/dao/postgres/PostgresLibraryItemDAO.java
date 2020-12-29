@@ -315,7 +315,6 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
                 }
                 if (item != null) {
                     items.add(item);
-                    System.out.println(item);
                 }
             }
             return items.toArray(new LibraryItem[0]);
@@ -393,13 +392,6 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
     {
         //TODO: implement
         return null;
-    }
-
-    @Override
-    public LibraryItem[] findByTitle(String title) throws InternalException, NoLibraryItemFoundException
-    {
-        //TODO: implement
-        return new LibraryItem[0];
     }
 
     @Override
