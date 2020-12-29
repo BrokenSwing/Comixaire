@@ -94,10 +94,8 @@ public class ClientUpdateController implements ParametrizedController<Client>, I
         this.client.setBirthdate(java.sql.Date.valueOf(birthdateInput.getValue()));
         try
         {
-            System.out.println(client.getSubscriptionId());//Error with subscriptionId
             clientsFacade.update(client);
             //TODO: redirect to infos view
-            System.out.println("Ok!");
         }
         catch (InternalException e)
         {

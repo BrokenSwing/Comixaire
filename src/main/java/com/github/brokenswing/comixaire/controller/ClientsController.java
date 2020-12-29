@@ -77,7 +77,7 @@ public class ClientsController implements Initializable
             e.printStackTrace();
         }
         catch (NoClientFoundException e){
-            System.out.println("Client not found");
+
         }
     }
 

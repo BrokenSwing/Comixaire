@@ -116,10 +116,12 @@ public class PostgresClientDAO implements ClientDAO
 
             ArrayList<Client> clients = new ArrayList<>();
 
-            while(result.next()){
+            while (result.next())
+            {
                 clients.add(clientFromRow(result));
             }
-            if(clients.isEmpty()){
+            if (clients.isEmpty())
+            {
                 throw new NoClientFoundException("No client found with the name: " + firstname + " " + lastname);
             }
             return clients.toArray(new Client[0]);
@@ -141,10 +143,12 @@ public class PostgresClientDAO implements ClientDAO
 
             ArrayList<Client> clients = new ArrayList<>();
 
-            while(result.next()){
+            while (result.next())
+            {
                 clients.add(clientFromRow(result));
             }
-            if(clients.isEmpty()){
+            if (clients.isEmpty())
+            {
                 throw new NoClientFoundException("No client found with the firstname: " + firstname);
             }
             return clients.toArray(new Client[0]);
@@ -166,10 +170,12 @@ public class PostgresClientDAO implements ClientDAO
 
             ArrayList<Client> clients = new ArrayList<>();
 
-            while(result.next()){
+            while (result.next())
+            {
                 clients.add(clientFromRow(result));
             }
-            if(clients.isEmpty()){
+            if (clients.isEmpty())
+            {
                 throw new NoClientFoundException("No client found with the lastname: " + lastname);
             }
             return clients.toArray(new Client[0]);
@@ -189,12 +195,13 @@ public class PostgresClientDAO implements ClientDAO
 
             ArrayList<Client> clients = new ArrayList<>();
 
-            while(result.next()){
+            while (result.next())
+            {
                 Client client = clientFromRow(result);
                 clients.add(client);
-                System.out.println(client);
             }
-            if(clients.isEmpty()){
+            if (clients.isEmpty())
+            {
                 throw new NoClientFoundException("No clients found");
             }
             return clients.toArray(new Client[0]);
@@ -223,7 +230,14 @@ public class PostgresClientDAO implements ClientDAO
             prepare.setDate(4, new java.sql.Date(client.getBirthdate().getTime()));
             prepare.setString(5, client.getAddress());
             prepare.setString(6, client.getCardId());
-            prepare.setInt(7, client.getSubscriptionId());
+            if (client.getSubscriptionId() != -1)
+            {
+                prepare.setInt(7, client.getSubscriptionId());
+            }
+            else
+            {
+                prepare.setNull(7, Types.INTEGER);
+            }
             prepare.setInt(8, client.getIdClient());
 
             prepare.executeUpdate();
@@ -327,6 +341,11 @@ public class PostgresClientDAO implements ClientDAO
 
     private Client clientFromRow(ResultSet result) throws SQLException
     {
+        int subId = result.getInt("subscription_id");
+        if (result.wasNull())
+        {
+            subId = -1;
+        }
         return new Client(
                 result.getInt("client_id"),
                 result.getString("client_firstname"),
@@ -335,7 +354,7 @@ public class PostgresClientDAO implements ClientDAO
                 result.getString("client_gender"),
                 result.getString("client_address"),
                 result.getDate("client_birthdate"),
-                result.getInt("subscription_id")
+                subId
         );
     }
 
