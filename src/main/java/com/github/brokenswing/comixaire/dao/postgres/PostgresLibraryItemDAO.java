@@ -2,11 +2,15 @@ package com.github.brokenswing.comixaire.dao.postgres;
 
 import com.github.brokenswing.comixaire.dao.LibraryItemDAO;
 import com.github.brokenswing.comixaire.exception.InternalException;
+import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.exception.NoLibraryItemFoundException;
 import com.github.brokenswing.comixaire.models.*;
 import com.github.brokenswing.comixaire.models.builder.LibraryItemBuilder;
+import com.github.brokenswing.comixaire.models.builder.LibraryItemStep;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -268,8 +272,120 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
     @Override
     public LibraryItem[] findAll() throws InternalException
     {
-        //TODO: implement
-        return new LibraryItem[0];
+        try
+        {
+            ResultSet result = connection.prepareStatement(
+                    "SELECT * FROM libraryitems " +
+                    "LEFT JOIN books b on libraryitems.item_id = b.item_id " +
+                    "LEFT JOIN cd c on libraryitems.item_id = c.item_id " +
+                    "LEFT JOIN dvd d on libraryitems.item_id = d.item_id " +
+                    "LEFT JOIN games g on libraryitems.item_id = g.item_id").executeQuery();
+
+            ArrayList<LibraryItem> items = new ArrayList<>();
+
+            while(result.next()){
+                LibraryItem item = null;
+                LibraryItemStep builder = LibraryItemBuilder.create();
+                builder
+                        .id(result.getInt("item_id"))
+                        .title(result.getString("item_title"))
+                        .condition(ConditionType.valueOf(result.getString("item_condition")))
+                        .location(result.getString("item_location"))
+                        .createdOn(result.getDate("item_createdon"))
+                        .releasedOn(result.getDate("item_releasedon"))
+                        .bookings((Integer[]) result.getArray("item_bookings").getArray())
+                        .available(result.getBoolean("item_available"))
+                        .categories((String[]) result.getArray("item_categories").getArray());
+
+                if (isBookRow(result))
+                {
+                    item = buildBook(result, builder);
+                }
+                if (isGameRow(result))
+                {
+                    item = buildGame(result, builder);
+                }
+                if (isCDRow(result))
+                {
+                    item = buildCD(result, builder);
+                }
+                if (isDVDRow(result))
+                {
+                    item = buildDVD(result, builder);
+                }
+                if (item != null) {
+                    items.add(item);
+                    System.out.println(item);
+                }
+            }
+            return items.toArray(new LibraryItem[0]);
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to find any item", e);
+        }
+    }
+
+    private static boolean isBookRow(ResultSet result) throws SQLException
+    {
+        result.getString("book_author");
+        return !result.wasNull();
+    }
+
+    private static boolean isGameRow(ResultSet result) throws SQLException
+    {
+        result.getString("game_publisher");
+        return !result.wasNull();
+    }
+
+    private static boolean isCDRow(ResultSet result) throws SQLException
+    {
+        result.getString("cd_artist");
+        return !result.wasNull();
+    }
+
+    private static boolean isDVDRow(ResultSet result) throws SQLException
+    {
+        result.getInt("dvd_duration");
+        return !result.wasNull();
+    }
+
+    private static Book buildBook(ResultSet result, LibraryItemStep builder) throws SQLException
+    {
+        return builder.book()
+                .author(result.getString("book_author"))
+                .isbn(result.getString("book_isbn"))
+                .publisher(result.getString("book_publisher"))
+                .pagesCount(result.getInt("book_pagescount"))
+                .build();
+    }
+
+    private static Game buildGame(ResultSet result, LibraryItemStep builder) throws SQLException
+    {
+        return builder.game()
+                .publisher(result.getString("game_publisher"))
+                .minPlayers(result.getInt("game_minplayers"))
+                .maxPlayers(result.getInt("game_maxplayers"))
+                .minAge(result.getInt("game_minage"))
+                .inventory(result.getString("game_contentinventory"))
+                .build();
+    }
+
+    private static CD buildCD(ResultSet result, LibraryItemStep builder) throws SQLException
+    {
+        return builder.cd()
+                .artist(result.getString("cd_artist"))
+                .duration(result.getInt("cd_duration"))
+                .build();
+    }
+
+    private static DVD buildDVD(ResultSet result, LibraryItemStep builder) throws SQLException
+    {
+        return builder.dvd()
+                .duration(result.getInt("dvd_duration"))
+                .producer(result.getString("dvd_producer"))
+                .casting((String[]) result.getArray("dvd_casting").getArray())
+                .build();
     }
 
     @Override
