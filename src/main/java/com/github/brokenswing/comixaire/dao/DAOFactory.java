@@ -13,4 +13,6 @@ public abstract class DAOFactory
 
     public abstract LibraryItemDAO getLibraryItemDAO();
 
+    public abstract RatingDAO getRatingDAO();
+
 }
