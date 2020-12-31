@@ -5,6 +5,7 @@ import com.github.brokenswing.comixaire.view.NewClientView;
 import com.github.brokenswing.comixaire.view.item.NewLibraryItemView;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
+import javafx.scene.text.Text;
 
 public class StaffActionCenterController
 {
