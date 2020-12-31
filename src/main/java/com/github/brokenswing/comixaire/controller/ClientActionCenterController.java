@@ -1,7 +1,16 @@
 package com.github.brokenswing.comixaire.controller;
 
+import com.github.brokenswing.comixaire.di.InjectValue;
+import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
+import com.github.brokenswing.comixaire.view.BorrowedItemsView;
+import com.github.brokenswing.comixaire.view.util.Router;
+
 public class ClientActionCenterController
 {
+    @InjectValue
+    private AuthFacade auth;
+    @InjectValue
+    private Router router;
 
     public void recommandations()
     {
@@ -11,7 +20,6 @@ public class ClientActionCenterController
 
     public void borrowedItems()
     {
-        //TODO: navigate to borrowed items
-        //router.navigateTo(new BorrowedItems(), auth.getLoggedInClient());
+        router.navigateTo(new BorrowedItemsView(), auth.getLoggedInClient());
     }
 }
