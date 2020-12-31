@@ -1,10 +1,12 @@
 package com.github.brokenswing.comixaire.controller.item;
 
 import com.github.brokenswing.comixaire.di.InjectValue;
+import com.github.brokenswing.comixaire.view.ActionCenterView;
 import com.github.brokenswing.comixaire.view.item.BookFormView;
 import com.github.brokenswing.comixaire.view.item.CDFormView;
 import com.github.brokenswing.comixaire.view.item.DVDFormView;
 import com.github.brokenswing.comixaire.view.item.GameFormView;
+import com.github.brokenswing.comixaire.view.util.Router;
 import com.github.brokenswing.comixaire.view.util.View;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
@@ -12,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -28,6 +31,8 @@ public class CreateLibraryItemController implements Initializable
 
     @InjectValue
     private ViewLoader loader;
+    @InjectValue
+    private Router router;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -47,6 +52,11 @@ public class CreateLibraryItemController implements Initializable
         });
 
         this.itemType.getSelectionModel().select(0);
+    }
+
+    public void back(MouseEvent mouseEvent)
+    {
+        router.navigateTo(new ActionCenterView());
     }
 
     private static class LibraryItemType

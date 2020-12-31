@@ -7,8 +7,8 @@ import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.utils.FormValidationBuilder;
-import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 import com.github.brokenswing.comixaire.view.ClientDetailsView;
+import com.github.brokenswing.comixaire.view.ClientSubscriptions;
 import com.github.brokenswing.comixaire.view.ClientUpdateView;
 import com.github.brokenswing.comixaire.view.ClientsView;
 import com.github.brokenswing.comixaire.view.util.Router;
@@ -20,10 +20,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
-import java.awt.event.ActionListener;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -95,7 +93,7 @@ public class ClientUpdateController implements ParametrizedController<Client>, I
         try
         {
             clientsFacade.update(client);
-            //TODO: redirect to infos view
+            router.navigateTo(new ClientDetailsView(), client);
         }
         catch (InternalException e)
         {
@@ -126,10 +124,7 @@ public class ClientUpdateController implements ParametrizedController<Client>, I
         //TODO: new view to consult fines
     }
 
-    public void subscriptions(ActionEvent actionEvent)
-    {
-        //TODO: new view to consult subscription
-    }
+    public void subscriptions(ActionEvent actionEvent) { router.navigateTo(new ClientSubscriptions(), client); }
 
     public void delete(ActionEvent actionEvent)
     {

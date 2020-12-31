@@ -14,6 +14,7 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.time.Instant;
@@ -130,5 +131,10 @@ public class NewClientController implements Initializable
                 .notNull(newUserGenderField.valueProperty())
                 .build();
         newUserButton.disableProperty().bind(isValid.not());
+    }
+
+    public void back()
+    {
+        router.navigateTo(new ActionCenterView());
     }
 }

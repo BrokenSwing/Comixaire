@@ -7,6 +7,7 @@ import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 import com.github.brokenswing.comixaire.view.ClientDetailsView;
+import com.github.brokenswing.comixaire.view.ClientSubscriptions;
 import com.github.brokenswing.comixaire.view.ClientUpdateView;
 import com.github.brokenswing.comixaire.view.ClientsView;
 import com.github.brokenswing.comixaire.view.util.Router;
@@ -16,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -93,14 +95,11 @@ public class ClientDetailsController implements ParametrizedController<Client>, 
         router.navigateTo(new ClientUpdateView(), client);
     }
 
+    public void subscriptions(ActionEvent actionEvent) { router.navigateTo(new ClientSubscriptions(), client); }
+
     public void fines(ActionEvent actionEvent)
     {
         //TODO: new view to consult fines
-    }
-
-    public void subscriptions(ActionEvent actionEvent)
-    {
-        //TODO: new view to consult subscription
     }
 
     public void delete(ActionEvent actionEvent)
@@ -125,4 +124,6 @@ public class ClientDetailsController implements ParametrizedController<Client>, 
             }
         }
     }
+
+    public void back() { System.out.println("clicked");router.navigateTo(new ClientsView()); }
 }
