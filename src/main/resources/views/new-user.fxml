@@ -6,6 +6,9 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
 <AnchorPane stylesheets="@/stylesheets/authentication.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.brokenswing.comixaire.controller.NewClientController">
     <children>
         <fx:include source="menu.fxml" />
@@ -32,5 +35,15 @@
              <Button     fx:id="newUserButton"           layoutX="315.0" layoutY="377.0" mnemonicParsing="false" onAction="#createClient" text="Create user" styleClass="btn"/>
          </children>
       </AnchorPane>
+        <ImageView fitHeight="45.0" fitWidth="32.0" layoutX="1188.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@/assets/right-arrow.png" />
+            </image>
+        </ImageView>
+        <AnchorPane layoutX="1170.0" layoutY="126.0" onMouseClicked="#back" prefHeight="53.0" prefWidth="69.0" style="-fx-background-color: transparent;">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </AnchorPane>
     </children>
 </AnchorPane>

@@ -9,6 +9,7 @@
     -fx-blue: #1976D2;
     -fx-red: #FF0000;
     -fx-color-1: #1976D2;
+    -fx-light-grey: #ededed;
 }
 
 .bg-white {
@@ -41,7 +42,6 @@
 
 .btn {
     -fx-background-color: white;
-    -fx-background-insets: 0 0 -1 0, 0, 1;
     -fx-background-radius: 5, 5, 4;
     -fx-padding: 3 30 3 30;
     -fx-text-fill: -fx-primary;
@@ -49,14 +49,25 @@
     -fx-font-size: 14px;
 }
 
+.btn:hover {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+
 .btn-red {
     -fx-background-color: white;
-    -fx-background-insets: 0 0 -1 0, 0, 1;
     -fx-background-radius: 5, 5, 4;
     -fx-padding: 3 30 3 30;
     -fx-text-fill: -fx-red;
     -fx-border-color: -fx-red;
     -fx-font-size: 14px;
+}
+
+.btn-red:hover {
+    -fx-background-color: -fx-red;
+    -fx-text-fill: white;
+    -fx-border-color: white;
 }
 
 .btn:selected {
@@ -68,4 +79,36 @@
     -fx-background-color: -fx-primary, white;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-background-radius: 0;
+}
+
+
+.list-cell:even { /* <=== changed to even */
+    -fx-background-color: white;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: rgba(82, 130, 252, 0.1);
+    -fx-text-fill: white;
+}
+
+.choice-box .context-menu { -fx-background-color: white; }
+.choice-box .menu-item:focused { -fx-background-color: -fx-primary; }
+.choice-box .menu-item > .label { -fx-text-fill: -fx-primarytext; }
+.choice-box .menu-item:focused > .label { -fx-text-fill: white; }
+.choice-box {
+    -fx-background-color: -fx-light-grey;
+    -fx-mark-color: -fx-primary;
+}
+.choice-box > .label { -fx-text-fill: black; }
+
+.combo-box .list-cell
+{
+    -fx-background: white;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-primarytext;
+}
+
+.combo-box-base
+{
+    -fx-background-color: -fx-light-grey;
 }
