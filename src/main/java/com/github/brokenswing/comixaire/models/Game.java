@@ -79,4 +79,8 @@ public class Game extends LibraryItem
     {
         this.contentInventory = contentInventory;
     }
+
+    public String toString() {
+        return getTitle() + " located at " + getLocation() + " is a Game";
+    }
 }

@@ -61,4 +61,8 @@ public class DVD extends LibraryItem
     {
         this.casting = casting;
     }
+
+    public String toString() {
+        return getTitle() + " located at " + getLocation() + " is a DVD";
+    }
 }

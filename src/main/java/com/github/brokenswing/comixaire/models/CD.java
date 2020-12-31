@@ -47,4 +47,8 @@ public class CD extends LibraryItem
     {
         this.artist = artist;
     }
+
+    public String toString() {
+        return getTitle() + " located at " + getLocation() + " is a CD";
+    }
 }
