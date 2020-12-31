@@ -44,4 +44,10 @@ public class PostgresDAOFactory extends DAOFactory
         return new PostgresRatingDAO(this.postgresConnection.getConnection());
     }
 
+    @Override
+    public SubscriptionsDAO getSubscriptionsDAO()
+    {
+        return new PostgresSubscriptionsDAO(this.postgresConnection.getConnection());
+    }
+
 }

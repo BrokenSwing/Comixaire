@@ -15,4 +15,6 @@ public abstract class DAOFactory
 
     public abstract RatingDAO getRatingDAO();
 
+    public abstract SubscriptionsDAO getSubscriptionsDAO();
+
 }
