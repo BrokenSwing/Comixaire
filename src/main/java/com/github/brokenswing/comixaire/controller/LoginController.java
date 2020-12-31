@@ -5,6 +5,7 @@ import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.exception.BadCredentialsException;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.view.ActionCenterView;
+import com.github.brokenswing.comixaire.view.ClientActionCenterView;
 import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
@@ -97,12 +98,17 @@ public class LoginController
     }
 
     /**
-     *  Navigates to the action center view using the {@link #router}.
+     *  Navigates to the staff action center view using the {@link #router}.
      */
     protected void displayActionCenter()
     {
         router.navigateTo(new ActionCenterView());
     }
+
+    /**
+     *  Navigates to the client action center view using the {@link #router}.
+     */
+    protected void displayClientActionCenter() { router.navigateTo(new ClientActionCenterView()); }
 
     /**
      * Displays an alert popup to the user indicating the provided
@@ -148,7 +154,7 @@ public class LoginController
         try
         {
             auth.loginClient(clientId);
-            displayActionCenter();
+            displayClientActionCenter();
         }
         catch (BadCredentialsException e)
         {
