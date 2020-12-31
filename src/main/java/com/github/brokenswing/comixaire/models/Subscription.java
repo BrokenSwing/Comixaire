@@ -1,5 +1,7 @@
 package com.github.brokenswing.comixaire.models;
 
+import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
+
 import java.sql.Date;
 
 public class Subscription
@@ -15,6 +17,11 @@ public class Subscription
         this.to = to;
     }
 
+    public Subscription(Date from, Date to)
+    {
+        this(-1, from, to);
+    }
+
     public int getIdSubscription()
     {
         return idSubscription;
@@ -28,5 +35,9 @@ public class Subscription
     public Date getTo()
     {
         return to;
+    }
+
+    public String toString(){
+        return "From: " + PrettyTimeTransformer.prettyDate(from) + "\tTo: " + PrettyTimeTransformer.prettyDate(to);
     }
 }

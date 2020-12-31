@@ -4,7 +4,7 @@ import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.models.Subscription;
 
-public interface SubscriptionDAO
+public interface SubscriptionsDAO
 {
     Subscription create(Subscription subscription) throws InternalException;
 

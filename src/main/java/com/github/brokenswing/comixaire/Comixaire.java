@@ -13,6 +13,7 @@ import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
 import com.github.brokenswing.comixaire.facades.logs.LogsFacade;
 import com.github.brokenswing.comixaire.facades.staff.StaffMemberFacade;
+import com.github.brokenswing.comixaire.facades.subscriptions.SubscriptionsFacade;
 import com.github.brokenswing.comixaire.view.LoginView;
 import com.github.brokenswing.comixaire.view.util.Router;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
@@ -69,10 +70,7 @@ public class Comixaire extends Application
     }
 
     @ValueProvider
-    public AuthFacade getAuthFacade()
-    {
-        return new AuthFacade(factory, new PlainTextPasswordAlgorithm(), this.session);
-    }
+    public AuthFacade getAuthFacade() { return new AuthFacade(factory, new PlainTextPasswordAlgorithm(), this.session); }
 
     @ValueProvider
     public StaffMemberFacade getStaffMemberFacade()
@@ -81,10 +79,7 @@ public class Comixaire extends Application
     }
 
     @ValueProvider
-    public LogsFacade getLogsFacade()
-    {
-        return new LogsFacade(factory, session);
-    }
+    public LogsFacade getLogsFacade() { return new LogsFacade(factory, session); }
 
     @ValueProvider
     public ClientsFacade getClientsFacade()
@@ -96,6 +91,12 @@ public class Comixaire extends Application
     public LibraryItemFacade getLibraryItemFacade()
     {
         return new LibraryItemFacade(factory);
+    }
+
+    @ValueProvider
+    public SubscriptionsFacade getSubscriptionsFacade()
+    {
+        return new SubscriptionsFacade(factory);
     }
 
 }
