@@ -117,6 +117,11 @@ public class AuthFacade extends Facade
         this.session.setLoggedInStaff(member);
     }
 
+    public Client getLoggedInClient()
+    {
+        return this.session.getLoggedInClient();
+    }
+
     public String hashPassword(String plainTextPassword)
     {
         return this.passwordAlgorithm.hashPassword(plainTextPassword);
