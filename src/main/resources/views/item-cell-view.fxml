@@ -4,13 +4,18 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.Button?>
+
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
+          stylesheets="@/stylesheets/authentication.css"
           fx:controller="com.github.brokenswing.comixaire.controller.cell.ItemCellController">
 
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" percentWidth="70.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
     </columnConstraints>
 
@@ -21,5 +26,7 @@
     <Text fill="black" fx:id="itemTittle" />
     <Text fill="#5282FC" fx:id="itemLocation" GridPane.columnIndex="1" />
     <Text fill="#5282FC" fx:id="itemType" GridPane.columnIndex="2" />
+    <Button mnemonicParsing="false" onAction="#update" styleClass="btn" text="Update" GridPane.columnIndex="3"/>
+    <Button mnemonicParsing="false" onAction="#delete" styleClass="btn-red" text="Delete" GridPane.columnIndex="4"/>
 
 </GridPane>
