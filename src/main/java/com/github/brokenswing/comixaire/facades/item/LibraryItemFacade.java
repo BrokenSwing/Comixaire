@@ -31,6 +31,12 @@ public class LibraryItemFacade extends Facade
         logger.log("Updated " + item.getClass().getSimpleName(), "Title: " + item.getTitle());
     }
 
+    public void delete(LibraryItem item) throws InternalException
+    {
+        this.factory.getLibraryItemDAO().delete(item);
+        logger.log("Deleted " + item.getClass().getSimpleName(), "Title: " + item.getTitle());
+    }
+
     public String[] getKnownCategories() throws InternalException
     {
         return this.factory.getLibraryItemDAO().getCategories();

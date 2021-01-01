@@ -409,7 +409,17 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
     @Override
     public void delete(LibraryItem libraryItem) throws InternalException
     {
-        //TODO: implement
+        try
+        {
+            PreparedStatement statement = this.connection.prepareStatement("DELETE FROM libraryitems WHERE item_id = (?)");
+            statement.setInt(1, libraryItem.getIdLibraryItem());
+            statement.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to delete this library item", e);
+        }
+
     }
 
     @Override
