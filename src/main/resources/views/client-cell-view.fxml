@@ -8,12 +8,12 @@
           onMouseClicked="#more" stylesheets="@/stylesheets/authentication.css">
 
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" />
-        <ColumnConstraints hgrow="SOMETIMES" />
-        <ColumnConstraints hgrow="SOMETIMES" />
-        <ColumnConstraints hgrow="SOMETIMES" />
-        <ColumnConstraints hgrow="SOMETIMES" />
-        <ColumnConstraints hgrow="SOMETIMES" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0"/>
     </columnConstraints>
 
     <rowConstraints>

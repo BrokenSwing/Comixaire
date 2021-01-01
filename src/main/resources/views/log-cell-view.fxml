@@ -9,10 +9,10 @@
           fx:controller="com.github.brokenswing.comixaire.controller.cell.LogCellController">
 
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES"/>
-        <ColumnConstraints hgrow="SOMETIMES"/>
-        <ColumnConstraints hgrow="SOMETIMES"/>
-        <ColumnConstraints hgrow="SOMETIMES"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0"/>
     </columnConstraints>
 
     <rowConstraints>
