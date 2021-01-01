@@ -103,6 +103,7 @@ public class ItemsController implements Initializable
             if (empty)
             {
                 setText(null);
+                setGraphic(null);
             }
             else
             {

@@ -7,37 +7,40 @@
 
 <?import javafx.collections.FXCollections?>
 <?import com.github.brokenswing.comixaire.javafx.IntField?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.brokenswing.comixaire.controller.ItemsController">
-    <children>
-        <fx:include source="menu.fxml" />
-        <Text layoutX="149.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items">
-            <font>
-                <Font name="Quicksand SemiBold" size="36.0" />
-            </font>
-        </Text>
-        <ListView layoutX="149.0" layoutY="310.0" prefHeight="456.0" prefWidth="1098.0" fx:id="itemsList" >
-            <placeholder>
-                <Text>
-                    No items found. :(
-                </Text>
-            </placeholder>
-        </ListView>
-        <AnchorPane layoutX="276.0" layoutY="191.0" prefHeight="96.0" prefWidth="817.0" style="-fx-background-color: white;" stylesheets="@../stylesheets/authentication.css">
-            <children>
-                <IntField layoutX="271.0" layoutY="37.0" promptText="Id" fx:id="itemIDField" />
-                <TextField layoutX="460.0" layoutY="36.0" promptText="Name" fx:id="itemNameField" />
-                <ChoiceBox  fx:id="itemTypeFilter" layoutX="51.0" layoutY="37.0" prefWidth="150.0" value="All" >
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="All" />
-                            <String fx:value="Book" />
-                            <String fx:value="CD" />
-                            <String fx:value="DVD" />
-                            <String fx:value="Game" />
-                        </FXCollections>
-                    </items>
-                </ChoiceBox>
-            </children>
-        </AnchorPane>
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
+            prefWidth="1280.0" style="-fx-background-color: #F7F9FF;" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.github.brokenswing.comixaire.controller.ItemsController">
+    <fx:include source="menu.fxml"/>
+
+    <Text layoutX="149.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items">
+        <font>
+            <Font name="Quicksand SemiBold" size="36.0"/>
+        </font>
+    </Text>
+
+    <ListView layoutX="149.0" layoutY="310.0" prefHeight="456.0" prefWidth="1098.0" fx:id="itemsList">
+        <placeholder>
+            <Text>
+                No items found. :(
+            </Text>
+        </placeholder>
+    </ListView>
+
+    <AnchorPane layoutX="276.0" layoutY="191.0" prefHeight="96.0" prefWidth="817.0"
+                style="-fx-background-color: white;" stylesheets="@../stylesheets/authentication.css">
+        <IntField layoutX="271.0" layoutY="37.0" promptText="Id" fx:id="itemIDField"/>
+        <TextField layoutX="460.0" layoutY="37.0" promptText="Name" fx:id="itemNameField"/>
+        <ChoiceBox fx:id="itemTypeFilter" layoutX="51.0" layoutY="37.0" prefWidth="150.0" value="All">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="All"/>
+                    <String fx:value="Book"/>
+                    <String fx:value="CD"/>
+                    <String fx:value="DVD"/>
+                    <String fx:value="Game"/>
+                </FXCollections>
+            </items>
+        </ChoiceBox>
+    </AnchorPane>
 </AnchorPane>
