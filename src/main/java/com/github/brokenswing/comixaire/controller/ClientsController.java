@@ -108,6 +108,7 @@ public class ClientsController implements Initializable
             if (empty)
             {
                 setText(null);
+                setGraphic(null);
             }
             else
             {

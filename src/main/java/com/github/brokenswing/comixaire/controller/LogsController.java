@@ -100,6 +100,7 @@ public class LogsController implements Initializable
             if (empty)
             {
                 setText(null);
+                setGraphic(null);
             }
             else
             {
