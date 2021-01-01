@@ -2,22 +2,18 @@ package com.github.brokenswing.comixaire.controller;
 
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.exception.InternalException;
-import com.github.brokenswing.comixaire.exception.NoClientFoundException;
-import com.github.brokenswing.comixaire.exception.NoLibraryItemFoundException;
-import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
 import com.github.brokenswing.comixaire.javafx.IntField;
 import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.*;
-import javafx.beans.value.WeakChangeListener;
+import com.github.brokenswing.comixaire.view.ItemCellView;
+import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,6 +34,9 @@ public class ItemsController implements Initializable
 
     @InjectValue
     private LibraryItemFacade itemsFacade;
+
+    @InjectValue
+    private ViewLoader loader;
 
     @FXML
     protected void find()
@@ -70,8 +69,6 @@ public class ItemsController implements Initializable
                 break;
         }
         this.items.setPredicate(predicate);
-
-
     }
 
     @Override
@@ -81,9 +78,9 @@ public class ItemsController implements Initializable
         try
         {
             this.itemsList.setSelectionModel(new NoOpSelectionModel<>());
-            //this.itemsList.setCellFactory(lv -> new ClientsController.ClientListCell());
+            this.itemsList.setCellFactory(lv -> new ItemListCell());
             this.items = new FilteredList<>(FXCollections.observableArrayList(itemsFacade.findAll()));
-            itemsList.setItems(this.items);
+            this.itemsList.setItems(this.items);
         }
         catch (InternalException e)
         {
@@ -95,4 +92,24 @@ public class ItemsController implements Initializable
         itemTypeFilter.valueProperty().addListener((obs, oldValue, newValue) -> this.find());
 
     }
+
+    private class ItemListCell extends ListCell<LibraryItem>
+    {
+
+        @Override
+        protected void updateItem(LibraryItem item, boolean empty)
+        {
+            super.updateItem(item, empty);
+            if (empty)
+            {
+                setText(null);
+            }
+            else
+            {
+                Node node = loader.loadView(new ItemCellView(), item);
+                setGraphic(node);
+            }
+        }
+    }
+
 }
