@@ -36,7 +36,7 @@ public class FinesFacade extends Facade
         logger.log("Pay fine: " + fine.getLabel(), "Price: " + fine.getPrice());
     }
 
-    public Fine[] findByClient(Client client) throws InternalException, NoClientFoundException, NoFineFoundException
+    public Fine[] findByClient(Client client) throws InternalException, NoClientFoundException
     {
         return this.factory.getFineDAO().findByClient(client);
     }

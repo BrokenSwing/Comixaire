@@ -8,7 +8,7 @@ public interface FineDAO
 {
     void create(Fine fine) throws InternalException, NoReturnFoundException, NonValidFineTypeException;
 
-    Fine[] findByClient(Client client) throws InternalException, NoClientFoundException, NoFineFoundException;
+    Fine[] findByClient(Client client) throws InternalException, NoClientFoundException;
 
     void pay(Fine fine) throws InternalException;
 

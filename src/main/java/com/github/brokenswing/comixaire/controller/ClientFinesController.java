@@ -58,10 +58,6 @@ public class ClientFinesController implements ParametrizedController<Client>, In
         {
             e.printStackTrace();
         }
-        catch (NoFineFoundException e)
-        {
-            //e.printStackTrace();
-        }
     }
 
 

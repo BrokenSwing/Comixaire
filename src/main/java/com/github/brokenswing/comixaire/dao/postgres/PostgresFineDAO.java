@@ -48,7 +48,7 @@ public class PostgresFineDAO implements FineDAO
     }
 
     @Override
-    public Fine[] findByClient(Client client) throws InternalException, NoFineFoundException, NoClientFoundException
+    public Fine[] findByClient(Client client) throws InternalException, NoClientFoundException
     {
         try
         {
@@ -62,10 +62,6 @@ public class PostgresFineDAO implements FineDAO
             while (result.next())
             {
                 fines.add(fineFromRow(result));
-            }
-            if (fines.isEmpty())
-            {
-                throw new NoFineFoundException(client);
             }
             return fines.toArray(new Fine[0]);
         }
