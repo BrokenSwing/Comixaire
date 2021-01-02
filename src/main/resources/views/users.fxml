@@ -21,7 +21,7 @@
                 <TextField fx:id="clientCardIdField" layoutX="36.0" layoutY="36.0" promptText="ID" />
                 <TextField fx:id="clientFirstnameField" layoutX="271.0" layoutY="37.0" promptText="Firstname" />
                 <TextField fx:id="clientLastnameField" layoutX="460.0" layoutY="36.0" promptText="Lastname" />
-                <Button layoutX="674.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#find" styleClass="btn" text="Search" />
+                <Button layoutX="674.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#search" styleClass="btn" text="Search" />
                 <Text layoutX="217.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" />
             </children>
         </AnchorPane>
