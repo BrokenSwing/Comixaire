@@ -13,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class LoginController
 {
@@ -172,4 +174,21 @@ public class LoginController
         }
     }
 
+    @FXML
+    private void handleKeyPressStaff(KeyEvent event)
+    {
+        if (event.getCode() == KeyCode.ENTER)
+        {
+            this.loginStaff();
+        }
+    }
+
+    @FXML
+    private void handleKeyPressClient(KeyEvent event)
+    {
+        if (event.getCode() == KeyCode.ENTER)
+        {
+            this.loginClient();
+        }
+    }
 }
