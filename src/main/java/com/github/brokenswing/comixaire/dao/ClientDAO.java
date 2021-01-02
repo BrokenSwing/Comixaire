@@ -45,4 +45,6 @@ public interface ClientDAO
 
     int countCurrentLoans(Client client) throws InternalException;
 
+    Boolean validSubscription(Client client) throws InternalException;
+
 }

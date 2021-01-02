@@ -308,6 +308,26 @@ public class PostgresClientDAO implements ClientDAO
     }
 
     @Override
+    public Boolean validSubscription(Client client) throws InternalException
+    {
+        try
+        {
+            PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM subscriptions " +
+                    "WHERE subscription_to >= NOW() " +
+                    "AND subscription_from <= NOW() " +
+                    "AND client_id = ?");
+            prepare.setInt(1, client.getIdClient());
+            ResultSet result = prepare.executeQuery();
+            result.next();
+            return (result.getInt(1) > 0);
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to check for valid subscriptions for client: " + client.getFullname(), e);
+        }
+    }
+
+    @Override
     public int countFines(Client client) throws InternalException
     {
         try

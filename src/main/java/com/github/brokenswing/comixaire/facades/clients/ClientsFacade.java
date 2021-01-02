@@ -74,4 +74,9 @@ public class ClientsFacade extends Facade
     {
         return this.factory.getClientDAO().countCurrentLoans(client);
     }
+
+    public Boolean validSubscription(Client client) throws InternalException
+    {
+        return this.factory.getClientDAO().validSubscription(client);
+    }
 }

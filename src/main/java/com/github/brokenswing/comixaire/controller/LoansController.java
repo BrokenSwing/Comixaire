@@ -51,9 +51,14 @@ public class LoansController implements ParametrizedController<Client>, Initiali
     {
         fullname.setText(client.getFullname());
         gender.setText(client.getGender());
-        this.subscription.setText("Not valid");//TODO: change
         try
         {
+            if(clientsFacade.validSubscription(client)) {
+                subscription.setText("Valid");
+            }
+            else{
+                subscription.setText("Not valid");
+            }
             loans.setText(Integer.toString(clientsFacade.countLoans(client)));
             fines.setText(Integer.toString(clientsFacade.countFines(client)));
         }
