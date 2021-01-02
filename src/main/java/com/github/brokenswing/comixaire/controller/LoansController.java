@@ -14,9 +14,6 @@ import javafx.scene.text.Text;
 
 
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
 import java.util.ResourceBundle;
 
 public class LoansController implements ParametrizedController<Client>, Initializable
@@ -54,14 +51,7 @@ public class LoansController implements ParametrizedController<Client>, Initiali
     {
         fullname.setText(client.getFullname());
         gender.setText(client.getGender());
-        if (this.client.getSubscriptionId() > -1)
-        {
-            this.subscription.setText("Valid");
-        }
-        else
-        {
-            this.subscription.setText("Not valid");
-        }
+        this.subscription.setText("Not valid");//TODO: change
         try
         {
             loans.setText(Integer.toString(clientsFacade.countLoans(client)));
