@@ -12,9 +12,12 @@ import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ItemCellController implements ParametrizedController<LibraryItem>, Initializable
@@ -44,21 +47,31 @@ public class ItemCellController implements ParametrizedController<LibraryItem>, 
     @FXML
     protected void delete()
     {
-        //TODO: create alert to confirm the deletion
-        try
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Item deletion");
+        confirmationAlert.setContentText(String.format(
+                "Do you really want to delete %s \"%s\" ?",
+                libraryItem.getClass().getSimpleName(),
+                libraryItem.getTitle()
+        ));
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK)
         {
-            this.itemsFacade.delete(libraryItem);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setContentText("The library item \"" + libraryItem.getTitle() + "\" was successfully deleted.");
-            alert.showAndWait();
+            try
+            {
+                this.itemsFacade.delete(libraryItem);
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Success");
+                successAlert.setContentText("The library item \"" + libraryItem.getTitle() + "\" was successfully deleted.");
+                successAlert.showAndWait();
+            }
+            catch (InternalException e)
+            {
+                e.printStackTrace();
+                new InternalErrorAlert(e).showAndWait();
+            }
+            router.navigateTo(new ItemsView());
         }
-        catch (InternalException e)
-        {
-            e.printStackTrace();
-            new InternalErrorAlert(e).showAndWait();
-        }
-        router.navigateTo(new ItemsView());
     }
 
     @Override
