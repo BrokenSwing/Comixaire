@@ -1,7 +1,7 @@
 package com.github.brokenswing.comixaire.controller.cell;
 
-import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
+import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.fines.FinesFacade;
 import com.github.brokenswing.comixaire.models.Fine;
@@ -14,8 +14,10 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FineCellController implements ParametrizedController<Fine>, Initializable
+public class FineCellController implements Initializable
 {
+
+    @ViewParam
     private Fine fine;
 
     @FXML
@@ -34,12 +36,6 @@ public class FineCellController implements ParametrizedController<Fine>, Initial
         label.setText(fine.getLabel());
         price.setText(Integer.toString(fine.getPrice()));
         payButton.setDisable(fine.isPaid());
-    }
-
-    @Override
-    public void handleViewParam(Fine fine)
-    {
-        this.fine = fine;
     }
 
     public void pay()

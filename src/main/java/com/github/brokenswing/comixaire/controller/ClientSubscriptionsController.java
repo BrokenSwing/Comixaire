@@ -57,7 +57,7 @@ public class ClientSubscriptionsController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         subscriptions.setSelectionModel(new NoOpSelectionModel<>());
-        subscriptions.setCellFactory(CustomListCell.factory(loader, SubscriptionCellView::new));
+        subscriptions.setCellFactory(CustomListCell.factory(loader, Views.Cells.SUBSCRIPTION));
 
         fullname.setText(client.getFullname());
         dateFrom.setValue(LocalDate.now());

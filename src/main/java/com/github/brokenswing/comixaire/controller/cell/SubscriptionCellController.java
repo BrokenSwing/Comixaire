@@ -1,7 +1,6 @@
 package com.github.brokenswing.comixaire.controller.cell;
 
-import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
-import com.github.brokenswing.comixaire.models.Client;
+import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.models.Subscription;
 import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 import javafx.fxml.FXML;
@@ -11,8 +10,10 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SubscriptionCellController implements ParametrizedController<Subscription>, Initializable
+public class SubscriptionCellController implements Initializable
 {
+
+    @ViewParam
     private Subscription subscription;
 
     @FXML
@@ -27,9 +28,4 @@ public class SubscriptionCellController implements ParametrizedController<Subscr
         to.setText(PrettyTimeTransformer.prettyDate(subscription.getTo()));
     }
 
-    @Override
-    public void handleViewParam(Subscription subscription)
-    {
-        this.subscription = subscription;
-    }
 }

@@ -33,6 +33,8 @@ public class Views
         public static final String CLIENT = "client-cell-view.fxml";
         public static final String ITEM = "item-cell-view.fxml";
         public static final String LOG = "log-cell-view.fxml";
+        public static final String SUBSCRIPTION = "subscription-cell-view.fxml";
+        public static final String FINE = "fine-cell-view.fxml";
 
         private Cells()
         {

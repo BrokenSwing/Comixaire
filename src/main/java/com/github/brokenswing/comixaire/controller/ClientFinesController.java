@@ -51,7 +51,7 @@ public class ClientFinesController implements Initializable
     {
         fullname.setText(client.getFullname());
         finesList.setSelectionModel(new NoOpSelectionModel<>());
-        finesList.setCellFactory(CustomListCell.factory(loader, FineCellView::new));
+        finesList.setCellFactory(CustomListCell.factory(loader, Views.Cells.FINE));
         try
         {
             finesList.setItems(new FilteredList<>(FXCollections.observableArrayList(fineFacade.findByClient(client))));
