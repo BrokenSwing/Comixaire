@@ -44,6 +44,7 @@ public class ItemCellController implements ParametrizedController<LibraryItem>, 
     @FXML
     protected void delete()
     {
+        //TODO: create alert to confirm the deletion
         try
         {
             this.itemsFacade.delete(libraryItem);
