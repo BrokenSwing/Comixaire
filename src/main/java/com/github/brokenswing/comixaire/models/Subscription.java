@@ -39,6 +39,11 @@ public class Subscription
         return to;
     }
 
+    public Client getClient()
+    {
+        return client;
+    }
+
     public String toString(){
         return "From: " + PrettyTimeTransformer.prettyDate(from) + "\tTo: " + PrettyTimeTransformer.prettyDate(to);
     }
