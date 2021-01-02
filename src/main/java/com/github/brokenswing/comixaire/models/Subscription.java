@@ -2,7 +2,7 @@ package com.github.brokenswing.comixaire.models;
 
 import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Subscription
 {

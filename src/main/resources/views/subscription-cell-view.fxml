@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/stylesheets/authentication.css"
+          fx:controller="com.github.brokenswing.comixaire.controller.cell.SubscriptionCellController">
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="40.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="40.0"/>
+    </columnConstraints>
+
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER" />
+    </rowConstraints>
+    <children>
+        <Text fill="grey" GridPane.columnIndex="0">
+            From:
+        </Text>
+        <Text fx:id="from" fill="#5282FC" GridPane.columnIndex="1" />
+        <Text fill="grey" GridPane.columnIndex="2">
+            To:
+        </Text>
+        <Text fx:id="to" fill="#5282FC" GridPane.columnIndex="3" />
+    </children>
+
+</GridPane>

@@ -6,10 +6,13 @@ import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.facades.subscriptions.SubscriptionsFacade;
+import com.github.brokenswing.comixaire.javafx.CustomListCell;
+import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.Subscription;
 import com.github.brokenswing.comixaire.view.*;
 import com.github.brokenswing.comixaire.view.util.Router;
+import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -46,6 +49,8 @@ public class ClientSubscriptionsController implements ParametrizedController<Cli
     private ClientsFacade clientsFacade;
     @InjectValue
     private Router router;
+    @InjectValue
+    private ViewLoader loader;
 
     @Override
     public void handleViewParam(Client client)
@@ -56,6 +61,9 @@ public class ClientSubscriptionsController implements ParametrizedController<Cli
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        subscriptions.setSelectionModel(new NoOpSelectionModel<>());
+        subscriptions.setCellFactory(CustomListCell.factory(loader, SubscriptionCellView::new));
+
         fullname.setText(client.getFullname());
         dateFrom.setValue(LocalDate.now());
         dateTo.setValue(LocalDate.now().plusYears(1));
@@ -63,11 +71,7 @@ public class ClientSubscriptionsController implements ParametrizedController<Cli
         {
             subscriptions.setItems(new FilteredList<>(FXCollections.observableArrayList(subscriptionsFacade.findAllByCardId(client.getCardId()))));
         }
-        catch (InternalException e)
-        {
-            e.printStackTrace();
-        }
-        catch (NoClientFoundException e)
+        catch (InternalException | NoClientFoundException e)
         {
             e.printStackTrace();
         }
@@ -78,11 +82,11 @@ public class ClientSubscriptionsController implements ParametrizedController<Cli
     {
         try
         {
-            Subscription sub = new Subscription(java.sql.Date.valueOf(dateFrom.getValue()), java.sql.Date.valueOf(dateTo.getValue()), this.client);
+            Subscription sub = new Subscription(java.sql.Date.valueOf(dateFrom.getValue()), java.sql.Date.valueOf(dateTo.getValue()), client);
             subscriptionsFacade.create(sub);
-            //TODO: push 'sub' in the subscription's list
+            subscriptions.setItems(new FilteredList<>(FXCollections.observableArrayList(subscriptionsFacade.findAllByCardId(client.getCardId()))));
         }
-        catch (InternalException e)
+        catch (InternalException | NoClientFoundException e)
         {
             e.printStackTrace();
         }
