@@ -61,4 +61,25 @@ public class PostgresRatingDAO implements RatingDAO
         }
     }
 
+    @Override
+    public Integer[] getAllItemId() throws InternalException
+    {
+        try
+        {
+            ResultSet result = connection.prepareStatement("SELECT item_id FROM libraryitems").executeQuery();
+
+            ArrayList<Integer> itemsId = new ArrayList<>();
+
+            while(result.next()){
+                itemsId.add(result.getInt("item_id"));
+            }
+
+            return itemsId.toArray(new Integer[0]);
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to find any item", e);
+        }
+    }
+
 }

@@ -11,4 +11,6 @@ public interface RatingDAO
     void create(Rating rating) throws InternalException;
 
     Rating[] getAllRating() throws InternalException;
+
+    Integer[] getAllItemId() throws InternalException;
 }

@@ -15,14 +15,19 @@ public class RecommendationFacade extends Facade
         super(factory);
     }
 
-    private Rating[] recommendation() throws InternalException
+    private Rating[] getAllRating() throws InternalException
     {
         return this.factory.getRatingDAO().getAllRating();
     }
 
+    private Integer[] getAllItemId() throws InternalException
+    {
+        return this.factory.getRatingDAO().getAllItemId();
+    }
+
     public LibraryItem[] computeRecommendation(String type, Integer itemNumber, Client client) throws InternalException
     {
-        RecommendationSystem recommender = new RecommendationSystem(this.recommendation());
+        RecommendationSystem recommender = new RecommendationSystem(this.getAllRating(), this.getAllItemId());
         return recommender.computeRecommendation(type, itemNumber, client);
     }
 
