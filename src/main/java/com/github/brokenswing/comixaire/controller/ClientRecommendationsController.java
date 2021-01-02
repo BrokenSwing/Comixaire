@@ -8,12 +8,16 @@ import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.view.ClientActionCenterView;
+import com.github.brokenswing.comixaire.view.RecommendedItemCellView;
 import com.github.brokenswing.comixaire.view.util.Router;
+import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 
 import java.net.URL;
@@ -35,6 +39,8 @@ public class ClientRecommendationsController implements ParametrizedController<C
     private Router router;
     @InjectValue
     private RecommendationFacade recommendationFacade;
+    @InjectValue
+    private ViewLoader loader;
 
     @Override
     public void handleViewParam(Client client)
@@ -50,7 +56,7 @@ public class ClientRecommendationsController implements ParametrizedController<C
         try
         {
             this.itemsList.setSelectionModel(new NoOpSelectionModel<>());
-            //this.itemsList.setCellFactory(lv -> new ItemsController.ItemListCell());
+            this.itemsList.setCellFactory(lv -> new RecommendedItemListCell());
             this.items = new FilteredList<>(FXCollections.observableArrayList(recommendationFacade.computeRecommendation(itemTypeFilter.getValue(), itemNumberField.getValue(), client)));
             this.itemsList.setItems(this.items);
         }
@@ -65,5 +71,25 @@ public class ClientRecommendationsController implements ParametrizedController<C
     public void search()
     {
         //TODO: filter recommendations
+    }
+
+    private class RecommendedItemListCell extends ListCell<LibraryItem>
+    {
+
+        @Override
+        protected void updateItem(LibraryItem item, boolean empty)
+        {
+            super.updateItem(item, empty);
+            if (empty)
+            {
+                setText(null);
+                setGraphic(null);
+            }
+            else
+            {
+                Node node = loader.loadView(new RecommendedItemCellView(), item);
+                setGraphic(node);
+            }
+        }
     }
 }
