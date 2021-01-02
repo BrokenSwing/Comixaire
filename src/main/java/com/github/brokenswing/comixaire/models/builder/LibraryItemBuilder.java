@@ -91,14 +91,14 @@ public class LibraryItemBuilder implements LibraryItemStep
     @Override
     public LibraryItemStep createdOn(Date createdOn)
     {
-        this.createdOn = createdOn;
+        this.createdOn = new Date(createdOn.getTime());
         return this;
     }
 
     @Override
     public LibraryItemStep releasedOn(Date releasedOn)
     {
-        this.releasedOn = releasedOn;
+        this.releasedOn = new Date(releasedOn.getTime());
         return this;
     }
 
