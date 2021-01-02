@@ -12,7 +12,7 @@ public class ClientActionCenterController
     @InjectValue
     private Router router;
 
-    public void recommandations()
+    public void recommendations()
     {
         router.navigateTo(Views.CLIENT_RECOMMENDATIONS, auth.getLoggedInClient());
     }
