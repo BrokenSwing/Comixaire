@@ -27,4 +27,11 @@ public class PostgresRatingDAO implements RatingDAO
         //TODO: implement
     }
 
+    @Override
+    public Rating[] getAllRating() throws InternalException
+    {
+        //TODO: implement
+        return new Rating[0];
+    }
+
 }

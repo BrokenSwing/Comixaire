@@ -9,4 +9,6 @@ public interface RatingDAO
     LibraryItem[] search(String name, Boolean unratedItems, Boolean ratedItems) throws InternalException;
 
     void create(Rating rating) throws InternalException;
+
+    Rating[] getAllRating() throws InternalException;
 }
