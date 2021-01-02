@@ -12,19 +12,13 @@ public class Client
     private String lastname;
     private String gender;
     private String address;
-    private int subscriptionId;
 
     public Client(String firstname, String lastname, String cardId, String gender, String address, Date birthdate)
     {
-        this(-1, firstname, lastname, cardId, gender, address, birthdate, -1);
+        this(-1, firstname, lastname, cardId, gender, address, birthdate);
     }
 
-    public Client(String firstname, String lastname, String cardId, String gender, String address, Date birthdate, int subscriptionId)
-    {
-        this(-1, firstname, lastname, cardId, gender, address, birthdate, subscriptionId);
-    }
-
-    public Client(int idClient, String firstname, String lastname, String cardId, String gender, String address, Date birthdate, int subscriptionId)
+    public Client(int idClient, String firstname, String lastname, String cardId, String gender, String address, Date birthdate)
     {
         this.idClient = idClient;
         this.firstname = firstname;
@@ -33,7 +27,6 @@ public class Client
         this.gender = gender;
         this.address = address;
         this.birthdate = birthdate;
-        this.subscriptionId = subscriptionId;
     }
 
     public int getIdClient()
@@ -104,16 +97,6 @@ public class Client
     public void setCardId(String cardId)
     {
         this.cardId = cardId;
-    }
-
-    public int getSubscriptionId()
-    {
-        return subscriptionId;
-    }
-
-    public void setSubscriptionId(int id)
-    {
-        subscriptionId = id;
     }
 
     public String toString() {

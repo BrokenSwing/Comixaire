@@ -9,17 +9,19 @@ public class Subscription
     private final int idSubscription;
     private final Date from;
     private final Date to;
+    private final Client client;
 
-    public Subscription(int idSubscription, Date from, Date to)
+    public Subscription(int idSubscription, Date from, Date to, Client client)
     {
         this.idSubscription = idSubscription;
         this.from = from;
         this.to = to;
+        this.client = client;
     }
 
-    public Subscription(Date from, Date to)
+    public Subscription(Date from, Date to, Client client)
     {
-        this(-1, from, to);
+        this(-1, from, to, client);
     }
 
     public int getIdSubscription()

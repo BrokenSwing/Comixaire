@@ -42,7 +42,7 @@ public class PostgresClientDAO implements ClientDAO
 
             ResultSet result = prepare.executeQuery();
             result.next();
-            return new Client(result.getInt("client_id"), client.getFirstname(), client.getCardId(), client.getLastname(), client.getGender(), client.getAddress(), client.getBirthdate(), client.getSubscriptionId());
+            return new Client(result.getInt("client_id"), client.getFirstname(), client.getCardId(), client.getLastname(), client.getGender(), client.getAddress(), client.getBirthdate());
         }
         catch (SQLException e)
         {
@@ -221,7 +221,7 @@ public class PostgresClientDAO implements ClientDAO
                     .connection
                     .prepareStatement(
                             "UPDATE clients SET "
-                                    + "(client_firstname, client_lastname, client_gender, client_birthdate, client_address, client_cardID, subscription_id) = (?, ?, ?, ?, ?, ?, ?) "
+                                    + "(client_firstname, client_lastname, client_gender, client_birthdate, client_address, client_cardID) = (?, ?, ?, ?, ?, ?) "
                                     + "WHERE client_id = (?)"
                     );
             prepare.setString(1, client.getFirstname());
@@ -230,15 +230,7 @@ public class PostgresClientDAO implements ClientDAO
             prepare.setDate(4, new java.sql.Date(client.getBirthdate().getTime()));
             prepare.setString(5, client.getAddress());
             prepare.setString(6, client.getCardId());
-            if (client.getSubscriptionId() != -1)
-            {
-                prepare.setInt(7, client.getSubscriptionId());
-            }
-            else
-            {
-                prepare.setNull(7, Types.INTEGER);
-            }
-            prepare.setInt(8, client.getIdClient());
+            prepare.setInt(7, client.getIdClient());
 
             prepare.executeUpdate();
         }
@@ -341,11 +333,6 @@ public class PostgresClientDAO implements ClientDAO
 
     private Client clientFromRow(ResultSet result) throws SQLException
     {
-        int subId = result.getInt("subscription_id");
-        if (result.wasNull())
-        {
-            subId = -1;
-        }
         return new Client(
                 result.getInt("client_id"),
                 result.getString("client_firstname"),
@@ -353,8 +340,7 @@ public class PostgresClientDAO implements ClientDAO
                 result.getString("client_cardID"),
                 result.getString("client_gender"),
                 result.getString("client_address"),
-                result.getDate("client_birthdate"),
-                subId
+                result.getDate("client_birthdate")
         );
     }
 

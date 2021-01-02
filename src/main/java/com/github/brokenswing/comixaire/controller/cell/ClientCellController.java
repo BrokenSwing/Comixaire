@@ -28,8 +28,6 @@ public class ClientCellController implements ParametrizedController<Client>, Ini
     private Text gender;
     @FXML
     private Text cardId;
-    @FXML
-    private Text subscription;
 
     @InjectValue
     private Router router;
@@ -50,14 +48,6 @@ public class ClientCellController implements ParametrizedController<Client>, Ini
         this.birthdate.setText(PrettyTimeTransformer.prettyDate(this.client.getBirthdate()));
         this.gender.setText(this.client.getGender());
         this.cardId.setText(this.client.getCardId());
-        if (this.client.getSubscriptionId() > -1)
-        {
-            this.subscription.setText("Valid");
-        }
-        else
-        {
-            this.subscription.setText("Not valid");
-        }
 
     }
 }

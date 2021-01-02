@@ -78,7 +78,7 @@ public class ClientSubscriptionsController implements ParametrizedController<Cli
     {
         try
         {
-            Subscription sub = new Subscription(java.sql.Date.valueOf(dateFrom.getValue()), java.sql.Date.valueOf(dateTo.getValue()));
+            Subscription sub = new Subscription(java.sql.Date.valueOf(dateFrom.getValue()), java.sql.Date.valueOf(dateTo.getValue()), this.client);
             subscriptionsFacade.create(sub);
             //TODO: push 'sub' in the subscription's list
         }

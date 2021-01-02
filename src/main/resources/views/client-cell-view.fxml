@@ -12,8 +12,7 @@
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0"/>
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0"/>
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0"/>
     </columnConstraints>
 
     <rowConstraints>
@@ -25,7 +24,6 @@
        <Text fx:id="birthdate" fill="grey" GridPane.columnIndex="2" />
        <Text fx:id="gender" fill="grey" GridPane.columnIndex="3" />
        <Text fx:id="cardId" fill="#5282fc" GridPane.columnIndex="4" />
-       <Text fx:id="subscription" fill="grey" GridPane.columnIndex="5" />
    </children>
 
 </GridPane>
