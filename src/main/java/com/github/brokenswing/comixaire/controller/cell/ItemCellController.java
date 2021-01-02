@@ -26,7 +26,7 @@ public class ItemCellController implements ParametrizedController<LibraryItem>, 
     private LibraryItem libraryItem;
 
     @FXML
-    private Text itemTittle;
+    private Text itemTitle;
     @FXML
     private Text itemLocation;
     @FXML
@@ -79,7 +79,7 @@ public class ItemCellController implements ParametrizedController<LibraryItem>, 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        this.itemTittle.setText(this.libraryItem.getTitle());
+        this.itemTitle.setText(this.libraryItem.getTitle());
         this.itemLocation.setText("Location : " + this.libraryItem.getLocation());
         if (libraryItem instanceof Book)
         {
