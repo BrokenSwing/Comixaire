@@ -333,6 +333,14 @@ public class PostgresClientDAO implements ClientDAO
 
     private Client clientFromRow(ResultSet result) throws SQLException
     {
+        int subId;
+        try{
+            subId = result.getInt("subscription_id");
+        }
+        catch (Exception e)
+        {
+            subId = -1;
+        }
         return new Client(
                 result.getInt("client_id"),
                 result.getString("client_firstname"),
