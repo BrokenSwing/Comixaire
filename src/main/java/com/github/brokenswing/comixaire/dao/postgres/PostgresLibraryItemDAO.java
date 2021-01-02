@@ -284,35 +284,7 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
             ArrayList<LibraryItem> items = new ArrayList<>();
 
             while(result.next()){
-                LibraryItem item = null;
-                LibraryItemStep builder = LibraryItemBuilder.create();
-                builder
-                        .id(result.getInt("item_id"))
-                        .title(result.getString("item_title"))
-                        .condition(ConditionType.valueOf(result.getString("item_condition")))
-                        .location(result.getString("item_location"))
-                        .createdOn(result.getDate("item_createdon"))
-                        .releasedOn(result.getDate("item_releasedon"))
-                        .bookings((Integer[]) result.getArray("item_bookings").getArray())
-                        .available(result.getBoolean("item_available"))
-                        .categories((String[]) result.getArray("item_categories").getArray());
-
-                if (isBookRow(result))
-                {
-                    item = buildBook(result, builder);
-                }
-                if (isGameRow(result))
-                {
-                    item = buildGame(result, builder);
-                }
-                if (isCDRow(result))
-                {
-                    item = buildCD(result, builder);
-                }
-                if (isDVDRow(result))
-                {
-                    item = buildDVD(result, builder);
-                }
+                LibraryItem item = libraryItemFromRow(result);
                 if (item != null) {
                     items.add(item);
                 }
@@ -323,6 +295,40 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
         {
             throw new InternalException("Unable to find any item", e);
         }
+    }
+
+    public static LibraryItem libraryItemFromRow(ResultSet result) throws SQLException
+    {
+        LibraryItem item = null;
+        LibraryItemStep builder = LibraryItemBuilder.create();
+        builder
+                .id(result.getInt("item_id"))
+                .title(result.getString("item_title"))
+                .condition(ConditionType.valueOf(result.getString("item_condition")))
+                .location(result.getString("item_location"))
+                .createdOn(result.getDate("item_createdon"))
+                .releasedOn(result.getDate("item_releasedon"))
+                .bookings((Integer[]) result.getArray("item_bookings").getArray())
+                .available(result.getBoolean("item_available"))
+                .categories((String[]) result.getArray("item_categories").getArray());
+
+        if (isBookRow(result))
+        {
+            item = buildBook(result, builder);
+        }
+        if (isGameRow(result))
+        {
+            item = buildGame(result, builder);
+        }
+        if (isCDRow(result))
+        {
+            item = buildCD(result, builder);
+        }
+        if (isDVDRow(result))
+        {
+            item = buildDVD(result, builder);
+        }
+        return item;
     }
 
     private static boolean isBookRow(ResultSet result) throws SQLException

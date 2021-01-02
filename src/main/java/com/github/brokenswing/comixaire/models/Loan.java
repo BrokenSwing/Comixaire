@@ -1,6 +1,6 @@
 package com.github.brokenswing.comixaire.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Loan
 {
@@ -34,7 +34,13 @@ public class Loan
         return to;
     }
 
-    public Client getClient() { return client; }
+    public Client getClient()
+    {
+        return client;
+    }
 
-    public LibraryItem getLibraryItem() { return libraryItem; }
+    public LibraryItem getLibraryItem()
+    {
+        return libraryItem;
+    }
 }

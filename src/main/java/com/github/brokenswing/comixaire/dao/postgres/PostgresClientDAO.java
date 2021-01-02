@@ -331,7 +331,7 @@ public class PostgresClientDAO implements ClientDAO
         }
     }
 
-    private Client clientFromRow(ResultSet result) throws SQLException
+    public static Client clientFromRow(ResultSet result) throws SQLException
     {
         return new Client(
                 result.getInt("client_id"),

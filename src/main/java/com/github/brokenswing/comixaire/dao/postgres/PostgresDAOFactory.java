@@ -12,9 +12,11 @@ public class PostgresDAOFactory extends DAOFactory
         this.postgresConnection = new ConnectionPostgreSQL();
     }
 
-
     @Override
-    public StaffMemberDAO getStaffMemberDAO() { return new PostgresStaffMemberDAO(this.postgresConnection.getConnection()); }
+    public StaffMemberDAO getStaffMemberDAO()
+    {
+        return new PostgresStaffMemberDAO(this.postgresConnection.getConnection());
+    }
 
     @Override
     public ClientDAO getClientDAO()
@@ -29,10 +31,16 @@ public class PostgresDAOFactory extends DAOFactory
     }
 
     @Override
-    public FineDAO getFineDAO() { return new PostgresFineDAO(this.postgresConnection.getConnection()); }
+    public FineDAO getFineDAO()
+    {
+        return new PostgresFineDAO(this.postgresConnection.getConnection());
+    }
 
     @Override
-    public LibraryItemDAO getLibraryItemDAO() { return new PostgresLibraryItemDAO(this.postgresConnection.getConnection()); }
+    public LibraryItemDAO getLibraryItemDAO()
+    {
+        return new PostgresLibraryItemDAO(this.postgresConnection.getConnection());
+    }
 
     @Override
     public RatingDAO getRatingDAO()
@@ -41,6 +49,15 @@ public class PostgresDAOFactory extends DAOFactory
     }
 
     @Override
-    public SubscriptionsDAO getSubscriptionsDAO() { return new PostgresSubscriptionsDAO(this.postgresConnection.getConnection()); }
+    public SubscriptionsDAO getSubscriptionsDAO()
+    {
+        return new PostgresSubscriptionsDAO(this.postgresConnection.getConnection());
+    }
+
+    @Override
+    public LoanDAO getLoanDAO()
+    {
+        return new PostgresLoanDAO(postgresConnection.getConnection());
+    }
 
 }
