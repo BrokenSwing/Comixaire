@@ -50,7 +50,7 @@ public class ClientRecommendationsController implements ParametrizedController<C
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        itemNumberField.setItems(FXCollections.observableArrayList(5, 10, 20, 30));
+        itemNumberField.setItems(FXCollections.observableArrayList(5, 10, 15, 20));
         itemNumberField.getSelectionModel().select(0);
         try
         {
