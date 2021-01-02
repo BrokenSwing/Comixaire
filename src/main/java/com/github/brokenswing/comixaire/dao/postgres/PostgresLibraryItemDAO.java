@@ -84,7 +84,7 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
             {
                 e.printStackTrace();
             }
-            throw new InternalException("Unable to insert DVD.", e);
+            throw new InternalException("Unable to insert game.", e);
         }
         finally
         {
@@ -397,7 +397,212 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
     @Override
     public void update(LibraryItem libraryItem) throws InternalException
     {
-        //TODO: implement
+        if (libraryItem instanceof Book)
+        {
+            updateBook((Book) libraryItem);
+        }
+        else if (libraryItem instanceof CD)
+        {
+            updateCD((CD) libraryItem);
+        }
+        else if (libraryItem instanceof DVD)
+        {
+            updateDVD((DVD) libraryItem);
+        }
+        else if (libraryItem instanceof Game)
+        {
+            updateGame((Game) libraryItem);
+        }
+        else
+        {
+            throw new InternalException("Unknown type of library item");
+        }
+    }
+
+    private void updateGame(Game game) throws InternalException
+    {
+        disableAutoCommit();
+
+        try
+        {
+            updateLibraryItem(game);
+
+            PreparedStatement stmt = connection.prepareStatement("UPDATE games SET " +
+                    "(game_publisher, game_minplayers, game_maxplayers, game_minage, game_contentinventory) " +
+                    "= (?, ?, ?, ?, ?) " +
+                    "WHERE item_id = (?)");
+            stmt.setString(1, game.getPublisher());
+            stmt.setInt(2, game.getMinPlayers());
+            stmt.setInt(3, game.getMaxPlayers());
+            stmt.setInt(4, game.getMinAge());
+            stmt.setString(5, game.getContentInventory());
+            stmt.setInt(6, game.getIdLibraryItem());
+
+            stmt.executeUpdate();
+            connection.commit();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            try
+            {
+                connection.rollback();
+            }
+            catch (SQLException sadException)
+            {
+                e.printStackTrace();
+            }
+            throw new InternalException("Unable to update game.", e);
+        }
+        finally
+        {
+            enableAutoCommit();
+        }
+    }
+
+    private void updateDVD(DVD dvd) throws InternalException
+    {
+        disableAutoCommit();
+
+        try
+        {
+            updateLibraryItem(dvd);
+
+            PreparedStatement stmt = connection.prepareStatement("UPDATE dvd SET " +
+                    "(dvd_duration, dvd_producer, dvd_casting) " +
+                    "= (?, ?, ?) " +
+                    "WHERE item_id = (?)");
+            stmt.setInt(1, dvd.getDuration());
+            stmt.setString(2, dvd.getProducer());
+            stmt.setArray(3, connection.createArrayOf("varchar", dvd.getCasting()));
+            stmt.setInt(4, dvd.getIdLibraryItem());
+
+            stmt.executeUpdate();
+            connection.commit();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            try
+            {
+                connection.rollback();
+            }
+            catch (SQLException sadException)
+            {
+                e.printStackTrace();
+            }
+            throw new InternalException("Unable to update DVD.", e);
+        }
+        finally
+        {
+            enableAutoCommit();
+        }
+    }
+
+    private void updateCD(CD cd) throws InternalException
+    {
+        disableAutoCommit();
+
+        try
+        {
+            updateLibraryItem(cd);
+
+            PreparedStatement stmt = connection.prepareStatement("UPDATE cd SET " +
+                    "(cd_artist, cd_duration) " +
+                    "= (?, ?) " +
+                    "WHERE item_id = (?)");
+            stmt.setString(1, cd.getArtist());
+            stmt.setInt(2, cd.getDuration());
+            stmt.setInt(3, cd.getIdLibraryItem());
+
+            stmt.executeUpdate();
+            connection.commit();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            try
+            {
+                connection.rollback();
+            }
+            catch (SQLException sadException)
+            {
+                e.printStackTrace();
+            }
+            throw new InternalException("Unable to update CD.", e);
+        }
+        finally
+        {
+            enableAutoCommit();
+        }
+    }
+
+    private void updateBook(Book book) throws InternalException
+    {
+        disableAutoCommit();
+
+        try
+        {
+            updateLibraryItem(book);
+
+            PreparedStatement stmt = connection.prepareStatement("UPDATE books SET " +
+                    "(book_author, book_isbn, book_publisher, book_pagescount) " +
+                    "= (?, ?, ?, ?) " +
+                    "WHERE item_id = (?)");
+            stmt.setString(1, book.getAuthor());
+            stmt.setString(2, book.getISBN());
+            stmt.setString(3, book.getPublisher());
+            stmt.setInt(4, book.getPagesCount());
+            stmt.setInt(5, book.getIdLibraryItem());
+
+            stmt.executeUpdate();
+            connection.commit();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            try
+            {
+                connection.rollback();
+            }
+            catch (SQLException sadException)
+            {
+                e.printStackTrace();
+            }
+            throw new InternalException("Unable to update book.", e);
+        }
+        finally
+        {
+            enableAutoCommit();
+        }
+    }
+
+    private void updateLibraryItem(LibraryItem item) throws SQLException
+    {
+        PreparedStatement stmt = connection.prepareStatement(
+                "UPDATE libraryitems SET (" +
+                        "item_title," +
+                        "item_condition," +
+                        "item_location," +
+                        "item_createdon," +
+                        "item_releasedon," +
+                        "item_bookings," +
+                        "item_available," +
+                        "item_categories" +
+                        ") = (?, ?, ?, ?, ?, ?, ?, ?) " +
+                        "WHERE item_id = (?)"
+        );
+        stmt.setString(1, item.getTitle());
+        stmt.setString(2, item.getCondition().name());
+        stmt.setString(3, item.getLocation());
+        stmt.setDate(4, new Date(item.getCreatedOn().getTime()));
+        stmt.setDate(5, new Date(item.getReleasedOn().getTime()));
+        stmt.setArray(6, connection.createArrayOf("integer", item.getBookings()));
+        stmt.setBoolean(7, item.isAvailable());
+        stmt.setArray(8, connection.createArrayOf("varchar", item.getCategories()));
+        stmt.setInt(9, item.getIdLibraryItem());
+
+        stmt.executeUpdate();
     }
 
     @Override
