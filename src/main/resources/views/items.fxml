@@ -29,8 +29,8 @@
 
     <AnchorPane layoutX="276.0" layoutY="191.0" prefHeight="96.0" prefWidth="817.0"
                 style="-fx-background-color: white;" stylesheets="@../stylesheets/authentication.css">
-        <IntField layoutX="271.0" layoutY="37.0" promptText="Id" fx:id="itemIDField"/>
-        <TextField layoutX="460.0" layoutY="37.0" promptText="Name" fx:id="itemNameField"/>
+        <IntField layoutX="275.0" layoutY="37.0" promptText="Id" fx:id="itemIDField"/>
+        <TextField layoutX="500.0" layoutY="37.0" promptText="Name" fx:id="itemNameField"/>
         <ChoiceBox fx:id="itemTypeFilter" layoutX="51.0" layoutY="37.0" prefWidth="150.0" value="All">
             <items>
                 <FXCollections fx:factory="observableArrayList">
