@@ -16,7 +16,7 @@
             <tabs>
                 <Tab text="Client">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" onKeyPressed="#handleKeyPressClient">
                             <children>
                                 <TextField layoutX="101.0" layoutY="75.0" promptText="User ID" fx:id="clientIdField"/>
                                 <Button alignment="CENTER" layoutX="95.0" layoutY="177.0" mnemonicParsing="false"
@@ -28,7 +28,7 @@
                 </Tab>
                 <Tab text="Staff">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="238.0" prefWidth="375.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="238.0" prefWidth="375.0" onKeyPressed="#handleKeyPressStaff">
                             <children>
                                 <TextField layoutX="96.0" layoutY="46.0" promptText="Username" fx:id="usernameField"/>
                                 <PasswordField layoutX="96.0" layoutY="97.0" promptText="Password"
