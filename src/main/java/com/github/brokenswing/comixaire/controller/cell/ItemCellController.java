@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -46,27 +47,31 @@ public class ItemCellController implements ParametrizedController<LibraryItem>, 
     @FXML
     protected void delete()
     {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Are you sure ?");
-        alert.setHeaderText("Do you really want to delete: " + libraryItem.getTitle() + " ?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK){
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Item deletion");
+        confirmationAlert.setContentText(String.format(
+                "Do you really want to delete %s \"%s\" ?",
+                libraryItem.getClass().getSimpleName(),
+                libraryItem.getTitle()
+        ));
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK)
+        {
             try
             {
                 this.itemsFacade.delete(libraryItem);
-                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                alert2.setTitle("Success");
-                alert2.setContentText("The library item \"" + libraryItem.getTitle() + "\" was successfully deleted.");
-                alert2.showAndWait();
-                router.navigateTo(new ItemsView());
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Success");
+                successAlert.setContentText("The library item \"" + libraryItem.getTitle() + "\" was successfully deleted.");
+                successAlert.showAndWait();
             }
             catch (InternalException e)
             {
                 e.printStackTrace();
                 new InternalErrorAlert(e).showAndWait();
             }
+            router.navigateTo(new ItemsView());
         }
-
     }
 
     @Override
