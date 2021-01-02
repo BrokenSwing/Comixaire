@@ -4,6 +4,10 @@ import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 
 import java.util.*;
 
+/**
+ * This class represents the type of items that
+ * the software can manage (that can be booked, loaned, etc ..).
+ */
 public abstract class LibraryItem
 {
 
@@ -37,6 +41,9 @@ public abstract class LibraryItem
         this.available = available;
     }
 
+    /**
+     * @return an unique identifier or -1 if no identifier were given
+     */
     public int getIdLibraryItem()
     {
         return idLibraryItem;
@@ -72,6 +79,9 @@ public abstract class LibraryItem
         this.location = location;
     }
 
+    /**
+     * @return the creation date of the item in the data store
+     */
     public Date getCreatedOn()
     {
         return createdOn;
@@ -82,6 +92,9 @@ public abstract class LibraryItem
         return PrettyTimeTransformer.prettyDate(this.getCreatedOn());
     }
 
+    /**
+     * @return the release date of this item by it's author/publisher/producer
+     */
     public Date getReleasedOn()
     {
         return releasedOn;
@@ -92,11 +105,26 @@ public abstract class LibraryItem
         return PrettyTimeTransformer.prettyDate(this.getReleasedOn());
     }
 
+    /**
+     * Provides a list of clients IDs. These IDs are ordered
+     * in booking order, the first ID being the client who booked
+     * this item before everybody else.
+     *
+     * @return an ordered list of integers
+     */
     public Integer[] getBookings()
     {
         return bookings.toArray(new Integer[0]);
     }
 
+    /**
+     * Adds a new client in the queue of bookings. The ID of the
+     * given client will be added to the end of array returned
+     * by {@link #getBookings()}.
+     *
+     * @param client The client booking this item
+     * @return true if the client were added to the bookings queue, otherwise false
+     */
     public boolean addBooking(Client client)
     {
         return bookings.offer(client.getIdClient());

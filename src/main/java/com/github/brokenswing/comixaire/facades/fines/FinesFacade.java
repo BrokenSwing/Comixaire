@@ -18,7 +18,7 @@ public class FinesFacade extends Facade
         super(factory);
     }
 
-    public void create(Fine fine) throws InternalException, NoReturnFoundException, NonValidFineTypeException
+    public void create(Fine fine) throws InternalException, NoReturnFoundException, InvalidFineTypeException
     {
         this.factory.getFineDAO().create(fine);
         logger.log("Created fine: " + fine.getLabel(), "Price: " + fine.getPrice());

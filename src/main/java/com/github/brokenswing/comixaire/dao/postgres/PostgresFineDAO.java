@@ -19,7 +19,7 @@ public class PostgresFineDAO implements FineDAO
     }
 
     @Override
-    public void create(Fine fine) throws InternalException, NoReturnFoundException, NonValidFineTypeException
+    public void create(Fine fine) throws InternalException, NoReturnFoundException, InvalidFineTypeException
     {
         try
         {
@@ -40,7 +40,7 @@ public class PostgresFineDAO implements FineDAO
                 }
                 else if (ex.getServerErrorMessage() != null && "fk_fineType".equals(ex.getServerErrorMessage().getConstraint()))
                 {
-                    throw new NonValidFineTypeException(fine.getIdType());
+                    throw new InvalidFineTypeException(fine.getIdType());
                 }
             }
             throw new InternalException("Unable to create fine", e);

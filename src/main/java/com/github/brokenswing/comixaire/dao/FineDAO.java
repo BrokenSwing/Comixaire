@@ -6,7 +6,7 @@ import com.github.brokenswing.comixaire.models.Fine;
 
 public interface FineDAO
 {
-    void create(Fine fine) throws InternalException, NoReturnFoundException, NonValidFineTypeException;
+    void create(Fine fine) throws InternalException, NoReturnFoundException, InvalidFineTypeException;
 
     Fine[] findByClient(Client client) throws InternalException, NoClientFoundException;
 

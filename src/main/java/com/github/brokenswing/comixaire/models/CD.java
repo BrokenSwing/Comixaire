@@ -4,6 +4,13 @@ import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 
 import java.util.Date;
 
+/**
+ * This class represents a specific type of library item
+ * that is handled by the software.
+ * To avoid manually specifying each argument of the constructor,
+ * the {@link com.github.brokenswing.comixaire.models.builder.LibraryItemBuilder}
+ * should be preferred.
+ */
 public class CD extends LibraryItem
 {
     private int duration;

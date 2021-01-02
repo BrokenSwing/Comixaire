@@ -1,9 +1,11 @@
 package com.github.brokenswing.comixaire.exception;
 
-public class NonValidFineTypeException extends Exception
+public class InvalidFineTypeException extends Exception
 {
-    public NonValidFineTypeException(int idFineType)
+
+    public InvalidFineTypeException(int idFineType)
     {
         super("Unable to find the fine type with id: " + idFineType);
     }
+
 }

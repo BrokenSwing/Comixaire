@@ -2,6 +2,13 @@ package com.github.brokenswing.comixaire.models;
 
 import java.util.Date;
 
+/**
+ * This class represents a specific type of library item
+ * that is handled by the software.
+ * To avoid manually specifying each argument of the constructor,
+ * the {@link com.github.brokenswing.comixaire.models.builder.LibraryItemBuilder}
+ * should be preferred.
+ */
 public class Book extends LibraryItem
 {
     private String author;
