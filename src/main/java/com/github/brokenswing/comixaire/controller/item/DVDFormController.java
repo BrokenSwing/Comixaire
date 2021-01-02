@@ -62,13 +62,6 @@ public class DVDFormController extends LibraryItemFormController<DVD>
     {
         super.initialize(location, resources);
 
-        if (editedItem != null)
-        {
-            this.producer.setText(editedItem.getProducer());
-            this.duration.setValue(editedItem.getDuration());
-            this.casting.getItems().setAll(editedItem.getCasting());
-        }
-
         try
         {
             this.casting.getItems().addAll(Arrays.asList(libraryItemFacade.getKnownCastings()));
@@ -77,6 +70,17 @@ public class DVDFormController extends LibraryItemFormController<DVD>
         {
             e.printStackTrace();
         }
+
+        if (editedItem != null)
+        {
+            this.producer.setText(editedItem.getProducer());
+            this.duration.setValue(editedItem.getDuration());
+            for (String actor : this.editedItem.getCasting())
+            {
+                this.casting.getCheckModel().check(actor);
+            }
+        }
+
     }
 
     public void addCasting()

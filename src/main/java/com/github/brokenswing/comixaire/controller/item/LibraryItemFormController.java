@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
 
 import static com.github.brokenswing.comixaire.utils.BindingsHelper.trimmed;
 
@@ -152,22 +153,9 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
         this.createButton.disableProperty().bind(formValid.not());
         this.updateButton.disableProperty().bind(formValid.not());
 
-        if (editedItem != null)
-        {
-            this.createButton.setVisible(false);
-
-            this.name.setText(editedItem.getTitle());
-            this.location.setText(editedItem.getLocation());
-            this.createdOn.setValue(editedItem.getCreatedOn().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            this.releasedOn.setValue(editedItem.getReleasedOn().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        }
-        else
-        {
-            this.updateButton.setVisible(false);
-        }
+        // Populate eligible values
 
         this.condition.setItems(FXCollections.observableArrayList(ConditionType.values()));
-        this.condition.setValue(ConditionType.NEW);
         try
         {
             this.categories.getItems().addAll(Arrays.asList(this.libraryItemFacade.getKnownCategories()));
@@ -176,6 +164,27 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
         {
             e.printStackTrace();
         }
+
+        if (editedItem != null)
+        {
+            this.createButton.setVisible(false);
+
+            this.name.setText(editedItem.getTitle());
+            this.location.setText(editedItem.getLocation());
+            this.createdOn.setValue(editedItem.getCreatedOn().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            this.releasedOn.setValue(editedItem.getReleasedOn().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            this.condition.setValue(editedItem.getCondition());
+            for (String category : editedItem.getCategories())
+            {
+                this.categories.getCheckModel().check(category);
+            }
+        }
+        else
+        {
+            this.updateButton.setVisible(false);
+            this.condition.setValue(ConditionType.NEW);
+        }
+
     }
 
     public void addCategory()
