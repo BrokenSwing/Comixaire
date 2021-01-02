@@ -6,8 +6,7 @@ import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.models.Client;
-import com.github.brokenswing.comixaire.view.ActionCenterView;
-import com.github.brokenswing.comixaire.view.LoansView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -25,7 +24,7 @@ public class LoansClientIdController
 
     public void back()
     {
-        router.navigateTo(new ActionCenterView());
+        router.navigateTo(Views.ACTION_CENTER);
     }
 
     public void select()
@@ -33,7 +32,7 @@ public class LoansClientIdController
         try
         {
             Client client = clientsFacade.findByCardId(loanClientIdField.getText());
-            router.navigateTo(new LoansView(), client);
+            router.navigateTo(Views.CLIENT_LOANS, client);
         }
         catch (InternalException e)
         {

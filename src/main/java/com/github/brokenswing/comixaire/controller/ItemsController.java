@@ -7,7 +7,7 @@ import com.github.brokenswing.comixaire.javafx.CustomListCell;
 import com.github.brokenswing.comixaire.javafx.IntField;
 import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.*;
-import com.github.brokenswing.comixaire.view.ItemCellView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
@@ -77,7 +77,7 @@ public class ItemsController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         this.itemsList.setSelectionModel(new NoOpSelectionModel<>());
-        this.itemsList.setCellFactory(CustomListCell.factory(loader, ItemCellView::new));
+        this.itemsList.setCellFactory(CustomListCell.factory(loader, Views.Cells.ITEM));
 
         try
         {

@@ -5,7 +5,7 @@ import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
 import com.github.brokenswing.comixaire.models.LibraryItem;
-import com.github.brokenswing.comixaire.view.ItemsView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
 import com.github.brokenswing.comixaire.view.item.UpdateLibraryItemView;
 import com.github.brokenswing.comixaire.view.util.Router;
@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -70,7 +69,7 @@ public class ItemCellController implements ParametrizedController<LibraryItem>, 
                 e.printStackTrace();
                 new InternalErrorAlert(e).showAndWait();
             }
-            router.navigateTo(new ItemsView());
+            router.navigateTo(Views.LIBRARY_ITEMS_LIST);
         }
     }
 

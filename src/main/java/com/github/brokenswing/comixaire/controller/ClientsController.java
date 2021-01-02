@@ -7,7 +7,7 @@ import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.javafx.CustomListCell;
 import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.Client;
-import com.github.brokenswing.comixaire.view.ClientCellView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
@@ -82,7 +82,7 @@ public class ClientsController implements Initializable
         {
             e.printStackTrace();
         }
-        catch (NoClientFoundException e)
+        catch (NoClientFoundException ignored)
         {
 
         }
@@ -92,7 +92,7 @@ public class ClientsController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         this.clientsList.setSelectionModel(new NoOpSelectionModel<>());
-        this.clientsList.setCellFactory(CustomListCell.factory(loader, ClientCellView::new));
+        this.clientsList.setCellFactory(CustomListCell.factory(loader, Views.Cells.CLIENT));
 
         try
         {

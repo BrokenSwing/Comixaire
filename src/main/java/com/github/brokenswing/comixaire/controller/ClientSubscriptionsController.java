@@ -1,7 +1,7 @@
 package com.github.brokenswing.comixaire.controller;
 
-import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
+import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
@@ -10,12 +10,11 @@ import com.github.brokenswing.comixaire.javafx.CustomListCell;
 import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.Subscription;
-import com.github.brokenswing.comixaire.view.*;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -29,8 +28,10 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class ClientSubscriptionsController implements ParametrizedController<Client>, Initializable
+public class ClientSubscriptionsController implements Initializable
 {
+
+    @ViewParam
     private Client client;
 
     @FXML
@@ -51,12 +52,6 @@ public class ClientSubscriptionsController implements ParametrizedController<Cli
     private Router router;
     @InjectValue
     private ViewLoader loader;
-
-    @Override
-    public void handleViewParam(Client client)
-    {
-        this.client = client;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -93,24 +88,33 @@ public class ClientSubscriptionsController implements ParametrizedController<Cli
     }
 
     /**
-     *  NEEDS FACTORISATION IN A FUTURE
+     * NEEDS FACTORISATION IN A FUTURE
      */
 
-    public void back() { router.navigateTo(new ClientsView()); }
+    public void back()
+    {
+        router.navigateTo(Views.CLIENTS_LIST);
+    }
 
     public void infos()
     {
-        router.navigateTo(new ClientDetailsView(), client);
+        router.navigateTo(Views.CLIENT_DETAILS, client);
     }
 
     public void update()
     {
-        router.navigateTo(new ClientUpdateView(), client);
+        router.navigateTo(Views.CLIENT_UPDATE, client);
     }
 
-    public void subscriptions() { router.navigateTo(new ClientSubscriptions(), client); }
+    public void subscriptions()
+    {
+        router.navigateTo(Views.CLIENT_SUBSCRIPTIONS, client);
+    }
 
-    public void fines() { router.navigateTo(new ClientFines(), client); }
+    public void fines()
+    {
+        router.navigateTo(Views.CLIENT_FINES, client);
+    }
 
     public void delete()
     {
@@ -118,7 +122,8 @@ public class ClientSubscriptionsController implements ParametrizedController<Cli
         alert.setTitle("Are you sure ?");
         alert.setHeaderText("Do you really want to delete the client: " + client.getFullname() + " ?");
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK){
+        if (result.isPresent() && result.get() == ButtonType.OK)
+        {
             try
             {
                 clientsFacade.delete(client);
@@ -126,7 +131,7 @@ public class ClientSubscriptionsController implements ParametrizedController<Cli
                 alert2.setTitle("Success");
                 alert.setHeaderText("Client successfully removed from our database");
                 alert2.showAndWait();
-                router.navigateTo(new ClientsView());
+                router.navigateTo(Views.CLIENTS_LIST);
             }
             catch (InternalException e)
             {

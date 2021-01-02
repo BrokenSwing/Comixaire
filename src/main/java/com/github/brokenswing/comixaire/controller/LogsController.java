@@ -6,7 +6,7 @@ import com.github.brokenswing.comixaire.facades.logs.LogsFacade;
 import com.github.brokenswing.comixaire.javafx.CustomListCell;
 import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.Log;
-import com.github.brokenswing.comixaire.view.LogCellView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
@@ -76,7 +76,7 @@ public class LogsController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         this.logsList.setSelectionModel(new NoOpSelectionModel<>());
-        this.logsList.setCellFactory(CustomListCell.factory(loader, LogCellView::new));
+        this.logsList.setCellFactory(CustomListCell.factory(loader, Views.Cells.LOG));
 
         try
         {

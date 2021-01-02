@@ -1,6 +1,6 @@
 package com.github.brokenswing.comixaire.controller.cell;
 
-import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
+import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.models.Log;
 import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 import javafx.fxml.FXML;
@@ -10,9 +10,10 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LogCellController implements ParametrizedController<Log>, Initializable
+public class LogCellController implements Initializable
 {
 
+    @ViewParam
     private Log log;
 
     @FXML
@@ -23,12 +24,6 @@ public class LogCellController implements ParametrizedController<Log>, Initializ
     private Text memberName;
     @FXML
     private Text date;
-
-    @Override
-    public void handleViewParam(Log log)
-    {
-        this.log = log;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)

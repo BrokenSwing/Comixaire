@@ -5,11 +5,13 @@
     <groovy codeStyle="LEGACY" />
   </component>
   <component name="EntryPointsManager">
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="com.github.brokenswing.comixaire.di.ValueProvider" />
+      <item index="1" class="java.lang.String" itemvalue="com.github.brokenswing.comixaire.di.ViewParam" />
     </list>
     <writeAnnotations>
       <writeAnnotation name="com.github.brokenswing.comixaire.di.InjectValue" />
+      <writeAnnotation name="com.github.brokenswing.comixaire.di.ViewParam" />
     </writeAnnotations>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />

@@ -1,7 +1,8 @@
 package com.github.brokenswing.comixaire.di;
 
-import com.github.brokenswing.comixaire.di.impl.CacheDependencySource;
+import com.github.brokenswing.comixaire.di.sources.CacheDependencySource;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.Comparator;
@@ -18,40 +19,62 @@ import java.util.stream.Stream;
  *
  * <p>
  * Calling {@link #inject(Object)} will inject values in the fields
- * of the given object that are annotated with {@link InjectValue}
+ * of the given object that are annotated with the annotation passed to the constructor
  * resolving those values from the sources added through
  * {@link #addDependencyResolver(DependencySource)}.
  * </p>
  *
- * @see InjectValue
  * @see DependencySource
  */
 public class DependencyInjector
 {
 
-    private static DependencyInjector instance = null;
-
     private final Collection<DependencySource> sources =
             new PriorityQueue<>(Comparator.comparing(DependencySource::getPriority).reversed());
 
     private final CacheDependencySource cache = new CacheDependencySource();
+    private boolean cacheEnabled;
+    private final Class<? extends Annotation> injectionAnnotation;
 
-    private DependencyInjector()
+    public DependencyInjector(Class<? extends Annotation> injectionAnnotation)
     {
         this.sources.add(cache);
+        this.cacheEnabled = true;
+        this.injectionAnnotation = injectionAnnotation;
     }
 
     /**
-     * Returns the instance of the singleton. <br>
-     * The access to this instance is not thread-safe.
+     * Enables cache access. <br>
+     * When the cache is enabled, dependencies can be retrieved from
+     * the cache and dependencies fetched from other sources than
+     * the cache, are cached.<br>
+     *
+     * Cache is enabled by default.
+     *
+     * @see #disableCache()
      */
-    public static DependencyInjector getInstance()
+    public void enableCache()
     {
-        if (instance == null)
+        if (!this.cacheEnabled)
         {
-            instance = new DependencyInjector();
+            this.sources.add(cache);
+            this.cacheEnabled = true;
         }
-        return instance;
+    }
+
+    /**
+     * Disables cache access. <br>
+     * When the cache is disabled, dependencies are not retrieved
+     * from the cache anymore and dependencies fetched from other sources
+     * than the cache are not cached.
+     */
+    public void disableCache()
+    {
+        if (this.cacheEnabled)
+        {
+            this.sources.remove(cache);
+            this.cacheEnabled = false;
+        }
     }
 
     /**
@@ -120,7 +143,10 @@ public class DependencyInjector
             throw new IllegalStateException(String.format("Dependency %s can't be resolved.", dependency.getSimpleName()));
         }
 
-        cache.addToCache(dependency, dependencyInstance);
+        if (cacheEnabled)
+        {
+            cache.addToCache(dependency, dependencyInstance);
+        }
 
         if (source.injectRecursively())
         {
@@ -163,7 +189,7 @@ public class DependencyInjector
 
     private boolean mustFieldBeInjected(Field field)
     {
-        return field.isAnnotationPresent(InjectValue.class);
+        return field.isAnnotationPresent(this.injectionAnnotation);
     }
 
 }

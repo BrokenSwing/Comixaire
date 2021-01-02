@@ -23,23 +23,23 @@ public class StaffMenusController
 
     protected void displayLoginView()
     {
-        router.navigateTo(new LoginView());
+        router.navigateTo(Views.LOGIN);
     }
 
     @FXML
     protected void displaySettingsView()
     {
-        router.navigateTo(new SettingsView());
+        router.navigateTo(Views.SETTINGS);
     }
 
     @FXML
     protected void displayLogsView()
     {
-        router.navigateTo(new LogsView());
+        router.navigateTo(Views.LOGS);
     }
 
     @FXML
-    protected void displayItemsView() { router.navigateTo(new ItemsView()); }
+    protected void displayItemsView() { router.navigateTo(Views.LIBRARY_ITEMS_LIST); }
 
     @FXML
     protected void displayStatsView()
@@ -48,9 +48,9 @@ public class StaffMenusController
     }
 
     @FXML
-    private void displayActionCenterView() { router.navigateTo(new ActionCenterView()); }
+    private void displayActionCenterView() { router.navigateTo(Views.ACTION_CENTER); }
 
     @FXML
-    private void displayClientsView() { router.navigateTo(new ClientsView()); }
+    private void displayClientsView() { router.navigateTo(Views.CLIENTS_LIST); }
 
 }

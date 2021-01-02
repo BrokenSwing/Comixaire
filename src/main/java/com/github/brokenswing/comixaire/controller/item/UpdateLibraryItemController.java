@@ -3,19 +3,16 @@ package com.github.brokenswing.comixaire.controller.item;
 import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.models.*;
-import com.github.brokenswing.comixaire.view.ActionCenterView;
-import com.github.brokenswing.comixaire.view.ItemsView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.item.BookFormView;
 import com.github.brokenswing.comixaire.view.item.CDFormView;
 import com.github.brokenswing.comixaire.view.item.DVDFormView;
 import com.github.brokenswing.comixaire.view.item.GameFormView;
-import com.github.brokenswing.comixaire.view.util.ParametrizedView;
 import com.github.brokenswing.comixaire.view.util.Router;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -56,7 +53,7 @@ public class UpdateLibraryItemController implements Initializable, ParametrizedC
             alert.setTitle("Unknown library item type");
             alert.setContentText("The item your trying to update isn't known by this software.");
             alert.showAndWait();
-            router.navigateTo(new ItemsView());
+            router.navigateTo(Views.LIBRARY_ITEMS_LIST);
         }
         else
         {
@@ -66,7 +63,7 @@ public class UpdateLibraryItemController implements Initializable, ParametrizedC
 
     public void back()
     {
-        router.navigateTo(new ItemsView());
+        router.navigateTo(Views.LIBRARY_ITEMS_LIST);
     }
 
     @Override

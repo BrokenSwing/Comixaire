@@ -8,7 +8,7 @@ import com.github.brokenswing.comixaire.models.ConditionType;
 import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.models.builder.LibraryItemStep;
 import com.github.brokenswing.comixaire.utils.FormValidationBuilder;
-import com.github.brokenswing.comixaire.view.ItemsView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.beans.binding.BooleanBinding;
@@ -25,7 +25,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.stream.Stream;
 
 import static com.github.brokenswing.comixaire.utils.BindingsHelper.trimmed;
 
@@ -111,7 +110,7 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
             e.printStackTrace();
             new InternalErrorAlert(e).showAndWait();
         }
-        router.navigateTo(new ItemsView());
+        router.navigateTo(Views.LIBRARY_ITEMS_LIST);
     }
 
     /**

@@ -6,7 +6,7 @@ import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.utils.FormValidationBuilder;
-import com.github.brokenswing.comixaire.view.ActionCenterView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.beans.binding.Bindings;
@@ -14,7 +14,6 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.time.Instant;
@@ -113,7 +112,7 @@ public class NewClientController implements Initializable
 
     protected void displayActionCenter()
     {
-        router.navigateTo(new ActionCenterView());
+        router.navigateTo(Views.ACTION_CENTER);
     }
 
     @Override
@@ -135,6 +134,6 @@ public class NewClientController implements Initializable
 
     public void back()
     {
-        router.navigateTo(new ActionCenterView());
+        displayActionCenter();
     }
 }

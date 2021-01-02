@@ -1,23 +1,24 @@
 package com.github.brokenswing.comixaire.controller;
 
-import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
+import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.models.Client;
-import com.github.brokenswing.comixaire.view.LoansClientIdView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoansController implements ParametrizedController<Client>, Initializable
+public class LoansController implements Initializable
 {
+
+    @ViewParam
     private Client client;
 
     @FXML
@@ -38,13 +39,10 @@ public class LoansController implements ParametrizedController<Client>, Initiali
     @InjectValue
     private Router router;
 
-    @Override
-    public void handleViewParam(Client client)
+    public void back()
     {
-        this.client = client;
+        router.navigateTo(Views.CLIENT_LOANS);
     }
-
-    public void back() { router.navigateTo(new LoansClientIdView()); }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)

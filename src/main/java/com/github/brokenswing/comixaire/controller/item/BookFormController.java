@@ -1,6 +1,5 @@
 package com.github.brokenswing.comixaire.controller.item;
 
-import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.javafx.IntField;
 import com.github.brokenswing.comixaire.models.Book;
 import com.github.brokenswing.comixaire.models.LibraryItem;
@@ -14,7 +13,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BookFormController extends LibraryItemFormController<Book> implements ParametrizedController<LibraryItem>, Initializable
+public class BookFormController extends LibraryItemFormController<Book> implements Initializable
 {
 
     @FXML

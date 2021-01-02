@@ -1,13 +1,9 @@
 package com.github.brokenswing.comixaire.controller;
 
 import com.github.brokenswing.comixaire.di.InjectValue;
-import com.github.brokenswing.comixaire.view.LoansClientIdView;
-import com.github.brokenswing.comixaire.view.LoansView;
-import com.github.brokenswing.comixaire.view.NewClientView;
-import com.github.brokenswing.comixaire.view.item.NewLibraryItemView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
-import javafx.scene.text.Text;
 
 public class StaffActionCenterController
 {
@@ -18,12 +14,12 @@ public class StaffActionCenterController
     public StaffActionCenterController() {}
 
     @FXML
-    protected void displayLoansView(){ router.navigateTo(new LoansClientIdView()); }
+    protected void displayLoansView(){ router.navigateTo(Views.CLIENT_LOANS); }
 
     @FXML
     protected void displayNewItemView()
     {
-        this.router.navigateTo(new NewLibraryItemView());
+        this.router.navigateTo(Views.LIBRARY_ITEM_CREATION);
     }
 
     @FXML
@@ -41,7 +37,7 @@ public class StaffActionCenterController
     @FXML
     protected void displayNewClientView()
     {
-        router.navigateTo(new NewClientView());
+        router.navigateTo(Views.NEW_CLIENT);
     }
 
 }

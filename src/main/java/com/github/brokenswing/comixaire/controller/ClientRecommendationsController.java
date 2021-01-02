@@ -1,15 +1,14 @@
 package com.github.brokenswing.comixaire.controller;
 
-import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
+import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.recommendations.RecommendationFacade;
 import com.github.brokenswing.comixaire.javafx.CustomListCell;
 import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.LibraryItem;
-import com.github.brokenswing.comixaire.view.ClientActionCenterView;
-import com.github.brokenswing.comixaire.view.RecommendedItemCellView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
@@ -22,8 +21,10 @@ import javafx.scene.control.ListView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ClientRecommendationsController implements ParametrizedController<Client>, Initializable
+public class ClientRecommendationsController implements Initializable
 {
+
+    @ViewParam
     private Client client;
     private FilteredList<LibraryItem> items = new FilteredList<>(FXCollections.observableArrayList());
 
@@ -42,12 +43,6 @@ public class ClientRecommendationsController implements ParametrizedController<C
     private ViewLoader loader;
 
     @Override
-    public void handleViewParam(Client client)
-    {
-        this.client = client;
-    }
-
-    @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         itemNumberField.setItems(FXCollections.observableArrayList(5, 10, 15, 20));
@@ -55,7 +50,7 @@ public class ClientRecommendationsController implements ParametrizedController<C
         try
         {
             this.itemsList.setSelectionModel(new NoOpSelectionModel<>());
-            this.itemsList.setCellFactory(CustomListCell.factory(loader, RecommendedItemCellView::new));
+            this.itemsList.setCellFactory(CustomListCell.factory(loader, Views.Cells.RECOMMENDED_ITEM));
             this.items = new FilteredList<>(FXCollections.observableArrayList(recommendationFacade.computeRecommendation(itemTypeFilter.getValue(), itemNumberField.getValue(), client)));
             this.itemsList.setItems(this.items);
         }
@@ -67,7 +62,7 @@ public class ClientRecommendationsController implements ParametrizedController<C
 
     public void back()
     {
-        router.navigateTo(new ClientActionCenterView());
+        router.navigateTo(Views.CLIENT_ACTION_CENTER);
     }
 
     public void search()

@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * Indicates that a field must be populated when passing
  * the instance of an object to {@link DependencyInjector#inject(Object)}
- * method.<br>
+ * method of the main dependency injector.<br>
  *
  * Which value will be injected in the field depends on the sources
  * that had been attached to the {@link DependencyInjector} using

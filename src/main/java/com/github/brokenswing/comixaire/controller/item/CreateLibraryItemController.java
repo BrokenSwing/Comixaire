@@ -1,13 +1,12 @@
 package com.github.brokenswing.comixaire.controller.item;
 
 import com.github.brokenswing.comixaire.di.InjectValue;
-import com.github.brokenswing.comixaire.view.ActionCenterView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.item.BookFormView;
 import com.github.brokenswing.comixaire.view.item.CDFormView;
 import com.github.brokenswing.comixaire.view.item.DVDFormView;
 import com.github.brokenswing.comixaire.view.item.GameFormView;
 import com.github.brokenswing.comixaire.view.util.Router;
-import com.github.brokenswing.comixaire.view.util.View;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -19,7 +18,6 @@ import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.function.Supplier;
 
 public class CreateLibraryItemController implements Initializable
 {
@@ -46,7 +44,7 @@ public class CreateLibraryItemController implements Initializable
 
         this.itemType.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) ->
         {
-            Node form = loader.loadView(newValue.getViewSupplier().get());
+            Node form = loader.loadView(newValue.getView());
             formPane.getChildren().clear();
             formPane.getChildren().add(form);
         });
@@ -56,23 +54,23 @@ public class CreateLibraryItemController implements Initializable
 
     public void back(MouseEvent mouseEvent)
     {
-        router.navigateTo(new ActionCenterView());
+        router.navigateTo(Views.ACTION_CENTER);
     }
 
     private static class LibraryItemType
     {
-        private final Supplier<View> viewSupplier;
+        private final String viewPath;
         private final String displayName;
 
-        private LibraryItemType(Supplier<View> viewSupplier, String displayName)
+        private LibraryItemType(String viewPath, String displayName)
         {
-            this.viewSupplier = viewSupplier;
+            this.viewPath = viewPath;
             this.displayName = displayName;
         }
 
-        public Supplier<View> getViewSupplier()
+        public String getView()
         {
-            return viewSupplier;
+            return viewPath;
         }
 
         @Override
@@ -80,6 +78,7 @@ public class CreateLibraryItemController implements Initializable
         {
             return this.displayName;
         }
+
     }
 
 }

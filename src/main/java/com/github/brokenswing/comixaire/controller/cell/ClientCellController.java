@@ -4,8 +4,7 @@ import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
-import com.github.brokenswing.comixaire.view.ActionCenterView;
-import com.github.brokenswing.comixaire.view.ClientDetailsView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,7 +33,7 @@ public class ClientCellController implements ParametrizedController<Client>, Ini
 
     @FXML
     private void more(){
-        router.navigateTo(new ClientDetailsView(), this.client);
+        router.navigateTo(Views.CLIENT_DETAILS, this.client);
     }
 
     @Override

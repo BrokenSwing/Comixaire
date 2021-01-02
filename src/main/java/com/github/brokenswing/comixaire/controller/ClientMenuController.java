@@ -2,7 +2,7 @@ package com.github.brokenswing.comixaire.controller;
 
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
-import com.github.brokenswing.comixaire.view.LoginView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,6 +30,6 @@ public class ClientMenuController implements Initializable
     public void logout()
     {
         auth.logout();
-        router.navigateTo(new LoginView());
+        router.navigateTo(Views.LOGIN);
     }
 }

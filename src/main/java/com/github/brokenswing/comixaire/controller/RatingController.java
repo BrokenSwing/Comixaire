@@ -1,7 +1,7 @@
 package com.github.brokenswing.comixaire.controller;
 
-import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
+import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.facades.rating.RatingFacade;
 import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.models.Rating;
@@ -10,14 +10,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-//import org.controlsfx.control.Rating;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RatingController implements ParametrizedController<Rating>, Initializable
+public class RatingController implements Initializable
 {
+
+    @ViewParam
     private Rating rating;
     private LibraryItem item;
 
@@ -43,13 +47,8 @@ public class RatingController implements ParametrizedController<Rating>, Initial
     @InjectValue
     private Router router;
 
-
     private ObservableSet<CheckBox> selectedCheckBoxes = FXCollections.observableSet();
     private ObservableSet<CheckBox> unselectedCheckBoxes = FXCollections.observableSet();
-
-
-    @Override
-    public void handleViewParam(Rating rating) { this.rating = rating; }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -67,19 +66,27 @@ public class RatingController implements ParametrizedController<Rating>, Initial
         popupSlider.setShowTickMarks(true);
     }
 
-    private void configureCheckBox(CheckBox checkBox) {
+    private void configureCheckBox(CheckBox checkBox)
+    {
 
-        if (checkBox.isSelected()) {
+        if (checkBox.isSelected())
+        {
             selectedCheckBoxes.add(checkBox);
-        } else {
+        }
+        else
+        {
             unselectedCheckBoxes.add(checkBox);
         }
 
-        checkBox.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
-            if (isNowSelected) {
+        checkBox.selectedProperty().addListener((obs, wasSelected, isNowSelected) ->
+        {
+            if (isNowSelected)
+            {
                 unselectedCheckBoxes.remove(checkBox);
                 selectedCheckBoxes.add(checkBox);
-            } else {
+            }
+            else
+            {
                 selectedCheckBoxes.remove(checkBox);
                 unselectedCheckBoxes.add(checkBox);
             }

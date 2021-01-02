@@ -4,8 +4,7 @@ import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.exception.BadCredentialsException;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
-import com.github.brokenswing.comixaire.view.ActionCenterView;
-import com.github.brokenswing.comixaire.view.ClientActionCenterView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
@@ -83,7 +82,7 @@ public class LoginController
      */
     protected void displayActionCenter()
     {
-        router.navigateTo(new ActionCenterView());
+        router.navigateTo(Views.ACTION_CENTER);
     }
 
     /**
@@ -91,7 +90,7 @@ public class LoginController
      */
     protected void displayClientActionCenter()
     {
-        router.navigateTo(new ClientActionCenterView());
+        router.navigateTo(Views.CLIENT_ACTION_CENTER);
     }
 
     /**

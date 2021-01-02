@@ -1,14 +1,15 @@
 package com.github.brokenswing.comixaire;
 
-import com.github.brokenswing.comixaire.di.impl.AnnotatedDependencySource;
-import com.github.brokenswing.comixaire.di.impl.ReflectionDependencySource;
-import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
-import com.github.brokenswing.comixaire.facades.auth.PlainTextPasswordAlgorithm;
-import com.github.brokenswing.comixaire.facades.auth.Session;
 import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.dao.postgres.PostgresDAOFactory;
 import com.github.brokenswing.comixaire.di.DependencyInjector;
+import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.di.ValueProvider;
+import com.github.brokenswing.comixaire.di.sources.AnnotatedDependencySource;
+import com.github.brokenswing.comixaire.di.sources.ReflectionDependencySource;
+import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
+import com.github.brokenswing.comixaire.facades.auth.PlainTextPasswordAlgorithm;
+import com.github.brokenswing.comixaire.facades.auth.Session;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.facades.fines.FinesFacade;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
@@ -16,7 +17,7 @@ import com.github.brokenswing.comixaire.facades.logs.LogsFacade;
 import com.github.brokenswing.comixaire.facades.recommendations.RecommendationFacade;
 import com.github.brokenswing.comixaire.facades.staff.StaffMemberFacade;
 import com.github.brokenswing.comixaire.facades.subscriptions.SubscriptionsFacade;
-import com.github.brokenswing.comixaire.view.LoginView;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.application.Application;
@@ -35,12 +36,13 @@ public class Comixaire extends Application
 
     public Comixaire()
     {
-        DependencyInjector.getInstance().addDependencyResolver(new AnnotatedDependencySource(this));
-        DependencyInjector.getInstance().addDependencyResolver(new ReflectionDependencySource());
+        DependencyInjector di = new DependencyInjector(InjectValue.class);
+        di.addDependencyResolver(new AnnotatedDependencySource(this));
+        di.addDependencyResolver(new ReflectionDependencySource());
 
         this.session = new Session();
         this.factory = new PostgresDAOFactory();
-        this.viewLoader = new ViewLoader(DependencyInjector.getInstance());
+        this.viewLoader = new ViewLoader(di);
     }
 
     public static void main(String[] args)
@@ -54,7 +56,7 @@ public class Comixaire extends Application
         primaryStage.setResizable(false);
 
         this.router = new Router(this.viewLoader, primaryStage);
-        this.router.navigateTo(new LoginView());
+        this.router.navigateTo(Views.LOGIN);
 
         primaryStage.show();
     }
@@ -72,7 +74,10 @@ public class Comixaire extends Application
     }
 
     @ValueProvider
-    public AuthFacade getAuthFacade() { return new AuthFacade(factory, new PlainTextPasswordAlgorithm(), this.session); }
+    public AuthFacade getAuthFacade()
+    {
+        return new AuthFacade(factory, new PlainTextPasswordAlgorithm(), this.session);
+    }
 
     @ValueProvider
     public StaffMemberFacade getStaffMemberFacade()
@@ -81,7 +86,10 @@ public class Comixaire extends Application
     }
 
     @ValueProvider
-    public LogsFacade getLogsFacade() { return new LogsFacade(factory, session); }
+    public LogsFacade getLogsFacade()
+    {
+        return new LogsFacade(factory, session);
+    }
 
     @ValueProvider
     public ClientsFacade getClientsFacade()

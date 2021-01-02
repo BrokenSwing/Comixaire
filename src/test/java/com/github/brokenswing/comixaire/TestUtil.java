@@ -1,6 +1,5 @@
 package com.github.brokenswing.comixaire;
 
-import com.github.brokenswing.comixaire.view.util.View;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.stage.Stage;
@@ -32,12 +31,12 @@ public class TestUtil
         };
     }
 
-    public static <V extends Node, T> Pair<V, T> controllerFromView(View view)
+    public static <V extends Node, T> Pair<V, T> controllerFromView(String viewPath)
     {
         try
         {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Objects.requireNonNull(TestUtil.class.getClassLoader().getResource("views/" + view.getViewName())));
+            loader.setLocation(Objects.requireNonNull(TestUtil.class.getClassLoader().getResource("views/" + viewPath)));
             V n = loader.load();
             return new Pair<>(n, loader.getController());
         }
