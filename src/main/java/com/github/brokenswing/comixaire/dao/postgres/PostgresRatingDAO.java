@@ -35,13 +35,13 @@ public class PostgresRatingDAO implements RatingDAO
         try
         {
             ResultSet result = connection.prepareStatement(
-                    "SELECT * FROM rating " +
-                    "NATURAL JOIN clients " +
-                    "NATURAL JOIN libraryitems " +
+                    "SELECT * FROM libraryitems " +
                     "NATURAL LEFT JOIN books " +
                     "NATURAL LEFT JOIN cd " +
                     "NATURAL LEFT JOIN dvd " +
-                    "NATURAL LEFT JOIN games").executeQuery();
+                    "NATURAL LEFT JOIN games " +
+                    "NATURAL FULL OUTER JOIN clients " +
+                    "NATURAL FULL OUTER JOIN rating").executeQuery();
 
             ArrayList<Rating> ratings = new ArrayList<>();
 
@@ -49,7 +49,16 @@ public class PostgresRatingDAO implements RatingDAO
                 LibraryItem item = PostgresLibraryItemDAO.libraryItemFromRow(result);
                 Client client = PostgresClientDAO.clientFromRow(result);
                 if (item != null) {
-                    ratings.add(new Rating(client, item, result.getInt("note")));
+                    int note = result.getInt("note");
+                    if (result.wasNull())
+                    {
+                        ratings.add(new Rating(client, item, -1));
+                    }
+                    else
+                    {
+                        ratings.add(new Rating(client, item, note));
+                    }
+
                 }
             }
 
