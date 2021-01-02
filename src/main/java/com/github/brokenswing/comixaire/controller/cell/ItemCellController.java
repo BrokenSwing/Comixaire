@@ -4,13 +4,7 @@ import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
-<<<<<<< HEAD
-import com.github.brokenswing.comixaire.models.*;
-import com.github.brokenswing.comixaire.view.ClientDetailsView;
-import com.github.brokenswing.comixaire.view.ClientsView;
-=======
 import com.github.brokenswing.comixaire.models.LibraryItem;
->>>>>>> master
 import com.github.brokenswing.comixaire.view.ItemsView;
 import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
 import com.github.brokenswing.comixaire.view.item.UpdateLibraryItemView;

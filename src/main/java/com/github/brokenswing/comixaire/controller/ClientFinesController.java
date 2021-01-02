@@ -54,17 +54,13 @@ public class ClientFinesController implements ParametrizedController<Client>, In
         {
             finesList.setItems(new FilteredList<>(FXCollections.observableArrayList(fineFacade.findByClient(client))));
         }
-        catch (InternalException e)
-        {
-            e.printStackTrace();
-        }
-        catch (NoClientFoundException e)
+        catch (InternalException | NoClientFoundException e)
         {
             e.printStackTrace();
         }
         catch (NoFineFoundException e)
         {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 

@@ -2,9 +2,7 @@ package com.github.brokenswing.comixaire.facades.fines;
 
 import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.di.InjectValue;
-import com.github.brokenswing.comixaire.exception.InternalException;
-import com.github.brokenswing.comixaire.exception.NoClientFoundException;
-import com.github.brokenswing.comixaire.exception.NoFineFoundException;
+import com.github.brokenswing.comixaire.exception.*;
 import com.github.brokenswing.comixaire.facades.Facade;
 import com.github.brokenswing.comixaire.facades.logs.LogsFacade;
 import com.github.brokenswing.comixaire.models.Client;
@@ -20,7 +18,7 @@ public class FinesFacade extends Facade
         super(factory);
     }
 
-    public void create(Fine fine) throws InternalException
+    public void create(Fine fine) throws InternalException, NoReturnFoundException, NonValidFineTypeException
     {
         this.factory.getFineDAO().create(fine);
         logger.log("Created fine: " + fine.getLabel(), "Price: " + fine.getPrice());
@@ -41,10 +39,5 @@ public class FinesFacade extends Facade
     public Fine[] findByClient(Client client) throws InternalException, NoClientFoundException, NoFineFoundException
     {
         return this.factory.getFineDAO().findByClient(client);
-    }
-
-    public Fine findById(int fineId) throws InternalException, NoFineFoundException
-    {
-        return this.factory.getFineDAO().findById(fineId);
     }
 }

@@ -8,10 +8,7 @@ import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.facades.subscriptions.SubscriptionsFacade;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.Subscription;
-import com.github.brokenswing.comixaire.view.ClientDetailsView;
-import com.github.brokenswing.comixaire.view.ClientSubscriptions;
-import com.github.brokenswing.comixaire.view.ClientUpdateView;
-import com.github.brokenswing.comixaire.view.ClientsView;
+import com.github.brokenswing.comixaire.view.*;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
@@ -95,24 +92,23 @@ public class ClientSubscriptionsController implements ParametrizedController<Cli
      *  NEEDS FACTORISATION IN A FUTURE
      */
 
-    public void infos(ActionEvent actionEvent)
+    public void back() { router.navigateTo(new ClientsView()); }
+
+    public void infos()
     {
         router.navigateTo(new ClientDetailsView(), client);
     }
 
-    public void update(ActionEvent actionEvent)
+    public void update()
     {
         router.navigateTo(new ClientUpdateView(), client);
     }
 
-    public void subscriptions(ActionEvent actionEvent) { router.navigateTo(new ClientSubscriptions(), client); }
+    public void subscriptions() { router.navigateTo(new ClientSubscriptions(), client); }
 
-    public void fines(ActionEvent actionEvent)
-    {
-        //TODO: new view to consult fines
-    }
+    public void fines() { router.navigateTo(new ClientFines(), client); }
 
-    public void delete(ActionEvent actionEvent)
+    public void delete()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Are you sure ?");
