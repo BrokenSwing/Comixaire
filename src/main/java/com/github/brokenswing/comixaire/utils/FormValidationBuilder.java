@@ -29,7 +29,12 @@ public class FormValidationBuilder
 
     public FormValidationBuilder notEmpty(ObservableStringValue obs)
     {
-        return add(Bindings.isNotEmpty(trimmed(obs)));
+        return notEmpty(obs, true);
+    }
+
+    public FormValidationBuilder notEmpty(ObservableStringValue obs, boolean trim)
+    {
+        return add(Bindings.isNotEmpty(trim ? trimmed(obs) : obs));
     }
 
     public <T> FormValidationBuilder notNull(ObservableValue<T> obs)
