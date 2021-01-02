@@ -1,5 +1,15 @@
 package com.github.brokenswing.comixaire;
 
+import com.github.brokenswing.comixaire.view.util.View;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.stage.Stage;
+import javafx.util.Pair;
+import org.testfx.api.FxRobot;
+
+import java.io.IOException;
+import java.util.Objects;
+
 public class TestUtil
 {
 
@@ -20,6 +30,26 @@ public class TestUtil
                 throw new RuntimeException(e);
             }
         };
+    }
+
+    public static <V extends Node, T> Pair<V, T> controllerFromView(View view)
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Objects.requireNonNull(TestUtil.class.getClassLoader().getResource("views/" + view.getViewName())));
+            V n = loader.load();
+            return new Pair<>(n, loader.getController());
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void closeWindow(FxRobot robot, String selector)
+    {
+        robot.interact(()->((Stage)((robot.lookup(selector).query())).getScene().getWindow()).close());
     }
 
     public interface ThrowableRunnable

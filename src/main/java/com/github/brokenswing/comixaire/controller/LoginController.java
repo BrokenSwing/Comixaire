@@ -1,9 +1,9 @@
 package com.github.brokenswing.comixaire.controller;
 
-import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.exception.BadCredentialsException;
 import com.github.brokenswing.comixaire.exception.InternalException;
+import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
 import com.github.brokenswing.comixaire.view.ActionCenterView;
 import com.github.brokenswing.comixaire.view.ClientActionCenterView;
 import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
@@ -38,27 +38,6 @@ public class LoginController
     @InjectValue
     private Router router;
 
-    // Even if this constructor looks like unused, it is necessary to this class to be constructed by the
-    // controllers factory
-    public LoginController()
-    {
-
-    }
-
-    /**
-     * This constructor should not be used outside of test classes.
-     */
-    public LoginController(Button loginButtonStaff, TextField usernameField, PasswordField passwordField,
-                           Button loginButtonClient, TextField clientIdField, AuthFacade auth)
-    {
-        this.loginButtonStaff = loginButtonStaff;
-        this.usernameField = usernameField;
-        this.passwordField = passwordField;
-        this.loginButtonClient = loginButtonClient;
-        this.clientIdField = clientIdField;
-        this.auth = auth;
-    }
-
     /**
      * This method tries to log in a staff member based on the values
      * that are present in the {@link #usernameField} and {@link #passwordField}.
@@ -66,7 +45,7 @@ public class LoginController
      * If the authentication fails, a call to either {@link LoginController#displayBadCredentialsAlert(String)}
      * or {@link #displayInternalErrorAlert(Exception)} will be displayed to
      * the user (based on the received exception).<br>
-     *
+     * <p>
      * This method is called by a click event triggered by the
      * {@link #loginButtonStaff} button.
      */
@@ -98,7 +77,7 @@ public class LoginController
     }
 
     /**
-     *  Navigates to the staff action center view using the {@link #router}.
+     * Navigates to the staff action center view using the {@link #router}.
      */
     protected void displayActionCenter()
     {
@@ -106,9 +85,12 @@ public class LoginController
     }
 
     /**
-     *  Navigates to the client action center view using the {@link #router}.
+     * Navigates to the client action center view using the {@link #router}.
      */
-    protected void displayClientActionCenter() { router.navigateTo(new ClientActionCenterView()); }
+    protected void displayClientActionCenter()
+    {
+        router.navigateTo(new ClientActionCenterView());
+    }
 
     /**
      * Displays an alert popup to the user indicating the provided
@@ -142,7 +124,7 @@ public class LoginController
      * If the authentication fails, a call to either {@link LoginController#displayBadCredentialsAlert(String)}
      * or {@link #displayInternalErrorAlert(Exception)} will be displayed to
      * the user (based on the received exception).<br>
-     *
+     * <p>
      * This method is called by a click event triggered by the
      * {@link #loginButtonStaff} button.
      */

@@ -27,7 +27,14 @@ jar {
 
 test() {
     useJUnitPlatform()
-    environment '_JAVA_OPTIONS', '-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw'
+    if (System.properties['os.name'].toLowerCase().contains('windows'))
+    {
+        environment '_JAVA_OPTIONS', '-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw -Dprism.text=t2k'
+    }
+    else
+    {
+        environment '_JAVA_OPTIONS', '-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw'
+    }
 }
 
 dependencies {
