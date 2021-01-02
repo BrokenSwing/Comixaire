@@ -50,7 +50,7 @@ public class ClientsFacade extends Facade
         return this.factory.getClientDAO().findByName(firstname, lastname);
     }
 
-    public Client[] findAll() throws InternalException, NoClientFoundException
+    public Client[] findAll() throws InternalException
     {
         return this.factory.getClientDAO().findAll();
     }

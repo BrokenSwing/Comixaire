@@ -4,6 +4,7 @@ import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
+import com.github.brokenswing.comixaire.javafx.CustomListCell;
 import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.view.ClientCellView;
@@ -13,11 +14,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,21 +50,28 @@ public class ClientsController implements Initializable
         clientsList.setItems(this.clients);
 
         //Search
-        try{
-            if(!clientCardIdField.getText().trim().equals("")){
+        try
+        {
+            if (!clientCardIdField.getText().trim().equals(""))
+            {
                 this.clients = new FilteredList<>(FXCollections.observableArrayList(clientsFacade.findByCardId(clientCardIdField.getText().trim())));
             }
-            else{
-                if(!clientFirstnameField.getText().trim().equals("") && !clientLastnameField.getText().trim().equals("")){
+            else
+            {
+                if (!clientFirstnameField.getText().trim().equals("") && !clientLastnameField.getText().trim().equals(""))
+                {
                     this.clients = new FilteredList<>(FXCollections.observableArrayList(clientsFacade.findByName(clientFirstnameField.getText().trim(), clientLastnameField.getText().trim())));
                 }
-                else if(!clientFirstnameField.getText().trim().equals("")){
+                else if (!clientFirstnameField.getText().trim().equals(""))
+                {
                     this.clients = new FilteredList<>(FXCollections.observableArrayList(clientsFacade.findByFirstname(clientFirstnameField.getText().trim())));
                 }
-                else if(!clientLastnameField.getText().trim().equals("")){
+                else if (!clientLastnameField.getText().trim().equals(""))
+                {
                     this.clients = new FilteredList<>(FXCollections.observableArrayList(clientsFacade.findByLastname(clientLastnameField.getText().trim())));
                 }
-                else{
+                else
+                {
                     this.clients = new FilteredList<>(FXCollections.observableArrayList(clientsFacade.findAll()));
                 }
             }
@@ -77,45 +82,27 @@ public class ClientsController implements Initializable
         {
             e.printStackTrace();
         }
-        catch (NoClientFoundException e){
+        catch (NoClientFoundException e)
+        {
 
         }
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        this.clientsList.setSelectionModel(new NoOpSelectionModel<>());
+        this.clientsList.setCellFactory(CustomListCell.factory(loader, ClientCellView::new));
+
         try
         {
-            this.clientsList.setSelectionModel(new NoOpSelectionModel<>());
-            this.clientsList.setCellFactory(lv -> new ClientListCell());
             this.clients = new FilteredList<>(FXCollections.observableArrayList(clientsFacade.findAll()));
             clientsList.setItems(this.clients);
         }
-        catch (InternalException | NoClientFoundException e)
+        catch (InternalException e)
         {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO: Redirect to an "error page"
         }
     }
 
-    private class ClientListCell extends ListCell<Client>
-    {
-
-        @Override
-        protected void updateItem(Client item, boolean empty)
-        {
-            super.updateItem(item, empty);
-            if (empty)
-            {
-                setText(null);
-                setGraphic(null);
-            }
-            else
-            {
-                Node node = loader.loadView(new ClientCellView(), item);
-                setGraphic(node);
-            }
-        }
-    }
 }

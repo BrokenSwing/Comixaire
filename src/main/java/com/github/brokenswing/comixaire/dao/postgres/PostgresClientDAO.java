@@ -5,10 +5,12 @@ import com.github.brokenswing.comixaire.exception.CardIdAlreadyExist;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.models.Client;
-import com.github.brokenswing.comixaire.models.LibraryItem;
 import org.postgresql.util.PSQLException;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PostgresClientDAO implements ClientDAO
@@ -21,6 +23,18 @@ public class PostgresClientDAO implements ClientDAO
         this.connection = connection;
     }
 
+    public static Client clientFromRow(ResultSet result) throws SQLException
+    {
+        return new Client(
+                result.getInt("client_id"),
+                result.getString("client_firstname"),
+                result.getString("client_lastname"),
+                result.getString("client_cardID"),
+                result.getString("client_gender"),
+                result.getString("client_address"),
+                result.getDate("client_birthdate")
+        );
+    }
 
     @Override
     public Client create(Client client) throws InternalException, CardIdAlreadyExist
@@ -187,7 +201,7 @@ public class PostgresClientDAO implements ClientDAO
     }
 
     @Override
-    public Client[] findAll() throws InternalException, NoClientFoundException
+    public Client[] findAll() throws InternalException
     {
         try
         {
@@ -199,10 +213,6 @@ public class PostgresClientDAO implements ClientDAO
             {
                 Client client = clientFromRow(result);
                 clients.add(client);
-            }
-            if (clients.isEmpty())
-            {
-                throw new NoClientFoundException("No clients found");
             }
             return clients.toArray(new Client[0]);
         }
@@ -329,19 +339,6 @@ public class PostgresClientDAO implements ClientDAO
         {
             throw new InternalException("Unable to count votes for client: " + client.getFullname(), e);
         }
-    }
-
-    public static Client clientFromRow(ResultSet result) throws SQLException
-    {
-        return new Client(
-                result.getInt("client_id"),
-                result.getString("client_firstname"),
-                result.getString("client_lastname"),
-                result.getString("client_cardID"),
-                result.getString("client_gender"),
-                result.getString("client_address"),
-                result.getDate("client_birthdate")
-        );
     }
 
 }

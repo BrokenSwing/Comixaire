@@ -3,6 +3,7 @@ package com.github.brokenswing.comixaire.controller;
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
+import com.github.brokenswing.comixaire.javafx.CustomListCell;
 import com.github.brokenswing.comixaire.javafx.IntField;
 import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.*;
@@ -12,8 +13,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -74,43 +76,22 @@ public class ItemsController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        this.itemsList.setSelectionModel(new NoOpSelectionModel<>());
+        this.itemsList.setCellFactory(CustomListCell.factory(loader, ItemCellView::new));
 
         try
         {
-            this.itemsList.setSelectionModel(new NoOpSelectionModel<>());
-            this.itemsList.setCellFactory(lv -> new ItemListCell());
             this.items = new FilteredList<>(FXCollections.observableArrayList(itemsFacade.findAll()));
             this.itemsList.setItems(this.items);
         }
         catch (InternalException e)
         {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO: Redirect to an "error page"
         }
 
         itemNameField.textProperty().addListener((obs, oldValue, newValue) -> this.find());
         itemIDField.textProperty().addListener((obs, oldValue, newValue) -> this.find());
         itemTypeFilter.valueProperty().addListener((obs, oldValue, newValue) -> this.find());
-
-    }
-
-    private class ItemListCell extends ListCell<LibraryItem>
-    {
-
-        @Override
-        protected void updateItem(LibraryItem item, boolean empty)
-        {
-            super.updateItem(item, empty);
-            if (empty)
-            {
-                setText(null);
-                setGraphic(null);
-            }
-            else
-            {
-                Node node = loader.loadView(new ItemCellView(), item);
-                setGraphic(node);
-            }
-        }
     }
 
 }

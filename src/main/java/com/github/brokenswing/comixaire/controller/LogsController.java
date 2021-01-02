@@ -3,6 +3,7 @@ package com.github.brokenswing.comixaire.controller;
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.logs.LogsFacade;
+import com.github.brokenswing.comixaire.javafx.CustomListCell;
 import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.Log;
 import com.github.brokenswing.comixaire.view.LogCellView;
@@ -11,8 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 
 import java.net.URL;
@@ -76,38 +75,20 @@ public class LogsController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        this.logsList.setSelectionModel(new NoOpSelectionModel<>());
+        this.logsList.setCellFactory(CustomListCell.factory(loader, LogCellView::new));
+
         try
         {
             this.filteredList = new FilteredList<>(FXCollections.observableArrayList(logsFacade.getLogs()));
+            this.logsList.setItems(this.filteredList);
         }
         catch (InternalException e)
         {
-            this.filteredList = new FilteredList<>(FXCollections.observableArrayList());
+            e.printStackTrace(); // TODO: Redirect to an "error page"
         }
-        this.logsList.setSelectionModel(new NoOpSelectionModel<>());
-        this.logsList.setCellFactory(lv -> new LogListCell());
-        this.logsList.setItems(this.filteredList);
+
         this.filterToday();
-    }
-
-    private class LogListCell extends ListCell<Log>
-    {
-
-        @Override
-        protected void updateItem(Log item, boolean empty)
-        {
-            super.updateItem(item, empty);
-            if (empty)
-            {
-                setText(null);
-                setGraphic(null);
-            }
-            else
-            {
-                Node node = loader.loadView(new LogCellView(), item);
-                setGraphic(node);
-            }
-        }
     }
 
 }

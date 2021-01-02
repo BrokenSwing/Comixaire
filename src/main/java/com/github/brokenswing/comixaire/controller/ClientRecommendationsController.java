@@ -4,6 +4,7 @@ import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.recommendations.RecommendationFacade;
+import com.github.brokenswing.comixaire.javafx.CustomListCell;
 import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.LibraryItem;
@@ -15,9 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 
 import java.net.URL;
@@ -51,12 +50,12 @@ public class ClientRecommendationsController implements ParametrizedController<C
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        itemNumberField.setItems(FXCollections.observableArrayList(5,10,20,30));
+        itemNumberField.setItems(FXCollections.observableArrayList(5, 10, 20, 30));
         itemNumberField.getSelectionModel().select(0);
         try
         {
             this.itemsList.setSelectionModel(new NoOpSelectionModel<>());
-            this.itemsList.setCellFactory(lv -> new RecommendedItemListCell());
+            this.itemsList.setCellFactory(CustomListCell.factory(loader, RecommendedItemCellView::new));
             this.items = new FilteredList<>(FXCollections.observableArrayList(recommendationFacade.computeRecommendation(itemTypeFilter.getValue(), itemNumberField.getValue(), client)));
             this.itemsList.setItems(this.items);
         }
@@ -66,30 +65,14 @@ public class ClientRecommendationsController implements ParametrizedController<C
         }
     }
 
-    public void back() { router.navigateTo(new ClientActionCenterView()); }
+    public void back()
+    {
+        router.navigateTo(new ClientActionCenterView());
+    }
 
     public void search()
     {
         //TODO: filter recommendations
     }
 
-    private class RecommendedItemListCell extends ListCell<LibraryItem>
-    {
-
-        @Override
-        protected void updateItem(LibraryItem item, boolean empty)
-        {
-            super.updateItem(item, empty);
-            if (empty)
-            {
-                setText(null);
-                setGraphic(null);
-            }
-            else
-            {
-                Node node = loader.loadView(new RecommendedItemCellView(), item);
-                setGraphic(node);
-            }
-        }
-    }
 }
