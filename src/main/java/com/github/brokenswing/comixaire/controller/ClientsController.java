@@ -44,7 +44,7 @@ public class ClientsController implements Initializable
     private Router router;
 
     @FXML
-    protected void find()
+    protected void search()
     {
         //Reset the list for each search
         this.clients = new FilteredList<>(FXCollections.observableArrayList());
