@@ -8,7 +8,9 @@ import com.github.brokenswing.comixaire.models.ConditionType;
 import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.models.builder.LibraryItemStep;
 import com.github.brokenswing.comixaire.utils.FormValidationBuilder;
+import com.github.brokenswing.comixaire.view.ItemsView;
 import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
+import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -50,6 +52,8 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
     protected T editedItem;
     @InjectValue
     protected LibraryItemFacade libraryItemFacade;
+    @InjectValue
+    protected Router router;
 
     public LibraryItemFormController(Class<T> genericClass)
     {
@@ -96,16 +100,21 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
         try
         {
             this.libraryItemFacade.update(item);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("The library item \"" + item.getTitle() + "\" was successfully updated.");
+            alert.showAndWait();
         }
         catch (InternalException e)
         {
             e.printStackTrace();
             new InternalErrorAlert(e).showAndWait();
         }
+        router.navigateTo(new ItemsView());
     }
 
     /**
-     * This method is is called only when form is in a valid state.
+     * This method is called only when form is in a valid state.
      *
      * @return the item from the form's fields
      */
