@@ -112,7 +112,7 @@ public class NewClientController implements Initializable
 
     protected void displayActionCenter()
     {
-        router.navigateTo(Views.ACTION_CENTER);
+        router.navigateTo(Views.ActionCenters.STAFF);
     }
 
     @Override

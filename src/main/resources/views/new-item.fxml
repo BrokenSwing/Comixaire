@@ -14,7 +14,7 @@
             xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/stylesheets/authentication.css"
             fx:controller="com.github.brokenswing.comixaire.controller.item.CreateLibraryItemController">
 
-    <fx:include source="menu.fxml"/>
+    <fx:include source="menus/staff-menu.fxml"/>
 
     <ImageView fitHeight="45.0" fitWidth="32.0" layoutX="1188.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
         <image>

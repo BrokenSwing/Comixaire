@@ -17,7 +17,7 @@ public class ClientBorrowedItemsController
 
     public void back()
     {
-        router.navigateTo(Views.CLIENT_ACTION_CENTER);
+        router.navigateTo(Views.ActionCenters.CLIENT);
     }
 
     public void search()

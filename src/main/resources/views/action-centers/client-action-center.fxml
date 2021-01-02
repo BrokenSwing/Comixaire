@@ -11,7 +11,7 @@
             stylesheets="@/stylesheets/authentication.css"
             xmlns="http://javafx.com/javafx/8"
             fx:controller="com.github.brokenswing.comixaire.controller.ClientActionCenterController">
-    <fx:include source="user-menu.fxml"/>
+    <fx:include source="../menus/client-menu.fxml"/>
     <AnchorPane layoutX="340.0" layoutY="272.0" prefHeight="257.0" prefWidth="257.0"
                 style="-fx-background-color: white;">
         <Text fill="#c4c4c4" layoutX="46.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0"

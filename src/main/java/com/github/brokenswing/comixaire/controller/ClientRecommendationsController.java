@@ -62,7 +62,7 @@ public class ClientRecommendationsController implements Initializable
 
     public void back()
     {
-        router.navigateTo(Views.CLIENT_ACTION_CENTER);
+        router.navigateTo(Views.ActionCenters.STAFF);
     }
 
     public void search()

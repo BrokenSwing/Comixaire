@@ -10,7 +10,7 @@
             style="-fx-background-color: #F7F9FF;" fx:controller="com.github.brokenswing.comixaire.controller.ClientBorrowedItemsController"
             stylesheets="@/stylesheets/authentication.css" xmlns="http://javafx.com/javafx/8">
     <children>
-        <fx:include source="user-menu.fxml" />
+        <fx:include source="menus/client-menu.fxml" />
         <ImageView fitHeight="45.0" fitWidth="32.0" layoutX="1188.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@/assets/right-arrow.png" />

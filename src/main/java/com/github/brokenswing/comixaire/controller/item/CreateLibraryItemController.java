@@ -50,7 +50,7 @@ public class CreateLibraryItemController implements Initializable
 
     public void back(MouseEvent mouseEvent)
     {
-        router.navigateTo(Views.ACTION_CENTER);
+        router.navigateTo(Views.ActionCenters.STAFF);
     }
 
     private static class LibraryItemType

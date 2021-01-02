@@ -11,7 +11,7 @@
 <?import javafx.geometry.Insets?>
 <AnchorPane stylesheets="@/stylesheets/authentication.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.brokenswing.comixaire.controller.NewClientController">
     <children>
-        <fx:include source="menu.fxml" />
+        <fx:include source="menus/staff-menu.fxml" />
         <Text layoutX="149.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New user">
             <font>
                 <Font name="Quicksand SemiBold" size="36.0" />

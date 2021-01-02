@@ -48,7 +48,7 @@ public class StaffMenusController
     }
 
     @FXML
-    private void displayActionCenterView() { router.navigateTo(Views.ACTION_CENTER); }
+    private void displayActionCenterView() { router.navigateTo(Views.ActionCenters.STAFF); }
 
     @FXML
     private void displayClientsView() { router.navigateTo(Views.CLIENTS_LIST); }

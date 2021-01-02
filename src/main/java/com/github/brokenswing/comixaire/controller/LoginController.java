@@ -82,7 +82,7 @@ public class LoginController
      */
     protected void displayActionCenter()
     {
-        router.navigateTo(Views.ACTION_CENTER);
+        router.navigateTo(Views.ActionCenters.STAFF);
     }
 
     /**
@@ -90,7 +90,7 @@ public class LoginController
      */
     protected void displayClientActionCenter()
     {
-        router.navigateTo(Views.CLIENT_ACTION_CENTER);
+        router.navigateTo(Views.ActionCenters.CLIENT);
     }
 
     /**

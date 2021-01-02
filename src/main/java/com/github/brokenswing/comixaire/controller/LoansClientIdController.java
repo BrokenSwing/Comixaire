@@ -24,7 +24,7 @@ public class LoansClientIdController
 
     public void back()
     {
-        router.navigateTo(Views.ACTION_CENTER);
+        router.navigateTo(Views.ActionCenters.STAFF);
     }
 
     public void select()
@@ -32,7 +32,7 @@ public class LoansClientIdController
         try
         {
             Client client = clientsFacade.findByCardId(loanClientIdField.getText());
-            router.navigateTo(Views.CLIENT_LOANS, client);
+            router.navigateTo(Views.LOANS, client);
         }
         catch (InternalException e)
         {
