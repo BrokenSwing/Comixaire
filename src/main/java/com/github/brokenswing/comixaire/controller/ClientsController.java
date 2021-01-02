@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,7 +45,7 @@ public class ClientsController implements Initializable
     private Router router;
 
     @FXML
-    protected void find()
+    protected void search()
     {
         //Reset the list for each search
         this.clients = new FilteredList<>(FXCollections.observableArrayList());

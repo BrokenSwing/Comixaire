@@ -10,11 +10,11 @@ public interface FineDAO
 {
     Fine create(Fine fine) throws InternalException;
 
-    Fine findById(int idStaff) throws InternalException, NoFineFoundException;
+    Fine findById(int idFine) throws InternalException, NoFineFoundException;
 
-    Fine findByClient(Client client) throws InternalException, NoClientFoundException;
+    Fine[] findByClient(Client client) throws InternalException, NoClientFoundException, NoFineFoundException;
 
-    void update(Fine fine) throws InternalException;
+    void pay(Fine fine) throws InternalException;
 
     void delete(Fine fine) throws InternalException;
 }

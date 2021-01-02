@@ -6,11 +6,12 @@ public class Fine
     private final FineType fine;
     private boolean paid;
 
-    public Fine(int idFine, FineType fine, boolean paid)
+    public Fine(int idFine, int fineTypeId, boolean paid)
     {
         this.idFine = idFine;
-        this.fine = fine;
         this.paid = paid;
+        this.fine = FineType.values()[fineTypeId];
+        System.out.println("Fine type id: " + fineTypeId + " price: " + fine.getPrice() + " " + fine.getLabel());//TODO: remove this
     }
 
     public int getId()
@@ -36,5 +37,10 @@ public class Fine
     public double getPrice()
     {
         return fine.getPrice();
+    }
+
+    public int getIdType()
+    {
+        return fine.getIdType();
     }
 }
