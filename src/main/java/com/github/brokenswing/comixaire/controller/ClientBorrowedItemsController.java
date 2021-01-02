@@ -6,6 +6,7 @@ import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.view.ClientActionCenterView;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,4 +30,9 @@ public class ClientBorrowedItemsController implements ParametrizedController<Cli
     }
 
     public void back() { router.navigateTo(new ClientActionCenterView()); }
+
+    public void search()
+    {
+        //TODO: filter borrowed items
+    }
 }
