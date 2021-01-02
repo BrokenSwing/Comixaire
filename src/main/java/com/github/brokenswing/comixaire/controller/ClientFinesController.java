@@ -7,9 +7,13 @@ import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.exception.NoFineFoundException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.facades.fines.FinesFacade;
+import com.github.brokenswing.comixaire.javafx.CustomListCell;
+import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.Client;
+import com.github.brokenswing.comixaire.models.Fine;
 import com.github.brokenswing.comixaire.view.*;
 import com.github.brokenswing.comixaire.view.util.Router;
+import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -39,6 +43,8 @@ public class ClientFinesController implements ParametrizedController<Client>, In
     private FinesFacade fineFacade;
     @InjectValue
     private Router router;
+    @InjectValue
+    private ViewLoader loader;
 
     @Override
     public void handleViewParam(Client client)
@@ -49,10 +55,13 @@ public class ClientFinesController implements ParametrizedController<Client>, In
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        this.fullname.setText(client.getFullname());
+        fullname.setText(client.getFullname());
+        finesList.setSelectionModel(new NoOpSelectionModel<>());
+        finesList.setCellFactory(CustomListCell.factory(loader, FineCellView::new));
         try
         {
             finesList.setItems(new FilteredList<>(FXCollections.observableArrayList(fineFacade.findByClient(client))));
+
         }
         catch (InternalException | NoClientFoundException e)
         {
@@ -90,7 +99,7 @@ public class ClientFinesController implements ParametrizedController<Client>, In
                 clientsFacade.delete(client);
                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert2.setTitle("Success");
-                alert.setHeaderText("Client successfully removed from our database");
+                alert2.setHeaderText("Client successfully removed from our database");
                 alert2.showAndWait();
                 router.navigateTo(new ClientsView());
             }
