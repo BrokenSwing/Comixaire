@@ -1,13 +1,12 @@
 package com.github.brokenswing.comixaire.controller.cell;
 
-import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
+import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
 import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
-import com.github.brokenswing.comixaire.view.item.UpdateLibraryItemView;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,9 +18,10 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class ItemCellController implements ParametrizedController<LibraryItem>, Initializable
+public class ItemCellController implements Initializable
 {
 
+    @ViewParam
     private LibraryItem libraryItem;
 
     @FXML
@@ -40,7 +40,7 @@ public class ItemCellController implements ParametrizedController<LibraryItem>, 
     @FXML
     protected void update()
     {
-        router.navigateTo(new UpdateLibraryItemView(), libraryItem);
+        router.navigateTo(Views.LIBRARY_ITEM_UPDATE, libraryItem);
     }
 
     @FXML
@@ -71,12 +71,6 @@ public class ItemCellController implements ParametrizedController<LibraryItem>, 
             }
             router.navigateTo(Views.LIBRARY_ITEMS_LIST);
         }
-    }
-
-    @Override
-    public void handleViewParam(LibraryItem item)
-    {
-        this.libraryItem = item;
     }
 
     @Override

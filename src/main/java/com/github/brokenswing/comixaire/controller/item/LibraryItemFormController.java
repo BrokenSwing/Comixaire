@@ -1,7 +1,7 @@
 package com.github.brokenswing.comixaire.controller.item;
 
-import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
+import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
 import com.github.brokenswing.comixaire.models.ConditionType;
@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
 
 import static com.github.brokenswing.comixaire.utils.BindingsHelper.trimmed;
 
-public abstract class LibraryItemFormController<T extends LibraryItem> implements ParametrizedController<LibraryItem>, Initializable
+public abstract class LibraryItemFormController<T extends LibraryItem> implements Initializable
 {
 
     private final Class<T> genericClass;
@@ -49,6 +49,7 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
     protected ChoiceBox<ConditionType> condition;
     @FXML
     protected CheckComboBox<String> categories;
+    @ViewParam
     protected T editedItem;
     @InjectValue
     protected LibraryItemFacade libraryItemFacade;
@@ -133,19 +134,14 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
                 .notNull(releasedOn.valueProperty());
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public void handleViewParam(LibraryItem libraryItem)
-    {
-        if (genericClass.isInstance(libraryItem))
-        {
-            this.editedItem = (T) libraryItem;
-        }
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        if (!genericClass.isInstance(editedItem))
+        {
+            editedItem = null;
+        }
+
         FormValidationBuilder builder = new FormValidationBuilder();
         buildFormValidation(builder);
         BooleanBinding formValid = builder.build();

@@ -5,6 +5,7 @@ import com.github.brokenswing.comixaire.exception.BadCredentialsException;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.extension.TestExtension;
 import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
+import com.github.brokenswing.comixaire.view.Views;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,8 +23,9 @@ import org.testfx.framework.junit5.Start;
 
 import java.util.concurrent.TimeoutException;
 
-import static org.mockito.Mockito.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.doThrow;
 
 @ExtendWith(TestExtension.class)
 public class LoginControllerTest
@@ -40,7 +42,7 @@ public class LoginControllerTest
     @Init
     public void init()
     {
-        Pair<Parent, LoginController> pair = TestUtil.controllerFromView(new LoginView());
+        Pair<Parent, LoginController> pair = TestUtil.controllerFromView(Views.LOGIN);
         loginController = pair.getValue();
         view = pair.getKey();
     }

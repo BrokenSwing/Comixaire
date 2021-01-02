@@ -1,4 +1,4 @@
-package com.github.brokenswing.comixaire.di.impl;
+package com.github.brokenswing.comixaire.di.sources;
 
 import com.github.brokenswing.comixaire.di.DependencySource;
 import com.github.brokenswing.comixaire.di.ValueProvider;

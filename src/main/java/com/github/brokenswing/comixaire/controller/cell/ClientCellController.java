@@ -1,7 +1,7 @@
 package com.github.brokenswing.comixaire.controller.cell;
 
-import com.github.brokenswing.comixaire.controller.util.ParametrizedController;
 import com.github.brokenswing.comixaire.di.InjectValue;
+import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 import com.github.brokenswing.comixaire.view.Views;
@@ -13,8 +13,10 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ClientCellController implements ParametrizedController<Client>, Initializable
+public class ClientCellController implements Initializable
 {
+
+    @ViewParam
     private Client client;
 
     @FXML
@@ -32,12 +34,10 @@ public class ClientCellController implements ParametrizedController<Client>, Ini
     private Router router;
 
     @FXML
-    private void more(){
+    private void more()
+    {
         router.navigateTo(Views.CLIENT_DETAILS, this.client);
     }
-
-    @Override
-    public void handleViewParam(Client client) { this.client = client; }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
