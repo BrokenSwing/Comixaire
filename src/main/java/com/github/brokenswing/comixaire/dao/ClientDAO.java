@@ -25,12 +25,6 @@ public interface ClientDAO
      */
     Client findByCardID(String cardID) throws InternalException, NoClientFoundException;
 
-    Client[] findByName(String firstname, String lastname) throws InternalException, NoClientFoundException;
-
-    Client[] findByFirstname(String firstname) throws InternalException, NoClientFoundException;
-
-    Client[] findByLastname(String lastname) throws InternalException, NoClientFoundException;
-
     Client[] findAll() throws InternalException;
 
     void update(Client client) throws InternalException, CardIdAlreadyExist;
