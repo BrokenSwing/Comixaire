@@ -276,10 +276,10 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
         {
             ResultSet result = connection.prepareStatement(
                     "SELECT * FROM libraryitems " +
-                    "LEFT JOIN books b on libraryitems.item_id = b.item_id " +
-                    "LEFT JOIN cd c on libraryitems.item_id = c.item_id " +
-                    "LEFT JOIN dvd d on libraryitems.item_id = d.item_id " +
-                    "LEFT JOIN games g on libraryitems.item_id = g.item_id").executeQuery();
+                    "NATURAL LEFT JOIN books b " +
+                    "NATURAL LEFT JOIN cd c " +
+                    "NATURAL LEFT JOIN dvd d " +
+                    "NATURAL LEFT JOIN games g").executeQuery();
 
             ArrayList<LibraryItem> items = new ArrayList<>();
 
