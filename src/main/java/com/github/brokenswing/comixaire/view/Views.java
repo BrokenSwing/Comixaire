@@ -118,13 +118,13 @@ public class Views
         /**
          * This view displays a form to creation a library item.
          */
-        public static final String CREATION = "library-item-creation.fxml";
+        public static final String CREATION = "library-items/library-item-creation.fxml";
 
         /**
          * This view display a form to update a library item.
          * You MUST pass a library item instance to this view.
          */
-        public static final String UPDATE = "library-item-update.fxml";
+        public static final String UPDATE = "library-items/library-item-update.fxml";
 
         /**
          * This class is used as a namespace. It encapsulates the forms used to create or update
