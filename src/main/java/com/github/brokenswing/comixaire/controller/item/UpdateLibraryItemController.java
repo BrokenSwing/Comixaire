@@ -22,10 +22,10 @@ public class UpdateLibraryItemController implements Initializable
 
     static
     {
-        ITEM_VIEWS.put(Book.class, Views.LibraryItemsForms.BOOK);
-        ITEM_VIEWS.put(CD.class, Views.LibraryItemsForms.CD);
-        ITEM_VIEWS.put(DVD.class, Views.LibraryItemsForms.DVD);
-        ITEM_VIEWS.put(Game.class, Views.LibraryItemsForms.GAME);
+        ITEM_VIEWS.put(Book.class, Views.LibraryItems.Forms.BOOK);
+        ITEM_VIEWS.put(CD.class, Views.LibraryItems.Forms.CD);
+        ITEM_VIEWS.put(DVD.class, Views.LibraryItems.Forms.DVD);
+        ITEM_VIEWS.put(Game.class, Views.LibraryItems.Forms.GAME);
     }
 
     @FXML
@@ -49,7 +49,7 @@ public class UpdateLibraryItemController implements Initializable
             alert.setTitle("Unknown library item type");
             alert.setContentText("The item your trying to update isn't known by this software.");
             alert.showAndWait();
-            router.navigateTo(Views.LIBRARY_ITEMS_LIST);
+            back();
         }
         else
         {
@@ -59,7 +59,7 @@ public class UpdateLibraryItemController implements Initializable
 
     public void back()
     {
-        router.navigateTo(Views.LIBRARY_ITEMS_LIST);
+        router.navigateTo(Views.LibraryItems.LIST);
     }
 
 }

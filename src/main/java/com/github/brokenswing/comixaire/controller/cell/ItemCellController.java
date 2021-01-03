@@ -40,7 +40,7 @@ public class ItemCellController implements Initializable
     @FXML
     protected void update()
     {
-        router.navigateTo(Views.LIBRARY_ITEM_UPDATE, libraryItem);
+        router.navigateTo(Views.LibraryItems.UPDATE, libraryItem);
     }
 
     @FXML
@@ -69,7 +69,7 @@ public class ItemCellController implements Initializable
                 e.printStackTrace();
                 new InternalErrorAlert(e).showAndWait();
             }
-            router.navigateTo(Views.LIBRARY_ITEMS_LIST);
+            router.navigateTo(Views.LibraryItems.LIST);
         }
     }
 

@@ -39,7 +39,7 @@ public class StaffMenusController
     }
 
     @FXML
-    protected void displayItemsView() { router.navigateTo(Views.LIBRARY_ITEMS_LIST); }
+    protected void displayItemsView() { router.navigateTo(Views.LibraryItems.LIST); }
 
     @FXML
     protected void displayStatsView()

@@ -19,7 +19,7 @@ public class StaffActionCenterController
     @FXML
     protected void displayNewItemView()
     {
-        this.router.navigateTo(Views.LIBRARY_ITEM_CREATION);
+        this.router.navigateTo(Views.LibraryItems.CREATION);
     }
 
     @FXML

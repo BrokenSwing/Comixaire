@@ -32,10 +32,10 @@ public class CreateLibraryItemController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         this.itemType.setItems(FXCollections.observableArrayList(
-                new LibraryItemType(Views.LibraryItemsForms.BOOK, "Book"),
-                new LibraryItemType(Views.LibraryItemsForms.DVD, "DVD"),
-                new LibraryItemType(Views.LibraryItemsForms.CD, "CD"),
-                new LibraryItemType(Views.LibraryItemsForms.GAME, "Game")
+                new LibraryItemType(Views.LibraryItems.Forms.BOOK, "Book"),
+                new LibraryItemType(Views.LibraryItems.Forms.DVD, "DVD"),
+                new LibraryItemType(Views.LibraryItems.Forms.CD, "CD"),
+                new LibraryItemType(Views.LibraryItems.Forms.GAME, "Game")
         ));
 
         this.itemType.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) ->
