@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 
 /**
  * <p>
- * Singleton that manages the dependency injection in the system.
- * This class is mainly to inject dependencies in JavaFX controller
+ * Class that allows manages the dependency injection in the system.
+ * This class is mainly sued to inject dependencies in JavaFX controllers
  * through the controllers factory.
  * </p>
  *
