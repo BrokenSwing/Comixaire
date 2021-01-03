@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0"
+            prefWidth="809.0" style="-fx-background-color: white;" stylesheets="@/stylesheets/authentication.css"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.github.brokenswing.comixaire.controller.ClientSubscriptionsController">
+
+    <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="282.0" prefWidth="354.0" style="-fx-background-color: white;">
+        <Text layoutX="47.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New subscription">
+            <font>
+                <Font name="Quicksand SemiBold" size="34.0"/>
+            </font>
+        </Text>
+        <DatePicker fx:id="dateFrom" layoutX="101.0" layoutY="124.0" promptText="Start date"/>
+        <DatePicker fx:id="dateTo" layoutX="102.0" layoutY="168.0" promptText="End date"/>
+        <Text fill="#838383" layoutX="45.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From:">
+            <font>
+                <Font name="Quicksand SemiBold" size="14.0"/>
+            </font>
+        </Text>
+        <Text fill="#838383" layoutX="65.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To:">
+            <font>
+                <Font name="Quicksand SemiBold" size="14.0"/>
+            </font>
+        </Text>
+        <Button layoutX="102.0" layoutY="236.0" mnemonicParsing="false" onAction="#createSubscription" styleClass="btn"
+                text="Create subscription"/>
+    </AnchorPane>
+
+    <ListView fx:id="subscriptions" layoutX="405.0" layoutY="45.0" prefHeight="246.0" prefWidth="361.0"
+              styleClass="list-cell">
+        <placeholder>
+            <Text>
+                No Subscription found
+            </Text>
+        </placeholder>
+    </ListView>
+
+    <Text fill="#b9b9b9" layoutX="404.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All subscriptions">
+        <font>
+            <Font name="Quicksand SemiBold" size="17.0"/>
+        </font>
+    </Text>
+
+</AnchorPane>

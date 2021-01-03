@@ -8,18 +8,21 @@ import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.utils.FormValidationBuilder;
 import com.github.brokenswing.comixaire.view.Views;
+import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.text.Text;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Optional;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
 
 public class ClientUpdateController implements Initializable
@@ -28,8 +31,6 @@ public class ClientUpdateController implements Initializable
     @ViewParam
     private Client client;
 
-    @FXML
-    private Text fullname;
     @FXML
     private TextField firstnameInput;
     @FXML
@@ -53,13 +54,12 @@ public class ClientUpdateController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        this.fullname.setText(client.getFullname());
         this.firstnameInput.setText(client.getFirstname());
         this.lastnameInput.setText(client.getLastname());
         this.addressInput.setText(client.getAddress());
         this.cardIdInput.setText(client.getCardId());
         this.genderInput.setValue(client.getGender());
-        this.birthdateInput.setValue(new java.sql.Date(client.getBirthdate().getTime()).toLocalDate());
+        this.birthdateInput.setValue(client.getBirthdate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 
         BooleanBinding isValid = new FormValidationBuilder()
                 .notEmpty(firstnameInput.textProperty())
@@ -86,64 +86,17 @@ public class ClientUpdateController implements Initializable
         try
         {
             clientsFacade.update(client);
-            router.navigateTo(Views.CLIENT_DETAILS, client);
+            router.navigateTo(Views.ClientManagement.MAIN_FRAME, client);
         }
-        catch (InternalException | CardIdAlreadyExist e)
+        catch (InternalException e)
         {
             e.printStackTrace();
+            new InternalErrorAlert(e).showAndWait();
         }
-    }
-
-    /**
-     * TODO: NEEDS FACTORISATION IN A FUTURE
-     */
-
-    public void back()
-    {
-        router.navigateTo(Views.CLIENTS_LIST);
-    }
-
-    public void infos()
-    {
-        router.navigateTo(Views.CLIENT_DETAILS, client);
-    }
-
-    public void update()
-    {
-        router.navigateTo(Views.CLIENT_UPDATE, client);
-    }
-
-    public void subscriptions()
-    {
-        router.navigateTo(Views.CLIENT_SUBSCRIPTIONS, client);
-    }
-
-    public void fines()
-    {
-        router.navigateTo(Views.CLIENT_FINES, client);
-    }
-
-    public void delete()
-    {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Are you sure ?");
-        alert.setHeaderText("Do you really want to delete the client: " + client.getFullname() + " ?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK)
+        catch (CardIdAlreadyExist e)
         {
-            try
-            {
-                clientsFacade.delete(client);
-                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                alert2.setTitle("Success");
-                alert.setHeaderText("Client successfully removed from our database");
-                alert2.showAndWait();
-                router.navigateTo(Views.CLIENTS_LIST);
-            }
-            catch (InternalException e)
-            {
-                e.printStackTrace();
-            }
+            e.printStackTrace(); // TODO: Display error alert
         }
     }
+
 }

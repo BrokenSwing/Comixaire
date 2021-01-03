@@ -36,7 +36,7 @@ public class ClientCellController implements Initializable
     @FXML
     private void more()
     {
-        router.navigateTo(Views.CLIENT_DETAILS, this.client);
+        router.navigateTo("client-management.fxml", this.client);
     }
 
     @Override

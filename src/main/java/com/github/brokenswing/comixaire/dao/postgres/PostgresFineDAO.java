@@ -1,12 +1,18 @@
 package com.github.brokenswing.comixaire.dao.postgres;
 
 import com.github.brokenswing.comixaire.dao.FineDAO;
-import com.github.brokenswing.comixaire.exception.*;
+import com.github.brokenswing.comixaire.exception.InternalException;
+import com.github.brokenswing.comixaire.exception.InvalidFineTypeException;
+import com.github.brokenswing.comixaire.exception.NoClientFoundException;
+import com.github.brokenswing.comixaire.exception.NoReturnFoundException;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.Fine;
 import org.postgresql.util.PSQLException;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PostgresFineDAO implements FineDAO
@@ -52,7 +58,6 @@ public class PostgresFineDAO implements FineDAO
     {
         try
         {
-            System.out.println(client.getFirstname() + " " + client.getIdClient());
             PreparedStatement prepare = connection.prepareStatement("SELECT * FROM fine JOIN fineType ON fineType.fineType_id = fine.fineType_id " +
                     "JOIN loans ON loans.loan_id = fine.return_id WHERE loans.client_id = ?");
             prepare.setInt(1, client.getIdClient());

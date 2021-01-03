@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PostgresClientDAO implements ClientDAO
 {
@@ -32,7 +33,7 @@ public class PostgresClientDAO implements ClientDAO
                 result.getString("client_cardID"),
                 result.getString("client_gender"),
                 result.getString("client_address"),
-                result.getDate("client_birthdate")
+                new Date(result.getDate("client_birthdate").getTime())
         );
     }
 

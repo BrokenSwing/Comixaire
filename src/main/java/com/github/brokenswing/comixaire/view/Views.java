@@ -12,15 +12,55 @@ public class Views
     public static final String CLIENT_LOANS = "loans-client-input.fxml";
     public static final String CLIENTS_LIST = "client-list.fxml";
     public static final String CLIENT_BORROWED_ITEM = "user-borrowed-items.fxml";
-    public static final String CLIENT_DETAILS = "client-details.fxml";
-    public static final String CLIENT_FINES = "client-fines.fxml";
-    public static final String CLIENT_SUBSCRIPTIONS = "client-subscriptions.fxml";
-    public static final String CLIENT_UPDATE = "client-update.fxml";
 
     public static final String LOANS = "loans.fxml";
 
     private Views()
     {
+    }
+
+    /**
+     * This class is used as a namespace. It encapsulates views that are responsible
+     * for client consultation and edition (including removal).
+     */
+    public static final class ClientManagement
+    {
+
+        /**
+         * This view is the one that must be navigated to using the main router
+         * to display a correct client management view.<br>
+         * A {@link com.github.brokenswing.comixaire.models.Client} MUST be passed to this view.
+         */
+        public static final String MAIN_FRAME = "client-management/main-frame.fxml";
+
+        /**
+         * This view is used as a sub-frame of the {@link #MAIN_FRAME} and displays a summary
+         * of the current client.<br>
+         * A {@link com.github.brokenswing.comixaire.models.Client} MUST be passed to this view.
+         */
+        public static final String DETAILS_SUB_FRAME = "client-management/client-details-frame.fxml";
+
+        /**
+         * This view is used as a sub-frame of the {@link #MAIN_FRAME} and displays fines for the
+         * current client.<br>
+         * A {@link com.github.brokenswing.comixaire.models.Client} MUST be passed to this view.
+         */
+        public static final String FINES_SUB_FRAME = "client-management/client-fines-frame.fxml";
+
+        /**
+         * This view is used as a sub-frame of the {@link #MAIN_FRAME} and displays subscriptions of the
+         * current client. It also allows to create new subscriptions.<br>
+         * A {@link com.github.brokenswing.comixaire.models.Client} MUST be passed to this view.
+         */
+        public static final String SUBSCRIPTIONS_SUB_FRAME = "client-management/client-subscriptions-frame.fxml";
+
+        /**
+         * This view is used as a sub-frame of the {@link #MAIN_FRAME} and displays a form to modify
+         * current client's information.<br>
+         * A {@link com.github.brokenswing.comixaire.models.Client} MUST be passed to this view.
+         */
+        public static final String UPDATE_SUB_FRAME = "client-management/client-update-frame.fxml";
+
     }
 
     /**
