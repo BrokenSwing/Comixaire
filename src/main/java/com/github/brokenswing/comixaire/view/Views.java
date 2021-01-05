@@ -10,6 +10,7 @@ public class Views
     public static final String NEW_CLIENT = "new-user.fxml";
     public static final String CLIENT_RECOMMENDATIONS = "user-recommendations.fxml";
     public static final String CLIENT_LOANS = "loans-client-input.fxml";
+    public static final String CLIENT_BOOKINGS = "bookings-client-input.fxml";
     public static final String CLIENTS_LIST = "client-list.fxml";
     public static final String CLIENT_BORROWED_ITEM = "user-borrowed-items.fxml";
 
@@ -72,6 +73,7 @@ public class Views
     {
 
         public static final String RECOMMENDED_ITEM = "cells/recommended-item-cell.fxml";
+        public static final String BOOKING_ITEM = "cells/booking-cell.fxml";
 
         /**
          * This view represents a single client with the main information about him/her displayed.
