@@ -38,6 +38,7 @@ public class RatingCellController implements Initializable
         else
         {
             rateButton.setVisible(false);
+            rate.setRating(params.getValue().getNote());
         }
     }
 }
