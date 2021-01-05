@@ -35,12 +35,14 @@ public class DependencyInjector
     private final CacheDependencySource cache = new CacheDependencySource();
     private boolean cacheEnabled;
     private final Class<? extends Annotation> injectionAnnotation;
+    private final boolean ignoreMissingDependencies;
 
-    public DependencyInjector(Class<? extends Annotation> injectionAnnotation)
+    public DependencyInjector(Class<? extends Annotation> injectionAnnotation, boolean ignoreMissingDependencies)
     {
         this.sources.add(cache);
         this.cacheEnabled = true;
         this.injectionAnnotation = injectionAnnotation;
+        this.ignoreMissingDependencies = ignoreMissingDependencies;
     }
 
     /**
@@ -140,6 +142,10 @@ public class DependencyInjector
 
         if (dependencyInstance == null)
         {
+            if (ignoreMissingDependencies)
+            {
+                return null;
+            }
             throw new IllegalStateException(String.format("Dependency %s can't be resolved.", dependency.getSimpleName()));
         }
 

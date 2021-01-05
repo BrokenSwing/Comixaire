@@ -43,7 +43,7 @@ public class ViewLoader
         loader.setControllerFactory(controllerClass ->
         {
             Object controllerInstance = this.baseControllerFactory.call(controllerClass);
-            DependencyInjector di = new DependencyInjector(ViewParam.class);
+            DependencyInjector di = new DependencyInjector(ViewParam.class, true);
             di.addDependencyResolver(new ArrayDependencySource(values));
             di.inject(controllerInstance);
             return controllerInstance;

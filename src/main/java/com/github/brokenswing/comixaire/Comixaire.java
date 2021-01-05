@@ -36,7 +36,7 @@ public class Comixaire extends Application
 
     public Comixaire()
     {
-        DependencyInjector di = new DependencyInjector(InjectValue.class);
+        DependencyInjector di = new DependencyInjector(InjectValue.class, false);
         di.addDependencyResolver(new AnnotatedDependencySource(this));
         di.addDependencyResolver(new ReflectionDependencySource());
 
