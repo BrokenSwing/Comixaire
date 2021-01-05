@@ -23,7 +23,7 @@ public class LoansFacade extends Facade
     public void create(Loan loan) throws InternalException
     {
         this.factory.getLoanDAO().create(loan);
-        logger.log("Create loan " + loan.getIdLoan(), loan.getClient().getFullname() + " borrowed " + loan.getLibraryItem().getTitle());
+        logger.log("Create loan for item " + loan.getLibraryItem().getIdLibraryItem(), loan.getClient().getFullname() + " borrowed " + loan.getLibraryItem().getTitle());
     }
 
     public Loan[] findByCardId(String idCard) throws InternalException, NoClientFoundException

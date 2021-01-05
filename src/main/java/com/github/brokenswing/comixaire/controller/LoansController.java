@@ -8,7 +8,9 @@ import com.github.brokenswing.comixaire.facades.booking.BookingFacade;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
 import com.github.brokenswing.comixaire.facades.loans.LoansFacade;
+import com.github.brokenswing.comixaire.javafx.CustomListCell;
 import com.github.brokenswing.comixaire.javafx.IntField;
+import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.models.Loan;
@@ -16,6 +18,7 @@ import com.github.brokenswing.comixaire.utils.FormValidationBuilder;
 import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
 import com.github.brokenswing.comixaire.view.util.Router;
+import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -23,22 +26,27 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 public class LoansController implements Initializable
 {
 
+    private ArrayList<LibraryItem> allLibraryItems = new ArrayList<>();
+
     @ViewParam
     private Client client;
 
     @FXML
-    private ListView<String> loansList;
+    private ListView<LibraryItem> loansList;
     @FXML
     private Text fullname;
     @FXML
@@ -63,6 +71,8 @@ public class LoansController implements Initializable
     @InjectValue
     private BookingFacade bookingFacade;
     @InjectValue
+    private ViewLoader loader;
+    @InjectValue
     private Router router;
 
     public void back()
@@ -73,6 +83,9 @@ public class LoansController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        loansList.setSelectionModel(new NoOpSelectionModel<>());
+        loansList.setCellFactory(CustomListCell.factory(loader, Views.Cells.RECOMMENDED_ITEM));
+
         fullname.setText(client.getFullname());
         gender.setText(client.getGender());
         try
@@ -102,28 +115,10 @@ public class LoansController implements Initializable
 
     public void loan()
     {
-        LibraryItem item = null;
         try
         {
-            item = itemFacade.findById(libraryItemId.getValue());
-        }
-        catch (InternalException e)
-        {
-            e.printStackTrace();
-            new InternalErrorAlert(e).showAndWait();
-        }
-        catch (NoLibraryItemFoundException e)
-        {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Library item not found !");
-            alert.setContentText("No library item with the ID " + libraryItemId.getValue() + " can be found.");
-        }
-        finally
-        {
-            System.out.println(item);
-            if (item != null && (item.getBookings().length == 0 || item.peekBooking() == client.getIdClient()))
+            LibraryItem item = itemFacade.findById(libraryItemId.getValue());
+            if (item.getBookings().length == 0 || item.peekBooking() == client.getIdClient())
             {
                 Date from = new Date();
                 Date to = Date.from(LocalDate.now().plusWeeks(3).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
@@ -143,8 +138,9 @@ public class LoansController implements Initializable
                 {
                     e.printStackTrace();
                 }
-
-                loansList.setItems(FXCollections.observableArrayList(item.toString()));//update view, todo: change
+                libraryItemId.clear();
+                allLibraryItems.add(item);
+                loansList.setItems(FXCollections.observableArrayList(allLibraryItems));
             }
             else
             {
@@ -154,6 +150,29 @@ public class LoansController implements Initializable
                 alert.setContentText("There is actually " + item.getBookings().length + " bookers for this item.");
                 alert.showAndWait();
             }
+        }
+        catch (InternalException e)
+        {
+            libraryItemId.clear();
+            e.printStackTrace();
+            new InternalErrorAlert(e).showAndWait();
+        }
+        catch (NoLibraryItemFoundException e)
+        {
+            libraryItemId.clear();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Library item not found !");
+            alert.setContentText("No library item with the ID " + libraryItemId.getValue() + " can be found.");
+            alert.showAndWait();
+        }
+    }
+
+    public void loanKeyPressed(KeyEvent event)
+    {
+        if (event.getCode() == KeyCode.ENTER && !loanButton.isDisabled())
+        {
+            loan();
         }
     }
 }
