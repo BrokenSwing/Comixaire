@@ -612,7 +612,13 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
     }
 
     @Override
-    public void addBooking(LibraryItem libraryItem, Client client)
+    public void addBooking(LibraryItem libraryItem, Client client) throws InternalException
+    {
+        //TODO: implement
+    }
+
+    @Override
+    public void deleteBooking(LibraryItem libraryItem, Client client) throws InternalException
     {
         //TODO: implement
     }
