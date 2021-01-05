@@ -14,6 +14,7 @@ public class Views
     public static final String CLIENT_BORROWED_ITEM = "user-borrowed-items.fxml";
 
     public static final String LOANS = "loans.fxml";
+    public static final String BOOKINGS = "bookings.fxml";
 
     private Views()
     {

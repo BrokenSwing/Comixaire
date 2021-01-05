@@ -31,7 +31,7 @@ public class StaffActionCenterController
     @FXML
     protected void displayBookingsView()
     {
-        //TODO: implement
+        this.router.navigateTo(Views.BOOKINGS);
     }
 
     @FXML
