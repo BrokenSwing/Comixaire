@@ -13,6 +13,7 @@ import com.github.brokenswing.comixaire.facades.auth.Session;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.facades.fines.FinesFacade;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
+import com.github.brokenswing.comixaire.facades.loans.LoansFacade;
 import com.github.brokenswing.comixaire.facades.logs.LogsFacade;
 import com.github.brokenswing.comixaire.facades.recommendations.RecommendationFacade;
 import com.github.brokenswing.comixaire.facades.staff.StaffMemberFacade;
@@ -119,6 +120,12 @@ public class Comixaire extends Application
     public RecommendationFacade getRecommendationFacade()
     {
         return new RecommendationFacade(factory);
+    }
+
+    @ValueProvider
+    public LoansFacade getLoansFacade()
+    {
+        return new LoansFacade(factory);
     }
 
 }

@@ -130,6 +130,8 @@ public abstract class LibraryItem
         return bookings.offer(client.getIdClient());
     }
 
+    public int peekBooking() { return bookings.peek(); }
+
     public Optional<Integer> pollBooking()
     {
         return Optional.ofNullable(bookings.poll());

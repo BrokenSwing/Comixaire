@@ -83,8 +83,8 @@
 
       <AnchorPane layoutX="513.0" layoutY="312.0" prefHeight="67.0" prefWidth="380.0" style="-fx-background-color: white;">
          <children>
-            <TextField layoutX="30.0" layoutY="21.0" prefHeight="25.0" prefWidth="172.0" promptText="Item ID" />
-            <Button layoutX="229.0" layoutY="21.0" mnemonicParsing="false" onAction="#loan" styleClass="btn" text="Loan now" />
+            <TextField fx:id="libraryItemId" layoutX="30.0" layoutY="21.0" prefHeight="25.0" prefWidth="172.0" promptText="Item ID" />
+            <Button fx:id="loanButton" layoutX="229.0" layoutY="21.0" mnemonicParsing="false" onAction="#loan" styleClass="btn" text="Loan now" />
          </children>
       </AnchorPane>
 

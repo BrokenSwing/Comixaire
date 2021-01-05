@@ -19,6 +19,11 @@ public class Loan
         this.libraryItem = libraryItem;
     }
 
+    public Loan(Date from, Date to, Client client, LibraryItem libraryItem)
+    {
+        this(-1, from, to, client, libraryItem);
+    }
+
     public int getIdLoan()
     {
         return idLoan;
