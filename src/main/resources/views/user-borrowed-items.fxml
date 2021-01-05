@@ -41,7 +41,7 @@
                 <Font name="Quicksand SemiBold" size="15.0"/>
             </font>
         </Text>
-        <ListView layoutX="51.0" layoutY="382.0" prefHeight="378.0" prefWidth="1179.0">
+        <ListView fx:id="itemsList" layoutX="51.0" layoutY="382.0" prefHeight="378.0" prefWidth="1179.0">
             <placeholder>
                 <Text>
                     No items found

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import org.controlsfx.control.Rating?>
+<?import javafx.scene.control.Button?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.github.brokenswing.comixaire.controller.cell.RatingCellController">
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0"/>
+    </columnConstraints>
+
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER"/>
+    </rowConstraints>
+
+    <Text fill="black" fx:id="title"/>
+    <Rating fx:id="rate" GridPane.columnIndex="1"/>
+    <Button styleClass="btn" fx:id="rateButton" GridPane.columnIndex="1"/>
+    <Text fill="grey" text="Type : " GridPane.columnIndex="2"/>
+    <Text fill="#5282FC" fx:id="type" GridPane.columnIndex="3"/>
+
+</GridPane>
