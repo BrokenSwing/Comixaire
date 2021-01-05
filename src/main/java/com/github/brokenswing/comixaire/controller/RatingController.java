@@ -10,10 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,17 +25,17 @@ public class RatingController implements Initializable
     @FXML
     private Button searchButton;
     @FXML
-    private TextField name;
+    private Label name;
     @FXML
     private CheckBox unratedItems;
     @FXML
     private CheckBox ratedItems;
     @FXML
-    private Button popupButton;
+    private Button note;
     @FXML
     private Button popupRateButton;
     @FXML
-    private Slider popupSlider;
+    private org.controlsfx.control.Rating msg;
     @FXML
     private Button popupClose;
 
@@ -57,13 +54,9 @@ public class RatingController implements Initializable
         configureCheckBox(unratedItems);
         configureCheckBox(ratedItems);
         searchButton.setDisable(true);
-        popupButton.setDisable(true);
+        note.setDisable(true);
         popupRateButton.setDisable(true);
         popupClose.setDisable(true);
-        popupSlider.setMin(0);
-        popupSlider.setMax(5);
-        popupSlider.setShowTickLabels(true);
-        popupSlider.setShowTickMarks(true);
     }
 
     private void configureCheckBox(CheckBox checkBox)
