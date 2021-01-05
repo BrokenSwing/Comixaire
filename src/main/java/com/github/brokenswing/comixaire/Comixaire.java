@@ -10,6 +10,7 @@ import com.github.brokenswing.comixaire.di.sources.ReflectionDependencySource;
 import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
 import com.github.brokenswing.comixaire.facades.auth.PlainTextPasswordAlgorithm;
 import com.github.brokenswing.comixaire.facades.auth.Session;
+import com.github.brokenswing.comixaire.facades.booking.BookingFacade;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.facades.fines.FinesFacade;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
@@ -126,6 +127,12 @@ public class Comixaire extends Application
     public LoansFacade getLoansFacade()
     {
         return new LoansFacade(factory);
+    }
+
+    @ValueProvider
+    public BookingFacade getBookingFacade()
+    {
+        return new BookingFacade(factory);
     }
 
 }
