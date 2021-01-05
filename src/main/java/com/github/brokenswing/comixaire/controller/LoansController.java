@@ -127,6 +127,14 @@ public class LoansController implements Initializable
         catch (NoLibraryItemFoundException e)
         {
             e.printStackTrace();
+            System.out.println("Not found");
+        }
+        catch (NumberFormatException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Library item ID not valid");
+            alert.setHeaderText("You must provide an integer for library item ID");
+            alert.showAndWait();
         }
     }
 }
