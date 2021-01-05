@@ -16,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -65,5 +67,13 @@ public class LoansClientIdController implements Initializable
                 .notEmpty(loanClientIdField.textProperty())
                 .build();
         loanClientIdButton.disableProperty().bind(isValid.not());
+    }
+
+    public void selectKeyPressed(KeyEvent keyEvent)
+    {
+        if (keyEvent.getCode() == KeyCode.ENTER)
+        {
+            this.select();
+        }
     }
 }

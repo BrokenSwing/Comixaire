@@ -21,7 +21,7 @@
                 <Insets />
             </opaqueInsets>
         </AnchorPane>
-      <AnchorPane layoutX="570.0" layoutY="306.0" prefHeight="188.0" prefWidth="291.0" style="-fx-background-color: white;" onKeyPressed="#select">
+      <AnchorPane layoutX="570.0" layoutY="306.0" prefHeight="188.0" prefWidth="291.0" style="-fx-background-color: white;" onKeyPressed="#selectKeyPressed">
          <children>
             <TextField fx:id="loanClientIdField" layoutX="60.0" layoutY="56.0" prefHeight="25.0" prefWidth="172.0" promptText="Client ID" />
             <Button fx:id="loanClientIdButton" layoutX="71.0" layoutY="119.0" mnemonicParsing="false" onAction="#select" styleClass="btn" text="Choose client" />
