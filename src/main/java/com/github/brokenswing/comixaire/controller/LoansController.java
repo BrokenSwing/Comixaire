@@ -118,6 +118,7 @@ public class LoansController implements Initializable
         try
         {
             LibraryItem item = itemFacade.findById(libraryItemId.getValue());
+            //TODO: check if item is already in loan, if it's the case display en error alert.
             if (item.getBookings().length == 0 || item.peekBooking() == client.getIdClient())
             {
                 Date from = new Date();
