@@ -159,12 +159,12 @@ public class LoansController implements Initializable
         }
         catch (NoLibraryItemFoundException e)
         {
-            libraryItemId.clear();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Library item not found !");
             alert.setContentText("No library item with the ID " + libraryItemId.getValue() + " can be found.");
             alert.showAndWait();
+            libraryItemId.clear();
         }
     }
 
