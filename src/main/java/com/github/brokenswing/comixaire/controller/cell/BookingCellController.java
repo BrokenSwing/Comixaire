@@ -12,10 +12,12 @@ import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class BookingCellController implements Initializable
@@ -33,6 +35,8 @@ public class BookingCellController implements Initializable
     private Text itemLocation;
     @FXML
     private Text itemType;
+    @FXML
+    private Button bookingButton;
 
     @InjectValue
     private BookingFacade bookingFacade;
@@ -66,6 +70,12 @@ public class BookingCellController implements Initializable
         this.itemTitle.setText(this.libraryItem.getTitle());
         this.itemLocation.setText("Location : " + this.libraryItem.getLocation());
         this.itemType.setText("Type : " + libraryItem.getClass().getSimpleName());
+
+        if (Arrays.asList(libraryItem.getBookings()).contains(client.getIdClient()))
+        {
+            bookingButton.setDisable(true);
+            bookingButton.setText("Booked");
+        }
     }
 }
 

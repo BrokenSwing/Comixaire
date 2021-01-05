@@ -113,7 +113,7 @@ public class BookingController implements Initializable
 
     public void find()
     {
-        Predicate<LibraryItem> predicate = item -> !Arrays.asList(item.getBookings()).contains(client.getIdClient());
+        Predicate<LibraryItem> predicate = item -> true;
 
         if (!itemIDField.getText().trim().isEmpty())
         {
