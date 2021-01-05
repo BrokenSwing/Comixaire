@@ -636,6 +636,8 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
                     "UPDATE libraryitems " +
                             "SET item_bookings = ? " +
                             "WHERE item_id = ?");
+            stmt.setArray(1, connection.createArrayOf("integer", libraryItem.getBookings()));
+            stmt.setInt(2, libraryItem.getIdLibraryItem());
             stmt.executeUpdate();
         }
         catch (SQLException e)
