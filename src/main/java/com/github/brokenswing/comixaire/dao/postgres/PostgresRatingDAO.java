@@ -1,5 +1,6 @@
 package com.github.brokenswing.comixaire.dao.postgres;
 
+import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.dao.RatingDAO;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
@@ -88,7 +89,49 @@ public class PostgresRatingDAO implements RatingDAO
     @Override
     public Rating[] getRatingByClientId(int clientId) throws InternalException, NoClientFoundException
     {
-        return new Rating[0];
+        try
+        {
+            PreparedStatement stmt = connection.prepareStatement(
+                    "SELECT * FROM clients " +
+                            "NATURAL FULL OUTER JOIN rating " +
+                            "NATURAL FULL OUTER JOIN libraryitems " +
+                            "NATURAL LEFT JOIN books " +
+                            "NATURAL LEFT JOIN cd " +
+                            "NATURAL LEFT JOIN dvd " +
+                            "NATURAL LEFT JOIN games " +
+                            "WHERE client_id = ?");
+            stmt.setInt(1, clientId);
+            ResultSet result = stmt.executeQuery();
+
+            ArrayList<Rating> ratings = new ArrayList<>();
+
+            boolean clientFound = false;
+
+            while(result.next()){
+                clientFound = true;
+                result.getInt("note");
+                if (result.wasNull())
+                {
+                    continue;
+                }
+
+                LibraryItem item = PostgresLibraryItemDAO.libraryItemFromRow(result);
+                Client client = PostgresClientDAO.clientFromRow(result);
+                int note = result.getInt("note");
+                ratings.add(new Rating(client, item, note));
+            }
+
+            if (!clientFound)
+            {
+                throw new NoClientFoundException(clientId);
+            }
+
+            return ratings.toArray(new Rating[0]);
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to find any rating", e);
+        }
     }
 
 }
