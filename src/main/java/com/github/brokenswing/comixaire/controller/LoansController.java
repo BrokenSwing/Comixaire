@@ -131,13 +131,15 @@ public class LoansController implements Initializable
                 {
                     e.printStackTrace();
                 }
-                try
-                {
-                    bookingFacade.deleteBooking(item, client);
-                }
-                catch (InternalException e)
-                {
-                    e.printStackTrace();
+                if(item.peekBooking() == client.getIdClient()){
+                    try
+                    {
+                        bookingFacade.deleteBooking(item, client);
+                    }
+                    catch (InternalException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
                 libraryItemId.clear();
                 allLibraryItems.add(item);
