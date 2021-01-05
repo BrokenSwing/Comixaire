@@ -74,6 +74,7 @@ public class Views
 
         public static final String RECOMMENDED_ITEM = "cells/recommended-item-cell.fxml";
         public static final String BOOKING_ITEM = "cells/booking-cell.fxml";
+        public static final String RATING = "cells/rating-cell.fxml";
 
         /**
          * This view represents a single client with the main information about him/her displayed.

@@ -20,6 +20,8 @@ import javafx.scene.control.ListView;
 import javafx.util.Pair;
 
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ClientBorrowedItemsController implements Initializable
@@ -59,10 +61,12 @@ public class ClientBorrowedItemsController implements Initializable
         try
         {
             LibraryItem[] items = itemsFacade.findAll();
-            ObservableList<Pair<LibraryItem, Rating>> observableList = FXCollections.observableArrayList();
+            List<Pair<LibraryItem, Rating>> observableList = new LinkedList<>();
             for (LibraryItem item : items){
                 observableList.add(new Pair<>(item, null));
             }
+            filteredList = new FilteredList<>(FXCollections.observableList(observableList));
+            itemsList.setItems(filteredList);
         }
         catch (InternalException e)
         {

@@ -2,6 +2,7 @@ package com.github.brokenswing.comixaire.dao.postgres;
 
 import com.github.brokenswing.comixaire.dao.RatingDAO;
 import com.github.brokenswing.comixaire.exception.InternalException;
+import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.models.Rating;
@@ -15,13 +16,6 @@ public class PostgresRatingDAO implements RatingDAO
 
     public PostgresRatingDAO(Connection connection) { this.connection = connection; }
 
-
-    @Override
-    public LibraryItem[] search(String name, Boolean unratedItems, Boolean ratedItems) throws InternalException
-    {
-        //TODO: implement
-        return new LibraryItem[0];
-    }
 
     @Override
     public void create(Rating rating) throws InternalException
@@ -89,6 +83,12 @@ public class PostgresRatingDAO implements RatingDAO
         {
             throw new InternalException("Unable to find any item", e);
         }
+    }
+
+    @Override
+    public Rating[] getRatingByClientId(int clientId) throws InternalException, NoClientFoundException
+    {
+        return new Rating[0];
     }
 
 }
