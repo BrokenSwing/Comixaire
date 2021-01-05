@@ -15,9 +15,7 @@ public interface LibraryItemDAO
 
     void update(LibraryItem libraryItem) throws InternalException;
 
-    void addBooking(LibraryItem libraryItem, Client client) throws InternalException;
-
-    void deleteBooking(LibraryItem libraryItem, Client client) throws InternalException;
+    void updateBooking(LibraryItem libraryItem) throws InternalException;
 
     void delete(LibraryItem libraryItem) throws InternalException;
 

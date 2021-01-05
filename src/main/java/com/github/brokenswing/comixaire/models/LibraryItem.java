@@ -130,26 +130,19 @@ public abstract class LibraryItem
         return bookings.offer(client.getIdClient());
     }
 
-    public int peekBooking() { return bookings.peek(); }
-
-    public Optional<Integer> pollBooking()
+    public void removeBooking(Client client)
     {
-        return Optional.ofNullable(bookings.poll());
+        this.bookings.remove(client.getIdClient());
+    }
+
+    public int peekBooking()
+    {
+        return bookings.peek();
     }
 
     public String[] getCategories()
     {
         return categories.toArray(new String[0]);
-    }
-
-    public boolean removeCategory(String category)
-    {
-        return categories.remove(category);
-    }
-
-    public boolean addCategory(String category)
-    {
-        return categories.add(category);
     }
 
     public boolean isAvailable()

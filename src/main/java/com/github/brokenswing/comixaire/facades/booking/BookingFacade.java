@@ -21,12 +21,16 @@ public class BookingFacade extends Facade
 
     public void addBooking(LibraryItem libraryItem, Client client) throws InternalException
     {
-        this.factory.getLibraryItemDAO().addBooking(libraryItem, client);
+        libraryItem.addBooking(client);
+        this.factory.getLibraryItemDAO().updateBooking(libraryItem);
         logger.log("Add Booking", "Client: " + client.getIdClient() + " / Title: " + libraryItem.getTitle());
     }
 
     public void deleteBooking(LibraryItem libraryItem, Client client) throws InternalException
     {
-        this.factory.getLibraryItemDAO().deleteBooking(libraryItem, client);
+        libraryItem.removeBooking(client);
+        this.factory.getLibraryItemDAO().update(libraryItem);
+        logger.log("Remove Booking", "Client: " + client.getIdClient() + " / Title: " + libraryItem.getTitle());
     }
+    
 }
