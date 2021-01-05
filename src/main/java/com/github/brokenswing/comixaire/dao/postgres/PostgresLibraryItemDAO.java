@@ -3,6 +3,7 @@ package com.github.brokenswing.comixaire.dao.postgres;
 import com.github.brokenswing.comixaire.dao.LibraryItemDAO;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoLibraryItemFoundException;
+import com.github.brokenswing.comixaire.exception.NoStaffMemberFoundException;
 import com.github.brokenswing.comixaire.models.*;
 import com.github.brokenswing.comixaire.models.builder.LibraryItemBuilder;
 import com.github.brokenswing.comixaire.models.builder.LibraryItemStep;
@@ -396,8 +397,30 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
     @Override
     public LibraryItem findById(int libraryItem) throws InternalException, NoLibraryItemFoundException
     {
-        //TODO: implement
-        return null;
+        try
+        {
+            PreparedStatement stmt = connection.prepareStatement(
+                    "SELECT * FROM libraryitems " +
+                            "NATURAL LEFT JOIN books b " +
+                            "NATURAL LEFT JOIN cd c " +
+                            "NATURAL LEFT JOIN dvd d " +
+                            "NATURAL LEFT JOIN games g " +
+                            "WHERE item_id = ?");
+            stmt.setInt(1, libraryItem);
+            ResultSet result = stmt.executeQuery();
+            if (result.next())
+            {
+                return libraryItemFromRow(result);
+            }
+            else
+            {
+                throw new NoLibraryItemFoundException(libraryItem);
+            }
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to find any item", e);
+        }
     }
 
     @Override

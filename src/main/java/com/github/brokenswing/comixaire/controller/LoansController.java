@@ -102,26 +102,10 @@ public class LoansController implements Initializable
 
     public void loan()
     {
+        LibraryItem item = null;
         try
         {
-            LibraryItem item = itemFacade.findById(libraryItemId.getValue());
-            if (item.getBookings().length == 0 || item.peekBooking() == client.getIdClient())
-            {
-                Date from = new Date();
-                Date to = Date.from(LocalDate.now().plusWeeks(3).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-                loansFacade.create(new Loan(from, to, client, item));
-                bookingFacade.deleteBooking(item, client);
-
-                loansList.setItems(FXCollections.observableArrayList(item.getTitle()));//update view, todo: change
-            }
-            else
-            {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Library item not available");
-                alert.setHeaderText("This library item is booked by another client !");
-                alert.setContentText("There is actually " + item.getBookings().length + " bookers for this item.");
-                alert.showAndWait();
-            }
+            item = itemFacade.findById(libraryItemId.getValue());
         }
         catch (InternalException e)
         {
@@ -135,6 +119,41 @@ public class LoansController implements Initializable
             alert.setTitle("Error");
             alert.setHeaderText("Library item not found !");
             alert.setContentText("No library item with the ID " + libraryItemId.getValue() + " can be found.");
+        }
+        finally
+        {
+            System.out.println(item);
+            if (item != null && (item.getBookings().length == 0 || item.peekBooking() == client.getIdClient()))
+            {
+                Date from = new Date();
+                Date to = Date.from(LocalDate.now().plusWeeks(3).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+                try
+                {
+                    loansFacade.create(new Loan(from, to, client, item));
+                }
+                catch (InternalException e)
+                {
+                    e.printStackTrace();
+                }
+                try
+                {
+                    bookingFacade.deleteBooking(item, client);
+                }
+                catch (InternalException e)
+                {
+                    e.printStackTrace();
+                }
+
+                loansList.setItems(FXCollections.observableArrayList(item.toString()));//update view, todo: change
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Library item not available");
+                alert.setHeaderText("This library item is booked by another client !");
+                alert.setContentText("There is actually " + item.getBookings().length + " bookers for this item.");
+                alert.showAndWait();
+            }
         }
     }
 }
