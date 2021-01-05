@@ -12,10 +12,10 @@
           fx:controller="com.github.brokenswing.comixaire.controller.cell.BookingCellController">
 
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" percentWidth="60.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="55.0" />
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-        <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0" halignment="CENTER"/>
     </columnConstraints>
 
     <rowConstraints>
@@ -25,7 +25,7 @@
     <Text fill="black" fx:id="itemTitle" />
     <Text fill="#5282FC" fx:id="itemLocation" GridPane.columnIndex="1" />
     <Text fill="#5282FC" fx:id="itemType" GridPane.columnIndex="2" />
-    <Button mnemonicParsing="false" onAction="#book" styleClass="btn" text="Book" GridPane.columnIndex="3" fx:id="bookingButton"/>
+    <Button mnemonicParsing="false" prefWidth="120" onAction="#book" styleClass="btn" text="Book" GridPane.columnIndex="3" fx:id="bookingButton"/>
 
 </GridPane>
 
