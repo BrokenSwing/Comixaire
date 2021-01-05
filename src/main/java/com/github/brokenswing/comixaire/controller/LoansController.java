@@ -8,21 +8,21 @@ import com.github.brokenswing.comixaire.facades.booking.BookingFacade;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
 import com.github.brokenswing.comixaire.facades.loans.LoansFacade;
+import com.github.brokenswing.comixaire.javafx.IntField;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.models.Loan;
 import com.github.brokenswing.comixaire.utils.FormValidationBuilder;
 import com.github.brokenswing.comixaire.view.Views;
+import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -38,7 +38,7 @@ public class LoansController implements Initializable
     private Client client;
 
     @FXML
-    private ListView loansList;
+    private ListView<String> loansList;
     @FXML
     private Text fullname;
     @FXML
@@ -50,7 +50,7 @@ public class LoansController implements Initializable
     @FXML
     private Text gender;
     @FXML
-    private TextField libraryItemId;
+    private IntField libraryItemId;
     @FXML
     private Button loanButton;
 
@@ -77,14 +77,16 @@ public class LoansController implements Initializable
         gender.setText(client.getGender());
         try
         {
-            if(clientsFacade.validSubscription(client)) {
+            if (clientsFacade.validSubscription(client))
+            {
                 subscription.setText("Valid");
                 BooleanBinding isValid = new FormValidationBuilder()
                         .notEmpty(libraryItemId.textProperty())
                         .build();
                 loanButton.disableProperty().bind(isValid.not());
             }
-            else{
+            else
+            {
                 subscription.setText("Not valid");
                 loanButton.setDisable(true);
             }
@@ -102,17 +104,18 @@ public class LoansController implements Initializable
     {
         try
         {
-            LibraryItem item = itemFacade.findById(Integer.parseInt(libraryItemId.getText()));
-            if(item.getBookings().length == 0 || item.peekBooking() == client.getIdClient()){
-                Date from  = java.util.Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-                Date to  = java.util.Date.from(LocalDate.now().plusWeeks(3).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+            LibraryItem item = itemFacade.findById(libraryItemId.getValue());
+            if (item.getBookings().length == 0 || item.peekBooking() == client.getIdClient())
+            {
+                Date from = new Date();
+                Date to = Date.from(LocalDate.now().plusWeeks(3).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
                 loansFacade.create(new Loan(from, to, client, item));
-
                 bookingFacade.deleteBooking(item, client);
 
-                loansList.setItems(new FilteredList<>(FXCollections.observableArrayList(item.getTitle())));//update view, todo: change
+                loansList.setItems(FXCollections.observableArrayList(item.getTitle()));//update view, todo: change
             }
-            else{
+            else
+            {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Library item not available");
                 alert.setHeaderText("This library item is booked by another client !");
@@ -123,18 +126,15 @@ public class LoansController implements Initializable
         catch (InternalException e)
         {
             e.printStackTrace();
+            new InternalErrorAlert(e).showAndWait();
         }
         catch (NoLibraryItemFoundException e)
         {
             e.printStackTrace();
-            System.out.println("Not found");
-        }
-        catch (NumberFormatException e)
-        {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Library item ID not valid");
-            alert.setHeaderText("You must provide an integer for library item ID");
-            alert.showAndWait();
+            alert.setTitle("Error");
+            alert.setHeaderText("Library item not found !");
+            alert.setContentText("No library item with the ID " + libraryItemId.getValue() + " can be found.");
         }
     }
 }
