@@ -7,6 +7,7 @@ import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.facades.loans.LoansFacade;
 import com.github.brokenswing.comixaire.facades.rating.RatingFacade;
 import com.github.brokenswing.comixaire.javafx.CustomListCell;
+import com.github.brokenswing.comixaire.javafx.IntField;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.models.Loan;
@@ -22,15 +23,29 @@ import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.*;
+import java.util.function.Predicate;
 
 public class ClientBorrowedItemsController implements Initializable
 {
-    private FilteredList<ObservableRating> filteredList;
 
+    private FilteredList<ObservableRating> filteredList = new FilteredList<>(FXCollections.emptyObservableList());
+
+    @FXML
+    private CheckBox unratedField;
+    @FXML
+    private CheckBox ratedField;
+    @FXML
+    private IntField idField;
+    @FXML
+    private TextField titleField;
     @FXML
     private ListView<ObservableRating> itemsList;
 
@@ -56,7 +71,29 @@ public class ClientBorrowedItemsController implements Initializable
 
     public void search()
     {
-        //TODO: filter borrowed items
+        Predicate<ObservableRating> predicate = o -> true;
+
+        if (!unratedField.isSelected())
+        {
+            predicate = predicate.and(o -> o.existsProperty().get());
+        }
+
+        if (!ratedField.isSelected())
+        {
+            predicate = predicate.and(o -> !o.existsProperty().get());
+        }
+
+        if (idField.getText() != null && !idField.getText().trim().isEmpty())
+        {
+            predicate = predicate.and(o -> o.getLibraryItem().getIdLibraryItem() == idField.getValue());
+        }
+
+        if (titleField.getText() != null && !titleField.getText().trim().isEmpty())
+        {
+            predicate = predicate.and(o -> o.getLibraryItem().getTitle().toLowerCase().contains(titleField.getText().trim().toLowerCase()));
+        }
+
+        filteredList.setPredicate(predicate);
     }
 
     @Override
@@ -98,6 +135,12 @@ public class ClientBorrowedItemsController implements Initializable
         {
             e.printStackTrace();
         }
+
+
+        this.titleField.textProperty().addListener((obs, o, b) -> this.search());
+        this.idField.textProperty().addListener((obs, o, b) -> this.search());
+        this.ratedField.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> this.search());
+        this.unratedField.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> this.search());
     }
 
     public static class ObservableRating
