@@ -8,6 +8,7 @@ import com.github.brokenswing.comixaire.javafx.CustomListCell;
 import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.LibraryItem;
+import com.github.brokenswing.comixaire.recommendation.RecommenderSystem;
 import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
@@ -51,12 +52,13 @@ public class ClientRecommendationsController implements Initializable
         {
             this.itemsList.setSelectionModel(new NoOpSelectionModel<>());
             this.itemsList.setCellFactory(CustomListCell.factory(loader, Views.Cells.RECOMMENDED_ITEM));
-            this.items = new FilteredList<>(FXCollections.observableArrayList(recommendationFacade.computeRecommendation(itemTypeFilter.getValue(), itemNumberField.getValue(), client)));
+            this.items = new FilteredList<>(FXCollections.observableArrayList(recommendationFacade.computeRecommendation(client)));
             this.itemsList.setItems(this.items);
         }
         catch (InternalException e)
         {
             e.printStackTrace();
+            Alerts.exception(e);
         }
     }
 

@@ -6,7 +6,7 @@ import com.github.brokenswing.comixaire.facades.Facade;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.models.Rating;
-import com.github.brokenswing.comixaire.recommendation.RecommendationSystem;
+import com.github.brokenswing.comixaire.recommendation.RecommenderSystem;
 
 public class RecommendationFacade extends Facade
 {
@@ -25,10 +25,9 @@ public class RecommendationFacade extends Facade
         return this.factory.getRatingDAO().getAllItemId();
     }
 
-    public LibraryItem[] computeRecommendation(String type, Integer itemNumber, Client client) throws InternalException
+    public LibraryItem[] computeRecommendation(Client client) throws InternalException
     {
-        RecommendationSystem recommender = new RecommendationSystem(this.getAllRating(), this.getAllItemId());
-        return recommender.computeRecommendation(type, itemNumber, client);
+        return new RecommenderSystem(this.getAllRating()).getRecommendedItems(client);
     }
 
 }
