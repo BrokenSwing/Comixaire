@@ -1,6 +1,5 @@
 package com.github.brokenswing.comixaire.dao.postgres;
 
-import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.dao.RatingDAO;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
@@ -8,20 +7,41 @@ import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.models.Rating;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PostgresRatingDAO implements RatingDAO
 {
     private final Connection connection;
 
-    public PostgresRatingDAO(Connection connection) { this.connection = connection; }
+    public PostgresRatingDAO(Connection connection)
+    {
+        this.connection = connection;
+    }
 
 
     @Override
     public void create(Rating rating) throws InternalException
     {
-        //TODO: implement
+        try(PreparedStatement stmt = connection.prepareStatement(
+                "INSERT INTO rating (client_id, item_id, note) " +
+                "VALUES (?, ?, ?) ON CONFLICT (client_id, item_id) DO UPDATE SET note = ?"
+        ))
+        {
+            stmt.setInt(1, rating.getClient().getIdClient());
+            stmt.setInt(2, rating.getLibraryItem().getIdLibraryItem());
+            stmt.setInt(3, rating.getNote());
+            stmt.setInt(4, rating.getNote());
+
+            stmt.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to create rate " + rating, e);
+        }
     }
 
     @Override
@@ -31,19 +51,21 @@ public class PostgresRatingDAO implements RatingDAO
         {
             ResultSet result = connection.prepareStatement(
                     "SELECT * FROM libraryitems " +
-                    "NATURAL LEFT JOIN books " +
-                    "NATURAL LEFT JOIN cd " +
-                    "NATURAL LEFT JOIN dvd " +
-                    "NATURAL LEFT JOIN games " +
-                    "NATURAL FULL OUTER JOIN clients " +
-                    "NATURAL FULL OUTER JOIN rating").executeQuery();
+                            "NATURAL LEFT JOIN books " +
+                            "NATURAL LEFT JOIN cd " +
+                            "NATURAL LEFT JOIN dvd " +
+                            "NATURAL LEFT JOIN games " +
+                            "NATURAL FULL OUTER JOIN clients " +
+                            "NATURAL FULL OUTER JOIN rating").executeQuery();
 
             ArrayList<Rating> ratings = new ArrayList<>();
 
-            while(result.next()){
+            while (result.next())
+            {
                 LibraryItem item = PostgresLibraryItemDAO.libraryItemFromRow(result);
                 Client client = PostgresClientDAO.clientFromRow(result);
-                if (item != null) {
+                if (item != null)
+                {
                     int note = result.getInt("note");
                     if (result.wasNull())
                     {
@@ -74,7 +96,8 @@ public class PostgresRatingDAO implements RatingDAO
 
             ArrayList<Integer> itemsId = new ArrayList<>();
 
-            while(result.next()){
+            while (result.next())
+            {
                 itemsId.add(result.getInt("item_id"));
             }
 
@@ -107,7 +130,8 @@ public class PostgresRatingDAO implements RatingDAO
 
             boolean clientFound = false;
 
-            while(result.next()){
+            while (result.next())
+            {
                 clientFound = true;
                 result.getInt("note");
                 if (result.wasNull())

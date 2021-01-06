@@ -4,7 +4,6 @@ import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
-import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
 import com.github.brokenswing.comixaire.facades.loans.LoansFacade;
 import com.github.brokenswing.comixaire.facades.rating.RatingFacade;
 import com.github.brokenswing.comixaire.javafx.CustomListCell;
@@ -15,23 +14,25 @@ import com.github.brokenswing.comixaire.models.Rating;
 import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import javafx.util.Pair;
 
 import java.net.URL;
 import java.util.*;
 
 public class ClientBorrowedItemsController implements Initializable
 {
-    private FilteredList<Pair<LibraryItem, Rating>> filteredList;
+    private FilteredList<ObservableRating> filteredList;
 
     @FXML
-    private ListView<Pair<LibraryItem, Rating>> itemsList;
+    private ListView<ObservableRating> itemsList;
 
     @ViewParam
     private Client client;
@@ -47,7 +48,6 @@ public class ClientBorrowedItemsController implements Initializable
 
     @InjectValue
     private RatingFacade ratingFacade;
-
 
     public void back()
     {
@@ -65,14 +65,16 @@ public class ClientBorrowedItemsController implements Initializable
         this.itemsList.setCellFactory(CustomListCell.factory(loader, Views.Cells.RATING));
         try
         {
-            Loan[] items = loansFacade.findByCardId(client.getCardId());
-            Arrays.sort(items, Comparator.comparing(l -> l.getLibraryItem().getIdLibraryItem()));
+            Loan[] loans = loansFacade.findByCardId(client.getCardId());
+            Arrays.sort(loans, Comparator.comparing(l -> l.getLibraryItem().getIdLibraryItem()));
+
             Rating[] ratings = ratingFacade.getAllForClient(client);
             Arrays.sort(ratings, Comparator.comparing(l -> l.getLibraryItem().getIdLibraryItem()));
-            List<Pair<LibraryItem, Rating>> observableList = new LinkedList<>();
+
+            List<ObservableRating> observableList = new LinkedList<>();
             int j = 0;
             int k = -1;
-            for (Loan loan : items)
+            for (Loan loan : loans)
             {
                 LibraryItem item = loan.getLibraryItem();
                 if (k == item.getIdLibraryItem())
@@ -85,8 +87,10 @@ public class ClientBorrowedItemsController implements Initializable
                 {
                     rating = ratings[j++];
                 }
-                observableList.add(new Pair<>(item, rating));
+                ObservableRating observableRating = new ObservableRating(client, item, rating == null ? -1 : rating.getNote());
+                observableList.add(observableRating);
             }
+
             filteredList = new FilteredList<>(FXCollections.observableList(observableList));
             itemsList.setItems(filteredList);
         }
@@ -95,4 +99,43 @@ public class ClientBorrowedItemsController implements Initializable
             e.printStackTrace();
         }
     }
+
+    public static class ObservableRating
+    {
+
+        private final Client client;
+        private final LibraryItem libraryItem;
+        private final BooleanBinding exists;
+        private final IntegerProperty noteProperty = new SimpleIntegerProperty();
+
+        public ObservableRating(Client client, LibraryItem libraryItem, int note)
+        {
+            this.client = client;
+            this.libraryItem = libraryItem;
+            this.noteProperty.setValue(note);
+            this.exists = Bindings.createBooleanBinding(() -> noteProperty.intValue() >= 0, noteProperty);
+        }
+
+        public LibraryItem getLibraryItem()
+        {
+            return libraryItem;
+        }
+
+        public Client getClient()
+        {
+            return client;
+        }
+
+        public IntegerProperty noteProperty()
+        {
+            return noteProperty;
+        }
+
+        public BooleanBinding existsProperty()
+        {
+            return exists;
+        }
+
+    }
+
 }

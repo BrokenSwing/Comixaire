@@ -23,7 +23,7 @@
 
     <Text fill="black" fx:id="title"/>
     <Rating fx:id="rate" GridPane.columnIndex="1"/>
-    <Button styleClass="btn" fx:id="rateButton" text="Rate" GridPane.columnIndex="1"/>
+    <Button styleClass="btn" fx:id="rateButton" onAction="#displayRateDialog" text="Rate" GridPane.columnIndex="1"/>
     <Text fill="grey" text="Type : " GridPane.columnIndex="2"/>
     <Text fill="#5282FC" fx:id="type" GridPane.columnIndex="3"/>
 

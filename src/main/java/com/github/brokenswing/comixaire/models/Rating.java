@@ -18,19 +18,14 @@ public class Rating
         return client;
     }
 
-    public LibraryItem getLibraryItem()
-    {
-        return libraryItem;
-    }
-
-    public int getNote()
-    {
-        return note;
-    }
-
     public void setClient(Client client)
     {
         this.client = client;
+    }
+
+    public LibraryItem getLibraryItem()
+    {
+        return libraryItem;
     }
 
     public void setLibraryItem(LibraryItem libraryItem)
@@ -38,8 +33,24 @@ public class Rating
         this.libraryItem = libraryItem;
     }
 
+    public int getNote()
+    {
+        return note;
+    }
+
     public void setNote(int note)
     {
         this.note = note;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Rating{" +
+                "client=" + client +
+                ", libraryItem=" + libraryItem +
+                ", note=" + note +
+                '}';
+    }
+
 }
