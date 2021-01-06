@@ -137,7 +137,10 @@ public abstract class LibraryItem
 
     public int peekBooking()
     {
-        return bookings.peek();
+        if(!bookings.isEmpty()){
+            return bookings.peek();
+        }
+        return -1;
     }
 
     public String[] getCategories()
