@@ -40,4 +40,9 @@ public class LoansFacade extends Facade
     {
         return this.factory.getLoanDAO().getLatestLoanByItemId(idItem);
     }
+
+    public int countAll() throws InternalException
+    {
+        return this.factory.getLoanDAO().countAll();
+    }
 }

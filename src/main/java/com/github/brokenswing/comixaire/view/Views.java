@@ -18,6 +18,7 @@ public class Views
     public static final String LOANS = "loans.fxml";
     public static final String BOOKINGS = "bookings.fxml";
     public static final String RETURNS = "returns.fxml";
+    public static final String STATS = "stats.fxml";
 
     private Views()
     {

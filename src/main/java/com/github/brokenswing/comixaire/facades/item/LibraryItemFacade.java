@@ -57,5 +57,9 @@ public class LibraryItemFacade extends Facade
         return this.factory.getLibraryItemDAO().findById(libraryItem);
     }
 
+    public int countAll() throws InternalException
+    {
+        return this.factory.getLibraryItemDAO().countAll();
+    }
 
 }

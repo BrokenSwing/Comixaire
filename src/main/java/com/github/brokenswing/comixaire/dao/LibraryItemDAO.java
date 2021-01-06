@@ -23,4 +23,6 @@ public interface LibraryItemDAO
 
     String[] getCastings() throws InternalException;
 
+    int countAll() throws InternalException;
+
 }

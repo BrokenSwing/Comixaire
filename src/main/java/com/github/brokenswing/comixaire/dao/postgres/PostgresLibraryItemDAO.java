@@ -711,4 +711,21 @@ public class PostgresLibraryItemDAO implements LibraryItemDAO
         }
     }
 
+    @Override
+    public int countAll() throws InternalException
+    {
+        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM libraryitems"))
+        {
+            try (ResultSet result = prepare.executeQuery())
+            {
+                result.next();
+                return result.getInt(1);
+            }
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to count library items.", e);
+        }
+    }
+
 }

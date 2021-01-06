@@ -41,4 +41,6 @@ public interface ClientDAO
 
     Boolean validSubscription(Client client) throws InternalException;
 
+    int countAll() throws InternalException;
+
 }

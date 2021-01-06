@@ -252,6 +252,23 @@ public class PostgresClientDAO implements ClientDAO
     }
 
     @Override
+    public int countAll() throws InternalException
+    {
+        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM clients"))
+        {
+            try (ResultSet result = prepare.executeQuery())
+            {
+                result.next();
+                return result.getInt(1);
+            }
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to count clients.", e);
+        }
+    }
+
+    @Override
     public int countFines(Client client) throws InternalException
     {
         try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM fine JOIN loans ON fine.return_id = loans.loan_id WHERE loans.client_id = ?"))

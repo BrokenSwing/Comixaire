@@ -42,10 +42,7 @@ public class StaffMenusController
     protected void displayItemsView() { router.navigateTo(Views.LibraryItems.LIST); }
 
     @FXML
-    protected void displayStatsView()
-    {
-        //router.navigateTo(new StatsView());
-    }
+    protected void displayStatsView(){ router.navigateTo(Views.STATS); }
 
     @FXML
     private void displayActionCenterView() { router.navigateTo(Views.ActionCenters.STAFF); }

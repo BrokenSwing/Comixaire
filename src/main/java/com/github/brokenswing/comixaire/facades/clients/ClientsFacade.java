@@ -64,4 +64,9 @@ public class ClientsFacade extends Facade
     {
         return this.factory.getClientDAO().validSubscription(client);
     }
+
+    public int countAll() throws InternalException
+    {
+        return this.factory.getClientDAO().countAll();
+    }
 }

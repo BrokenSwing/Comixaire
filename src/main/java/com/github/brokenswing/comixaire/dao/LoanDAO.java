@@ -17,4 +17,6 @@ public interface LoanDAO
     Loan[] findAll() throws InternalException;
 
     Loan getLatestLoanByItemId(int idItem) throws InternalException, NoLibraryItemFoundException, NoLoanFoundException;
+
+    int countAll() throws InternalException;
 }
