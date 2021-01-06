@@ -64,7 +64,7 @@ public class LoginControllerTest
 
         FxAssert.verifyThat(".error", Node::isVisible);
         DialogPane dialog = robot.lookup(".error").query();
-        assertThat(dialog.getHeaderText()).isEqualTo("The username and/or the password you provided are invalid.");
+        assertThat(dialog.getContentText()).isEqualTo("The username and/or the password you provided are invalid.");
         TestUtil.closeWindow(robot, ".error");
     }
 
@@ -92,7 +92,7 @@ public class LoginControllerTest
 
         FxAssert.verifyThat(".error", Node::isVisible);
         DialogPane dialog = robot.lookup(".error").query();
-        assertThat(dialog.getHeaderText()).isEqualTo("The username and/or the password you provided are invalid.");
+        assertThat(dialog.getContentText()).isEqualTo("The username and/or the password you provided are invalid.");
         TestUtil.closeWindow(robot, ".error");
     }
 

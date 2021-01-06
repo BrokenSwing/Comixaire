@@ -5,6 +5,7 @@ import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.exception.CardIdAlreadyExist;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
+import com.github.brokenswing.comixaire.javafx.Alerts;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.utils.FormValidationBuilder;
 import com.github.brokenswing.comixaire.view.Views;
