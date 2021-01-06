@@ -40,14 +40,13 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public Client create(Client client) throws InternalException, CardIdAlreadyExist
     {
-        try
+        try (PreparedStatement prepare = this.connection
+                .prepareStatement(
+                        "INSERT INTO clients(client_firstname, client_lastname, client_gender, " +
+                                "client_birthdate, client_address, client_cardID)"
+                                + " VALUES (?, ?, ?, ?, ?, ?) RETURNING client_id"
+                ))
         {
-            PreparedStatement prepare = this
-                    .connection
-                    .prepareStatement(
-                            "INSERT INTO clients(client_firstname, client_lastname, client_gender, client_birthdate, client_address, client_cardID)"
-                                    + " VALUES (?, ?, ?, ?, ?, ?) RETURNING client_id"
-                    );
             prepare.setString(1, client.getFirstname());
             prepare.setString(2, client.getLastname());
             prepare.setString(3, client.getGender());
@@ -55,9 +54,11 @@ public class PostgresClientDAO implements ClientDAO
             prepare.setString(5, client.getAddress());
             prepare.setString(6, client.getCardId());
 
-            ResultSet result = prepare.executeQuery();
-            result.next();
-            return new Client(result.getInt("client_id"), client.getFirstname(), client.getCardId(), client.getLastname(), client.getGender(), client.getAddress(), client.getBirthdate());
+            try (ResultSet result = prepare.executeQuery())
+            {
+                result.next();
+                return new Client(result.getInt("client_id"), client.getFirstname(), client.getCardId(), client.getLastname(), client.getGender(), client.getAddress(), client.getBirthdate());
+            }
         }
         catch (SQLException e)
         {
@@ -76,18 +77,19 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public Client findById(int idClient) throws InternalException, NoClientFoundException
     {
-        try
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM clients WHERE client_id = (?)"))
         {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM clients WHERE client_id = (?)");
             stmt.setInt(1, idClient);
-            ResultSet result = stmt.executeQuery();
-            if (result.next())
+            try (ResultSet result = stmt.executeQuery())
             {
-                return clientFromRow(result);
-            }
-            else
-            {
-                throw new NoClientFoundException(idClient);
+                if (result.next())
+                {
+                    return clientFromRow(result);
+                }
+                else
+                {
+                    throw new NoClientFoundException(idClient);
+                }
             }
         }
         catch (SQLException e)
@@ -99,18 +101,19 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public Client findByCardID(String cardID) throws InternalException, NoClientFoundException
     {
-        try
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM clients WHERE client_cardID = ?"))
         {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM clients WHERE client_cardID = ?");
             stmt.setString(1, cardID);
-            ResultSet result = stmt.executeQuery();
-            if (result.next())
+            try (ResultSet result = stmt.executeQuery())
             {
-                return clientFromRow(result);
-            }
-            else
-            {
-                throw new NoClientFoundException(cardID);
+                if (result.next())
+                {
+                    return clientFromRow(result);
+                }
+                else
+                {
+                    throw new NoClientFoundException(cardID);
+                }
             }
         }
         catch (SQLException e)
@@ -122,10 +125,10 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public Client[] findAll() throws InternalException
     {
-        try
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM clients");
+             ResultSet result = stmt.executeQuery();
+        )
         {
-            ResultSet result = connection.prepareStatement("SELECT * FROM clients").executeQuery();
-
             ArrayList<Client> clients = new ArrayList<>();
 
             while (result.next())
@@ -144,15 +147,15 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public void update(Client client) throws InternalException, CardIdAlreadyExist
     {
-        try
+        try (PreparedStatement prepare = this
+                .connection
+                .prepareStatement(
+                        "UPDATE clients SET "
+                                + "(client_firstname, client_lastname, client_gender, client_birthdate, " +
+                                "client_address, client_cardID) = (?, ?, ?, ?, ?, ?) "
+                                + "WHERE client_id = (?)"
+                ))
         {
-            PreparedStatement prepare = this
-                    .connection
-                    .prepareStatement(
-                            "UPDATE clients SET "
-                                    + "(client_firstname, client_lastname, client_gender, client_birthdate, client_address, client_cardID) = (?, ?, ?, ?, ?, ?) "
-                                    + "WHERE client_id = (?)"
-                    );
             prepare.setString(1, client.getFirstname());
             prepare.setString(2, client.getLastname());
             prepare.setString(3, client.getGender());
@@ -180,9 +183,8 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public void delete(Client client) throws InternalException
     {
-        try
+        try (PreparedStatement prepare = this.connection.prepareStatement("DELETE FROM clients WHERE client_id = ?"))
         {
-            PreparedStatement prepare = this.connection.prepareStatement("DELETE FROM clients WHERE client_id = ?");
             prepare.setInt(1, client.getIdClient());
             prepare.executeUpdate();
         }
@@ -195,13 +197,14 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public int countLoans(Client client) throws InternalException
     {
-        try
+        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM loans WHERE client_id = ?"))
         {
-            PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM loans WHERE client_id = ?");
             prepare.setInt(1, client.getIdClient());
-            ResultSet result = prepare.executeQuery();
-            result.next();
-            return result.getInt(1);
+            try (ResultSet result = prepare.executeQuery())
+            {
+                result.next();
+                return result.getInt(1);
+            }
         }
         catch (SQLException e)
         {
@@ -212,13 +215,14 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public int countCurrentLoans(Client client) throws InternalException
     {
-        try
+        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM loans WHERE loan_to >= NOW() AND client_id = ?");)
         {
-            PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM loans WHERE loan_to >= NOW() AND client_id = ?");
             prepare.setInt(1, client.getIdClient());
-            ResultSet result = prepare.executeQuery();
-            result.next();
-            return result.getInt(1);
+            try (ResultSet result = prepare.executeQuery())
+            {
+                result.next();
+                return result.getInt(1);
+            }
         }
         catch (SQLException e)
         {
@@ -229,16 +233,17 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public Boolean validSubscription(Client client) throws InternalException
     {
-        try
+        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM subscriptions " +
+                "WHERE subscription_to >= NOW() " +
+                "AND subscription_from <= NOW() " +
+                "AND client_id = ?"))
         {
-            PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM subscriptions " +
-                    "WHERE subscription_to >= NOW() " +
-                    "AND subscription_from <= NOW() " +
-                    "AND client_id = ?");
             prepare.setInt(1, client.getIdClient());
-            ResultSet result = prepare.executeQuery();
-            result.next();
-            return (result.getInt(1) > 0);
+            try (ResultSet result = prepare.executeQuery())
+            {
+                result.next();
+                return result.getInt(1) > 0;
+            }
         }
         catch (SQLException e)
         {
@@ -249,13 +254,14 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public int countFines(Client client) throws InternalException
     {
-        try
+        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM fine JOIN loans ON fine.return_id = loans.loan_id WHERE loans.client_id = ?"))
         {
-            PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM fine JOIN loans ON fine.return_id = loans.loan_id WHERE loans.client_id = ?");
             prepare.setInt(1, client.getIdClient());
-            ResultSet result = prepare.executeQuery();
-            result.next();
-            return result.getInt(1);
+            try (ResultSet result = prepare.executeQuery())
+            {
+                result.next();
+                return result.getInt(1);
+            }
         }
         catch (SQLException e)
         {
@@ -266,13 +272,14 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public int countVotes(Client client) throws InternalException
     {
-        try
+        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM rating WHERE client_id = ?"))
         {
-            PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM rating WHERE client_id = ?");
             prepare.setInt(1, client.getIdClient());
-            ResultSet result = prepare.executeQuery();
-            result.next();
-            return result.getInt(1);
+            try (ResultSet result = prepare.executeQuery())
+            {
+                result.next();
+                return result.getInt(1);
+            }
         }
         catch (SQLException e)
         {
