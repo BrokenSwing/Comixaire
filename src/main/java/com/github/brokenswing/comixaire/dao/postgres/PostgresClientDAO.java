@@ -126,7 +126,7 @@ public class PostgresClientDAO implements ClientDAO
     public Client[] findAll() throws InternalException
     {
         try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM clients");
-             ResultSet result = stmt.executeQuery();
+             ResultSet result = stmt.executeQuery()
         )
         {
             ArrayList<Client> clients = new ArrayList<>();
@@ -215,7 +215,7 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public int countCurrentLoans(Client client) throws InternalException
     {
-        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM loans WHERE loan_to >= NOW() AND client_id = ?");)
+        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM loans WHERE loan_to >= NOW() AND client_id = ?"))
         {
             prepare.setInt(1, client.getIdClient());
             try (ResultSet result = prepare.executeQuery())
