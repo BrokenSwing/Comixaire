@@ -107,7 +107,7 @@ public class PostgresLoanDAO implements LoanDAO
         {
             PreparedStatement stmt = connection.prepareStatement(
                     "SELECT * FROM clients " +
-                            "NATURAL LEFT JOIN loans " +
+                            "NATURAL JOIN loans " +
                             "NATURAL JOIN libraryitems " +
                             "NATURAL LEFT JOIN books " +
                             "NATURAL LEFT JOIN cd " +
