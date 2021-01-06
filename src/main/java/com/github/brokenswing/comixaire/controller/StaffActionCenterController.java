@@ -25,7 +25,7 @@ public class StaffActionCenterController
     @FXML
     protected void displayReturnsView()
     {
-        //TODO: implement
+        this.router.navigateTo(Views.CLIENT_RETURNS);
     }
 
     @FXML
