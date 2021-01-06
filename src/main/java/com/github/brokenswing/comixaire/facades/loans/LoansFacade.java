@@ -45,4 +45,9 @@ public class LoansFacade extends Facade
     {
         return this.factory.getLoanDAO().countAll();
     }
+
+    public Loan[] findCurrentLoans(String idCard) throws InternalException
+    {
+        return this.factory.getLoanDAO().findCurrentLoans(idCard);
+    }
 }

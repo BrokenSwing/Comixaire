@@ -8,6 +8,7 @@ import com.github.brokenswing.comixaire.exception.NoLoanFoundException;
 import com.github.brokenswing.comixaire.models.Loan;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -184,6 +185,45 @@ public class PostgresLoanDAO implements LoanDAO
         {
             throw new InternalException("Unable to count loans.", e);
         }
+    }
+
+    @Override
+    public Loan[] findCurrentLoans(String idCard) throws InternalException
+    {
+
+        try
+        {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM clients " +
+                            "NATURAL JOIN loans " +
+                            "NATURAL JOIN libraryitems " +
+                            "NATURAL LEFT JOIN books " +
+                            "NATURAL LEFT JOIN cd " +
+                            "NATURAL LEFT JOIN dvd " +
+                            "NATURAL LEFT JOIN games " +
+                            "NATURAL LEFT JOIN returns " +
+                            "WHERE client_cardid = ?");
+            statement.setString(1, idCard);
+
+            ResultSet result = statement.executeQuery();
+            List<Loan> loans = new ArrayList<>();
+
+            while (result.next())
+            {
+                result.getInt("return_id");
+                if (result.wasNull())
+                {
+                    loans.add(loanFromRow(result));
+                }
+
+            }
+            return loans.toArray(new Loan[0]);
+        }
+        catch (SQLException e)
+        {
+            throw new InternalException("Unable to find current loans for card ID " + idCard, e);
+        }
+
     }
 
 }

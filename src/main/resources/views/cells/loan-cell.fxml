@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.Button?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          stylesheets="@/stylesheets/authentication.css"
+          fx:controller="com.github.brokenswing.comixaire.controller.cell.LoanCellController">
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="38.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="17.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="17.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="13.0" halignment="CENTER"/>
+    </columnConstraints>
+
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER"/>
+    </rowConstraints>
+
+    <Text fill="black" fx:id="itemTitle" />
+    <Text fill="#5282FC" fx:id="itemState" GridPane.columnIndex="1" />
+    <Text fill="#5282FC" fx:id="loanFrom" GridPane.columnIndex="2" />
+    <Text fill="#5282FC" fx:id="loanTo" GridPane.columnIndex="3" />
+    <Button mnemonicParsing="false" onAction="#returnItem" styleClass="btn" prefWidth="120" text="Return" GridPane.columnIndex="4"/>
+
+</GridPane>
