@@ -60,4 +60,10 @@ public class PostgresDAOFactory extends DAOFactory
         return new PostgresLoanDAO(postgresConnection.getConnection());
     }
 
+    @Override
+    public ReturnsDAO getReturnsDAO()
+    {
+        return new PostgresReturnsDAO(postgresConnection.getConnection());
+    }
+
 }

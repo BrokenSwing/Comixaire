@@ -19,4 +19,6 @@ public abstract class DAOFactory
 
     public abstract LoanDAO getLoanDAO();
 
+    public abstract ReturnsDAO getReturnsDAO();
+
 }
