@@ -147,26 +147,18 @@ public class LoansController implements Initializable
             }
             else
             {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Library item not available");
-                alert.setHeaderText("This library item is booked by another client !");
-                alert.setContentText("There is actually " + item.getBookings().length + " bookers for this item.");
-                alert.showAndWait();
+                Alerts.failure("This library item is already booked by another client.");
             }
         }
         catch (InternalException e)
         {
             libraryItemId.clear();
             e.printStackTrace();
-            new InternalErrorAlert(e).showAndWait();
+            Alerts.exception(e);
         }
         catch (NoLibraryItemFoundException e)
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Library item not found !");
-            alert.setContentText("No library item with the ID " + libraryItemId.getValue() + " can be found.");
-            alert.showAndWait();
+            Alerts.failure("No library item with the ID " + libraryItemId.getValue() + " can be found.");
             libraryItemId.clear();
         }
     }

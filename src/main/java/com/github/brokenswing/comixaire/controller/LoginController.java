@@ -43,7 +43,7 @@ public class LoginController
      * This method tries to log in a staff member based on the values
      * that are present in the {@link #usernameField} and {@link #passwordField}.
      * Value of the username field will be trimmed before being used.
-     * If the authentication fails, a call to either {@link LoginController#displayBadCredentialsAlert(String)}
+     * If the authentication fails, a call to either {@link Alerts#failure(String)}
      * or {@link #displayInternalErrorAlert(Exception)} will be displayed to
      * the user (based on the received exception).<br>
      * <p>
@@ -64,12 +64,11 @@ public class LoginController
         catch (InternalException e)
         {
             e.printStackTrace();
-
-            displayInternalErrorAlert(e);
+            Alerts.exception(e);
         }
         catch (BadCredentialsException e)
         {
-            displayBadCredentialsAlert("The username and/or the password you provided are invalid.");
+            Alerts.failure("The username and/or the password you provided are invalid.");
         }
         finally
         {
@@ -94,21 +93,6 @@ public class LoginController
     }
 
     /**
-     * Displays an alert popup to the user indicating the provided
-     * credentials are invalid.
-     *
-     * @param contentMessage the detailed message to display to the user
-     */
-    protected void displayBadCredentialsAlert(String contentMessage)
-    {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Authentication error");
-        alert.setHeaderText("Bad credentials");
-        alert.setContentText(contentMessage);
-        alert.showAndWait();
-    }
-
-    /**
      * Displays an alert popup to the user indicating an expected
      * error occurred.
      *
@@ -122,7 +106,7 @@ public class LoginController
     /**
      * This method tries to log in a client based on the value present in the {@link #clientIdField}.
      * Value of the client ID field will be trimmed before being used.
-     * If the authentication fails, a call to either {@link LoginController#displayBadCredentialsAlert(String)}
+     * If the authentication fails, a call to either {@link Alerts#failure(String)}
      * or {@link #displayInternalErrorAlert(Exception)} will be displayed to
      * the user (based on the received exception).<br>
      * <p>
@@ -141,13 +125,12 @@ public class LoginController
         }
         catch (BadCredentialsException e)
         {
-            displayBadCredentialsAlert("Unknown client ID.");
+            Alerts.failure("The username and/or the password you provided are invalid.");
         }
         catch (InternalException e)
         {
             e.printStackTrace();
-
-            displayInternalErrorAlert(e);
+            Alerts.exception(e);
         }
         finally
         {

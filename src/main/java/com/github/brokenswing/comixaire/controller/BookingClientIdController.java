@@ -50,13 +50,11 @@ public class BookingClientIdController implements Initializable
         catch (InternalException e)
         {
             e.printStackTrace();
+            Alerts.exception(e);
         }
         catch (NoClientFoundException e)
         {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Client not found");
-            alert.setHeaderText("The client with this card is not in our database");
-            alert.showAndWait();
+            Alerts.failure("The client with this card ID is not in our database.");
         }
     }
 

@@ -57,16 +57,16 @@ public class AccountDetailsController implements Initializable
         try
         {
             staffMemberFacade.update(connectedStaff);
-            displayPasswordUpdateSuccessAlert();
+            Alerts.success("Your password was successfully updated.");
         }
         catch (InternalException e)
         {
             e.printStackTrace();
-            displayInternalErrorAlert(e);
+            Alerts.exception(e);
         }
         catch (UsernameAlreadyExistsException e)
         {
-            displayUsernameExistsAlert();
+            Alerts.failure("The given username already exists.");
         }
 
         committing.set(false);
@@ -83,49 +83,19 @@ public class AccountDetailsController implements Initializable
         {
             staffMemberFacade.update(connectedStaff);
             authFacade.setLoggedInStaff(connectedStaff);
-            displayUsernameUpdateSuccessAlert();
+            Alerts.success("Your username was successfully updated.");
         }
         catch (InternalException e)
         {
             e.printStackTrace();
-            displayInternalErrorAlert(e);
+            Alerts.exception(e);
         }
         catch (UsernameAlreadyExistsException e)
         {
-            displayUsernameExistsAlert();
+            Alerts.failure("The given username already exists.");
         }
 
         committing.set(false);
-    }
-
-    protected void displayUsernameUpdateSuccessAlert()
-    {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
-        alert.setContentText("Your username was successfully updated.");
-        alert.showAndWait();
-    }
-
-    protected void displayPasswordUpdateSuccessAlert()
-    {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
-        alert.setContentText("Your password was successfully updated.");
-        alert.showAndWait();
-    }
-
-    protected void displayInternalErrorAlert(Exception e)
-    {
-        InternalErrorAlert alert = new InternalErrorAlert(e);
-        alert.showAndWait();
-    }
-
-    protected void displayUsernameExistsAlert()
-    {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Invalid username");
-        alert.setContentText("The given username already exists.");
-        alert.showAndWait();
     }
 
     @Override

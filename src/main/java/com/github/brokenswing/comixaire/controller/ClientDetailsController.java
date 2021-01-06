@@ -56,7 +56,8 @@ public class ClientDetailsController implements Initializable
         }
         catch (InternalException e)
         {
-            e.printStackTrace(); // TODO: Redirect to an "error page"
+            e.printStackTrace();
+            Alerts.exception(e);
         }
     }
 

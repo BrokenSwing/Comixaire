@@ -47,7 +47,8 @@ public class ClientFinesController implements Initializable
         }
         catch (InternalException | NoClientFoundException e)
         {
-            e.printStackTrace(); // TODO: redirect to "error page"
+            e.printStackTrace();
+            Alerts.exception(e);
         }
     }
 

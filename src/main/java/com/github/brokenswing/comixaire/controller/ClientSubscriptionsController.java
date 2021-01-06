@@ -52,9 +52,14 @@ public class ClientSubscriptionsController implements Initializable
         {
             subscriptions.setItems(new FilteredList<>(FXCollections.observableArrayList(subscriptionsFacade.findAllByCardId(client.getCardId()))));
         }
-        catch (InternalException | NoClientFoundException e)
+        catch (InternalException e)
         {
             e.printStackTrace();
+            Alerts.exception(e);
+        }
+        catch (NoClientFoundException e)
+        {
+            Alerts.failure("The client with this card ID is not in our database.");
         }
     }
 
@@ -70,6 +75,7 @@ public class ClientSubscriptionsController implements Initializable
         catch (InternalException | NoClientFoundException e)
         {
             e.printStackTrace();
+            Alerts.exception(e);
         }
     }
 

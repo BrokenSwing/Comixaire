@@ -95,7 +95,8 @@ public class ClientUpdateController implements Initializable
         }
         catch (CardIdAlreadyExist e)
         {
-            e.printStackTrace(); // TODO: Display error alert
+            e.printStackTrace();
+            Alerts.exception(e);
         }
     }
 

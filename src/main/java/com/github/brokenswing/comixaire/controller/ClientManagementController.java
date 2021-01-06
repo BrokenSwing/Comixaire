@@ -72,28 +72,19 @@ public class ClientManagementController implements Initializable
 
     public void deleteClient()
     {
-        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmationAlert.setTitle("Are you sure ?");
-        confirmationAlert.setHeaderText("Do you really want to delete the client: " + client.getFullname() + " ?");
-
-        Optional<ButtonType> result = confirmationAlert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK)
+        boolean result = Alerts.confirm("Need confirmation", "Are you sure ?", "Do you really want to delete the client: " + client.getFullname() + " ?");
+        if (result)
         {
             try
             {
                 clientsFacade.delete(client);
-
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setTitle("Success");
-                successAlert.setHeaderText("Client successfully removed from our database");
-                successAlert.showAndWait();
-
+                Alerts.success("Client successfully removed from our database");
                 router.navigateTo(Views.CLIENTS_LIST);
             }
             catch (InternalException e)
             {
                 e.printStackTrace();
-                new InternalErrorAlert(e).showAndWait();
+                Alerts.exception(e);
             }
         }
     }

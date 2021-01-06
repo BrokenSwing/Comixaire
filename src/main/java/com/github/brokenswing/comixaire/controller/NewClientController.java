@@ -73,41 +73,20 @@ public class NewClientController implements Initializable
 
         try
         {
-            clientsFacade.create(new Client(firstname, lastname, idCard, gender, address, birthdate));
-            displayClientCreatedAlert("Welcome to " + firstname + " " + lastname + " our new client !");
+            Client client = new Client(firstname, lastname, idCard, gender, address, birthdate);
+            clientsFacade.create(client);
+            Alerts.success("Welcome to our new client " + client.getFullname() + " !");
             displayActionCenter();
         }
         catch (CardIdAlreadyExist e)
         {
-            displayCardIdAlreadyUsedAlert("The card id provided is already use by another client.");
+            Alerts.failure("The card ID provided is already use by another client.");
         }
         catch (InternalException e)
         {
-            displayInternalErrorAlert(e);
+            e.printStackTrace();
+            Alerts.exception(e);
         }
-    }
-
-    protected void displayCardIdAlreadyUsedAlert(String contentMessage)
-    {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Client creation error");
-        alert.setHeaderText("Card id already in use");
-        alert.setContentText(contentMessage);
-        alert.showAndWait();
-    }
-
-    protected void displayClientCreatedAlert(String contentMessage)
-    {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Client successfully created");
-        alert.setHeaderText("New client join us !");
-        alert.setContentText(contentMessage);
-        alert.showAndWait();
-    }
-
-    protected void displayInternalErrorAlert(Exception e)
-    {
-        new InternalErrorAlert(e).showAndWait();
     }
 
     protected void displayActionCenter()

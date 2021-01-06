@@ -86,7 +86,8 @@ public class ItemsController implements Initializable
         }
         catch (InternalException e)
         {
-            e.printStackTrace(); // TODO: Redirect to an "error page"
+            e.printStackTrace();
+            Alerts.exception(e);
         }
 
         itemNameField.textProperty().addListener((obs, oldValue, newValue) -> this.find());
