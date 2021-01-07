@@ -11,7 +11,7 @@ public class Views
     public static final String CLIENT_RECOMMENDATIONS = "user-recommendations.fxml";
     public static final String CLIENT_LOANS = "loans-client-input.fxml";
     public static final String CLIENT_BOOKINGS = "bookings-client-input.fxml";
-    public static final String CLIENT_RETURNS = "returns-client-input.fxml";
+    public static final String CLIENT_RETURNS = "returns-item-input.fxml";
     public static final String CLIENTS_LIST = "client-list.fxml";
     public static final String CLIENT_BORROWED_ITEM = "user-borrowed-items.fxml";
 

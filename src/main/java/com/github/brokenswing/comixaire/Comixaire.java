@@ -18,6 +18,7 @@ import com.github.brokenswing.comixaire.facades.loans.LoansFacade;
 import com.github.brokenswing.comixaire.facades.logs.LogsFacade;
 import com.github.brokenswing.comixaire.facades.rating.RatingFacade;
 import com.github.brokenswing.comixaire.facades.recommendations.RecommendationFacade;
+import com.github.brokenswing.comixaire.facades.returns.ReturnFacade;
 import com.github.brokenswing.comixaire.facades.staff.StaffMemberFacade;
 import com.github.brokenswing.comixaire.facades.subscriptions.SubscriptionsFacade;
 import com.github.brokenswing.comixaire.view.Views;
@@ -140,6 +141,12 @@ public class Comixaire extends Application
     public RatingFacade getRatingFacade()
     {
         return new RatingFacade(factory);
+    }
+
+    @ValueProvider
+    public ReturnFacade getReturnFacade()
+    {
+        return new ReturnFacade(factory);
     }
 
 }

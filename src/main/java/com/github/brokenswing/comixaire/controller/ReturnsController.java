@@ -2,35 +2,39 @@ package com.github.brokenswing.comixaire.controller;
 
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.di.ViewParam;
-import com.github.brokenswing.comixaire.exception.InternalException;
+import com.github.brokenswing.comixaire.exception.*;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
+import com.github.brokenswing.comixaire.facades.fines.FinesFacade;
+import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
 import com.github.brokenswing.comixaire.facades.loans.LoansFacade;
-import com.github.brokenswing.comixaire.javafx.CustomListCell;
-import com.github.brokenswing.comixaire.javafx.IntField;
-import com.github.brokenswing.comixaire.javafx.NoOpSelectionModel;
+import com.github.brokenswing.comixaire.facades.returns.ReturnFacade;
+import com.github.brokenswing.comixaire.javafx.Alerts;
 import com.github.brokenswing.comixaire.models.*;
+import com.github.brokenswing.comixaire.utils.FormValidationBuilder;
+import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
+import java.util.StringJoiner;
 
 public class ReturnsController implements Initializable
 {
     private FilteredList<Loan> loans = new FilteredList<>(FXCollections.observableArrayList());
 
     @ViewParam
-    private Client client;
+    private Loan loan;
 
     @FXML
     private Text clientName;
@@ -42,19 +46,36 @@ public class ReturnsController implements Initializable
     private Text clientFines;
     @FXML
     private Text clientGender;
+
     @FXML
-    private IntField itemIDField;
+    private Text itemTitle;
     @FXML
-    private TextField itemTitleField;
+    private Text itemCreatedOn;
     @FXML
-    private ChoiceBox<String> itemTypeFilter;
+    private Text itemReleasedOn;
     @FXML
-    private ListView<Loan> currentLoansList;
+    private Text itemLocation;
+    @FXML
+    private Text itemCategories;
+    @FXML
+    private Text itemBookings;
+    @FXML
+    private Text itemType;
+    @FXML
+    private Text itemCondition;
+    @FXML
+    private ChoiceBox<ConditionType> choiceCondition;
+    @FXML
+    private ChoiceBox<FineType> choiceFine;
 
     @InjectValue
     private ClientsFacade clientsFacade;
     @InjectValue
-    private LoansFacade loansFacade;
+    private LibraryItemFacade libraryItemFacade;
+    @InjectValue
+    private FinesFacade finesFacade;
+    @InjectValue
+    private ReturnFacade returnFacade;
     @InjectValue
     private Router router;
     @InjectValue
@@ -63,37 +84,46 @@ public class ReturnsController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        this.clientName.setText(client.getFullname());
-        this.clientGender.setText(client.getGender());
+        this.itemTitle.setText(loan.getLibraryItem().getTitle());
+        this.itemCreatedOn.setText(PrettyTimeTransformer.prettyDate(loan.getLibraryItem().getCreatedOn()));
+        this.itemReleasedOn.setText(PrettyTimeTransformer.prettyDate(loan.getLibraryItem().getReleasedOn()));
+        this.itemLocation.setText(loan.getLibraryItem().getLocation());
+        StringJoiner sj = new StringJoiner(", ");
+        Arrays.stream(loan.getLibraryItem().getCategories()).forEach(sj::add);
+        this.itemCategories.setText(sj.toString());
+        this.itemBookings.setText(Integer.toString(loan.getLibraryItem().getBookings().length));
+        this.itemType.setText(loan.getLibraryItem().getClass().getSimpleName());
+        this.itemCondition.setText(loan.getLibraryItem().getCondition().getLabel());
 
-        this.currentLoansList.setSelectionModel(new NoOpSelectionModel<>());
-        this.currentLoansList.setCellFactory(CustomListCell.factory(loader, Views.Cells.LOAN));
+        this.choiceCondition.setItems(FXCollections.observableArrayList(ConditionType.values()));
+        this.choiceCondition.setValue(loan.getLibraryItem().getCondition());
+
+        this.choiceFine.setItems(FXCollections.observableArrayList(FineType.values()));
+        this.choiceFine.setValue(FineType.NONE);
+
+        this.clientName.setText(loan.getClient().getFullname());
+        this.clientGender.setText(loan.getClient().getGender());
 
         try
         {
-            if(clientsFacade.validSubscription(client))
+            if (clientsFacade.validSubscription(loan.getClient()))
             {
-                this.loans = new FilteredList<>(FXCollections.observableArrayList(loansFacade.findCurrentLoans(client.getCardId())));
-                this.currentLoansList.setItems(this.loans);
-                this.clientSubscription.setText("Valid");
+                clientSubscription.setText("Valid");
             }
             else
             {
-                this.clientSubscription.setText("Invalid");
-                this.currentLoansList.setPlaceholder(new Text("Invalid subscription"));
+                clientSubscription.setText("Not valid");
             }
-            this.clientLoans.setText(Integer.toString(clientsFacade.countLoans(client)));
-            this.clientFines.setText(Integer.toString(clientsFacade.countFines(client)));
-
+            clientLoans.setText(Integer.toString(clientsFacade.countLoans(loan.getClient())));
+            clientFines.setText(Integer.toString(clientsFacade.countFines(loan.getClient())));
         }
         catch (InternalException e)
         {
             e.printStackTrace();
+            Alerts.exception(e);
         }
 
-        itemTitleField.textProperty().addListener((obs, oldValue, newValue) -> this.find());
-        itemIDField.textProperty().addListener((obs, oldValue, newValue) -> this.find());
-        itemTypeFilter.valueProperty().addListener((obs, oldValue, newValue) -> this.find());
+
     }
 
     public void back()
@@ -101,35 +131,36 @@ public class ReturnsController implements Initializable
         router.navigateTo(Views.CLIENT_RETURNS);
     }
 
-    public void find()
+    public void returnItem()
     {
-        Predicate<Loan> predicate = loan -> true;
-
-        if (!itemIDField.getText().trim().isEmpty())
-        {
-            predicate = predicate.and(loan -> loan.getLibraryItem().getIdLibraryItem() == itemIDField.getValue());
+        if(!choiceCondition.getValue().equals(loan.getLibraryItem().getCondition())){
+            LibraryItem item = loan.getLibraryItem();
+            item.setCondition(choiceCondition.getValue());
+            try
+            {
+                libraryItemFacade.update(item);
+            }
+            catch (InternalException e)
+            {
+                e.printStackTrace();
+                Alerts.exception(e);
+            }
         }
 
-        if (!itemTitleField.getText().trim().isEmpty())
+        Returns returns = null;
+        try
         {
-            predicate = predicate.and(loan -> loan.getLibraryItem().getTitle().toLowerCase().contains(itemTitleField.getText().trim().toLowerCase()));
+            returns = returnFacade.create(new Returns(loan.getIdLoan()));
+            if(!choiceFine.getValue().equals(FineType.NONE)){
+                finesFacade.create(new Fine(returns.getIdReturn(),false,choiceFine.getValue().getIdType(),choiceFine.getValue().getLabel(),choiceFine.getValue().getPrice()));
+            }
+            Alerts.success("The return has been registered.");
+            router.navigateTo(Views.CLIENT_RETURNS);
         }
-
-        switch (itemTypeFilter.getValue())
+        catch (InternalException | NoReturnFoundException | InvalidFineTypeException e)
         {
-            case "Book":
-                predicate = predicate.and(loan -> loan.getLibraryItem() instanceof Book);
-                break;
-            case "Game":
-                predicate = predicate.and(loan -> loan.getLibraryItem() instanceof Game);
-                break;
-            case "CD":
-                predicate = predicate.and(loan -> loan.getLibraryItem() instanceof CD);
-                break;
-            case "DVD":
-                predicate = predicate.and(loan -> loan.getLibraryItem() instanceof DVD);
-                break;
+            e.printStackTrace();
+            Alerts.exception(e);
         }
-        this.loans.setPredicate(predicate);
     }
 }
