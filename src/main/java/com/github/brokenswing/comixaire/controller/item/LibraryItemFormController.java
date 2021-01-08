@@ -4,6 +4,7 @@ import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
+import com.github.brokenswing.comixaire.javafx.Alerts;
 import com.github.brokenswing.comixaire.models.ConditionType;
 import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.models.builder.LibraryItemStep;
@@ -83,15 +84,13 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
         try
         {
             this.libraryItemFacade.create(item);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setContentText("The library item \"" + item.getTitle() + "\" was successfully created.");
-            alert.showAndWait();
+            Alerts.success("The library item \"" + item.getTitle() + "\" was successfully created.");
+            router.navigateTo(Views.ActionCenters.STAFF);
         }
         catch (InternalException e)
         {
             e.printStackTrace();
-            new InternalErrorAlert(e).showAndWait();
+            Alerts.exception(e);
         }
     }
 
@@ -101,15 +100,11 @@ public abstract class LibraryItemFormController<T extends LibraryItem> implement
         try
         {
             this.libraryItemFacade.update(item);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setContentText("The library item \"" + item.getTitle() + "\" was successfully updated.");
-            alert.showAndWait();
+            Alerts.success("The library item \"" + item.getTitle() + "\" was successfully updated.");
         }
         catch (InternalException e)
         {
-            e.printStackTrace();
-            new InternalErrorAlert(e).showAndWait();
+            Alerts.exception(e);
         }
         router.navigateTo(Views.LibraryItems.LIST);
     }

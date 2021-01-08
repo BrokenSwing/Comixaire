@@ -21,19 +21,19 @@ public class FinesFacade extends Facade
     public void create(Fine fine) throws InternalException, NoReturnFoundException, InvalidFineTypeException
     {
         this.factory.getFineDAO().create(fine);
-        logger.log("Created fine: " + fine.getLabel(), "Price: " + fine.getPrice());
+        logger.log("Created fine: " + fine.getFineType().getLabel(), "Price: " + fine.getFineType().getPrice());
     }
 
     public void delete(Fine fine) throws InternalException
     {
         this.factory.getFineDAO().delete(fine);
-        logger.log("Deleted fine: " + fine.getLabel(), "Price: " + fine.getPrice());
+        logger.log("Deleted fine: " + fine.getFineType().getLabel(), "Price: " + fine.getFineType().getPrice());
     }
 
     public void pay(Fine fine) throws InternalException
     {
         this.factory.getFineDAO().pay(fine);
-        logger.log("Pay fine: " + fine.getLabel(), "Price: " + fine.getPrice());
+        logger.log("Pay fine: " + fine.getFineType().getLabel(), "Price: " + fine.getFineType().getPrice());
     }
 
     public Fine[] findByClient(Client client) throws InternalException, NoClientFoundException

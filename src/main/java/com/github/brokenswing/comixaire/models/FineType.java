@@ -1,25 +1,25 @@
 package com.github.brokenswing.comixaire.models;
 
-public enum FineType
+public class FineType
 {
 
-    DAMAGE("Damages level 1", 3, 0),
-    DAMAGE2("Damages level 2", 5, 1),
-    DAMAGE3("Damages level 3", 10, 2),
-    LATE("Late < 1 week", 2, 3),
-    LATE2("Late < 2 weeks", 4, 4),
-    LATE3("Late > 2 weeks", 7, 5),
-    NONE("None", 0, 6);
+    //DAMAGE("Damages level 1", 3, 0),
+    //DAMAGE2("Damages level 2", 5, 1),
+    //DAMAGE3("Damages level 3", 10, 2),
+    //LATE("Late < 1 week", 2, 3),
+    //LATE2("Late < 2 weeks", 4, 4),
+    //LATE3("Late > 2 weeks", 7, 5),
+    //NONE("None", 0, 6);
 
+    private final int id;
     private final String label;
     private final int price;
-    private final int idType;
 
-    FineType(String label, int price, int idType)
+    public FineType(int id, String label, int price)
     {
+        this.id = id;
         this.label = label;
         this.price = price;
-        this.idType = idType;
     }
 
     public String getLabel()
@@ -32,7 +32,7 @@ public enum FineType
         return this.price;
     }
 
-    public int getIdType() { return this.idType; }
+    public int getId() { return this.id; }
 
     @Override
     public String toString()

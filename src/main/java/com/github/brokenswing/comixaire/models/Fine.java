@@ -3,18 +3,14 @@ package com.github.brokenswing.comixaire.models;
 public class Fine
 {
     private final int idFine;
-    private final int fineTypeId;
-    private final String label;
-    private final int price;
+    private final FineType fineType;
     private boolean paid;
 
-    public Fine(int idFine, boolean paid, int fineTypeId, String label, int price)
+    public Fine(int idFine, boolean paid, FineType fineType)
     {
         this.idFine = idFine;
         this.paid = paid;
-        this.fineTypeId = fineTypeId;
-        this.label = label;
-        this.price = price;
+        this.fineType = fineType;
     }
 
     public int getId()
@@ -27,18 +23,8 @@ public class Fine
         return paid;
     }
 
-    public String getLabel()
+    public FineType getFineType()
     {
-        return label;
-    }
-
-    public int getPrice()
-    {
-        return price;
-    }
-
-    public int getIdType()
-    {
-        return fineTypeId;
+        return fineType;
     }
 }

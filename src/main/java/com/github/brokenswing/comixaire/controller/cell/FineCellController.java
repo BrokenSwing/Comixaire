@@ -4,6 +4,7 @@ import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.fines.FinesFacade;
+import com.github.brokenswing.comixaire.javafx.Alerts;
 import com.github.brokenswing.comixaire.models.Fine;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,8 +34,8 @@ public class FineCellController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        label.setText(fine.getLabel());
-        price.setText(Integer.toString(fine.getPrice()));
+        label.setText(fine.getFineType().getLabel());
+        price.setText(Integer.toString(fine.getFineType().getPrice()));
         payButton.setDisable(fine.isPaid());
     }
 
@@ -47,10 +48,7 @@ public class FineCellController implements Initializable
         }
         catch (InternalException e)
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Impossible to pay this fine");
-            alert.showAndWait();
+            Alerts.failure("Impossible to pay this fine.");
         }
     }
 }

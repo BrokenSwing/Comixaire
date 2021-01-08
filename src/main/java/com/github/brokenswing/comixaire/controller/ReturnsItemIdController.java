@@ -50,7 +50,12 @@ public class ReturnsItemIdController implements Initializable
         try
         {
             Loan loan = loansFacade.getLatestLoanByItemId(returnItemIdField.getValue());
-            router.navigateTo(Views.RETURNS, loan);
+            if(!loan.getLibraryItem().isAvailable()){
+                router.navigateTo(Views.RETURNS, loan);
+            }
+            else{
+                Alerts.failure("This library item is not in loan.");
+            }
         }
         catch (InternalException e)
         {

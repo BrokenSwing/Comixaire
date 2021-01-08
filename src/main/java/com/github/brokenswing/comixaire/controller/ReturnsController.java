@@ -4,6 +4,7 @@ import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.exception.*;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
+import com.github.brokenswing.comixaire.facades.fineTypes.FineTypesFacade;
 import com.github.brokenswing.comixaire.facades.fines.FinesFacade;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
 import com.github.brokenswing.comixaire.facades.loans.LoansFacade;
@@ -23,6 +24,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.text.Text;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -31,8 +33,6 @@ import java.util.StringJoiner;
 
 public class ReturnsController implements Initializable
 {
-    private FilteredList<Loan> loans = new FilteredList<>(FXCollections.observableArrayList());
-
     @ViewParam
     private Loan loan;
 
@@ -75,11 +75,16 @@ public class ReturnsController implements Initializable
     @InjectValue
     private FinesFacade finesFacade;
     @InjectValue
+    private FineTypesFacade fineTypesFacade;
+    @InjectValue
     private ReturnFacade returnFacade;
     @InjectValue
     private Router router;
-    @InjectValue
-    private ViewLoader loader;
+
+    public void back()
+    {
+        router.navigateTo(Views.CLIENT_RETURNS);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -98,37 +103,26 @@ public class ReturnsController implements Initializable
         this.choiceCondition.setItems(FXCollections.observableArrayList(ConditionType.values()));
         this.choiceCondition.setValue(loan.getLibraryItem().getCondition());
 
-        this.choiceFine.setItems(FXCollections.observableArrayList(FineType.values()));
-        this.choiceFine.setValue(FineType.NONE);
-
         this.clientName.setText(loan.getClient().getFullname());
         this.clientGender.setText(loan.getClient().getGender());
 
         try
         {
-            if (clientsFacade.validSubscription(loan.getClient()))
-            {
-                clientSubscription.setText("Valid");
-            }
-            else
-            {
-                clientSubscription.setText("Not valid");
-            }
+            if (clientsFacade.validSubscription(loan.getClient())) { clientSubscription.setText("Valid"); }
+            else { clientSubscription.setText("Not valid"); }
+
             clientLoans.setText(Integer.toString(clientsFacade.countLoans(loan.getClient())));
             clientFines.setText(Integer.toString(clientsFacade.countFines(loan.getClient())));
+
+            FineType[] fts = fineTypesFacade.getAllFineTypes();
+            this.choiceFine.setItems(FXCollections.observableArrayList(fts));
+            //TODO: set value to None.
         }
         catch (InternalException e)
         {
             e.printStackTrace();
             Alerts.exception(e);
         }
-
-
-    }
-
-    public void back()
-    {
-        router.navigateTo(Views.CLIENT_RETURNS);
     }
 
     public void returnItem()
@@ -150,9 +144,9 @@ public class ReturnsController implements Initializable
         Returns returns = null;
         try
         {
-            returns = returnFacade.create(new Returns(loan.getIdLoan()));
-            if(!choiceFine.getValue().equals(FineType.NONE)){
-                finesFacade.create(new Fine(returns.getIdReturn(),false,choiceFine.getValue().getIdType(),choiceFine.getValue().getLabel(),choiceFine.getValue().getPrice()));
+            returns = returnFacade.create(new Returns(loan.getIdLoan()), loan.getLibraryItem());
+            if(choiceFine.getValue() != null && !choiceFine.getValue().getLabel().equals("None")){
+                finesFacade.create(new Fine(returns.getIdReturn(),false, choiceFine.getValue()));
             }
             Alerts.success("The return has been registered.");
             router.navigateTo(Views.CLIENT_RETURNS);

@@ -3,6 +3,7 @@ package com.github.brokenswing.comixaire.dao;
 import com.github.brokenswing.comixaire.exception.*;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.Fine;
+import com.github.brokenswing.comixaire.models.FineType;
 
 public interface FineDAO
 {

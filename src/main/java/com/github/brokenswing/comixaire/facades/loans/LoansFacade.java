@@ -8,6 +8,7 @@ import com.github.brokenswing.comixaire.exception.NoLibraryItemFoundException;
 import com.github.brokenswing.comixaire.exception.NoLoanFoundException;
 import com.github.brokenswing.comixaire.facades.Facade;
 import com.github.brokenswing.comixaire.facades.logs.LogsFacade;
+import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.models.Loan;
 
 public class LoansFacade extends Facade
@@ -23,7 +24,10 @@ public class LoansFacade extends Facade
     public void create(Loan loan) throws InternalException
     {
         this.factory.getLoanDAO().create(loan);
-        logger.log("Create loan for item " + loan.getLibraryItem().getIdLibraryItem(), loan.getClient().getFullname() + " borrowed " + loan.getLibraryItem().getTitle());
+        LibraryItem item = loan.getLibraryItem();
+        item.setAvailable(false);
+        this.factory.getLibraryItemDAO().update(item);
+        logger.log("Create loan for item " + item.getIdLibraryItem(), loan.getClient().getFullname() + " borrowed " + item.getTitle());
     }
 
     public Loan[] findByCardId(String idCard) throws InternalException, NoClientFoundException

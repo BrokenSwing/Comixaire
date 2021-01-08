@@ -117,37 +117,42 @@ public class LoansController implements Initializable
         try
         {
             LibraryItem item = itemFacade.findById(libraryItemId.getValue());
-            //TODO: check if item is already in loan, if it's the case display en error alert.
-            if (item.getBookings().length == 0 || item.peekBooking() == client.getIdClient())
+            if(item.isAvailable())
             {
-                Date from = new Date();
-                Date to = Date.from(LocalDate.now().plusWeeks(3).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-                try
+                if (item.getBookings().length == 0 || item.peekBooking() == client.getIdClient())
                 {
-                    loansFacade.create(new Loan(from, to, client, item));
-                }
-                catch (InternalException e)
-                {
-                    e.printStackTrace();
-                }
-                if(item.peekBooking() == client.getIdClient()){
+                    Date from = new Date();
+                    Date to = Date.from(LocalDate.now().plusWeeks(3).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
                     try
                     {
-                        bookingFacade.deleteBooking(item, client);
+                        loansFacade.create(new Loan(from, to, client, item));
                     }
                     catch (InternalException e)
                     {
                         e.printStackTrace();
                     }
+                    if(item.peekBooking() == client.getIdClient()){
+                        try
+                        {
+                            bookingFacade.deleteBooking(item, client);
+                        }
+                        catch (InternalException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                    libraryItemId.clear();
+                    allLibraryItems.add(item);
+                    loansList.setItems(FXCollections.observableArrayList(allLibraryItems));
                 }
-                libraryItemId.clear();
-                allLibraryItems.add(item);
-                loansList.setItems(FXCollections.observableArrayList(allLibraryItems));
+                else
+                {
+                    Alerts.failure("This library item is already booked by another client.");
+                }
+            } else {
+                Alerts.failure("This library item is not available. It is already in loan.");
             }
-            else
-            {
-                Alerts.failure("This library item is already booked by another client.");
-            }
+
         }
         catch (InternalException e)
         {

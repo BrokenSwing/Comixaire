@@ -21,4 +21,5 @@ public abstract class DAOFactory
 
     public abstract ReturnsDAO getReturnsDAO();
 
+    public abstract FineTypeDAO getFineTypeDAO();
 }

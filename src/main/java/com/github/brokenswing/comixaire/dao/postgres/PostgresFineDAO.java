@@ -7,6 +7,7 @@ import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.exception.NoReturnFoundException;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.Fine;
+import com.github.brokenswing.comixaire.models.FineType;
 import org.postgresql.util.PSQLException;
 
 import java.sql.Connection;
@@ -31,9 +32,9 @@ public class PostgresFineDAO implements FineDAO
         {
             PreparedStatement prepare = connection.prepareStatement("INSERT INTO fine(return_id, fineType_id, paid) VALUES (?, ?, ?)");
             prepare.setInt(1, fine.getId());
-            prepare.setInt(2, fine.getIdType());
+            prepare.setInt(2, fine.getFineType().getId());
             prepare.setBoolean(3, fine.isPaid());
-            prepare.executeQuery();
+            prepare.execute();
         }
         catch (SQLException e)
         {
@@ -46,7 +47,7 @@ public class PostgresFineDAO implements FineDAO
                 }
                 else if (ex.getServerErrorMessage() != null && "fk_fineType".equals(ex.getServerErrorMessage().getConstraint()))
                 {
-                    throw new InvalidFineTypeException(fine.getIdType());
+                    throw new InvalidFineTypeException(fine.getFineType().getId());
                 }
             }
             throw new InternalException("Unable to create fine", e);
@@ -92,12 +93,12 @@ public class PostgresFineDAO implements FineDAO
             PreparedStatement prepare = this.connection.prepareStatement("UPDATE fine SET paid = ? WHERE return_id = ? AND fineType_id = ?");
             prepare.setBoolean(1, true);
             prepare.setInt(2, fine.getId());
-            prepare.setInt(3, fine.getIdType());
+            prepare.setInt(3, fine.getFineType().getId());
             prepare.executeUpdate();
         }
         catch (SQLException e)
         {
-            throw new InternalException("Unable to pay fine: " + fine.getLabel() + " with price of: " + fine.getPrice(), e);
+            throw new InternalException("Unable to pay fine: " + fine.getFineType().getLabel() + " with price of: " + fine.getFineType().getPrice(), e);
         }
     }
 
@@ -108,12 +109,12 @@ public class PostgresFineDAO implements FineDAO
         {
             PreparedStatement prepare = this.connection.prepareStatement("DELETE FROM fine WHERE return_id = ? AND fineType_id = ?");
             prepare.setInt(1, fine.getId());
-            prepare.setInt(2, fine.getIdType());
+            prepare.setInt(2, fine.getFineType().getId());
             prepare.executeUpdate();
         }
         catch (SQLException e)
         {
-            throw new InternalException("Unable to delete fine " + fine.getLabel() + " with price of: " + fine.getPrice(), e);
+            throw new InternalException("Unable to delete fine " + fine.getFineType().getLabel() + " with price of: " + fine.getFineType().getPrice(), e);
         }
     }
 
@@ -124,6 +125,6 @@ public class PostgresFineDAO implements FineDAO
         Boolean paid = result.getBoolean("paid");
         String label = result.getString("fineType_label");
         int price = result.getInt("fineType_price");
-        return new Fine(fineId, paid, fineTypeId, label, price);
+        return new Fine(fineId, paid, new FineType(fineTypeId, label, price));
     }
 }

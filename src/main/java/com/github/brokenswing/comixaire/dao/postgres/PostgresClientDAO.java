@@ -197,7 +197,7 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public int countLoans(Client client) throws InternalException
     {
-        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM loans WHERE client_id = ?"))
+        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM returns NATURAL JOIN loans WHERE loans.client_id = ?"))
         {
             prepare.setInt(1, client.getIdClient());
             try (ResultSet result = prepare.executeQuery())
@@ -215,13 +215,13 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public int countCurrentLoans(Client client) throws InternalException
     {
-        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM loans WHERE loan_to >= NOW() AND client_id = ?"))
+        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM loans WHERE client_id = ?"))
         {
             prepare.setInt(1, client.getIdClient());
             try (ResultSet result = prepare.executeQuery())
             {
                 result.next();
-                return result.getInt(1);
+                return result.getInt(1) - this.countLoans(client);
             }
         }
         catch (SQLException e)
