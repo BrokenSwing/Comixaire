@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
+
 <?import org.controlsfx.control.Rating?>
-<AnchorPane xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.github.brokenswing.comixaire.controller.dialog.RatingDialogController">
-    <Text layoutX="117.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How much did you like : "/>
-    <Text fx:id="title" layoutX="98.0" layoutY="76.0" text="Label"/>
-    <Rating fx:id="rating" layoutX="95.0" layoutY="106.0" />
+<AnchorPane prefHeight="273.0" prefWidth="314.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.brokenswing.comixaire.controller.dialog.RatingDialogController">
+   <children>
+       <Text layoutX="63.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How much did you like">
+         <font>
+            <Font name="Quicksand SemiBold" size="27.0" />
+         </font>
+      </Text>
+       <Text fx:id="title" fill="#9e9e9e" layoutX="37.0" layoutY="110.0" text="Label" textAlignment="CENTER" wrappingWidth="339.387939453125">
+         <font>
+            <Font name="Quicksand SemiBold" size="15.0" />
+         </font>
+      </Text>
+       <Rating fx:id="rating" layoutX="105.0" layoutY="140.0" />
+   </children>
 </AnchorPane>

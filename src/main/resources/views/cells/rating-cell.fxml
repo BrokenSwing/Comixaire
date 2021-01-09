@@ -11,9 +11,10 @@
           fx:controller="com.github.brokenswing.comixaire.controller.cell.RatingCellController">
 
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" percentWidth="60.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="4.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="12.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="24.0"/>
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0"/>
     </columnConstraints>
 
@@ -22,9 +23,10 @@
     </rowConstraints>
 
     <Text fill="black" fx:id="title"/>
-    <Rating fx:id="rate" GridPane.columnIndex="1"/>
-    <Button styleClass="btn" fx:id="rateButton" onAction="#displayRateDialog" text="Rate" GridPane.columnIndex="1"/>
-    <Text fill="grey" text="Type : " GridPane.columnIndex="2"/>
-    <Text fill="#5282FC" fx:id="type" GridPane.columnIndex="3"/>
+    <Text fill="grey" text="Type : " GridPane.columnIndex="1"/>
+    <Text fill="#5282FC" fx:id="type" GridPane.columnIndex="2"/>
+    <Rating fx:id="rate" GridPane.columnIndex="3"/>
+    <Button styleClass="btn" fx:id="rateButton" onAction="#displayRateDialog" text="Rate" GridPane.columnIndex="4"/>
+
 
 </GridPane>

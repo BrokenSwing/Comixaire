@@ -5,6 +5,7 @@ import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.rating.RatingFacade;
+import com.github.brokenswing.comixaire.javafx.Alerts;
 import com.github.brokenswing.comixaire.models.Rating;
 import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
@@ -98,7 +99,7 @@ public class RatingCellController implements Initializable
                     catch (InternalException e)
                     {
                         e.printStackTrace();
-                        new InternalErrorAlert(e).showAndWait();
+                        Alerts.exception(e);
                     }
                 });
     }

@@ -4,6 +4,7 @@ import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.di.ViewParam;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
+import com.github.brokenswing.comixaire.javafx.Alerts;
 import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.alert.InternalErrorAlert;
@@ -30,6 +31,8 @@ public class ItemCellController implements Initializable
     private Text itemLocation;
     @FXML
     private Text itemType;
+    @FXML
+    private Text itemId;
 
     @InjectValue
     private LibraryItemFacade itemsFacade;
@@ -46,28 +49,18 @@ public class ItemCellController implements Initializable
     @FXML
     protected void delete()
     {
-        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmationAlert.setTitle("Item deletion");
-        confirmationAlert.setContentText(String.format(
-                "Do you really want to delete %s \"%s\" ?",
-                libraryItem.getClass().getSimpleName(),
-                libraryItem.getTitle()
-        ));
-        Optional<ButtonType> result = confirmationAlert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK)
+        boolean confirm = Alerts.confirm("Item deletion", "", "Do you really want to delete the " + libraryItem.getClass().getSimpleName() + " named " + libraryItem.getTitle() + ".");
+        if (confirm)
         {
             try
             {
                 this.itemsFacade.delete(libraryItem);
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setTitle("Success");
-                successAlert.setContentText("The library item \"" + libraryItem.getTitle() + "\" was successfully deleted.");
-                successAlert.showAndWait();
+                Alerts.success("The library item " + libraryItem.getTitle() + " was deleted.");
             }
             catch (InternalException e)
             {
                 e.printStackTrace();
-                new InternalErrorAlert(e).showAndWait();
+                Alerts.exception(e);
             }
             router.navigateTo(Views.LibraryItems.LIST);
         }
@@ -77,7 +70,8 @@ public class ItemCellController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         this.itemTitle.setText(this.libraryItem.getTitle());
-        this.itemLocation.setText("Location : " + this.libraryItem.getLocation());
-        this.itemType.setText("Type : " + libraryItem.getClass().getSimpleName());
+        this.itemLocation.setText("Location: " + this.libraryItem.getLocation());
+        this.itemType.setText("Type: " + libraryItem.getClass().getSimpleName());
+        this.itemId.setText("Id: " + libraryItem.getIdLibraryItem());
     }
 }
