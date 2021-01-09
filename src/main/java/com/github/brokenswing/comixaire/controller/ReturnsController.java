@@ -30,6 +30,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class ReturnsController implements Initializable
 {
@@ -116,7 +117,7 @@ public class ReturnsController implements Initializable
 
             FineType[] fts = fineTypesFacade.getAllFineTypes();
             this.choiceFine.setItems(FXCollections.observableArrayList(fts));
-            //TODO: set value to None.
+            this.choiceFine.setValue(Arrays.stream(fts).filter(fine -> fine.getLabel().equals("None")).collect(Collectors.toList()).get(0));
         }
         catch (InternalException e)
         {
