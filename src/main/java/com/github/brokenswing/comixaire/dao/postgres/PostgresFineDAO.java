@@ -34,7 +34,7 @@ public class PostgresFineDAO implements FineDAO
             prepare.setInt(1, fine.getId());
             prepare.setInt(2, fine.getFineType().getId());
             prepare.setBoolean(3, fine.isPaid());
-            prepare.execute();
+            prepare.executeUpdate();
         }
         catch (SQLException e)
         {
@@ -57,6 +57,7 @@ public class PostgresFineDAO implements FineDAO
     @Override
     public Fine[] findByClient(Client client) throws InternalException, NoClientFoundException
     {
+
         try
         {
             PreparedStatement prepare = connection.prepareStatement("SELECT * FROM fine JOIN fineType ON fineType.fineType_id = fine.fineType_id " +
@@ -64,7 +65,6 @@ public class PostgresFineDAO implements FineDAO
             prepare.setInt(1, client.getIdClient());
             ResultSet result = prepare.executeQuery();
             ArrayList<Fine> fines = new ArrayList<>();
-
             while (result.next())
             {
                 fines.add(fineFromRow(result));
@@ -79,6 +79,9 @@ public class PostgresFineDAO implements FineDAO
                 if (ex.getServerErrorMessage() != null && "fk_clientLoan".equals(ex.getServerErrorMessage().getConstraint()))
                 {
                     throw new NoClientFoundException(client.getCardId());
+                }
+                else{
+                    throw new InternalException("Unable to find any fines", e);
                 }
             }
             throw new InternalException("Unable to find any fines", e);

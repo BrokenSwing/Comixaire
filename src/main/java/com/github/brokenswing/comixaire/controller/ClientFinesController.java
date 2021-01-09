@@ -44,7 +44,6 @@ public class ClientFinesController implements Initializable
         try
         {
             finesList.setItems(new FilteredList<>(FXCollections.observableArrayList(fineFacade.findByClient(client))));
-
         }
         catch (InternalException | NoClientFoundException e)
         {
