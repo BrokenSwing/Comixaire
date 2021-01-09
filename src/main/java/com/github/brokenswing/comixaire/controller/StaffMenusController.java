@@ -2,7 +2,7 @@ package com.github.brokenswing.comixaire.controller;
 
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.facades.auth.AuthFacade;
-import com.github.brokenswing.comixaire.view.*;
+import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import javafx.fxml.FXML;
 
@@ -39,15 +39,27 @@ public class StaffMenusController
     }
 
     @FXML
-    protected void displayItemsView() { router.navigateTo(Views.LibraryItems.LIST); }
+    protected void displayItemsView()
+    {
+        router.navigateTo(Views.LibraryItems.LIST);
+    }
 
     @FXML
-    protected void displayStatsView(){ router.navigateTo(Views.STATS); }
+    protected void displayStatsView()
+    {
+        router.navigateTo(Views.STATS);
+    }
 
     @FXML
-    private void displayActionCenterView() { router.navigateTo(Views.ActionCenters.STAFF); }
+    private void displayActionCenterView()
+    {
+        router.navigateTo(Views.ActionCenters.STAFF);
+    }
 
     @FXML
-    private void displayClientsView() { router.navigateTo(Views.CLIENTS_LIST); }
+    private void displayClientsView()
+    {
+        router.navigateTo(Views.CLIENTS_LIST);
+    }
 
 }

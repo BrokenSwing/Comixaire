@@ -39,7 +39,7 @@ import java.util.ResourceBundle;
 public class LoansController implements Initializable
 {
 
-    private ArrayList<LibraryItem> allLibraryItems = new ArrayList<>();
+    private final ArrayList<LibraryItem> allLibraryItems = new ArrayList<>();
 
     @ViewParam
     private Client client;
@@ -117,7 +117,7 @@ public class LoansController implements Initializable
         try
         {
             LibraryItem item = itemFacade.findById(libraryItemId.getValue());
-            if(item.isAvailable())
+            if (item.isAvailable())
             {
                 if (item.getBookings().length == 0 || item.peekBooking() == client.getIdClient())
                 {
@@ -131,7 +131,8 @@ public class LoansController implements Initializable
                     {
                         e.printStackTrace();
                     }
-                    if(item.peekBooking() == client.getIdClient()){
+                    if (item.peekBooking() == client.getIdClient())
+                    {
                         try
                         {
                             bookingFacade.deleteBooking(item, client);
@@ -149,7 +150,9 @@ public class LoansController implements Initializable
                 {
                     Alerts.failure("This library item is already booked by another client.");
                 }
-            } else {
+            }
+            else
+            {
                 Alerts.failure("This library item is not available. It is already in loan.");
             }
 

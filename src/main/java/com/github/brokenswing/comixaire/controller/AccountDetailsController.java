@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class AccountDetailsController implements Initializable
 {
 
-    private BooleanProperty committing = new SimpleBooleanProperty(false);
+    private final BooleanProperty committing = new SimpleBooleanProperty(false);
 
     @FXML
     private TextField usernameField;

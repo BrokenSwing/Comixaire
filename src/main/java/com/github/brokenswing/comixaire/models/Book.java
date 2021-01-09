@@ -74,7 +74,8 @@ public class Book extends LibraryItem
         this.pagesCount = pagesCount;
     }
 
-    public String toString() {
+    public String toString()
+    {
         return getTitle() + " located at " + getLocation() + " is a book";
     }
 }

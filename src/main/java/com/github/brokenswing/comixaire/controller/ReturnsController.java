@@ -2,29 +2,24 @@ package com.github.brokenswing.comixaire.controller;
 
 import com.github.brokenswing.comixaire.di.InjectValue;
 import com.github.brokenswing.comixaire.di.ViewParam;
-import com.github.brokenswing.comixaire.exception.*;
+import com.github.brokenswing.comixaire.exception.InternalException;
+import com.github.brokenswing.comixaire.exception.InvalidFineTypeException;
+import com.github.brokenswing.comixaire.exception.NoReturnFoundException;
 import com.github.brokenswing.comixaire.facades.clients.ClientsFacade;
 import com.github.brokenswing.comixaire.facades.fineTypes.FineTypesFacade;
 import com.github.brokenswing.comixaire.facades.fines.FinesFacade;
 import com.github.brokenswing.comixaire.facades.item.LibraryItemFacade;
-import com.github.brokenswing.comixaire.facades.loans.LoansFacade;
 import com.github.brokenswing.comixaire.facades.returns.ReturnFacade;
 import com.github.brokenswing.comixaire.javafx.Alerts;
 import com.github.brokenswing.comixaire.models.*;
-import com.github.brokenswing.comixaire.utils.FormValidationBuilder;
 import com.github.brokenswing.comixaire.utils.PrettyTimeTransformer;
 import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
-import com.github.brokenswing.comixaire.view.util.ViewLoader;
-import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
-import javafx.collections.transformation.FilteredList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.text.Text;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -109,8 +104,14 @@ public class ReturnsController implements Initializable
 
         try
         {
-            if (clientsFacade.validSubscription(loan.getClient())) { clientSubscription.setText("Valid"); }
-            else { clientSubscription.setText("Not valid"); }
+            if (clientsFacade.validSubscription(loan.getClient()))
+            {
+                clientSubscription.setText("Valid");
+            }
+            else
+            {
+                clientSubscription.setText("Not valid");
+            }
 
             clientLoans.setText(Integer.toString(clientsFacade.countLoans(loan.getClient())));
             clientFines.setText(Integer.toString(clientsFacade.countFines(loan.getClient())));
@@ -128,7 +129,8 @@ public class ReturnsController implements Initializable
 
     public void returnItem()
     {
-        if(!choiceCondition.getValue().equals(loan.getLibraryItem().getCondition())){
+        if (!choiceCondition.getValue().equals(loan.getLibraryItem().getCondition()))
+        {
             LibraryItem item = loan.getLibraryItem();
             item.setCondition(choiceCondition.getValue());
             try
@@ -146,8 +148,9 @@ public class ReturnsController implements Initializable
         try
         {
             returns = returnFacade.create(new Returns(loan.getIdLoan()), loan.getLibraryItem());
-            if(choiceFine.getValue() != null && !choiceFine.getValue().getLabel().equals("None")){
-                finesFacade.create(new Fine(returns.getIdReturn(),false, choiceFine.getValue()));
+            if (choiceFine.getValue() != null && !choiceFine.getValue().getLabel().equals("None"))
+            {
+                finesFacade.create(new Fine(returns.getIdReturn(), false, choiceFine.getValue()));
             }
             Alerts.success("The return has been registered.");
             router.navigateTo(Views.CLIENT_RETURNS);

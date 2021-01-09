@@ -4,7 +4,6 @@ import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.facades.Facade;
-import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.Subscription;
 
 public class SubscriptionsFacade extends Facade

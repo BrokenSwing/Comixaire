@@ -6,7 +6,6 @@ import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.exception.NoStaffMemberFoundException;
 import com.github.brokenswing.comixaire.facades.Facade;
-import com.github.brokenswing.comixaire.facades.staff.StaffMemberFacade;
 import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.StaffMember;
 
@@ -22,8 +21,8 @@ public class AuthFacade extends Facade
 
     /**
      * @param daoFactory The factory to use to access users data
-     * @param passAlgo The password hashing algorithm to use to check users passwords
-     * @param session The session to change the state of when a method of the facade succeeds
+     * @param passAlgo   The password hashing algorithm to use to check users passwords
+     * @param session    The session to change the state of when a method of the facade succeeds
      */
     public AuthFacade(DAOFactory daoFactory, PasswordAlgorithm passAlgo, Session session)
     {
@@ -42,11 +41,10 @@ public class AuthFacade extends Facade
      *
      * @param username the username of the staff member to log in
      * @param password the plain password of the staff member to log in
-     *
      * @throws BadCredentialsException when no staff member with the given username can be found
-     *                                  or that the given password is invalid for the staff member
-     *                                  with the given username
-     * @throws InternalException when an expected error occurred
+     *                                 or that the given password is invalid for the staff member
+     *                                 with the given username
+     * @throws InternalException       when an expected error occurred
      */
     public void loginStaff(String username, String password) throws BadCredentialsException, InternalException
     {
@@ -78,9 +76,8 @@ public class AuthFacade extends Facade
      * the success of this method call just overrides the user that is logged in the system.
      *
      * @param cardId the card ID of the client to login to the system
-     *
      * @throws BadCredentialsException if no client with the given card ID can be found
-     * @throws InternalException when an expected error occurred
+     * @throws InternalException       when an expected error occurred
      */
     public void loginClient(String cardId) throws BadCredentialsException, InternalException
     {

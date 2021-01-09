@@ -3,7 +3,6 @@ package com.github.brokenswing.comixaire.dao.postgres;
 import com.github.brokenswing.comixaire.dao.LibraryItemDAO;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoLibraryItemFoundException;
-import com.github.brokenswing.comixaire.exception.NoStaffMemberFoundException;
 import com.github.brokenswing.comixaire.models.*;
 import com.github.brokenswing.comixaire.models.builder.LibraryItemBuilder;
 import com.github.brokenswing.comixaire.models.builder.LibraryItemStep;

@@ -137,7 +137,8 @@ public abstract class LibraryItem
 
     public int peekBooking()
     {
-        if(!bookings.isEmpty()){
+        if (!bookings.isEmpty())
+        {
             return bookings.peek();
         }
         return -1;

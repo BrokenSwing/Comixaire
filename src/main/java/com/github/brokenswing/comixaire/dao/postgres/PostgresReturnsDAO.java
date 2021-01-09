@@ -14,7 +14,10 @@ public class PostgresReturnsDAO implements ReturnsDAO
 
     private final Connection connection;
 
-    public PostgresReturnsDAO(Connection connection) { this.connection = connection; }
+    public PostgresReturnsDAO(Connection connection)
+    {
+        this.connection = connection;
+    }
 
     @Override
     public Returns create(Returns returns) throws InternalException

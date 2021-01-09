@@ -4,7 +4,7 @@ public class Fine
 {
     private final int idFine;
     private final FineType fineType;
-    private boolean paid;
+    private final boolean paid;
 
     public Fine(int idFine, boolean paid, FineType fineType)
     {

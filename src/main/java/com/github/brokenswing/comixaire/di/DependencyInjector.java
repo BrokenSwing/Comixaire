@@ -33,9 +33,9 @@ public class DependencyInjector
             new PriorityQueue<>(Comparator.comparing(DependencySource::getPriority).reversed());
 
     private final CacheDependencySource cache = new CacheDependencySource();
-    private boolean cacheEnabled;
     private final Class<? extends Annotation> injectionAnnotation;
     private final boolean ignoreMissingDependencies;
+    private boolean cacheEnabled;
 
     public DependencyInjector(Class<? extends Annotation> injectionAnnotation, boolean ignoreMissingDependencies)
     {
@@ -50,7 +50,7 @@ public class DependencyInjector
      * When the cache is enabled, dependencies can be retrieved from
      * the cache and dependencies fetched from other sources than
      * the cache, are cached.<br>
-     *
+     * <p>
      * Cache is enabled by default.
      *
      * @see #disableCache()

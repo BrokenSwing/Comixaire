@@ -2,9 +2,9 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<GridPane xmlns="http://javafx.com/javafx/8"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.brokenswing.comixaire.controller.cell.ClientCellController"
+<GridPane xmlns:fx="http://javafx.com/fxml/1"
+          xmlns="http://javafx.com/javafx/8"
+          fx:controller="com.github.brokenswing.comixaire.controller.cell.ClientCellController"
           onMouseClicked="#more" stylesheets="@/stylesheets/authentication.css">
 
     <columnConstraints>
@@ -16,14 +16,14 @@
     </columnConstraints>
 
     <rowConstraints>
-        <RowConstraints vgrow="NEVER" />
+        <RowConstraints vgrow="NEVER"/>
     </rowConstraints>
-   <children>
-       <Text fx:id="firstname" fill="grey"/>
-       <Text fx:id="lastname" fill="grey" GridPane.columnIndex="1" />
-       <Text fx:id="birthdate" fill="grey" GridPane.columnIndex="2" />
-       <Text fx:id="gender" fill="grey" GridPane.columnIndex="3" />
-       <Text fx:id="cardId" fill="#5282fc" GridPane.columnIndex="4" />
-   </children>
+    <children>
+        <Text fx:id="firstname" fill="grey"/>
+        <Text fx:id="lastname" fill="grey" GridPane.columnIndex="1"/>
+        <Text fx:id="birthdate" fill="grey" GridPane.columnIndex="2"/>
+        <Text fx:id="gender" fill="grey" GridPane.columnIndex="3"/>
+        <Text fx:id="cardId" fill="#5282fc" GridPane.columnIndex="4"/>
+    </children>
 
 </GridPane>

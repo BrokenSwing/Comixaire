@@ -99,7 +99,8 @@ public class Client
         this.cardId = cardId;
     }
 
-    public String toString() {
+    public String toString()
+    {
         return getFirstname() + " " + getLastname() + ", born the " + getBirthdate() + " is " + getGender() + " lives " + getAddress() + " and has cardId: " + getCardId();
     }
 

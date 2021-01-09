@@ -15,7 +15,7 @@ import java.util.Calendar;
 public class PostgresLogDAO implements LogDAO
 {
 
-    private Connection connection;
+    private final Connection connection;
 
     public PostgresLogDAO(Connection connection)
     {

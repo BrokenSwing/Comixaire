@@ -26,9 +26,9 @@ public class PostgresRatingDAO implements RatingDAO
     @Override
     public void create(Rating rating) throws InternalException
     {
-        try(PreparedStatement stmt = connection.prepareStatement(
+        try (PreparedStatement stmt = connection.prepareStatement(
                 "INSERT INTO rating (client_id, item_id, note) " +
-                "VALUES (?, ?, ?) ON CONFLICT (client_id, item_id) DO UPDATE SET note = ?"
+                        "VALUES (?, ?, ?) ON CONFLICT (client_id, item_id) DO UPDATE SET note = ?"
         ))
         {
             stmt.setInt(1, rating.getClient().getIdClient());

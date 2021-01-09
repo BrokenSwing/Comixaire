@@ -2,10 +2,10 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity"
-            style="-fx-background-color: white;" stylesheets="@/stylesheets/authentication.css"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity"
+            maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" style="-fx-background-color: white;"
+            stylesheets="@/stylesheets/authentication.css" xmlns="http://javafx.com/javafx/8"
             fx:controller="com.github.brokenswing.comixaire.controller.ClientDetailsController">
 
     <!-- Card ID -->

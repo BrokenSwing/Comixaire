@@ -32,7 +32,10 @@ public class FineType
         return this.price;
     }
 
-    public int getId() { return this.id; }
+    public int getId()
+    {
+        return this.id;
+    }
 
     @Override
     public String toString()

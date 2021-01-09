@@ -1,13 +1,11 @@
 package com.github.brokenswing.comixaire.javafx;
 
 import javafx.beans.binding.IntegerBinding;
-import javafx.beans.binding.StringBinding;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyIntegerWrapper;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.WeakChangeListener;
 import javafx.scene.control.TextField;
-import javafx.util.StringConverter;
 
 import java.util.Objects;
 
@@ -43,7 +41,8 @@ public class IntField extends TextField
             }
         });
 
-        this.textProperty().addListener(new WeakChangeListener<>((obs, oldValue, newValue) -> {
+        this.textProperty().addListener(new WeakChangeListener<>((obs, oldValue, newValue) ->
+        {
             String valueToSet = applyStringCorrection(oldValue, newValue);
             if (!Objects.equals(valueToSet, newValue))
             {

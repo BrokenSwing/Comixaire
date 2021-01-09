@@ -13,7 +13,6 @@ import com.github.brokenswing.comixaire.models.Fine;
 import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.collections.FXCollections;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;

@@ -5,7 +5,6 @@ import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.facades.Facade;
 import com.github.brokenswing.comixaire.models.Client;
-import com.github.brokenswing.comixaire.models.LibraryItem;
 import com.github.brokenswing.comixaire.models.Rating;
 
 public class RatingFacade extends Facade
@@ -15,14 +14,14 @@ public class RatingFacade extends Facade
         super(factory);
     }
 
-    public void rate (Rating rating) throws InternalException
+    public void rate(Rating rating) throws InternalException
     {
         this.factory.getRatingDAO().create(rating);
     }
 
     public Rating[] getAllForClient(Client client) throws InternalException, NoClientFoundException
     {
-       return factory.getRatingDAO().getRatingByClientId(client.getIdClient());
+        return factory.getRatingDAO().getRatingByClientId(client.getIdClient());
     }
 
 }

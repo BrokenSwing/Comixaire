@@ -32,5 +32,5 @@ public class BookingFacade extends Facade
         this.factory.getLibraryItemDAO().update(libraryItem);
         logger.log("Remove Booking", "Client: " + client.getIdClient() + " / Title: " + libraryItem.getTitle());
     }
-    
+
 }

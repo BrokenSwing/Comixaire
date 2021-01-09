@@ -11,5 +11,6 @@ import com.github.brokenswing.comixaire.models.Log;
 public interface LogDAO
 {
     void create(Log log) throws InternalException;
+
     Log[] getAll() throws InternalException;
 }

@@ -5,10 +5,10 @@ import java.util.Date;
 
 public class Log
 {
-    private Date date;
     private final String operationDetails;
     private final String operationType;
     private final StaffMember staffMember;
+    private final Date date;
 
     public Log(String operationDetails, String operationType, Date date, StaffMember member)
     {

@@ -13,7 +13,10 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.time.Instant;
@@ -44,22 +47,6 @@ public class NewClientController implements Initializable
     private ClientsFacade clientsFacade;
     @InjectValue
     private Router router;
-
-    public NewClientController() {}
-
-
-    /**
-     * This constructor should not be used outside of test classes.
-     */
-    public NewClientController(TextField firstname, TextField lastname, TextField idCard, DatePicker birthdate, Button createUserButton, ChoiceBox<String> genderField, TextField addressField){
-        this.newUserButton = createUserButton;
-        this.newUserFirstnameField = firstname;
-        this.newUserLastnameField = lastname;
-        this.newUserCardIdField = idCard;
-        this.newUserBirthdateField = birthdate;
-        this.newUserGenderField = genderField;
-        this.newUserAddressField = addressField;
-    }
 
     @FXML
     private void createClient()
@@ -103,7 +90,7 @@ public class NewClientController implements Initializable
                 .notEmpty(newUserCardIdField.textProperty())
                 .notEmpty(newUserAddressField.textProperty())
                 .add(Bindings.createBooleanBinding(
-                        ()-> newUserBirthdateField.getValue() != null && newUserBirthdateField.getValue().isBefore(LocalDate.now()),
+                        () -> newUserBirthdateField.getValue() != null && newUserBirthdateField.getValue().isBefore(LocalDate.now()),
                         newUserBirthdateField.valueProperty()
                 ))
                 .notNull(newUserGenderField.valueProperty())

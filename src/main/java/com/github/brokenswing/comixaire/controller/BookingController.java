@@ -24,7 +24,6 @@ import javafx.util.Pair;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -75,7 +74,8 @@ public class BookingController implements Initializable
 
         try
         {
-            if(clientsFacade.validSubscription(client)) {
+            if (clientsFacade.validSubscription(client))
+            {
                 this.clientSubscription.setText("Valid");
                 ArrayList<Pair<LibraryItem, Client>> pairs = new ArrayList<>();
                 for (LibraryItem item : itemsFacade.findAll())
@@ -85,7 +85,8 @@ public class BookingController implements Initializable
                 this.items = new FilteredList<>(FXCollections.observableList(pairs));
                 this.itemsList.setItems(this.items);
             }
-            else{
+            else
+            {
                 this.clientSubscription.setText("Invalid");
                 this.itemsList.setPlaceholder(new Text("Invalid subscription"));
             }

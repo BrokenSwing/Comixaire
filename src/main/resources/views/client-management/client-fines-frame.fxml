@@ -3,13 +3,12 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="306" prefWidth="809"
-            style="-fx-background-color: white;"
-            stylesheets="@/stylesheets/authentication.css" xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity"
+            maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="306"
+            prefWidth="809"
+            style="-fx-background-color: white;" stylesheets="@/stylesheets/authentication.css"
+            xmlns="http://javafx.com/javafx/8"
             fx:controller="com.github.brokenswing.comixaire.controller.ClientFinesController">
 
     <ListView fx:id="finesList" layoutX="14.0" layoutY="13.0" prefHeight="280.0" prefWidth="781.0">

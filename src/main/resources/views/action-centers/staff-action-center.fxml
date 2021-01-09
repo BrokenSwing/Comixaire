@@ -5,9 +5,10 @@
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="800.0" maxWidth="1280.0" minHeight="800.0" minWidth="1280.0"
             prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;"
-            xmlns="http://javafx.com/javafx/8" fx:controller="com.github.brokenswing.comixaire.controller.StaffActionCenterController">
+            xmlns="http://javafx.com/javafx/8"
+            fx:controller="com.github.brokenswing.comixaire.controller.StaffActionCenterController">
     <children>
-        <fx:include source="../menus/staff-menu.fxml" />
+        <fx:include source="../menus/staff-menu.fxml"/>
         <AnchorPane layoutX="295.0" layoutY="186.0" prefHeight="200.0" prefWidth="200.0"
                     style="-fx-background-color: white;" onMouseClicked="#displayReturnsView">
             <children>

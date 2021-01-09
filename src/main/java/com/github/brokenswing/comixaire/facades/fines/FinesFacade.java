@@ -2,7 +2,10 @@ package com.github.brokenswing.comixaire.facades.fines;
 
 import com.github.brokenswing.comixaire.dao.DAOFactory;
 import com.github.brokenswing.comixaire.di.InjectValue;
-import com.github.brokenswing.comixaire.exception.*;
+import com.github.brokenswing.comixaire.exception.InternalException;
+import com.github.brokenswing.comixaire.exception.InvalidFineTypeException;
+import com.github.brokenswing.comixaire.exception.NoClientFoundException;
+import com.github.brokenswing.comixaire.exception.NoReturnFoundException;
 import com.github.brokenswing.comixaire.facades.Facade;
 import com.github.brokenswing.comixaire.facades.logs.LogsFacade;
 import com.github.brokenswing.comixaire.models.Client;

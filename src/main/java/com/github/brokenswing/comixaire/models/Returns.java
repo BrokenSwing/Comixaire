@@ -1,6 +1,5 @@
 package com.github.brokenswing.comixaire.models;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Returns

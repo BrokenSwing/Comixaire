@@ -2,8 +2,6 @@ package com.github.brokenswing.comixaire.dao.postgres;
 
 import com.github.brokenswing.comixaire.dao.SubscriptionsDAO;
 import com.github.brokenswing.comixaire.exception.InternalException;
-import com.github.brokenswing.comixaire.exception.NoClientFoundException;
-import com.github.brokenswing.comixaire.models.Loan;
 import com.github.brokenswing.comixaire.models.Subscription;
 
 import java.sql.*;
@@ -12,7 +10,8 @@ import java.util.List;
 
 public class PostgresSubscriptionsDAO implements SubscriptionsDAO
 {
-    private Connection connection;
+    private final Connection connection;
+
     public PostgresSubscriptionsDAO(Connection connection)
     {
         this.connection = connection;

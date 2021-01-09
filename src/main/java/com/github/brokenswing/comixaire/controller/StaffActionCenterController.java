@@ -11,10 +11,11 @@ public class StaffActionCenterController
     @InjectValue
     private Router router;
 
-    public StaffActionCenterController() {}
-
     @FXML
-    protected void displayLoansView(){ router.navigateTo(Views.CLIENT_LOANS); }
+    protected void displayLoansView()
+    {
+        router.navigateTo(Views.CLIENT_LOANS);
+    }
 
     @FXML
     protected void displayNewItemView()

@@ -48,7 +48,7 @@ public class TestUtil
 
     public static void closeWindow(FxRobot robot, String selector)
     {
-        robot.interact(()->((Stage)((robot.lookup(selector).query())).getScene().getWindow()).close());
+        robot.interact(() -> ((Stage) ((robot.lookup(selector).query())).getScene().getWindow()).close());
     }
 
     public interface ThrowableRunnable

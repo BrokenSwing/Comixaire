@@ -1,64 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-            prefWidth="1280.0" style="-fx-background-color: #F7F9FF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;"
+            xmlns="http://javafx.com/javafx/8"
             fx:controller="com.github.brokenswing.comixaire.controller.StatsController">
     <children>
-        <fx:include source="menus/staff-menu.fxml" />
+        <fx:include source="menus/staff-menu.fxml"/>
         <Text layoutX="149.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistics">
             <font>
-                <Font name="Quicksand SemiBold" size="36.0" />
+                <Font name="Quicksand SemiBold" size="36.0"/>
             </font>
         </Text>
-      <AnchorPane layoutX="363.0" layoutY="315.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
-         <children>
-            <Text fill="#ababab" layoutX="34.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Library items">
-               <font>
-                  <Font name="Quicksand SemiBold" size="21.0" />
-               </font>
-            </Text>
-            <Text fx:id="libraryItemsCounter" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="166.52000045776367">
-               <font>
-                  <Font name="Quicksand SemiBold" size="43.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="609.0" layoutY="315.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
-         <children>
-            <Text fill="#ababab" layoutX="67.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clients">
-               <font>
-                  <Font name="Quicksand SemiBold" size="21.0" />
-               </font>
-            </Text>
-            <Text fx:id="clientsCounter" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="166.52000045776367">
-               <font>
-                  <Font name="Quicksand SemiBold" size="43.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="855.0" layoutY="315.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
-         <children>
-            <Text fill="#ababab" layoutX="70.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loans">
-               <font>
-                  <Font name="Quicksand SemiBold" size="21.0" />
-               </font>
-            </Text>
-            <Text fx:id="loansCounter" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="166.52000045776367">
-               <font>
-                  <Font name="Quicksand SemiBold" size="43.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
+        <AnchorPane layoutX="363.0" layoutY="315.0" prefHeight="200.0" prefWidth="200.0"
+                    style="-fx-background-color: white;">
+            <children>
+                <Text fill="#ababab" layoutX="34.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Library items">
+                    <font>
+                        <Font name="Quicksand SemiBold" size="21.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="libraryItemsCounter" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="0" textAlignment="CENTER" wrappingWidth="166.52000045776367">
+                    <font>
+                        <Font name="Quicksand SemiBold" size="43.0"/>
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="609.0" layoutY="315.0" prefHeight="200.0" prefWidth="200.0"
+                    style="-fx-background-color: white;">
+            <children>
+                <Text fill="#ababab" layoutX="67.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Clients">
+                    <font>
+                        <Font name="Quicksand SemiBold" size="21.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="clientsCounter" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="0" textAlignment="CENTER" wrappingWidth="166.52000045776367">
+                    <font>
+                        <Font name="Quicksand SemiBold" size="43.0"/>
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="855.0" layoutY="315.0" prefHeight="200.0" prefWidth="200.0"
+                    style="-fx-background-color: white;">
+            <children>
+                <Text fill="#ababab" layoutX="70.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loans">
+                    <font>
+                        <Font name="Quicksand SemiBold" size="21.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="loansCounter" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0"
+                      textAlignment="CENTER" wrappingWidth="166.52000045776367">
+                    <font>
+                        <Font name="Quicksand SemiBold" size="43.0"/>
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
     </children>
 </AnchorPane>

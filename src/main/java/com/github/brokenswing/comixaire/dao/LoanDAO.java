@@ -6,8 +6,6 @@ import com.github.brokenswing.comixaire.exception.NoLibraryItemFoundException;
 import com.github.brokenswing.comixaire.exception.NoLoanFoundException;
 import com.github.brokenswing.comixaire.models.Loan;
 
-import java.sql.Date;
-
 public interface LoanDAO
 {
     Loan create(Loan loan) throws InternalException;

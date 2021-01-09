@@ -84,7 +84,8 @@ public class PostgresFineDAO implements FineDAO
                 {
                     throw new NoClientFoundException(client.getCardId());
                 }
-                else{
+                else
+                {
                     throw new InternalException("Unable to find any fines", e);
                 }
             }

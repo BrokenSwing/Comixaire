@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
 <?import javafx.scene.control.Button?>
-<GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/stylesheets/authentication.css"
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+          stylesheets="@/stylesheets/authentication.css"
           fx:controller="com.github.brokenswing.comixaire.controller.cell.FineCellController">
 
     <columnConstraints>
@@ -16,18 +16,19 @@
     </columnConstraints>
 
     <rowConstraints>
-        <RowConstraints vgrow="NEVER" />
+        <RowConstraints vgrow="NEVER"/>
     </rowConstraints>
     <children>
         <Text fill="grey" GridPane.columnIndex="0">
             Label:
         </Text>
-        <Text fx:id="label" fill="#5282FC" GridPane.columnIndex="1" />
+        <Text fx:id="label" fill="#5282FC" GridPane.columnIndex="1"/>
         <Text fill="grey" GridPane.columnIndex="2">
             Price:
         </Text>
-        <Text fx:id="price" fill="#5282FC" GridPane.columnIndex="3" />
-        <Button mnemonicParsing="false" onMouseClicked="#pay" styleClass="btn" fx:id="payButton" text="Pay" GridPane.columnIndex="4"/>
+        <Text fx:id="price" fill="#5282FC" GridPane.columnIndex="3"/>
+        <Button mnemonicParsing="false" onMouseClicked="#pay" styleClass="btn" fx:id="payButton" text="Pay"
+                GridPane.columnIndex="4"/>
     </children>
 
 </GridPane>

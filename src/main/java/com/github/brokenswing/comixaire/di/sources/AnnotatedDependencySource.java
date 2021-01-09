@@ -8,9 +8,9 @@ import java.lang.reflect.Method;
 
 /**
  * <p>
- *      Resolves dependencies by scanning object methods.
- *      For a method to be eligible to be picked up, it must
- *      be compliant with the following conditions:
+ * Resolves dependencies by scanning object methods.
+ * For a method to be eligible to be picked up, it must
+ * be compliant with the following conditions:
  * </p>
  *      <ul>
  *          <li>Be args-less</li>

@@ -5,9 +5,9 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0"
-            prefWidth="809.0" style="-fx-background-color: white;" stylesheets="@/stylesheets/authentication.css"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="306.0" prefWidth="809.0" style="-fx-background-color: white;"
+            stylesheets="@/stylesheets/authentication.css" xmlns="http://javafx.com/javafx/8"
             fx:controller="com.github.brokenswing.comixaire.controller.ClientSubscriptionsController">
 
     <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="282.0" prefWidth="354.0" style="-fx-background-color: white;">
