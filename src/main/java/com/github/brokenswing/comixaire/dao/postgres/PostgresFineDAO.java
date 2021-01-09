@@ -60,8 +60,12 @@ public class PostgresFineDAO implements FineDAO
 
         try
         {
-            PreparedStatement prepare = connection.prepareStatement("SELECT * FROM fine JOIN fineType ON fineType.fineType_id = fine.fineType_id " +
-                    "JOIN loans ON loans.loan_id = fine.return_id WHERE loans.client_id = ?");
+            PreparedStatement prepare = connection.prepareStatement(
+                    "SELECT * FROM fine " +
+                            "JOIN fineType ON fineType.fineType_id = fine.fineType_id " +
+                            "JOIN returns ON returns.return_id = fine.return_id " +
+                            "JOIN loans ON returns.loan_id = loans.loan_id " +
+                            "WHERE loans.client_id = ?");
             prepare.setInt(1, client.getIdClient());
             ResultSet result = prepare.executeQuery();
             ArrayList<Fine> fines = new ArrayList<>();

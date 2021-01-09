@@ -43,7 +43,7 @@ public class ClientFinesController implements Initializable
         finesList.setCellFactory(CustomListCell.factory(loader, Views.Cells.FINE));
         try
         {
-            finesList.setItems(new FilteredList<>(FXCollections.observableArrayList(fineFacade.findByClient(client))));
+            finesList.setItems(FXCollections.observableArrayList(fineFacade.findByClient(client)));
         }
         catch (InternalException | NoClientFoundException e)
         {
