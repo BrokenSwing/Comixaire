@@ -31,6 +31,7 @@ public class ViewLoader
      * {@link DependencyInjector}s.
      *
      * @param viewPath the path to the view to load
+     * @param values the values to pass the controller of the given view
      * @param <T>      the type of the root node of the FXML file
      * @return the JavaFX node loaded from the FXML file
      * @see com.github.brokenswing.comixaire.di.InjectValue
