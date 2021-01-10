@@ -27,8 +27,7 @@ public class PostgresReturnsDAO implements ReturnsDAO
         {
             statement.setDate(1, new java.sql.Date(returns.getDate().getTime()));
             statement.setInt(2, returns.getIdLoan());
-            ResultSet result = statement.executeQuery();
-            result.next();
+            statement.executeUpdate();
             return returns;
         }
         catch (SQLException e)

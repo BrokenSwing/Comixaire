@@ -129,9 +129,9 @@ public class PostgresFineDAO implements FineDAO
 
     private Fine fineFromRow(ResultSet result) throws SQLException
     {
-        int fineId = result.getInt("return_id");
+        int fineId = result.getInt("loan_id");
         int fineTypeId = result.getInt("fineType_id");
-        Boolean paid = result.getBoolean("paid");
+        boolean paid = result.getBoolean("paid");
         String label = result.getString("fineType_label");
         int price = result.getInt("fineType_price");
         return new Fine(fineId, paid, new FineType(fineTypeId, label, price));

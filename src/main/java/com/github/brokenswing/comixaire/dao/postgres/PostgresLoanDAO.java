@@ -210,7 +210,7 @@ public class PostgresLoanDAO implements LoanDAO
 
             while (result.next())
             {
-                result.getInt("return_id");
+                result.getInt("loan_id");
                 if (result.wasNull())
                 {
                     loans.add(loanFromRow(result));
