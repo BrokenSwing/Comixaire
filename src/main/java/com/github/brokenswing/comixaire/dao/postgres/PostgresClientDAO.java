@@ -219,7 +219,7 @@ public class PostgresClientDAO implements ClientDAO
                 "SELECT COUNT(*) FROM loans " +
                 "NATURAL LEFT JOIN returns " +
                 "WHERE client_id = ? AND " +
-                "return_id IS NULL"
+                "returns.loan_id IS NULL"
         ))
         {
             prepare.setInt(1, client.getIdClient());
@@ -276,7 +276,7 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public int countFines(Client client) throws InternalException
     {
-        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM fine JOIN loans ON fine.return_id = loans.loan_id WHERE loans.client_id = ?"))
+        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM fine JOIN loans ON fine.loan_id = loans.loan_id WHERE loans.client_id = ?"))
         {
             prepare.setInt(1, client.getIdClient());
             try (ResultSet result = prepare.executeQuery())
