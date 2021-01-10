@@ -1,6 +1,7 @@
 package com.github.brokenswing.comixaire.models;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Client
 {
@@ -104,5 +105,18 @@ public class Client
         return getFirstname() + " " + getLastname() + ", born the " + getBirthdate() + " is " + getGender() + " lives " + getAddress() + " and has cardId: " + getCardId();
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return idClient == client.idClient;
+    }
 
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(idClient);
+    }
 }

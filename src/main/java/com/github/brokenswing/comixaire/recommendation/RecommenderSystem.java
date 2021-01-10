@@ -10,8 +10,9 @@ import java.util.stream.Collectors;
 public class RecommenderSystem
 {
 
-    public final static double SIMILARITY_MIN = 0.75;
+    public final static double SIMILARITY_MIN = 0.5;
     public final static double MAX_SIMILAR_CLIENTS = 10;
+    public final static double MIN_NOTE = 3;
     public List<Rating> ratings;
 
     public RecommenderSystem(Rating[] ratings)
@@ -33,7 +34,6 @@ public class RecommenderSystem
          */
         List<Rating> c1_ratings = ratings.stream().filter(rating -> rating.getClient().equals(c1)).collect(Collectors.toList());
         List<Rating> c2_ratings = ratings.stream().filter(rating -> rating.getClient().equals(c2)).collect(Collectors.toList());
-
 
         /*
          * Create common Map to reduce notes.
@@ -58,20 +58,20 @@ public class RecommenderSystem
         for (Map.Entry<LibraryItem, Integer[]> entry : map.entrySet())
         {
             notes = entry.getValue();
-            if (notes[0] < 0)
-            {
-                abs2 += Math.pow(notes[1], 2);
-            }
-            else if (notes[1] < 0)
-            {
-                abs1 += Math.pow(notes[0], 2);
-            }
-            else
+            if(notes[0] >= 0 && notes[1] >= 0)
             {
                 prod += notes[0] * notes[1];
                 abs1 += Math.pow(notes[0], 2);
                 abs2 += Math.pow(notes[1], 2);
                 onlyOne = Math.min(Math.sqrt((double) notes[0] / notes[1]), Math.sqrt((double) notes[1] / notes[0]));
+            }
+            else if (notes[0] < 0)
+            {
+                abs2 += Math.pow(notes[1], 2);
+            }
+            else
+            {
+                abs1 += Math.pow(notes[0], 2);
             }
         }
         output = prod / Math.max(1, Math.sqrt(abs1) * Math.sqrt(abs2));
@@ -79,22 +79,26 @@ public class RecommenderSystem
         {
             return onlyOne;
         }
+        System.out.println(c1.getFullname()  + "-" + c2.getFullname() + " : " + output);
         return output;
     }
 
     private Set<Client> similarClients(Client client)
     {
         Set<Client> similar = new HashSet<>();
+        Set<Client> all = new HashSet<>();
 
         int i = 0;
         while (similar.size() < MAX_SIMILAR_CLIENTS && i < ratings.size())
         {
             Rating rating = ratings.get(i);
-            if (!rating.getClient().equals(client))
+            Client c = rating.getClient();
+            if (!client.equals(c) && !all.contains(c))
             {
-                if (cosine(client, rating.getClient()) > SIMILARITY_MIN)
+                all.add(c);
+                if (cosine(client, c) > SIMILARITY_MIN)
                 {
-                    similar.add(rating.getClient());
+                    similar.add(c);
                 }
             }
             i++;
@@ -108,11 +112,12 @@ public class RecommenderSystem
         Set<LibraryItem> items = new HashSet<>();
         for (Rating rating : ratings)
         {
-            if (similar.contains(rating.getClient()))
+            if (similar.contains(rating.getClient()) && rating.getNote() > MIN_NOTE)
             {
                 items.add(rating.getLibraryItem());
             }
         }
-        return items.toArray(new LibraryItem[0]);
+        Set<LibraryItem> ratedItems = this.ratings.stream().filter(rating->rating.getClient().equals(client)).map(Rating::getLibraryItem).collect(Collectors.toSet());
+        return items.stream().filter(item -> !ratedItems.contains(item)).toArray(LibraryItem[]::new);
     }
 }

@@ -50,13 +50,13 @@ public class PostgresRatingDAO implements RatingDAO
         try
         {
             ResultSet result = connection.prepareStatement(
-                    "SELECT * FROM libraryitems " +
+                    "SELECT * FROM rating " +
+                            "NATURAL JOIN clients " +
+                            "NATURAL JOIN libraryitems " +
                             "NATURAL LEFT JOIN books " +
                             "NATURAL LEFT JOIN cd " +
                             "NATURAL LEFT JOIN dvd " +
-                            "NATURAL LEFT JOIN games " +
-                            "NATURAL FULL OUTER JOIN clients " +
-                            "NATURAL FULL OUTER JOIN rating").executeQuery();
+                            "NATURAL LEFT JOIN games ").executeQuery();
 
             ArrayList<Rating> ratings = new ArrayList<>();
 
@@ -64,19 +64,7 @@ public class PostgresRatingDAO implements RatingDAO
             {
                 LibraryItem item = PostgresLibraryItemDAO.libraryItemFromRow(result);
                 Client client = PostgresClientDAO.clientFromRow(result);
-                if (item != null)
-                {
-                    int note = result.getInt("note");
-                    if (result.wasNull())
-                    {
-                        ratings.add(new Rating(client, item, -1));
-                    }
-                    else
-                    {
-                        ratings.add(new Rating(client, item, note));
-                    }
-
-                }
+                ratings.add(new Rating(client, item, result.getInt("note")));
             }
 
             return ratings.toArray(new Rating[0]);
@@ -116,8 +104,8 @@ public class PostgresRatingDAO implements RatingDAO
         {
             PreparedStatement stmt = connection.prepareStatement(
                     "SELECT * FROM clients " +
-                            "NATURAL FULL OUTER JOIN rating " +
-                            "NATURAL FULL OUTER JOIN libraryitems " +
+                            "NATURAL JOIN rating " +
+                            "NATURAL JOIN libraryitems " +
                             "NATURAL LEFT JOIN books " +
                             "NATURAL LEFT JOIN cd " +
                             "NATURAL LEFT JOIN dvd " +
