@@ -23,14 +23,14 @@ public class BookingFacade extends Facade
     {
         libraryItem.addBooking(client);
         this.factory.getLibraryItemDAO().updateBooking(libraryItem);
-        logger.log("Add Booking", "Client: " + client.getIdClient() + " / Title: " + libraryItem.getTitle());
+        logger.log("Add Booking", client.getFullname() + " booked " + libraryItem.getTitle());
     }
 
     public void deleteBooking(LibraryItem libraryItem, Client client) throws InternalException
     {
         libraryItem.removeBooking(client);
         this.factory.getLibraryItemDAO().update(libraryItem);
-        logger.log("Remove Booking", "Client: " + client.getIdClient() + " / Title: " + libraryItem.getTitle());
+        logger.log("Remove Booking", client.getFullname() + " unbooked " + libraryItem.getTitle());
     }
 
 }
