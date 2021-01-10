@@ -215,7 +215,12 @@ public class PostgresClientDAO implements ClientDAO
     @Override
     public int countCurrentLoans(Client client) throws InternalException
     {
-        try (PreparedStatement prepare = this.connection.prepareStatement("SELECT COUNT(*) FROM loans WHERE client_id = ?"))
+        try (PreparedStatement prepare = this.connection.prepareStatement("" +
+                "SELECT COUNT(*) FROM loans " +
+                "NATURAL LEFT JOIN returns " +
+                "WHERE client_id = ? AND " +
+                "return_id IS NULL"
+        ))
         {
             prepare.setInt(1, client.getIdClient());
             try (ResultSet result = prepare.executeQuery())
