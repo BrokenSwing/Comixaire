@@ -144,7 +144,9 @@ public class PostgresLoanDAO implements LoanDAO
                             "NATURAL LEFT JOIN cd " +
                             "NATURAL LEFT JOIN dvd " +
                             "NATURAL LEFT JOIN games " +
-                            "WHERE libraryitems.item_id = ?" +
+                            "NATURAL LEFT JOIN returns " +
+                            "WHERE libraryitems.item_id = ? AND " +
+                            "returns.loan_id IS NULL " +
                             "ORDER BY loans.loan_from DESC");
 
             stmt.setInt(1, idItem);
