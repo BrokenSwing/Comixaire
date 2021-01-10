@@ -226,7 +226,7 @@ public class PostgresClientDAO implements ClientDAO
             try (ResultSet result = prepare.executeQuery())
             {
                 result.next();
-                return result.getInt(1) - this.countLoans(client);
+                return result.getInt(1);
             }
         }
         catch (SQLException e)
