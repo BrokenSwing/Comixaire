@@ -30,9 +30,8 @@ public class PostgresSubscriptionsDAO implements SubscriptionsDAO
     @Override
     public Subscription create(Subscription subscription) throws InternalException
     {
-        try
+        try (PreparedStatement prepare = this.connection.prepareStatement("INSERT INTO subscriptions(subscription_from, subscription_to, client_id) VALUES(?, ?, ?) RETURNING subscription_id"))
         {
-            PreparedStatement prepare = this.connection.prepareStatement("INSERT INTO subscriptions(subscription_from, subscription_to, client_id) VALUES(?, ?, ?) RETURNING subscription_id");
             prepare.setDate(1, new Date(subscription.getFrom().getTime()));
             prepare.setDate(2, new Date(subscription.getTo().getTime()));
             prepare.setInt(3, subscription.getClient().getIdClient());
@@ -50,12 +49,8 @@ public class PostgresSubscriptionsDAO implements SubscriptionsDAO
     @Override
     public Subscription[] findAllByCardId(String idCard) throws InternalException
     {
-        try
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM subscriptions NATURAL LEFT JOIN clients WHERE client_cardid = ?"))
         {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "SELECT * FROM subscriptions " +
-                            "NATURAL LEFT JOIN clients " +
-                            "WHERE client_cardid = ?");
             stmt.setString(1, idCard);
 
             ResultSet result = stmt.executeQuery();

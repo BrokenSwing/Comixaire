@@ -4,6 +4,7 @@ import com.github.brokenswing.comixaire.dao.StaffMemberDAO;
 import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoStaffMemberFoundException;
 import com.github.brokenswing.comixaire.exception.UsernameAlreadyExistsException;
+import com.github.brokenswing.comixaire.models.Client;
 import com.github.brokenswing.comixaire.models.StaffMember;
 import org.postgresql.util.PSQLException;
 
@@ -11,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class PostgresStaffMemberDAO implements StaffMemberDAO
 {
@@ -22,17 +24,21 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO
         this.connection = connection;
     }
 
+    public static StaffMember staffMemberFromRow(ResultSet result) throws SQLException
+    {
+        return new StaffMember(
+                result.getInt("staffMember_id"),
+                result.getString("staffMember_username"),
+                result.getString("staffMember_password"),
+                result.getString("staffMember_role")
+        );
+    }
+
     @Override
     public StaffMember create(StaffMember staffMember) throws InternalException, UsernameAlreadyExistsException
     {
-        try
+        try (PreparedStatement prepare = connection.prepareStatement("INSERT INTO staffMembers(staffMember_username, staffMember_password, staffMember_role) VALUES(?, ?, ?) RETURNING staffMember_id"))
         {
-            PreparedStatement prepare = this
-                    .connection
-                    .prepareStatement(
-                            "INSERT INTO staffMembers(staffMember_username, staffMember_password, staffMember_role) "
-                                    + "VALUES(?, ?, ?) RETURNING staffMember_id"
-                    );
             prepare.setString(1, staffMember.getUsername());
             prepare.setString(2, staffMember.getPassword());
             prepare.setString(3, staffMember.getRole());
@@ -58,25 +64,13 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO
     @Override
     public StaffMember findById(int idStaff) throws InternalException, NoStaffMemberFoundException
     {
-        try
+        try (PreparedStatement prepare = connection.prepareStatement("SELECT * FROM staffMembers WHERE staffMember_id = (?)",ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY))
         {
-            PreparedStatement prepare = this
-                    .connection
-                    .prepareStatement(
-                            "SELECT * FROM staffMembers WHERE staffMember_id = (?)",
-                            ResultSet.TYPE_SCROLL_INSENSITIVE,
-                            ResultSet.CONCUR_READ_ONLY
-                    );
             prepare.setInt(1, idStaff);
             ResultSet result = prepare.executeQuery();
             if (result.first())
             {
-                return new StaffMember(
-                        result.getInt("staffMember_id"),
-                        result.getString("staffMember_username"),
-                        result.getString("staffMember_password"),
-                        result.getString("staffMember_role")
-                );
+                return staffMemberFromRow(result);
             }
             else
             {
@@ -92,25 +86,13 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO
     @Override
     public StaffMember findByUsername(String username) throws InternalException, NoStaffMemberFoundException
     {
-        try
+        try (PreparedStatement prepare = connection.prepareStatement("SELECT * FROM staffMembers WHERE staffMember_username = (?)",ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY))
         {
-            PreparedStatement prepare = this
-                    .connection
-                    .prepareStatement(
-                            "SELECT * FROM staffMembers WHERE staffMember_username = (?)",
-                            ResultSet.TYPE_SCROLL_INSENSITIVE,
-                            ResultSet.CONCUR_READ_ONLY
-                    );
             prepare.setString(1, username);
             ResultSet result = prepare.executeQuery();
             if (result.first())
             {
-                return new StaffMember(
-                        result.getInt("staffMember_id"),
-                        result.getString("staffMember_username"),
-                        result.getString("staffMember_password"),
-                        result.getString("staffMember_role")
-                );
+                return staffMemberFromRow(result);
             }
             else
             {
@@ -126,15 +108,8 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO
     @Override
     public void update(StaffMember staffMember) throws InternalException, UsernameAlreadyExistsException
     {
-        try
+        try (PreparedStatement prepare = connection.prepareStatement("UPDATE staffMembers SET (staffMember_username, staffMember_password) = (?, ?) WHERE staffMember_id = (?)"))
         {
-            PreparedStatement prepare = this
-                    .connection
-                    .prepareStatement(
-                            "UPDATE staffMembers SET "
-                                    + "(staffMember_username, staffMember_password) = (?, ?) "
-                                    + "WHERE staffMember_id = (?)"
-                    );
             prepare.setString(1, staffMember.getUsername());
             prepare.setString(2, staffMember.getPassword());
             prepare.setInt(3, staffMember.getIdStaff());
@@ -157,14 +132,8 @@ public class PostgresStaffMemberDAO implements StaffMemberDAO
     @Override
     public void delete(StaffMember staffMember) throws InternalException
     {
-        try
+        try (PreparedStatement prepare = connection.prepareStatement("DELETE FROM staffMembers WHERE staffMember_id = (?)"))
         {
-            PreparedStatement prepare = this
-                    .connection
-                    .prepareStatement(
-                            "DELETE FROM staffMembers "
-                                    + "WHERE staffMember_id = (?)"
-                    );
             prepare.setInt(1, staffMember.getIdStaff());
             prepare.executeUpdate();
         }
