@@ -27,12 +27,7 @@ public class ClientRecommendationsController implements Initializable
 
     @ViewParam
     private Client client;
-    private FilteredList<LibraryItem> items = new FilteredList<>(FXCollections.observableArrayList());
 
-    @FXML
-    private ChoiceBox<String> itemTypeFilter;
-    @FXML
-    private ChoiceBox<Integer> itemNumberField;
     @FXML
     private ListView<LibraryItem> itemsList;
 
@@ -46,14 +41,11 @@ public class ClientRecommendationsController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        itemNumberField.setItems(FXCollections.observableArrayList(5, 10, 15, 20));
-        itemNumberField.getSelectionModel().select(0);
         try
         {
             this.itemsList.setSelectionModel(new NoOpSelectionModel<>());
             this.itemsList.setCellFactory(CustomListCell.factory(loader, Views.Cells.ITEM_SUMMARY));
-            this.items = new FilteredList<>(FXCollections.observableArrayList(recommendationFacade.computeRecommendation(client)));
-            this.itemsList.setItems(this.items);
+            this.itemsList.setItems(FXCollections.observableArrayList(recommendationFacade.computeRecommendation(client)));
         }
         catch (InternalException e)
         {
@@ -66,10 +58,4 @@ public class ClientRecommendationsController implements Initializable
     {
         router.navigateTo(Views.ActionCenters.CLIENT);
     }
-
-    public void search()
-    {
-        //TODO: filter recommendations
-    }
-
 }

@@ -6,6 +6,7 @@ import com.github.brokenswing.comixaire.exception.InternalException;
 import com.github.brokenswing.comixaire.exception.NoClientFoundException;
 import com.github.brokenswing.comixaire.facades.loans.LoansFacade;
 import com.github.brokenswing.comixaire.facades.rating.RatingFacade;
+import com.github.brokenswing.comixaire.javafx.Alerts;
 import com.github.brokenswing.comixaire.javafx.CustomListCell;
 import com.github.brokenswing.comixaire.javafx.IntField;
 import com.github.brokenswing.comixaire.models.Client;
@@ -133,6 +134,7 @@ public class ClientBorrowedItemsController implements Initializable
         catch (InternalException | NoClientFoundException e)
         {
             e.printStackTrace();
+            Alerts.exception(e);
         }
 
 

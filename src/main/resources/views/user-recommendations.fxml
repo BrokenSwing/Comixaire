@@ -30,29 +30,12 @@
             <Font name="Quicksand SemiBold" size="36.0"/>
         </font>
     </Text>
-    <AnchorPane layoutX="257.0" layoutY="222.0" prefHeight="105.0" prefWidth="766.0"
-                style="-fx-background-color: white;">
-        <ChoiceBox fx:id="itemTypeFilter" layoutX="100.0" layoutY="40.0" prefWidth="150.0" value="All">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="All"/>
-                    <String fx:value="Book"/>
-                    <String fx:value="CD"/>
-                    <String fx:value="DVD"/>
-                    <String fx:value="Game"/>
-                </FXCollections>
-            </items>
-        </ChoiceBox>
-        <ChoiceBox fx:id="itemNumberField" layoutX="300.0" layoutY="40.0" prefWidth="150.0"/>
-        <Button layoutX="550.0" layoutY="40.0" mnemonicParsing="false" styleClass="btn" text="Search"
-                onAction="#search"/>
-    </AnchorPane>
-    <Text fill="#c4c4c4" layoutX="51.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="search result">
+    <Text fill="#c4c4c4" layoutX="51.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="search result">
         <font>
             <Font name="Quicksand SemiBold" size="15.0"/>
         </font>
     </Text>
-    <ListView layoutX="51.0" layoutY="382.0" prefHeight="378.0" prefWidth="1179.0" fx:id="itemsList">
+    <ListView layoutX="51.0" layoutY="282.0" prefHeight="478.0" prefWidth="1179.0" fx:id="itemsList">
         <placeholder>
             <Text>
                 No items recommended
