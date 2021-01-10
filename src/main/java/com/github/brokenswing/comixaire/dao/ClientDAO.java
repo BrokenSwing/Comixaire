@@ -20,7 +20,7 @@ public interface ClientDAO
     /**
      * @param cardID the card ID of the client to find
      * @return the client with the given card ID
-     * @throws InternalException      if an expected error occurs
+     * @throws InternalException      if an unexpected error occurs
      * @throws NoClientFoundException if no client with the given card ID was found
      */
     Client findByCardID(String cardID) throws InternalException, NoClientFoundException;
