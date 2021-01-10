@@ -66,90 +66,135 @@ public class Comixaire extends Application
         primaryStage.show();
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link Router}
+     */
     @ValueProvider
     public Router getRouter()
     {
         return this.router;
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link ViewLoader}
+     */
     @ValueProvider
     public ViewLoader getViewLoader()
     {
         return viewLoader;
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link AuthFacade}
+     */
     @ValueProvider
     public AuthFacade getAuthFacade()
     {
         return new AuthFacade(factory, new PlainTextPasswordAlgorithm(), this.session);
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link StaffMemberFacade}
+     */
     @ValueProvider
     public StaffMemberFacade getStaffMemberFacade()
     {
         return new StaffMemberFacade(factory);
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link LogsFacade}
+     */
     @ValueProvider
     public LogsFacade getLogsFacade()
     {
         return new LogsFacade(factory, session);
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link ClientsFacade}
+     */
     @ValueProvider
     public ClientsFacade getClientsFacade()
     {
         return new ClientsFacade(factory);
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link LibraryItemFacade}
+     */
     @ValueProvider
     public LibraryItemFacade getLibraryItemFacade()
     {
         return new LibraryItemFacade(factory);
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link SubscriptionsFacade}
+     */
     @ValueProvider
     public SubscriptionsFacade getSubscriptionsFacade()
     {
         return new SubscriptionsFacade(factory);
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link FinesFacade}
+     */
     @ValueProvider
     public FinesFacade getFinesFacade()
     {
         return new FinesFacade(factory);
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link RecommendationFacade}
+     */
     @ValueProvider
     public RecommendationFacade getRecommendationFacade()
     {
         return new RecommendationFacade(factory);
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link LoansFacade}
+     */
     @ValueProvider
     public LoansFacade getLoansFacade()
     {
         return new LoansFacade(factory);
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link BookingFacade}
+     */
     @ValueProvider
     public BookingFacade getBookingFacade()
     {
         return new BookingFacade(factory);
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link RatingFacade}
+     */
     @ValueProvider
     public RatingFacade getRatingFacade()
     {
         return new RatingFacade(factory);
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link ReturnFacade}
+     */
     @ValueProvider
     public ReturnFacade getReturnFacade()
     {
         return new ReturnFacade(factory);
     }
 
+    /**
+     * @return the initial value for the singleton of the class {@link FineTypesFacade}
+     */
     @ValueProvider
     public FineTypesFacade getFineTypes()
     {
