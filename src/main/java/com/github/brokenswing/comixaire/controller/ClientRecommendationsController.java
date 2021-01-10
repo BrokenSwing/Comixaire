@@ -51,7 +51,7 @@ public class ClientRecommendationsController implements Initializable
         try
         {
             this.itemsList.setSelectionModel(new NoOpSelectionModel<>());
-            this.itemsList.setCellFactory(CustomListCell.factory(loader, Views.Cells.RECOMMENDED_ITEM));
+            this.itemsList.setCellFactory(CustomListCell.factory(loader, Views.Cells.ITEM_SUMMARY));
             this.items = new FilteredList<>(FXCollections.observableArrayList(recommendationFacade.computeRecommendation(client)));
             this.itemsList.setItems(this.items);
         }

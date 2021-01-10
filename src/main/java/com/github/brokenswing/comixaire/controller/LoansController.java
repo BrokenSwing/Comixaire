@@ -83,7 +83,7 @@ public class LoansController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         loansList.setSelectionModel(new NoOpSelectionModel<>());
-        loansList.setCellFactory(CustomListCell.factory(loader, Views.Cells.RECOMMENDED_ITEM));
+        loansList.setCellFactory(CustomListCell.factory(loader, Views.Cells.ITEM_SUMMARY));
 
         fullname.setText(client.getFullname());
         gender.setText(client.getGender());

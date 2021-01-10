@@ -3,21 +3,88 @@ package com.github.brokenswing.comixaire.view;
 public class Views
 {
 
+    /**
+     * This view allows a staff member to update it's name and/or it's password.
+     */
     public static final String SETTINGS = "settings.fxml";
+
+    /**
+     * This view displays logs of the software.
+     */
     public static final String LOGS = "logs.fxml";
+
+    /**
+     * This view displays a form allowing a client or a staff member to connect to
+     * the software.
+     */
     public static final String LOGIN = "authentication.fxml";
 
+    /**
+     * This view allows to create a new {@link com.github.brokenswing.comixaire.models.Client}.
+     */
     public static final String NEW_CLIENT = "new-user.fxml";
+
+    /**
+     * This views displays all recommended items of a client.
+     * It MUST receive a {@link com.github.brokenswing.comixaire.models.Client}
+     * when created.
+     */
     public static final String CLIENT_RECOMMENDATIONS = "user-recommendations.fxml";
+
+    /**
+     * This view displays a field to enter the card ID of a client we want
+     * to create loans for.
+     */
     public static final String CLIENT_LOANS = "loans-client-input.fxml";
+
+    /**
+     * This view displays an field to enter the card ID of a client to display
+     * bookings of.
+     */
     public static final String CLIENT_BOOKINGS = "bookings-client-input.fxml";
+
+    /**
+     * This view simply displays a field to enter the ID of a library item
+     * to return.
+     */
     public static final String CLIENT_RETURNS = "returns-item-input.fxml";
+
+    /**
+     * This view list all clients. Each client display is handled by the view
+     * {@link Cells#CLIENT}.
+     */
     public static final String CLIENTS_LIST = "client-list.fxml";
+
+    /**
+     * This view allows a client to consult all library item he/she loaned
+     * and rate each of these if he/she want to.
+     */
     public static final String CLIENT_BORROWED_ITEM = "user-borrowed-items.fxml";
 
+    /**
+     * This views allows to create new loans for a client.
+     * It MUST receive a {@link com.github.brokenswing.comixaire.models.Client}
+     * when created.
+     */
     public static final String LOANS = "loans.fxml";
+
+    /**
+     * This view allows to manage bookings for a client.
+     * It MUST receive a {@link com.github.brokenswing.comixaire.models.Client}
+     * when created.
+     */
     public static final String BOOKINGS = "bookings.fxml";
+
+    /**
+     * This view allows to create a return for a loan.
+     * It MUST receive a {@link com.github.brokenswing.comixaire.models.Loan}
+     * when created.
+     */
     public static final String RETURNS = "returns.fxml";
+
+    /**
+     * This view display some statistics about what the state of the library.
+     */
     public static final String STATS = "stats.fxml";
 
     private Views()
@@ -75,10 +142,29 @@ public class Views
     public static final class Cells
     {
 
-        public static final String RECOMMENDED_ITEM = "cells/recommended-item-cell.fxml";
+        /**
+         * This view represents a simple summary of the information of a library item.
+         * It MUST receive a {@link com.github.brokenswing.comixaire.models.LibraryItem}
+         * when created.
+         */
+        public static final String ITEM_SUMMARY = "cells/item-summary-cell.fxml";
+
+        /**
+         * This view represents a library item with a button to book it if possible.
+         * It MUST receive a {@link javafx.util.Pair} of
+         * {@link com.github.brokenswing.comixaire.models.LibraryItem} and {@link com.github.brokenswing.comixaire.models.Client}
+         * when created.
+         */
         public static final String BOOKING_ITEM = "cells/booking-cell.fxml";
+
+        /**
+         * This view represents a rating given by a client for a library item.
+         * It MUST receive a {@link com.github.brokenswing.comixaire.controller.ClientBorrowedItemsController.ObservableRating}
+         * when created.
+         *
+         * @see Cells
+         */
         public static final String RATING = "cells/rating-cell.fxml";
-        public static final String LOAN = "cells/loan-cell.fxml";
 
         /**
          * This view represents a single client with the main information about him/her displayed.
