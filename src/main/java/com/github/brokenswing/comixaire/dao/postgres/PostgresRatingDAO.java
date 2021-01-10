@@ -92,7 +92,15 @@ public class PostgresRatingDAO implements RatingDAO
     @Override
     public Rating[] getRatingByClientId(int clientId) throws InternalException, NoClientFoundException
     {
-        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM clients NATURAL JOIN rating NATURAL JOIN libraryitems NATURAL LEFT JOIN books NATURAL LEFT JOIN cd NATURAL LEFT JOIN dvd NATURAL LEFT JOIN games WHERE client_id = ?"))
+        try (PreparedStatement stmt = connection.prepareStatement(
+                "SELECT * FROM clients " +
+                "NATURAL LEFT JOIN rating " +
+                        "NATURAL LEFT JOIN libraryitems " +
+                        "NATURAL LEFT JOIN books " +
+                        "NATURAL LEFT JOIN cd " +
+                        "NATURAL LEFT JOIN dvd " +
+                        "NATURAL LEFT JOIN games " +
+                        "WHERE clients.client_id = ?"))
         {
             stmt.setInt(1, clientId);
             ResultSet result = stmt.executeQuery();
