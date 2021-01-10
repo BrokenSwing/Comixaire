@@ -25,14 +25,8 @@ public class PostgresLogDAO implements LogDAO
     @Override
     public void create(Log log) throws InternalException
     {
-        try
+        try (PreparedStatement prepare = connection.prepareStatement("INSERT INTO logs(log_date, log_operationDetails, log_operationType,staffMember_id) VALUES(?, ?, ?, ?)"))
         {
-            PreparedStatement prepare = this
-                    .connection
-                    .prepareStatement(
-                            "INSERT INTO logs(log_date, log_operationDetails, log_operationType,staffMember_id) "
-                                    + "VALUES(?, ?, ?, ?)"
-                    );
             prepare.setTimestamp(1, log.getTimestamp(), Calendar.getInstance());
             prepare.setString(2, log.getOperationDetails());
             prepare.setString(3, log.getOperationType());
@@ -48,22 +42,19 @@ public class PostgresLogDAO implements LogDAO
     @Override
     public Log[] getAll() throws InternalException
     {
-        try
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT " +
+                "log_operationDetails," +
+                "log_operationType," +
+                "log_date," +
+                "staffMember_id," +
+                "staffMember_username," +
+                "staffMember_password," +
+                "staffMember_role " +
+                "FROM logs " +
+                "NATURAL JOIN staffMembers " +
+                "ORDER BY log_date DESC"))
         {
-            PreparedStatement prepare = this
-                    .connection
-                    .prepareStatement("SELECT " +
-                            "log_operationDetails," +
-                            "log_operationType," +
-                            "log_date," +
-                            "staffMember_id," +
-                            "staffMember_username," +
-                            "staffMember_password," +
-                            "staffMember_role " +
-                            "FROM logs " +
-                            "NATURAL JOIN staffMembers " +
-                            "ORDER BY log_date DESC");
-            ResultSet result = prepare.executeQuery();
+            ResultSet result = stmt.executeQuery();
             ArrayList<Log> logs = new ArrayList<>();
             while (result.next())
             {
@@ -71,12 +62,7 @@ public class PostgresLogDAO implements LogDAO
                         result.getString("log_operationDetails"),
                         result.getString("log_operationType"),
                         result.getTimestamp("log_date"),
-                        new StaffMember(
-                                result.getInt("staffMember_id"),
-                                result.getString("staffMember_username"),
-                                result.getString("staffMember_password"),
-                                result.getString("staffMember_role")
-                        )
+                        PostgresStaffMemberDAO.staffMemberFromRow(result)
                 ));
             }
             return logs.toArray(new Log[0]);

@@ -26,6 +26,7 @@ import com.github.brokenswing.comixaire.view.Views;
 import com.github.brokenswing.comixaire.view.util.Router;
 import com.github.brokenswing.comixaire.view.util.ViewLoader;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -59,6 +60,8 @@ public class Comixaire extends Application
     public void start(Stage primaryStage)
     {
         primaryStage.setResizable(false);
+        primaryStage.setAlwaysOnTop(true);
+        primaryStage.getIcons().add(new Image("/assets/icon.png"));
 
         this.router = new Router(this.viewLoader, primaryStage);
         this.router.navigateTo(Views.LOGIN);

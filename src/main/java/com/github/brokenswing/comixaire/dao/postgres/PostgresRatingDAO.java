@@ -26,16 +26,12 @@ public class PostgresRatingDAO implements RatingDAO
     @Override
     public void create(Rating rating) throws InternalException
     {
-        try (PreparedStatement stmt = connection.prepareStatement(
-                "INSERT INTO rating (client_id, item_id, note) " +
-                        "VALUES (?, ?, ?) ON CONFLICT (client_id, item_id) DO UPDATE SET note = ?"
-        ))
+        try (PreparedStatement stmt = connection.prepareStatement("INSERT INTO rating (client_id, item_id, note) VALUES (?, ?, ?) ON CONFLICT (client_id, item_id) DO UPDATE SET note = ?"))
         {
             stmt.setInt(1, rating.getClient().getIdClient());
             stmt.setInt(2, rating.getLibraryItem().getIdLibraryItem());
             stmt.setInt(3, rating.getNote());
             stmt.setInt(4, rating.getNote());
-
             stmt.executeUpdate();
         }
         catch (SQLException e)
@@ -47,17 +43,15 @@ public class PostgresRatingDAO implements RatingDAO
     @Override
     public Rating[] getAllRating() throws InternalException
     {
-        try
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM rating " +
+                "NATURAL JOIN clients " +
+                "NATURAL JOIN libraryitems " +
+                "NATURAL LEFT JOIN books " +
+                "NATURAL LEFT JOIN cd " +
+                "NATURAL LEFT JOIN dvd " +
+                "NATURAL LEFT JOIN games "))
         {
-            ResultSet result = connection.prepareStatement(
-                    "SELECT * FROM rating " +
-                            "NATURAL JOIN clients " +
-                            "NATURAL JOIN libraryitems " +
-                            "NATURAL LEFT JOIN books " +
-                            "NATURAL LEFT JOIN cd " +
-                            "NATURAL LEFT JOIN dvd " +
-                            "NATURAL LEFT JOIN games ").executeQuery();
-
+            ResultSet result = stmt.executeQuery();
             ArrayList<Rating> ratings = new ArrayList<>();
 
             while (result.next())
@@ -78,17 +72,15 @@ public class PostgresRatingDAO implements RatingDAO
     @Override
     public Integer[] getAllItemId() throws InternalException
     {
-        try
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT item_id FROM libraryitems"))
         {
-            ResultSet result = connection.prepareStatement("SELECT item_id FROM libraryitems").executeQuery();
-
+            ResultSet result = stmt.executeQuery();
             ArrayList<Integer> itemsId = new ArrayList<>();
 
             while (result.next())
             {
                 itemsId.add(result.getInt("item_id"));
             }
-
             return itemsId.toArray(new Integer[0]);
         }
         catch (SQLException e)
@@ -100,17 +92,8 @@ public class PostgresRatingDAO implements RatingDAO
     @Override
     public Rating[] getRatingByClientId(int clientId) throws InternalException, NoClientFoundException
     {
-        try
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM clients NATURAL JOIN rating NATURAL JOIN libraryitems NATURAL LEFT JOIN books NATURAL LEFT JOIN cd NATURAL LEFT JOIN dvd NATURAL LEFT JOIN games WHERE client_id = ?"))
         {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "SELECT * FROM clients " +
-                            "NATURAL JOIN rating " +
-                            "NATURAL JOIN libraryitems " +
-                            "NATURAL LEFT JOIN books " +
-                            "NATURAL LEFT JOIN cd " +
-                            "NATURAL LEFT JOIN dvd " +
-                            "NATURAL LEFT JOIN games " +
-                            "WHERE client_id = ?");
             stmt.setInt(1, clientId);
             ResultSet result = stmt.executeQuery();
 
