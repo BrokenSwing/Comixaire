@@ -2,20 +2,20 @@ package com.github.brokenswing.comixaire.models;
 
 public class Fine
 {
-    private final int idFine;
+    private final int idLoan;
     private final FineType fineType;
     private final boolean paid;
 
-    public Fine(int idFine, boolean paid, FineType fineType)
+    public Fine(int idLoan, boolean paid, FineType fineType)
     {
-        this.idFine = idFine;
+        this.idLoan = idLoan;
         this.paid = paid;
         this.fineType = fineType;
     }
 
     public int getId()
     {
-        return idFine;
+        return idLoan;
     }
 
     public boolean isPaid()

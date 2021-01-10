@@ -22,14 +22,14 @@ public class PostgresReturnsDAO implements ReturnsDAO
     @Override
     public Returns create(Returns returns) throws InternalException
     {
-        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO returns (return_date, loan_id) VALUES (?, ?) RETURNING return_id"))
+        try (PreparedStatement statement = connection.prepareStatement(
+                "INSERT INTO returns (return_date, loan_id) VALUES (?, ?)"))
         {
             statement.setDate(1, new java.sql.Date(returns.getDate().getTime()));
             statement.setInt(2, returns.getIdLoan());
             ResultSet result = statement.executeQuery();
             result.next();
-            int idReturn = result.getInt("return_id");
-            return new Returns(idReturn, returns.getIdLoan(), returns.getDate());
+            return returns;
         }
         catch (SQLException e)
         {

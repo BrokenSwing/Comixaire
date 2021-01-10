@@ -144,13 +144,12 @@ public class ReturnsController implements Initializable
             }
         }
 
-        Returns returns = null;
         try
         {
-            returns = returnFacade.create(new Returns(loan.getIdLoan()), loan.getLibraryItem());
+            Returns returns = returnFacade.create(new Returns(loan.getIdLoan()), loan.getLibraryItem());
             if (choiceFine.getValue() != null && !choiceFine.getValue().getLabel().equals("None"))
             {
-                finesFacade.create(new Fine(returns.getIdReturn(), false, choiceFine.getValue()));
+                finesFacade.create(new Fine(returns.getIdLoan(), false, choiceFine.getValue()));
             }
             Alerts.success("The return has been registered.");
             router.navigateTo(Views.CLIENT_RETURNS);

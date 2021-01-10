@@ -30,7 +30,8 @@ public class PostgresFineDAO implements FineDAO
     {
         try
         {
-            PreparedStatement prepare = connection.prepareStatement("INSERT INTO fine(return_id, fineType_id, paid) VALUES (?, ?, ?)");
+            PreparedStatement prepare = connection.prepareStatement(
+                    "INSERT INTO fine(loan_id, fineType_id, paid) VALUES (?, ?, ?)");
             prepare.setInt(1, fine.getId());
             prepare.setInt(2, fine.getFineType().getId());
             prepare.setBoolean(3, fine.isPaid());
@@ -62,9 +63,8 @@ public class PostgresFineDAO implements FineDAO
         {
             PreparedStatement prepare = connection.prepareStatement(
                     "SELECT * FROM fine " +
-                            "JOIN fineType ON fineType.fineType_id = fine.fineType_id " +
-                            "JOIN returns ON returns.return_id = fine.return_id " +
-                            "JOIN loans ON returns.loan_id = loans.loan_id " +
+                            "JOIN fineType ON fineType.fineType_id = fine.fineType_id "+
+                            "JOIN loans ON fine.loan_id = loans.loan_id " +
                             "WHERE loans.client_id = ?");
             prepare.setInt(1, client.getIdClient());
             ResultSet result = prepare.executeQuery();
@@ -98,7 +98,8 @@ public class PostgresFineDAO implements FineDAO
     {
         try
         {
-            PreparedStatement prepare = this.connection.prepareStatement("UPDATE fine SET paid = ? WHERE return_id = ? AND fineType_id = ?");
+            PreparedStatement prepare = this.connection.prepareStatement(
+                    "UPDATE fine SET paid = ? WHERE loan_id = ? AND fineType_id = ?");
             prepare.setBoolean(1, true);
             prepare.setInt(2, fine.getId());
             prepare.setInt(3, fine.getFineType().getId());
@@ -115,7 +116,7 @@ public class PostgresFineDAO implements FineDAO
     {
         try
         {
-            PreparedStatement prepare = this.connection.prepareStatement("DELETE FROM fine WHERE return_id = ? AND fineType_id = ?");
+            PreparedStatement prepare = this.connection.prepareStatement("DELETE FROM fine WHERE loan_id = ? AND fineType_id = ?");
             prepare.setInt(1, fine.getId());
             prepare.setInt(2, fine.getFineType().getId());
             prepare.executeUpdate();
