@@ -79,7 +79,6 @@ public class RecommenderSystem
         {
             return onlyOne;
         }
-        System.out.println(c1.getFullname()  + "-" + c2.getFullname() + " : " + output);
         return output;
     }
 
@@ -112,7 +111,7 @@ public class RecommenderSystem
         Set<LibraryItem> items = new HashSet<>();
         for (Rating rating : ratings)
         {
-            if (similar.contains(rating.getClient()) && rating.getNote() > MIN_NOTE)
+            if (similar.contains(rating.getClient()) && rating.getNote() >= MIN_NOTE)
             {
                 items.add(rating.getLibraryItem());
             }
