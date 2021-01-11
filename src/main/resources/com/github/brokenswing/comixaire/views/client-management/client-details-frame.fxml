@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity"
+            maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" style="-fx-background-color: white;"
+            stylesheets="@../../stylesheets/authentication.css" xmlns="http://javafx.com/javafx/8"
+            fx:controller="com.github.brokenswing.comixaire.controller.ClientDetailsController">
+
+    <!-- Card ID -->
+    <Text fill="#b2b2b2" layoutX="51.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Id:">
+        <font>
+            <Font name="Quicksand SemiBold" size="17.0"/>
+        </font>
+    </Text>
+
+    <!-- Gender -->
+    <Text fill="#b2b2b2" layoutX="51.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
+        <font>
+            <Font name="Quicksand SemiBold" size="17.0"/>
+        </font>
+    </Text>
+
+    <!-- Birthdate -->
+    <Text fill="#b2b2b2" layoutX="52.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0"
+          text="Birthdate:">
+        <font>
+            <Font name="Quicksand SemiBold" size="17.0"/>
+        </font>
+    </Text>
+
+    <!-- Address -->
+    <Text fill="#b2b2b2" layoutX="52.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
+        <font>
+            <Font name="Quicksand SemiBold" size="17.0"/>
+        </font>
+    </Text>
+
+    <!-- Loans count -->
+    <Text fill="#b2b2b2" layoutX="508.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loans:">
+        <font>
+            <Font name="Quicksand SemiBold" size="17.0"/>
+        </font>
+    </Text>
+
+    <!-- Votes count -->
+    <Text fill="#b2b2b2" layoutX="509.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Votes:">
+        <font>
+            <Font name="Quicksand SemiBold" size="17.0"/>
+        </font>
+    </Text>
+
+    <!-- Fines count -->
+    <Text fill="#b2b2b2" layoutX="508.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fines:">
+        <font>
+            <Font name="Quicksand SemiBold" size="17.0"/>
+        </font>
+    </Text>
+
+    <!-- Current loans -->
+    <Text fill="#b2b2b2" layoutX="508.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0"
+          text="Current loans:">
+        <font>
+            <Font name="Quicksand SemiBold" size="17.0"/>
+        </font>
+    </Text>
+
+    <!-- Card Id field value -->
+    <Text fx:id="cardId" fill="#5282fc" layoutX="145.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font>
+            <Font name="Quicksand SemiBold" size="20.0"/>
+        </font>
+    </Text>
+
+    <!-- Gender field value -->
+    <Text fx:id="gender" fill="#5282fc" layoutX="145.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font>
+            <Font name="Quicksand SemiBold" size="20.0"/>
+        </font>
+    </Text>
+
+    <!-- Birthdate field value -->
+    <Text fx:id="birthdate" fill="#5282fc" layoutX="145.0" layoutY="195.0" strokeType="OUTSIDE"
+          strokeWidth="0.0">
+        <font>
+            <Font name="Quicksand SemiBold" size="20.0"/>
+        </font>
+    </Text>
+
+    <!-- Address field value -->
+    <Text fx:id="address" fill="#5282fc" layoutX="145.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font>
+            <Font name="Quicksand SemiBold" size="20.0"/>
+        </font>
+    </Text>
+
+    <!-- Current loans field value -->
+    <Text fx:id="currentLoans" fill="#5282fc" layoutX="635.0" layoutY="84.0" strokeType="OUTSIDE"
+          strokeWidth="0.0">
+        <font>
+            <Font name="Quicksand SemiBold" size="20.0"/>
+        </font>
+    </Text>
+
+    <!-- Loans count field value -->
+    <Text fx:id="loans" fill="#5282fc" layoutX="635.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font>
+            <Font name="Quicksand SemiBold" size="20.0"/>
+        </font>
+    </Text>
+
+    <!-- Fines count field value -->
+    <Text fx:id="fines" fill="#5282fc" layoutX="635.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font>
+            <Font name="Quicksand SemiBold" size="20.0"/>
+        </font>
+    </Text>
+
+    <!-- Votes count field value -->
+    <Text fx:id="votes" fill="#5282fc" layoutX="635.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font>
+            <Font name="Quicksand SemiBold" size="20.0"/>
+        </font>
+    </Text>
+
+</AnchorPane>

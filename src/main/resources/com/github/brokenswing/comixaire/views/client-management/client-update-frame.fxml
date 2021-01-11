@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import java.lang.String?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity"
+            maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="306.0" prefWidth="809.0"
+            style="-fx-background-color: white;" stylesheets="@../../stylesheets/authentication.css"
+            xmlns="http://javafx.com/javafx/8"
+            fx:controller="com.github.brokenswing.comixaire.controller.ClientUpdateController"
+>
+
+    <TextField fx:id="firstnameInput" layoutX="146.0" layoutY="57.0" promptText="Firstname"/>
+    <TextField fx:id="lastnameInput" layoutX="146.0" layoutY="129.0" promptText="Lastname"/>
+    <TextField fx:id="addressInput" layoutX="146.0" layoutY="202.0" promptText="Address"/>
+    <TextField fx:id="cardIdInput" layoutX="498.0" layoutY="57.0" promptText="Card Id"/>
+    <ChoiceBox fx:id="genderInput" layoutX="497.0" layoutY="129.0" prefWidth="150.0">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Femme"/>
+                <String fx:value="Homme"/>
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <DatePicker fx:id="birthdateInput" layoutX="497.0" layoutY="202.0" promptText="Birthdate"/>
+    <Button fx:id="updateProfileButton" layoutX="358.0" layoutY="266.0" mnemonicParsing="false"
+            onAction="#updateProfile" styleClass="btn" text="Update profile"/>
+</AnchorPane>

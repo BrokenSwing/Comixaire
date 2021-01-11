@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;"
+            stylesheets="@../stylesheets/authentication.css" xmlns="http://javafx.com/javafx/8"
+            fx:controller="com.github.brokenswing.comixaire.controller.ClientsListController">
+    <fx:include source="menus/staff-menu.fxml"/>
+    <Text layoutX="149.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Users">
+        <font>
+            <Font name="Quicksand SemiBold" size="36.0"/>
+        </font>
+    </Text>
+    <AnchorPane layoutX="276.0" layoutY="191.0" prefHeight="96.0" prefWidth="817.0"
+                style="-fx-background-color: white;" stylesheets="@../stylesheets/authentication.css">
+        <TextField fx:id="clientCardIdField" layoutX="36.0" layoutY="36.0" promptText="ID"/>
+        <TextField fx:id="clientFirstnameField" layoutX="271.0" layoutY="37.0" promptText="Firstname"/>
+        <TextField fx:id="clientLastnameField" layoutX="460.0" layoutY="36.0" promptText="Lastname"/>
+        <Button layoutX="674.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#search" styleClass="btn"
+                text="Search"/>
+        <Text layoutX="217.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or"/>
+    </AnchorPane>
+    <ListView fx:id="clientsList" layoutX="149.0" layoutY="310.0" prefHeight="456.0" prefWidth="1098.0"
+              styleClass="list-cell">
+        <placeholder>
+            <Text>
+                No Client found
+            </Text>
+        </placeholder>
+    </ListView>
+</AnchorPane>

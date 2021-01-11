@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="800.0" maxWidth="1280.0" minHeight="800.0" minWidth="1280.0"
+            prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F7F9FF;"
+            stylesheets="@../../stylesheets/authentication.css"
+            xmlns="http://javafx.com/javafx/8"
+            fx:controller="com.github.brokenswing.comixaire.controller.ClientActionCenterController">
+    <fx:include source="../menus/client-menu.fxml"/>
+    <AnchorPane layoutX="340.0" layoutY="272.0" prefHeight="257.0" prefWidth="257.0"
+                style="-fx-background-color: white;">
+        <Text fill="#c4c4c4" layoutX="46.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Borrowed items">
+            <font>
+                <Font name="Quicksand SemiBold" size="22.0"/>
+            </font>
+        </Text>
+        <ImageView layoutX="65.0" layoutY="34.0">
+            <Image url="@../../assets/geometrical-shapes-set-primary-big.png"/>
+        </ImageView>
+    </AnchorPane>
+    <AnchorPane layoutX="340.0" layoutY="272.0" prefHeight="257.0" prefWidth="257.0"
+                style="-fx-background-color: transparent;" onMouseClicked="#borrowedItems">
+        <opaqueInsets>
+            <Insets/>
+        </opaqueInsets>
+    </AnchorPane>
+    <AnchorPane layoutX="683.0" layoutY="272.0" prefHeight="257.0" prefWidth="257.0"
+                style="-fx-background-color: white;">
+        <Text fill="#c4c4c4" layoutX="35.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Recommandations">
+            <font>
+                <Font name="Quicksand SemiBold" size="22.0"/>
+            </font>
+        </Text>
+        <ImageView layoutX="65.0" layoutY="34.0">
+            <Image url="@../../assets/ranking.png"/>
+        </ImageView>
+    </AnchorPane>
+    <AnchorPane layoutX="683.0" layoutY="272.0" prefHeight="257.0" prefWidth="257.0"
+                style="-fx-background-color: transparent;" onMouseClicked="#recommendations">
+        <opaqueInsets>
+            <Insets/>
+        </opaqueInsets>
+    </AnchorPane>
+</AnchorPane>

@@ -60,7 +60,7 @@ public class Comixaire extends Application
     public void start(Stage primaryStage)
     {
         primaryStage.setResizable(false);
-        primaryStage.getIcons().add(new Image("/assets/icon.png"));
+        primaryStage.getIcons().add(new Image(Comixaire.class.getResource("assets/icon.png").toExternalForm()));
 
         this.router = new Router(this.viewLoader, primaryStage);
         this.router.navigateTo(Views.LOGIN);

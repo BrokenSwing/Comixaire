@@ -1,5 +1,6 @@
 package com.github.brokenswing.comixaire.view.util;
 
+import com.github.brokenswing.comixaire.Comixaire;
 import com.github.brokenswing.comixaire.di.ControllerFactoryDI;
 import com.github.brokenswing.comixaire.di.DependencyInjector;
 import com.github.brokenswing.comixaire.di.ViewParam;
@@ -52,7 +53,7 @@ public class ViewLoader
 
         try
         {
-            loader.setLocation(ViewLoader.class.getClassLoader().getResource("views/" + viewPath));
+            loader.setLocation(Comixaire.class.getResource("views/" + viewPath));
             return loader.load();
         }
         catch (IOException e)
